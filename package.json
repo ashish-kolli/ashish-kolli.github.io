@@ -1,0 +1,28 @@
+{
+  "name": "product-engineer-proposal",
+  "version": "1.0.0",
+  "description": "Product Engineer Proposal - Modular React component system",
+  "main": "dist/ProductEngineerProposal.jsx",
+  "scripts": {
+    "parse": "node src/utils/parser.js",
+    "build": "node src/utils/parser.js && node src/utils/build.js && node scripts/update-preview.js && node scripts/validate-build.js",
+    "build:quick": "node src/utils/build.js && node scripts/update-preview.js",
+    "preview": "node scripts/update-preview.js",
+    "validate": "node scripts/validate-build.js",
+    "verify": "node scripts/verify-artifact.js",
+    "all": "npm run parse && npm run build && npm run verify",
+    "sync-docs": "node scripts/sync-agent-docs.js",
+    "parse:article": "node scripts/parse-article.js",
+    "build:article": "node scripts/parse-article.js && node scripts/build-article.js && node scripts/update-article-preview.js",
+    "parse:memory": "node scripts/parse-article.js --article ai-memory-architectures",
+    "build:memory": "node scripts/parse-article.js --article ai-memory-architectures && node scripts/build-article.js --article ai-memory-architectures && node scripts/update-article-preview.js --article ai-memory-architectures",
+    "build:all": "npm run build && npm run build:article && npm run build:memory"
+  },
+  "keywords": [
+    "proposal",
+    "react",
+    "components"
+  ],
+  "author": "John Renaldi",
+  "license": "MIT"
+}
