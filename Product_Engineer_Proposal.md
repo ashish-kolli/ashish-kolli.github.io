@@ -27,7 +27,7 @@ PRODUCT MANAGER · NORTHWESTERN MPD '26
 
 I'm a product manager finishing the **Master of Product Design (MPD)** program at Northwestern, where I lead research, drive product strategy, and own PRDs end-to-end. My most recent work — a 13-page PRD presented to **Newell Brands' VP of Innovation** — sits below.
 
-Before product, I trained as an architect. A decade of structural design taught me three things that compound into PM work: how to reason about systems under load, how to drive a long-form artifact (a drawing set, a build plan, a PRD) to a clear point, and how to align cross-functional teams of engineers, designers, and stakeholders around a single buildable plan.
+Before product, I trained as an architect. A decade of structural design — including fabrication work for the **Northeastern University EXP** building and an archival model refresh for **Thom Mayne's personal office collection** — taught me three things that compound into PM work: how to reason about systems under load, how to drive a long-form artifact (a drawing set, a build plan, a PRD) to a clear point, and how to align cross-functional teams of engineers, designers, and stakeholders around a single buildable plan.
 
 That sequence — research first, constraints second, ship last — is the one I bring to every product I touch.
 
@@ -195,40 +195,52 @@ Before product management, a decade of architecture and design. I include a sele
 
 <!-- @cards type="topic" columns="3" section="archive" -->
 
-<!-- @card icon="briefcase" title="Tesla — Service Intake Plan" audience="Tesla, Inc. · 2023" -->
+<!-- @card icon="lightbulb" title="Ningbo Oceanside Pavilions — Archival Model" audience="Thom Mayne · personal office collection" -->
+Model refresh for **Thom Mayne's personal office collection** — fabricated in collaboration with Allan, Nihan, and Nigel.
+<!-- @expanded -->
+A multi-step archival fabrication: excavation, resin application, resin cure, depowdering, powder extraction, black primer, and a final resin seal. The project was a model refresh for the personal office collection of **Thom Mayne (Morphosis Architects, Pritzker Laureate)**. **Why it matters for PM:** archival-grade work demands process documentation as rigorous as the physical craft — the same discipline behind a well-written PRD.
+<!-- /@card -->
+
+<!-- @card icon="cpu" title="Northeastern University EXP — Corner Guards" audience="Fabrication · in-house welding & finishing" -->
+Cold-rolled and mill-scale steel corner guards for the **Northeastern University EXP** building — 930 laser-cut parts, blackened with a wax + oil finish.
+<!-- @expanded -->
+A fabrication-drawing-to-finished-component pipeline: 1/4" A36 steel laser-cut into A/B/C/D/S1/S2 profiles, in-house welding with 1/4" stand-off spacers tack-welded to the back, blackened and finished with wax + oil. Quantities tracked across 7 levels (12 + 15 + 19 + 16 + 17 + 18 + 17 = 114 base units, with bathroom and ramp variants). Shop drawings, batches, finishes, deliveries. **Why it matters for PM:** real-world manufacturing work taught me to think in *batches, tolerances, and acceptance criteria* — the language of shipped product.
+<!-- /@card -->
+
+<!-- @card icon="briefcase" title="Tesla — Service Intake Plan" audience="Tesla, Inc. · July 2023" -->
 Service-center plan for a two-lane intake bay with integrated lounge entry, centered lighting, and a feature-wall logo system.
 <!-- @expanded -->
-A retail-architecture deliverable produced inside Tesla. Two service lanes, pendant signage, lounge-door integration, and a logo feature wall lined with nine metallic-finish panels spaced 2" apart against a trout-grey back-wall, anchored by an S830 61"-H illuminated Tesla logo. **Why it matters for PM:** the project taught me how brand surfaces translate into stakeholder-aligned spec sheets — the same skill that turns user research into a PRD engineering can build against.
+Two service lanes with light fixtures centered on each panel seam, a 6' lounge-door integration, and three service-advisor desks. The logo feature wall is lined with nine metallic-finish panels spaced 2" apart against a trout-grey back-wall, anchored by an S830 61"-H illuminated Tesla logo. **Why it matters for PM:** confidential, standards-bound corporate deliverables taught me how to translate brand requirements into stakeholder-aligned spec sheets — the same skill that turns research into a PRD.
 <!-- /@card -->
 
 <!-- @card icon="layers" title="Design Build — Spline-Curve Pavilion" audience="ARCH 479 · Prof. Dale Clifford" -->
-A full-scale redwood pavilion designed and built collaboratively under Prof. Dale Clifford.
+Full-scale redwood pavilion designed and built collaboratively. Drawings, A-frame fabrication, frame install, and on-site transport.
 <!-- @expanded -->
-Sketch to standing structure, raised by hand. Section drawings document eight trusses with three fold options each — the geometry that lets a flat sheet of timber become a curved enclosure. **Why it matters for PM:** every decision on a drawing has a torque-wrench equivalent in the field. The project trained me to think about manufacturability and constraint long before I called it product management.
+Sketch → drawings → scale model → A-frame fabrication → on-site transport → install. Section drawings document eight trusses with multiple fold options each — the geometry that lets flat timber become curved enclosure. **Why it matters for PM:** every decision on a drawing has a torque-wrench equivalent in the field. The project trained me to think about manufacturability and constraint long before I called it product management.
 <!-- /@card -->
 
-<!-- @card icon="layers" title="Waveform Acoustic Tiles — Joint Design" audience="Museum atrium · Connecticut" -->
-Ceiling tiles for a museum atrium — three iterations of a single keystone joint that progressively absorbed shear and torsional load.
+<!-- @card icon="target" title="Waveform Acoustic Tiles — Joint Design" audience="1/4\" mockup of rib and surface" -->
+Three iterations of a keystone joint (miter-with-spline lineage) that progressively absorbed shear and torsional load.
 <!-- @expanded -->
-The final detail eliminated the glue-up step entirely: a snug-fit, kerf-tuned joint that still allows the scaffold ribs to flex on impact. **Why it matters for PM:** a study in iteration and root-cause thinking. Each iteration of the joint was scoped against a specific failure mode — the same disciplined narrowing I now apply to roadmap prioritization.
+Three material studies: 1/16" chipboard with super-glue ribs, 1/32" acrylic with 1/4" acrylic ribs, and 1/32" polystyrene with ABS Weld-on. The final joint design eliminated the glue-up step entirely — a kerf-tuned snug fit that lets the scaffold ribs flex on impact rather than fracture, and supports both concave and convex configurations. **Why it matters for PM:** disciplined iteration. Each version of the joint was scoped against a specific failure mode.
 <!-- /@card -->
 
-<!-- @card icon="cpu" title="Stagiare — Vertical Industrial" audience="Studio · Heavy industrial typology" -->
+<!-- @card icon="layers" title="Stagiare — Vertical Industrial" audience="Studio · Heavy industrial typology" -->
 A heavy-industrial fabrication facility reimagined as a vertical typology — five steel-frame towers as discrete typological experiments.
 <!-- @expanded -->
-Different cladding logics, different programmatic stacking, different relationships to circulation. The systems-integration drawings work the section down to the catwalk. **Why it matters for PM:** a project that forced me to compare alternatives at the system level — exactly what a roadmap or strategy doc demands.
+Different cladding logics, programmatic stacking, and circulation strategies, ranged across five typological alternatives (I–V). The systems-integration drawings work the section down to the catwalk. **Why it matters for PM:** a project that forced me to compare alternatives at the system level — exactly what a roadmap or strategy doc demands.
 <!-- /@card -->
 
-<!-- @card icon="target" title="Vortex — Sculptural Monolith" audience="Coastal repurposing · Santa Barbara, CA" -->
+<!-- @card icon="chart" title="Walnut Mockup — Sectional Volumetric Model" audience="Pilot model · with Allan, Nihan, Nigel" -->
+Pilot model fabricated to test feasibility of scale, method, and abstraction for a larger production model.
+<!-- @expanded -->
+A four-step pipeline: glue-up layout → CNC layout → glue-up → sanding. Walnut chosen for grain stability and finish density. The piece serves as a feasibility study for a larger archival production model. **Why it matters for PM:** an MVP for a model. Build the smallest version that proves the method before committing to the full deliverable.
+<!-- /@card -->
+
+<!-- @card icon="rocket" title="Vortex — Sculptural Monolith" audience="Coastal repurposing · Santa Barbara, CA" -->
 Repurposing decommissioned oil platform Holly off the coast of Santa Barbara into a twisted sculptural tower.
 <!-- @expanded -->
 Five collage iterations (I–V) drove a procedural twist-tower geometry, refined through wire-frame studies and material studies in steel rod. **Why it matters for PM:** the work asks what a coastline does with its inherited industrial scaffolding — the same structural question I now ask of any product I inherit. What stays, what gets reframed, what gets retired.
-<!-- /@card -->
-
-<!-- @card icon="palette" title="All-American Awaaz — Brand System" audience="Pro-bono · A Cappella org" -->
-Brand identity, merch, social grid, and holiday cards for a national South Asian a cappella competition. Hand-lettered graffiti as the year's theme.
-<!-- @expanded -->
-Output across multiple touchpoints: front and back tee prints for the SF show, a full Instagram grid layout for the org's directors, a fundraiser graphic, a competition tee city graphic, holiday cards, and a lettering-style progression series. **Why it matters for PM:** a project with no brief, only constraints — exactly what early-stage product work feels like.
 <!-- /@card -->
 
 <!-- /@cards -->
@@ -254,10 +266,10 @@ Output across multiple touchpoints: front and back tee prints for the SF show, a
 <!-- @credentials -->
 <!-- @credential value="MPD '26" label="Northwestern · Master of Product Design" -->
 <!-- @credential value="Newell" label="13-page PRD · VP of Innovation" -->
+<!-- @credential value="Mayne" label="Thom Mayne · archival model refresh" -->
+<!-- @credential value="NEU EXP" label="Northeastern University · 930 fabricated parts" -->
 <!-- @credential value="Tesla" label="Service-center retail design · 2023" -->
 <!-- @credential value="UXR" label="10 interviews led · ReadyVault synthesis" -->
-<!-- @credential value="ARCH" label="ARCH 479 · Design Build (full-scale)" -->
-<!-- @credential value="Pro-bono" label="All-American Awaaz brand system" -->
 <!-- /@credentials -->
 
 ---
