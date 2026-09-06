@@ -90,8 +90,12 @@ const renderComponent = (block, context) => {
   const { chartsByType, getCardsBySection, getQuotesBySection, terminalIndex } = context;
 
   switch (block.component) {
-    case 'stats':
-      return CONTENT.stats.length > 0 ? <StatsGrid stats={CONTENT.stats} /> : null;
+    case 'stats': {
+      const statsGroup = CONTENT.stats.find(
+        group => group.length > 0 && `${group[0].value}|${group[0].label}` === block.param
+      ) || CONTENT.stats[0] || [];
+      return statsGroup.length > 0 ? <StatsGrid stats={statsGroup} /> : null;
+    }
 
     case 'chart':
       if (block.param === 'growth' && chartsByType.growth?.[0]) {

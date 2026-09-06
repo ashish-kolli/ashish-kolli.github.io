@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-06T17:09:14.671Z
+// Generated: 2026-09-06T18:16:49.112Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -14,26 +14,72 @@ const CONTENT = {
     "subtitle": "Product Manager translating research into shipped products. Northwestern MPD '26."
   },
   "stats": [
-    {
-      "value": "13pp",
-      "label": "PRD delivered",
-      "source": "Newell Brands VP of Innovation"
-    },
-    {
-      "value": "10",
-      "label": "User interviews led",
-      "source": "Hurricane-prone families · FL, TX, Gulf Coast"
-    },
-    {
-      "value": "$249.99",
-      "label": "Pricing strategy owned",
-      "source": "Base · with $429.99 projected LTV"
-    },
-    {
-      "value": "2 quarters",
-      "label": "Capstone shipped",
-      "source": "Newell Brands × Northwestern MPD"
-    }
+    [
+      {
+        "value": "13pp",
+        "label": "PRD delivered",
+        "source": "Newell Brands VP of Innovation"
+      },
+      {
+        "value": "26",
+        "label": "User interviews led",
+        "source": "Hurricane-prone families · FL, TX, Gulf Coast"
+      },
+      {
+        "value": "$1.1M",
+        "label": "Pre-seed funding secured",
+        "source": "Investor validation · ReadyVault"
+      },
+      {
+        "value": "2 quarters",
+        "label": "Capstone shipped",
+        "source": "Newell Brands × Northwestern MPD"
+      }
+    ],
+    [
+      {
+        "value": "$1T+",
+        "label": "U.S. tropical-cyclone damage",
+        "source": "NOAA / Climate Central, 1980–2024"
+      },
+      {
+        "value": "30 kts",
+        "label": "Faster intensification within 24h",
+        "source": "Atlantic hurricane research"
+      },
+      {
+        "value": "26.3M",
+        "label": "SAM — households w/ garage",
+        "source": "Hurricane-region market sizing"
+      },
+      {
+        "value": "$400M",
+        "label": "Customer segment discovered",
+        "source": "26 interviews · single-family homeowners"
+      }
+    ],
+    [
+      {
+        "value": "$249.99",
+        "label": "Base price",
+        "source": "Configured starter kit"
+      },
+      {
+        "value": "$429.99",
+        "label": "Projected LTV",
+        "source": "With sub-kit refills"
+      },
+      {
+        "value": "$1.1M",
+        "label": "Pre-seed funding secured",
+        "source": "Investor validation"
+      },
+      {
+        "value": "May 2028",
+        "label": "Projected launch",
+        "source": "Newell Brands roadmap"
+      }
+    ]
   ],
   "charts": [],
   "convergence": {
@@ -56,6 +102,11 @@ const CONTENT = {
       "author": "Tom C.",
       "title": "Research interview · post-storm",
       "quote": "When she looks back on it, she doesn't remember being that scared — she remembers sleeping bags and us all hanging out."
+    },
+    {
+      "author": "",
+      "title": "",
+      "quote": "Full case study coming soon — reach out and I'm happy to walk through where it stands."
     }
   ],
   "cards": [
@@ -239,7 +290,7 @@ const CONTENT = {
     },
     {
       "value": "UXR",
-      "label": "10 interviews led · ReadyVault synthesis"
+      "label": "26 interviews led · ReadyVault synthesis"
     }
   ],
   "timeline": [],
@@ -314,7 +365,7 @@ const CONTENT = {
         },
         {
           "type": "paragraph",
-          "text": "Before product, I trained as an architect. A decade of structural design — including fabrication work for the **Northeastern University EXP** building and an archival model refresh for **Thom Mayne's personal office collection** — taught me three things that compound into PM work: how to reason about systems under load, how to drive a long-form artifact (a drawing set, a build plan, a PRD) to a clear point, and how to align cross-functional teams of engineers, designers, and stakeholders around a single buildable plan."
+          "text": "Before product, I spent a year as an Associate Fire Protection Engineer at **Jensen Hughes**, managing fire suppression and life-safety system design across TSMC semiconductor plants and airport terminals — and streamlining QA/QC review gates up to 40% faster along the way. Before that, a decade of architecture — including fabrication work for the **Northeastern University EXP** building and an archival model refresh for **Thom Mayne's personal office collection** — taught me three things that compound into PM work: how to reason about systems under load, how to drive a long-form artifact (a drawing set, a build plan, a PRD) to a clear point, and how to align cross-functional teams of engineers, designers, and stakeholders around a single buildable plan."
         },
         {
           "type": "paragraph",
@@ -323,7 +374,7 @@ const CONTENT = {
         {
           "type": "component",
           "component": "stats",
-          "param": ""
+          "param": "13pp|PRD delivered"
         },
         {
           "type": "component",
@@ -347,11 +398,11 @@ const CONTENT = {
             {
               "type": "component",
               "component": "stats",
-              "param": ""
+              "param": "$1T+|U.S. tropical-cyclone damage"
             },
             {
               "type": "paragraph",
-              "text": "Through ten family interviews in hurricane-prone regions, we found that families know they need to prepare. They don't trust government checklists, don't know what to buy, and don't have a system to organize what they have. Before ReadyVault, the best-case scenario was still a scramble."
+              "text": "Through 26 user interviews in hurricane-prone regions, I uncovered a $400M customer segment among single-family homeowners and found a consistent pattern: families know they need to prepare. They don't trust government checklists, don't know what to buy, and don't have a system to organize what they have. Before ReadyVault, the best-case scenario was still a scramble."
             },
             {
               "type": "component",
@@ -365,7 +416,7 @@ const CONTENT = {
           "blocks": [
             {
               "type": "paragraph",
-              "text": "We weren't designing a kit. We were designing a *way out of decision paralysis.* Ten interviews, mapped across the hurricane lifecycle, surfaced one consistent emotional driver underneath every behavior — and gave me the wedge for product strategy:"
+              "text": "We weren't designing a kit. We were designing a *way out of decision paralysis.* Interviews mapped across the hurricane lifecycle surfaced one consistent emotional driver underneath every behavior — and gave me the wedge for product strategy:"
             },
             {
               "type": "component",
@@ -429,11 +480,11 @@ const CONTENT = {
             {
               "type": "component",
               "component": "stats",
-              "param": ""
+              "param": "$249.99|Base price"
             },
             {
               "type": "paragraph",
-              "text": "**Deliverables:** A 13-page PRD delivered to Newell Brands' VP of Innovation; a 7-screen Kit Builder in Figma + prototype; a modular ReadyVault industrial-design concept validated in interviews; and a 20+ scene customer-journey storyboard. Presented as a **Blue Ocean market entry** — a defensible position between disorganized bins and tactical gear that earned a place in the suburban garage."
+              "text": "**Deliverables:** A 13-page PRD delivered to Newell Brands' VP of Innovation; a 7-screen Kit Builder in Figma + prototype; a modular ReadyVault industrial-design concept validated in interviews; and a 20+ scene customer-journey storyboard. Presented as a **Blue Ocean market entry** — a defensible position between disorganized bins and tactical gear that earned a place in the suburban garage. I owned the willingness-to-pay studies that shaped the pricing strategy and mitigated risk in the business model, helping the project achieve investor validation and **$1.1M in pre-seed funding**."
             }
           ]
         },
@@ -455,13 +506,34 @@ const CONTENT = {
         },
         {
           "type": "paragraph",
-          "text": "**Role:** Product Manager — Research, PRD, configurator UX **Team:** 5 (cross-functional: PM, ID, UX, engineering, brand) **Sponsor:** Newell Brands · **Timeline:** Sept 2025 – Mar 2026"
+          "text": "**Role:** Product Manager — Research, PRD, configurator UX **Team:** 5 (cross-functional: PM, ID, UX, engineering, brand) **Sponsor:** Newell Brands · **Timeline:** Sept 2025 – June 2026"
         }
       ]
     },
     {
       "type": "section",
       "number": 3,
+      "title": "Kindling — Building Now",
+      "subsections": [],
+      "intro": [
+        {
+          "type": "paragraph",
+          "text": "A CRM platform for mom-and-pop shops to scale into a franchise — giving independent owners the operating system to standardize what works at one location and replicate it across many."
+        },
+        {
+          "type": "paragraph",
+          "text": "**Role:** Founder / Product · **Status:** Actively building"
+        },
+        {
+          "type": "component",
+          "component": "pullquote",
+          "param": "Full case study coming soon — reach out and I'm ha"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "number": 4,
       "title": "Earlier Design Work — Foundations",
       "subsections": [],
       "intro": [
@@ -478,7 +550,7 @@ const CONTENT = {
     },
     {
       "type": "section",
-      "number": 4,
+      "number": 5,
       "title": "Capabilities",
       "subsections": [],
       "intro": [
@@ -491,7 +563,7 @@ const CONTENT = {
     },
     {
       "type": "section",
-      "number": 5,
+      "number": 6,
       "title": "Highlights",
       "subsections": [],
       "intro": [
@@ -504,7 +576,7 @@ const CONTENT = {
     },
     {
       "type": "section",
-      "number": 6,
+      "number": 7,
       "title": "Contact",
       "subsections": [],
       "intro": [

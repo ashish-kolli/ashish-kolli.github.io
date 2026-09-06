@@ -27,14 +27,14 @@ PRODUCT MANAGER · NORTHWESTERN MPD '26
 
 I'm a product manager finishing the **Master of Product Design (MPD)** program at Northwestern, where I lead research, drive product strategy, and own PRDs end-to-end. My most recent work — a 13-page PRD presented to **Newell Brands' VP of Innovation** — sits below.
 
-Before product, I trained as an architect. A decade of structural design — including fabrication work for the **Northeastern University EXP** building and an archival model refresh for **Thom Mayne's personal office collection** — taught me three things that compound into PM work: how to reason about systems under load, how to drive a long-form artifact (a drawing set, a build plan, a PRD) to a clear point, and how to align cross-functional teams of engineers, designers, and stakeholders around a single buildable plan.
+Before product, I spent a year as an Associate Fire Protection Engineer at **Jensen Hughes**, managing fire suppression and life-safety system design across TSMC semiconductor plants and airport terminals — and streamlining QA/QC review gates up to 40% faster along the way. Before that, a decade of architecture — including fabrication work for the **Northeastern University EXP** building and an archival model refresh for **Thom Mayne's personal office collection** — taught me three things that compound into PM work: how to reason about systems under load, how to drive a long-form artifact (a drawing set, a build plan, a PRD) to a clear point, and how to align cross-functional teams of engineers, designers, and stakeholders around a single buildable plan.
 
 That sequence — research first, constraints second, ship last — is the one I bring to every product I touch.
 
 <!-- @stats -->
 <!-- @stat value="13pp" label="PRD delivered" source="Newell Brands VP of Innovation" -->
-<!-- @stat value="10" label="User interviews led" source="Hurricane-prone families · FL, TX, Gulf Coast" -->
-<!-- @stat value="$249.99" label="Pricing strategy owned" source="Base · with $429.99 projected LTV" -->
+<!-- @stat value="26" label="User interviews led" source="Hurricane-prone families · FL, TX, Gulf Coast" -->
+<!-- @stat value="$1.1M" label="Pre-seed funding secured" source="Investor validation · ReadyVault" -->
 <!-- @stat value="2 quarters" label="Capstone shipped" source="Newell Brands × Northwestern MPD" -->
 <!-- /@stats -->
 
@@ -50,7 +50,7 @@ A two-quarter capstone for **Newell Brands**, presented to their VP of Innovatio
 
 **Role:** Product Manager — Research, PRD, configurator UX
 **Team:** 5 (cross-functional: PM, ID, UX, engineering, brand)
-**Sponsor:** Newell Brands · **Timeline:** Sept 2025 – Mar 2026
+**Sponsor:** Newell Brands · **Timeline:** Sept 2025 – June 2026
 
 ### The problem
 
@@ -60,10 +60,10 @@ Hurricanes are intensifying. The emergency-preparedness market forces families i
 <!-- @stat value="$1T+" label="U.S. tropical-cyclone damage" source="NOAA / Climate Central, 1980–2024" -->
 <!-- @stat value="30 kts" label="Faster intensification within 24h" source="Atlantic hurricane research" -->
 <!-- @stat value="26.3M" label="SAM — households w/ garage" source="Hurricane-region market sizing" -->
-<!-- @stat value="$429.99" label="Projected LTV" source="With sub-kit refills" -->
+<!-- @stat value="$400M" label="Customer segment discovered" source="26 interviews · single-family homeowners" -->
 <!-- /@stats -->
 
-Through ten family interviews in hurricane-prone regions, we found that families know they need to prepare. They don't trust government checklists, don't know what to buy, and don't have a system to organize what they have. Before ReadyVault, the best-case scenario was still a scramble.
+Through 26 user interviews in hurricane-prone regions, I uncovered a $400M customer segment among single-family homeowners and found a consistent pattern: families know they need to prepare. They don't trust government checklists, don't know what to buy, and don't have a system to organize what they have. Before ReadyVault, the best-case scenario was still a scramble.
 
 <!-- @pullquote author="Joseph M." title="Research interview" -->
 If I could just hop on a website... it kinda gives you confirmation that you're not missing anything or forgetting anything.
@@ -71,7 +71,7 @@ If I could just hop on a website... it kinda gives you confirmation that you're 
 
 ### The reframe
 
-We weren't designing a kit. We were designing a *way out of decision paralysis.* Ten interviews, mapped across the hurricane lifecycle, surfaced one consistent emotional driver underneath every behavior — and gave me the wedge for product strategy:
+We weren't designing a kit. We were designing a *way out of decision paralysis.* Interviews mapped across the hurricane lifecycle surfaced one consistent emotional driver underneath every behavior — and gave me the wedge for product strategy:
 
 <!-- @cards type="topic" columns="2" section="rv-findings" -->
 
@@ -157,11 +157,11 @@ When she looks back on it, she doesn't remember being that scared — she rememb
 <!-- @stats -->
 <!-- @stat value="$249.99" label="Base price" source="Configured starter kit" -->
 <!-- @stat value="$429.99" label="Projected LTV" source="With sub-kit refills" -->
-<!-- @stat value="$37.50" label="Projected CAC" source="Direct-to-consumer launch" -->
+<!-- @stat value="$1.1M" label="Pre-seed funding secured" source="Investor validation" -->
 <!-- @stat value="May 2028" label="Projected launch" source="Newell Brands roadmap" -->
 <!-- /@stats -->
 
-**Deliverables:** A 13-page PRD delivered to Newell Brands' VP of Innovation; a 7-screen Kit Builder in Figma + prototype; a modular ReadyVault industrial-design concept validated in interviews; and a 20+ scene customer-journey storyboard. Presented as a **Blue Ocean market entry** — a defensible position between disorganized bins and tactical gear that earned a place in the suburban garage.
+**Deliverables:** A 13-page PRD delivered to Newell Brands' VP of Innovation; a 7-screen Kit Builder in Figma + prototype; a modular ReadyVault industrial-design concept validated in interviews; and a 20+ scene customer-journey storyboard. Presented as a **Blue Ocean market entry** — a defensible position between disorganized bins and tactical gear that earned a place in the suburban garage. I owned the willingness-to-pay studies that shaped the pricing strategy and mitigated risk in the business model, helping the project achieve investor validation and **$1.1M in pre-seed funding**.
 
 ### Three lessons for hiring managers
 
@@ -189,7 +189,19 @@ The slot-based subkit system came directly from manufacturing constraints — an
 
 ---
 
-## 3. Earlier Design Work — Foundations
+## 3. Kindling — Building Now
+
+A CRM platform for mom-and-pop shops to scale into a franchise — giving independent owners the operating system to standardize what works at one location and replicate it across many.
+
+**Role:** Founder / Product · **Status:** Actively building
+
+<!-- @pullquote -->
+Full case study coming soon — reach out and I'm happy to walk through where it stands.
+<!-- /@pullquote -->
+
+---
+
+## 4. Earlier Design Work — Foundations
 
 Before product management, a decade of architecture and design. I include a selection here because the disciplines compound: structural systems thinking, fabrication detail, brand identity, and corporate retail design all shape how I scope, prioritize, and ship.
 
@@ -247,7 +259,7 @@ Five collage iterations (I–V) drove a procedural twist-tower geometry, refined
 
 ---
 
-## 4. Capabilities
+## 5. Capabilities
 
 <!-- @terminal title="ashish/pm-stack.txt" command="cat" variant="default" -->
 - **Product strategy** → Market sizing (TAM/SAM/SOM), Blue Ocean positioning, roadmap, prioritization
@@ -261,7 +273,7 @@ Five collage iterations (I–V) drove a procedural twist-tower geometry, refined
 
 ---
 
-## 5. Highlights
+## 6. Highlights
 
 <!-- @credentials -->
 <!-- @credential value="MPD '26" label="Northwestern · Master of Product Design" -->
@@ -269,12 +281,12 @@ Five collage iterations (I–V) drove a procedural twist-tower geometry, refined
 <!-- @credential value="Mayne" label="Thom Mayne · archival model refresh" -->
 <!-- @credential value="NEU EXP" label="Northeastern University · 930 fabricated parts" -->
 <!-- @credential value="Tesla" label="Service-center retail design · 2023" -->
-<!-- @credential value="UXR" label="10 interviews led · ReadyVault synthesis" -->
+<!-- @credential value="UXR" label="26 interviews led · ReadyVault synthesis" -->
 <!-- /@credentials -->
 
 ---
 
-## 6. Contact
+## 7. Contact
 
 I am graduating from **Northwestern's Master of Product Design** program in spring 2026 and looking for product manager roles where research, strategy, and craft all matter. Happy to walk through any of this work in more detail — the PRD, the research, the trade-offs, or the honest mess of cross-functional collaboration.
 

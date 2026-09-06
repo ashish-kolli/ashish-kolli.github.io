@@ -60,18 +60,21 @@ function extractHeader(content) {
 }
 
 function extractStats(content) {
-  const statsMatch = content.match(/<!-- @stats -->[\s\S]*?<!-- \/@stats -->/);
-  if (!statsMatch) return [];
+  const blocks = [];
+  const blockRegex = /<!-- @stats -->[\s\S]*?<!-- \/@stats -->/g;
+  let blockMatch;
 
-  const block = statsMatch[0];
-  const stats = [];
-  const statRegex = /<!-- @stat value="([^"]*)" label="([^"]*)" source="([^"]*)" -->/g;
-  let match;
-
-  while ((match = statRegex.exec(block)) !== null) {
-    stats.push({ value: match[1], label: match[2], source: match[3] });
+  while ((blockMatch = blockRegex.exec(content)) !== null) {
+    const block = blockMatch[0];
+    const stats = [];
+    const statRegex = /<!-- @stat value="([^"]*)" label="([^"]*)" source="([^"]*)" -->/g;
+    let match;
+    while ((match = statRegex.exec(block)) !== null) {
+      stats.push({ value: match[1], label: match[2], source: match[3] });
+    }
+    blocks.push(stats);
   }
-  return stats;
+  return blocks;
 }
 
 function extractCharts(content) {
@@ -353,7 +356,11 @@ function parseContentBlocks(text) {
 
   // Remove component markers (they'll be handled separately)
   let cleaned = text
-    .replace(/<!-- @stats -->[\s\S]*?<!-- \/@stats -->/g, '<!--COMPONENT:stats-->')
+    .replace(/<!-- @stats -->[\s\S]*?<!-- \/@stats -->/g, (match) => {
+      const firstStat = match.match(/<!-- @stat value="([^"]*)" label="([^"]*)"/);
+      const key = firstStat ? `${firstStat[1]}|${firstStat[2]}` : '';
+      return `<!--COMPONENT:stats:${key}-->`;
+    })
     .replace(/<!-- @chart[^>]*-->[\s\S]*?<!-- \/@chart -->/g, (match) => {
       const typeMatch = match.match(/type="([^"]*)"/);
       return `<!--COMPONENT:chart:${typeMatch ? typeMatch[1] : 'unknown'}-->`;
