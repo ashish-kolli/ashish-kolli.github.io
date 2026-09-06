@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-04-25T18:34:16.054Z
+// Generated: 2026-09-06T17:09:14.671Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -9,7 +9,7 @@ const CONTENT = {
     "linkedin": "https://linkedin.com/in/ashish-kolli",
     "github": "https://github.com/ashish-kolli",
     "headshot": "",
-    "date": "April 2026",
+    "date": "September 2026",
     "title": "Ashish Kolli",
     "subtitle": "Product Manager translating research into shipped products. Northwestern MPD '26."
   },

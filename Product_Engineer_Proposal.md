@@ -9,7 +9,7 @@ Component marker reference: see CLAUDE.md
 
 <!-- @header -->
 <!-- @from name="Ashish Kolli" email="ashishkolli2026@u.northwestern.edu" linkedin="https://linkedin.com/in/ashish-kolli" github="https://github.com/ashish-kolli" -->
-<!-- @date value="April 2026" -->
+<!-- @date value="September 2026" -->
 <!-- @title value="Ashish Kolli" -->
 <!-- @subtitle value="Product Manager translating research into shipped products. Northwestern MPD '26." -->
 <!-- /@header -->
