@@ -1,14 +1,15 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-06T18:16:49.112Z
+// Generated: 2026-09-07T04:13:15.019Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
   "header": {
     "from": "Ashish Kolli",
-    "fromEmail": "ashishkolli2026@u.northwestern.edu",
+    "fromEmail": "ashish.n.kolli@gmail.com",
     "linkedin": "https://linkedin.com/in/ashish-kolli",
     "github": "https://github.com/ashish-kolli",
-    "headshot": "",
+    "instagram": "https://instagram.com/ashperical",
+    "headshot": "assets/photos/headshot.jpg",
     "date": "September 2026",
     "title": "Ashish Kolli",
     "subtitle": "Product Manager translating research into shipped products. Northwestern MPD '26."
@@ -242,6 +243,13 @@ const CONTENT = {
           "audience": "ARCH 479 · Prof. Dale Clifford",
           "content": "Full-scale redwood pavilion designed and built collaboratively. Drawings, A-frame fabrication, frame install, and on-site transport.",
           "expandedContent": "Sketch → drawings → scale model → A-frame fabrication → on-site transport → install. Section drawings document eight trusses with multiple fold options each — the geometry that lets flat timber become curved enclosure. **Why it matters for PM:** every decision on a drawing has a torque-wrench equivalent in the field. The project trained me to think about manufacturability and constraint long before I called it product management."
+        },
+        {
+          "icon": "target",
+          "title": "Waveform Acoustic Tiles — Joint Design",
+          "audience": "Museum atrium ceiling · Connecticut",
+          "content": "Sail-motif ceiling tiles for a museum atrium in Connecticut. Three iterations of a keystone joint (miter-with-spline lineage) that progressively absorbed shear and torsional load.",
+          "expandedContent": "Three material studies: 1/16\" chipboard with super-glue ribs, 1/32\" acrylic with 1/4\" acrylic ribs, and 1/32\" polystyrene with ABS Weld-on. The final joint design eliminated the glue-up step entirely — a kerf-tuned snug fit that lets the scaffold ribs flex on impact rather than fracture, and supports both concave and convex configurations. **Why it matters for PM:** disciplined iteration. Each version of the joint was scoped against a specific failure mode."
         },
         {
           "icon": "layers",

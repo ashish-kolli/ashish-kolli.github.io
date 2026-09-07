@@ -8,7 +8,8 @@ Component marker reference: see CLAUDE.md
 -->
 
 <!-- @header -->
-<!-- @from name="Ashish Kolli" email="ashishkolli2026@u.northwestern.edu" linkedin="https://linkedin.com/in/ashish-kolli" github="https://github.com/ashish-kolli" -->
+<!-- @from name="Ashish Kolli" email="ashish.n.kolli@gmail.com" linkedin="https://linkedin.com/in/ashish-kolli" github="https://github.com/ashish-kolli" instagram="https://instagram.com/ashperical" -->
+<!-- @headshot url="assets/photos/headshot.jpg" -->
 <!-- @date value="September 2026" -->
 <!-- @title value="Ashish Kolli" -->
 <!-- @subtitle value="Product Manager translating research into shipped products. Northwestern MPD '26." -->
@@ -231,8 +232,8 @@ Full-scale redwood pavilion designed and built collaboratively. Drawings, A-fram
 Sketch → drawings → scale model → A-frame fabrication → on-site transport → install. Section drawings document eight trusses with multiple fold options each — the geometry that lets flat timber become curved enclosure. **Why it matters for PM:** every decision on a drawing has a torque-wrench equivalent in the field. The project trained me to think about manufacturability and constraint long before I called it product management.
 <!-- /@card -->
 
-<!-- @card icon="target" title="Waveform Acoustic Tiles — Joint Design" audience="1/4\" mockup of rib and surface" -->
-Three iterations of a keystone joint (miter-with-spline lineage) that progressively absorbed shear and torsional load.
+<!-- @card icon="target" title="Waveform Acoustic Tiles — Joint Design" audience="Museum atrium ceiling · Connecticut" -->
+Sail-motif ceiling tiles for a museum atrium in Connecticut. Three iterations of a keystone joint (miter-with-spline lineage) that progressively absorbed shear and torsional load.
 <!-- @expanded -->
 Three material studies: 1/16" chipboard with super-glue ribs, 1/32" acrylic with 1/4" acrylic ribs, and 1/32" polystyrene with ABS Weld-on. The final joint design eliminated the glue-up step entirely — a kerf-tuned snug fit that lets the scaffold ribs flex on impact rather than fracture, and supports both concave and convex configurations. **Why it matters for PM:** disciplined iteration. Each version of the joint was scoped against a specific failure mode.
 <!-- /@card -->
