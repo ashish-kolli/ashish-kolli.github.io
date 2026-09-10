@@ -66,7 +66,7 @@ ${bundle}
 
 // Write development preview
 const devHTML = generateHTML({
-  title: 'Ashish Kolli — Portfolio (Dev)',
+  title: 'ASHISH KOLLI (Dev)',
   reactMode: 'development'
 });
 fs.writeFileSync(previewFile, devHTML);
@@ -74,7 +74,7 @@ console.log('✓ preview.html updated (development build)');
 
 // Write production build for GitHub Pages
 const prodHTML = generateHTML({
-  title: 'Ashish Kolli — Product Manager',
+  title: 'ASHISH KOLLI',
   reactMode: 'production'
 });
 fs.writeFileSync(productionFile, prodHTML);
