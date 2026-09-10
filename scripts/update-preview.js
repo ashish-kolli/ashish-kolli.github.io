@@ -33,6 +33,7 @@ function generateHTML({ title, reactMode }) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${title}</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%235B21B6'/><text x='32' y='43' font-family='Helvetica,Arial,sans-serif' font-size='28' font-weight='700' letter-spacing='-1' fill='%23ffffff' text-anchor='middle'>AK</text></svg>">
   <meta name="description" content="Ashish Kolli — Product Manager. Northwestern MPD '26. Selected works including ReadyVault, a Newell Brands capstone.">
   <meta property="og:title" content="Ashish Kolli — Product Manager">
   <meta property="og:description" content="Northwestern MPD '26. PRD ownership, user research synthesis, and product strategy. Selected works 2026.">

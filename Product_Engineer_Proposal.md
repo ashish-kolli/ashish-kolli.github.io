@@ -26,17 +26,23 @@ PRODUCT MANAGER · NORTHWESTERN MPD '26
 
 ## 1. About
 
-I'm a product manager finishing the **Master of Product Design (MPD)** program at Northwestern, where I lead research, drive product strategy, and own PRDs end-to-end. My most recent work — a 13-page PRD presented to **Newell Brands' VP of Innovation** — sits below.
+I'm a product manager finishing Northwestern's **MS in Product Design & Development**. Before that, a five-year B.Arch at Cal Poly as a **Morphosis Fellow** — and four roles that each pushed the same instinct, *build the system and not just the artifact*, up one level of altitude.
 
-Before product, I spent a year as an Associate Fire Protection Engineer at **Jensen Hughes**, managing fire suppression and life-safety system design across TSMC semiconductor plants and airport terminals — and streamlining QA/QC review gates up to 40% faster along the way. Before that, a decade of architecture — including fabrication work for the **Northeastern University EXP** building and an archival model refresh for **Thom Mayne's personal office collection** — taught me three things that compound into PM work: how to reason about systems under load, how to drive a long-form artifact (a drawing set, a build plan, a PRD) to a clear point, and how to align cross-functional teams of engineers, designers, and stakeholders around a single buildable plan.
+**Morphosis/Payette — I started a design services division that didn't exist.** 25+ physical models across 12 healthcare, higher-education, and commercial sites, each one built to settle a specific argument about CMF, interior layout, or massing. My first 0→1, before I had the vocabulary for it.
+
+**Tesla — the unit of work jumped from one model to 350+ locations.** I documented the retail program layout requirements behind a brand refresh across lounges, service centers, and body shops: a spec precise enough to execute in stores I would never stand in.
+
+**Jensen Hughes — the highest-leverage thing I shipped wasn't a drawing.** While running fire suppression and life-safety design across TSMC semiconductor plants and airport terminals, I redesigned the internal QA/QC review workflow and moved approval gates **up to 40% faster** between design and engineering.
+
+**Newell Brands — all of it converged into product.** 26 interviews surfaced a **$400M segment** hiding under "everyone should own an emergency kit." Willingness-to-pay studies turned that insight into a pricing model, and the business case behind it earned **$1.1M in pre-seed funding**.
 
 That sequence — research first, constraints second, ship last — is the one I bring to every product I touch.
 
 <!-- @stats -->
-<!-- @stat value="13pp" label="PRD delivered" source="Newell Brands VP of Innovation" -->
-<!-- @stat value="26" label="User interviews led" source="Hurricane-prone families · FL, TX, Gulf Coast" -->
-<!-- @stat value="$1.1M" label="Pre-seed funding secured" source="Investor validation · ReadyVault" -->
-<!-- @stat value="2 quarters" label="Capstone shipped" source="Newell Brands × Northwestern MPD" -->
+<!-- @stat value="$1.1M" label="Pre-seed funding secured" source="Newell Brands · ReadyVault" -->
+<!-- @stat value="40%" label="Faster QA/QC review gates" source="Jensen Hughes · workflow redesign" -->
+<!-- @stat value="350+" label="Retail locations specified" source="Tesla · retail program layout" -->
+<!-- @stat value="25+" label="Models driving design decisions" source="Morphosis/Payette · 12 project sites" -->
 <!-- /@stats -->
 
 <!-- @pullquote -->
@@ -47,7 +53,7 @@ The brief is never the problem. The brief is the symptom of a problem the user c
 
 ## 2. ReadyVault — Featured Case Study
 
-A two-quarter capstone for **Newell Brands**, presented to their VP of Innovation as a Blue Ocean market entry for resilience systems. I led research, owned the PRD, and translated user findings into both digital UX and physical product requirements.
+A three-quarter capstone for **Newell Brands**, presented to their VP of Innovation as a Blue Ocean market entry for resilience systems. I led research, owned the PRD, and translated user findings into both digital UX and physical product requirements.
 
 **Role:** Product Manager — Research, PRD, configurator UX
 **Team:** 5 (cross-functional: PM, ID, UX, engineering, brand)
