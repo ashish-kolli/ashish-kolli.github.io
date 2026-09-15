@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-10T16:57:44.299Z
+// Generated: 2026-09-15T00:56:50.697Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -12,7 +12,7 @@ const CONTENT = {
     "headshot": "assets/photos/headshot.jpg",
     "date": "September 2026",
     "title": "Ashish Kolli",
-    "subtitle": "Product Manager translating research into shipped products. Northwestern MPD '26."
+    "subtitle": "Accelerating and scaling product development with agentic AI."
   },
   "stats": [
     [

@@ -12,7 +12,7 @@ Component marker reference: see CLAUDE.md
 <!-- @headshot url="assets/photos/headshot.jpg" -->
 <!-- @date value="September 2026" -->
 <!-- @title value="Ashish Kolli" -->
-<!-- @subtitle value="Product Manager translating research into shipped products. Northwestern MPD '26." -->
+<!-- @subtitle value="Accelerating and scaling product development with agentic AI." -->
 <!-- /@header -->
 
 PRODUCT MANAGER · NORTHWESTERN MPD '26
