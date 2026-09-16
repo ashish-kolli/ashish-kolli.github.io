@@ -5,7 +5,7 @@
  *
  * Performance:
  * - Draws on a small canvas that follows the cursor, not a full-screen overlay
- * - The animation loop only runs while the spotlight is moving or fading, and stops when idle
+ * - Follows the cursor exactly (no easing); the loop only runs during the fade in/out
  * - Hidden entirely when not showing, so the browser skips blending it
  *
  * Only rendered on devices with a real mouse (hover + fine pointer). Phones, tablets,
@@ -16,7 +16,6 @@ import React, { useEffect, useRef, useState } from 'react';
 const GRID_RADIUS = 56;                   // px - area where grid lines are revealed
 const GRID_SIZE = 60;                     // px - matches the header grid in Header.jsx
 const LINE_OPACITY = 0.55;                // strength of the revealed lines (0-1)
-const EASE = 0.14;                        // how quickly the spotlight catches up (0-1)
 const LINE_RGB = '91, 33, 182';           // COLORS.accent.primary
 const SPOTLIGHT_SIZE = GRID_RADIUS * 2 + 4; // px - canvas just big enough for the circle
 
@@ -48,26 +47,19 @@ const CursorSpotlight = () => {
     const target = { x: 0, y: 0 };
     const spot = { x: 0, y: 0, alpha: 0 };
     let visible = false;
-    let started = false;
     let frame = null;
 
     const draw = () => {
       frame = null;
 
+      // Sit exactly on the cursor; only the fade in/out animates
       const goal = visible ? 1 : 0;
-      spot.x += (target.x - spot.x) * EASE;
-      spot.y += (target.y - spot.y) * EASE;
+      spot.x = target.x;
+      spot.y = target.y;
       spot.alpha += (goal - spot.alpha) * 0.12;
 
-      const settled =
-        Math.abs(target.x - spot.x) < 0.1 &&
-        Math.abs(target.y - spot.y) < 0.1 &&
-        Math.abs(goal - spot.alpha) < 0.01;
-      if (settled) {
-        spot.x = target.x;
-        spot.y = target.y;
-        spot.alpha = goal;
-      }
+      const settled = Math.abs(goal - spot.alpha) < 0.01;
+      if (settled) spot.alpha = goal;
 
       if (spot.alpha <= 0.01) {
         canvas.style.visibility = 'hidden';
@@ -114,7 +106,7 @@ const CursorSpotlight = () => {
         ctx.restore();
       }
 
-      // Keep animating only until the spotlight has caught up and finished fading
+      // Keep animating only until the fade finishes; cursor moves wake a single redraw
       if (!settled) frame = requestAnimationFrame(draw);
     };
 
@@ -125,11 +117,6 @@ const CursorSpotlight = () => {
     const handleMove = (e) => {
       target.x = e.clientX;
       target.y = e.clientY;
-      if (!started) {
-        spot.x = target.x;
-        spot.y = target.y;
-        started = true;
-      }
       visible = true;
       wake();
     };
