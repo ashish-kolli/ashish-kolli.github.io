@@ -116,6 +116,7 @@ function build() {
     'TerminalWindow',
     'SectionNav',
     'WorkList',
+    'CursorSpotlight',
   ];
 
   // Read all components

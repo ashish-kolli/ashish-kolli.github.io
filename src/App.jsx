@@ -46,6 +46,7 @@ import {
   RichText,
   TerminalWindow,
   SectionNav,
+  CursorSpotlight,
   WorkList,
 } from './components';
 
@@ -285,6 +286,7 @@ const App = () => {
     >
       {/* Section Navigation */}
       <SectionNav />
+      <CursorSpotlight />
 
       {/* Render document from CONTENT.document */}
       {CONTENT.document.map((item, i) => {
