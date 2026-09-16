@@ -67,14 +67,28 @@ const Header = ({ data, heroQuote }) => {
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
-        background: `linear-gradient(170deg, #f8f9fc 0%, #eef1f8 30%, #e8edf5 60%, #f5f7fa 100%)`,
       }}
     >
+      {/*
+        Background layers sit at zIndex -2 so the CursorSpotlight (zIndex -1)
+        draws above them but below the header content (zIndex 10).
+      */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: -2,
+          background: `linear-gradient(170deg, #f8f9fc 0%, #eef1f8 30%, #e8edf5 60%, #f5f7fa 100%)`,
+          pointerEvents: 'none',
+        }}
+      />
+
       {/* Subtle grid pattern overlay */}
       <div
         style={{
           position: 'absolute',
           inset: 0,
+          zIndex: -2,
           backgroundImage: `
             linear-gradient(#94a3b820 1px, transparent 1px),
             linear-gradient(90deg, #94a3b820 1px, transparent 1px)
@@ -93,6 +107,7 @@ const Header = ({ data, heroQuote }) => {
           right: '-5%',
           width: '55%',
           height: '70%',
+          zIndex: -2,
           background: `radial-gradient(ellipse at center, #6366f120 0%, #8b5cf615 40%, transparent 70%)`,
           pointerEvents: 'none',
         }}
@@ -104,6 +119,7 @@ const Header = ({ data, heroQuote }) => {
           left: '-10%',
           width: '45%',
           height: '50%',
+          zIndex: -2,
           background: `radial-gradient(ellipse at center, #3b82f615 0%, #06b6d410 50%, transparent 70%)`,
           pointerEvents: 'none',
         }}
@@ -115,6 +131,7 @@ const Header = ({ data, heroQuote }) => {
           right: '20%',
           width: '40%',
           height: '45%',
+          zIndex: -2,
           background: `radial-gradient(ellipse at center, #f59e0b10 0%, #f9731608 50%, transparent 65%)`,
           pointerEvents: 'none',
         }}

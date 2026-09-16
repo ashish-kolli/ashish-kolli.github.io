@@ -172,7 +172,10 @@ const CursorSpotlight = () => {
         width: SPOTLIGHT_SIZE,
         height: SPOTLIGHT_SIZE,
         pointerEvents: 'none',
-        zIndex: 9999,
+        // Between the page background (zIndex -2 / root) and content, so text and
+        // elements draw above the lines. Relies on the root's `isolation: isolate`
+        // in App.jsx and on sections not painting their own backgrounds.
+        zIndex: -1,
         mixBlendMode: 'multiply',
         visibility: 'hidden',
         willChange: 'transform',

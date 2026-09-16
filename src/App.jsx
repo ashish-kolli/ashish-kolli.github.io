@@ -279,6 +279,8 @@ const App = () => {
   return (
     <div
       style={{
+        position: 'relative',
+        isolation: 'isolate', // own layer stack: page background < CursorSpotlight < content
         minHeight: '100vh',
         background: COLORS.surface.paper,
         overflowX: 'hidden',

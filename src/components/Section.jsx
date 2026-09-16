@@ -269,7 +269,8 @@ const Section = ({ number, title, children, className = '' }) => {
       className={className}
       data-section={number}
       style={{
-        background: COLORS.surface.paper,
+        // No background here: the page root paints the paper color, so the
+        // CursorSpotlight layer beneath content stays visible through sections.
         paddingTop: SPACE[10],
         paddingBottom: SPACE[10],
       }}

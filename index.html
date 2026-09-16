@@ -31,7 +31,7 @@
 
 /**
  * Product Engineer Proposal - Single File Bundle
- * Generated: 2026-09-16T21:27:56.108Z
+ * Generated: 2026-09-16T21:39:41.654Z
  *
  * This file is auto-generated. Do not edit directly.
  * To modify, edit the source files and run: node src/utils/build.js
@@ -42,7 +42,7 @@
 // ============================================================================
 
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-16T21:27:56.082Z
+// Generated: 2026-09-16T21:39:41.624Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -1339,7 +1339,8 @@ const Section = ({ number, title, children, className = '' }) => {
       className={className}
       data-section={number}
       style={{
-        background: COLORS.surface.paper,
+        // No background here: the page root paints the paper color, so the
+        // CursorSpotlight layer beneath content stays visible through sections.
         paddingTop: SPACE[10],
         paddingBottom: SPACE[10],
       }}
@@ -1792,14 +1793,28 @@ const Header = ({ data, heroQuote }) => {
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
-        background: `linear-gradient(170deg, #f8f9fc 0%, #eef1f8 30%, #e8edf5 60%, #f5f7fa 100%)`,
       }}
     >
+      {/*
+        Background layers sit at zIndex -2 so the CursorSpotlight (zIndex -1)
+        draws above them but below the header content (zIndex 10).
+      */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: -2,
+          background: `linear-gradient(170deg, #f8f9fc 0%, #eef1f8 30%, #e8edf5 60%, #f5f7fa 100%)`,
+          pointerEvents: 'none',
+        }}
+      />
+
       {/* Subtle grid pattern overlay */}
       <div
         style={{
           position: 'absolute',
           inset: 0,
+          zIndex: -2,
           backgroundImage: `
             linear-gradient(#94a3b820 1px, transparent 1px),
             linear-gradient(90deg, #94a3b820 1px, transparent 1px)
@@ -1818,6 +1833,7 @@ const Header = ({ data, heroQuote }) => {
           right: '-5%',
           width: '55%',
           height: '70%',
+          zIndex: -2,
           background: `radial-gradient(ellipse at center, #6366f120 0%, #8b5cf615 40%, transparent 70%)`,
           pointerEvents: 'none',
         }}
@@ -1829,6 +1845,7 @@ const Header = ({ data, heroQuote }) => {
           left: '-10%',
           width: '45%',
           height: '50%',
+          zIndex: -2,
           background: `radial-gradient(ellipse at center, #3b82f615 0%, #06b6d410 50%, transparent 70%)`,
           pointerEvents: 'none',
         }}
@@ -1840,6 +1857,7 @@ const Header = ({ data, heroQuote }) => {
           right: '20%',
           width: '40%',
           height: '45%',
+          zIndex: -2,
           background: `radial-gradient(ellipse at center, #f59e0b10 0%, #f9731608 50%, transparent 65%)`,
           pointerEvents: 'none',
         }}
@@ -7620,7 +7638,10 @@ const CursorSpotlight = () => {
         width: SPOTLIGHT_SIZE,
         height: SPOTLIGHT_SIZE,
         pointerEvents: 'none',
-        zIndex: 9999,
+        // Between the page background (zIndex -2 / root) and content, so text and
+        // elements draw above the lines. Relies on the root's `isolation: isolate`
+        // in App.jsx and on sections not painting their own backgrounds.
+        zIndex: -1,
         mixBlendMode: 'multiply',
         visibility: 'hidden',
         willChange: 'transform',
@@ -7888,6 +7909,8 @@ const App = () => {
   return (
     <div
       style={{
+        position: 'relative',
+        isolation: 'isolate', // own layer stack: page background < CursorSpotlight < content
         minHeight: '100vh',
         background: COLORS.surface.paper,
         overflowX: 'hidden',
