@@ -1,7 +1,8 @@
 /**
  * CursorSpotlight Component
  *
- * Reveals the 60px page grid in a small circle around the cursor, fading toward the edge.
+ * Reveals the bullet-journal dot grid (every 20px) in a small circle around the cursor,
+ * fading toward the edge.
  *
  * Performance:
  * - Draws on a small canvas that follows the cursor, not a full-screen overlay
@@ -13,10 +14,11 @@
  */
 import React, { useEffect, useRef, useState } from 'react';
 
-const GRID_RADIUS = 56;                   // px - area where grid lines are revealed
-const GRID_SIZE = 60;                     // px - matches the header grid in Header.jsx
-const LINE_OPACITY = 0.55;                // strength of the revealed lines (0-1)
-const LINE_RGB = '91, 33, 182';           // COLORS.accent.primary
+const GRID_RADIUS = 56;                   // px - area where dots are revealed
+const DOT_SPACING = 20;                   // px - matches the header dot grid in Header.jsx
+const DOT_OPACITY = 0.7;                  // strength of the dots (0-1)
+const DOT_RADIUS = 1.75;                  // px - size of each dot
+const DOT_RGB = '91, 33, 182';            // COLORS.accent.primary
 const SPOTLIGHT_SIZE = GRID_RADIUS * 2 + 4; // px - canvas just big enough for the circle
 
 const spotlightSupported = () =>
@@ -69,41 +71,28 @@ const CursorSpotlight = () => {
         canvas.style.visibility = 'visible';
         canvas.style.transform = `translate3d(${left}px, ${top}px, 0)`;
 
-        // Cursor position inside the small canvas
-        const cx = spot.x - left;
-        const cy = spot.y - top;
-
         ctx.clearRect(0, 0, SPOTLIGHT_SIZE, SPOTLIGHT_SIZE);
 
-        // Lines hold full strength through the inner area, then fade to the edge
-        const lines = ctx.createRadialGradient(cx, cy, 0, cx, cy, GRID_RADIUS);
-        lines.addColorStop(0, `rgba(${LINE_RGB}, ${LINE_OPACITY * spot.alpha})`);
-        lines.addColorStop(0.45, `rgba(${LINE_RGB}, ${LINE_OPACITY * spot.alpha})`);
-        lines.addColorStop(1, `rgba(${LINE_RGB}, 0)`);
-
-        ctx.save();
-        ctx.beginPath();
-        ctx.arc(cx, cy, GRID_RADIUS, 0, Math.PI * 2);
-        ctx.clip();
-        ctx.strokeStyle = lines;
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-
-        // Page grid positions, converted into canvas coordinates so lines stay locked while scrolling
+        // One dot per grid point (every DOT_SPACING px) inside the radius, fading toward the edge.
+        // Grid points use page coordinates, so the dots stay locked to the page while scrolling.
         const { scrollX, scrollY } = window;
-        for (let k = Math.floor((spot.x - GRID_RADIUS + scrollX) / GRID_SIZE); k * GRID_SIZE - scrollX <= spot.x + GRID_RADIUS; k++) {
-          const lx = Math.round(k * GRID_SIZE - scrollX) - left + 0.5;
-          ctx.moveTo(lx, cy - GRID_RADIUS);
-          ctx.lineTo(lx, cy + GRID_RADIUS);
-        }
-        for (let k = Math.floor((spot.y - GRID_RADIUS + scrollY) / GRID_SIZE); k * GRID_SIZE - scrollY <= spot.y + GRID_RADIUS; k++) {
-          const ly = Math.round(k * GRID_SIZE - scrollY) - top + 0.5;
-          ctx.moveTo(cx - GRID_RADIUS, ly);
-          ctx.lineTo(cx + GRID_RADIUS, ly);
-        }
+        const fadeStart = GRID_RADIUS * 0.45;
+        ctx.fillStyle = `rgb(${DOT_RGB})`;
+        for (let col = Math.ceil((spot.x - GRID_RADIUS + scrollX) / DOT_SPACING); col * DOT_SPACING - scrollX <= spot.x + GRID_RADIUS; col++) {
+          for (let row = Math.ceil((spot.y - GRID_RADIUS + scrollY) / DOT_SPACING); row * DOT_SPACING - scrollY <= spot.y + GRID_RADIUS; row++) {
+            const pointX = Math.round(col * DOT_SPACING - scrollX);
+            const pointY = Math.round(row * DOT_SPACING - scrollY);
+            const distance = Math.hypot(pointX - spot.x, pointY - spot.y);
+            if (distance >= GRID_RADIUS) continue;
 
-        ctx.stroke();
-        ctx.restore();
+            const fade = distance <= fadeStart ? 1 : 1 - (distance - fadeStart) / (GRID_RADIUS - fadeStart);
+            ctx.globalAlpha = DOT_OPACITY * fade * spot.alpha;
+            ctx.beginPath();
+            ctx.arc(pointX - left + 0.5, pointY - top + 0.5, DOT_RADIUS, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+        ctx.globalAlpha = 1;
       }
 
       // Keep animating only until the fade finishes; cursor moves wake a single redraw
