@@ -31,7 +31,7 @@
 
 /**
  * Product Engineer Proposal - Single File Bundle
- * Generated: 2026-09-17T07:30:08.501Z
+ * Generated: 2026-09-17T08:32:46.865Z
  *
  * This file is auto-generated. Do not edit directly.
  * To modify, edit the source files and run: node src/utils/build.js
@@ -42,7 +42,7 @@
 // ============================================================================
 
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-17T07:30:08.475Z
+// Generated: 2026-09-17T08:32:46.835Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -1805,22 +1805,6 @@ const Header = ({ data, heroQuote }) => {
           inset: 0,
           zIndex: -2,
           background: `linear-gradient(170deg, #f8f9fc 0%, #eef1f8 30%, #e8edf5 60%, #f5f7fa 100%)`,
-          pointerEvents: 'none',
-        }}
-      />
-
-      {/*
-        Subtle bullet-journal dot grid, one dot every 20px. Dots are centered on
-        page pixel (20k + 0.5) so CursorSpotlight's dots land exactly on top of them.
-      */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          zIndex: -2,
-          backgroundImage: 'radial-gradient(circle, rgba(148, 163, 184, 0.45) 1px, transparent 1.5px)',
-          backgroundSize: '20px 20px',
-          backgroundPosition: '-9.5px -9.5px',
           pointerEvents: 'none',
         }}
       />
@@ -7467,25 +7451,30 @@ const WorkList = ({ items }) => {
 /**
  * CursorSpotlight Component
  *
- * Reveals the bullet-journal dot grid (every 20px) in a small circle around the cursor,
- * fading toward the edge.
+ * Bullet-journal dots that appear around the cursor and fade back out after it passes.
+ * - Dots sit on a fixed page grid (every DOT_SPACING px), so they stay put while scrolling
+ * - Brightest at the cursor, dimming steadily toward the rim of the spotlight
+ * - Dots fade in quickly inside the spotlight and fade out slowly once it moves on,
+ *   leaving a short trail; everywhere else the page stays clean
  *
  * Performance:
- * - Draws on a small canvas that follows the cursor, not a full-screen overlay
- * - Follows the cursor exactly (no easing); the loop only runs during the fade in/out
- * - Hidden entirely when not showing, so the browser skips blending it
+ * - The canvas only covers the area where dots are currently visible, and is released when none are
+ * - The animation loop runs only while dots are fading, and stops when idle
  *
  * Only rendered on devices with a real mouse (hover + fine pointer). Phones, tablets,
  * and reduced-motion users get nothing at all.
  */
 
 
-const GRID_RADIUS = 56;                   // px - area where dots are revealed
-const DOT_SPACING = 20;                   // px - matches the header dot grid in Header.jsx
-const DOT_OPACITY = 0.7;                  // strength of the dots (0-1)
-const DOT_RADIUS = 1.75;                  // px - size of each dot
-const DOT_RGB = '91, 33, 182';            // COLORS.accent.primary
-const SPOTLIGHT_SIZE = GRID_RADIUS * 2 + 4; // px - canvas just big enough for the circle
+const DOT_SPACING = 12;          // px - distance between dots
+const DOT_RADIUS = 0.75;         // px - size of each dot
+const DOT_OPACITY = 0.85;        // strength of a fully lit dot (0-1)
+const DOT_RGB = '91, 33, 182';   // COLORS.accent.primary
+const SPOTLIGHT_RADIUS = 40;     // px - dots within this distance of the cursor light up
+const EDGE_STRENGTH = 0.15;      // brightness of the outermost dots relative to the center (0-1)
+const FADE_IN_MS = 60;           // how quickly dots appear
+const FADE_OUT_MS = 450;         // how slowly dots fade after the cursor moves on
+const RESIZE_STEP = 128;         // px - canvas grows/shrinks in steps to avoid constant reallocation
 
 const spotlightSupported = () =>
   typeof window !== 'undefined' &&
@@ -7501,68 +7490,125 @@ const CursorSpotlight = () => {
 
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
-    let dpr = 0;
 
-    const setupCanvas = () => {
-      const nextDpr = window.devicePixelRatio || 1;
-      if (nextDpr === dpr) return;
-      dpr = nextDpr;
-      canvas.width = Math.round(SPOTLIGHT_SIZE * dpr);
-      canvas.height = Math.round(SPOTLIGHT_SIZE * dpr);
+    const mouse = { x: 0, y: 0 };
+    let mouseInside = false;
+    const dots = new Map(); // "col,row" -> { col, row, alpha, target, x, y, onScreen }
+    let frame = null;
+    let lastTime = null;
+
+    // Canvas backing size, in CSS px
+    let canvasW = 0;
+    let canvasH = 0;
+    let canvasDpr = 0;
+
+    const sizeCanvas = (w, h) => {
+      const dpr = window.devicePixelRatio || 1;
+      const tooSmall = w > canvasW || h > canvasH;
+      const tooBig = canvasW > RESIZE_STEP && (w < canvasW / 2 || h < canvasH / 2);
+      if (!tooSmall && !tooBig && dpr === canvasDpr) return;
+      canvasW = Math.ceil(w / RESIZE_STEP) * RESIZE_STEP;
+      canvasH = Math.ceil(h / RESIZE_STEP) * RESIZE_STEP;
+      canvasDpr = dpr;
+      canvas.width = Math.round(canvasW * dpr);
+      canvas.height = Math.round(canvasH * dpr);
+      canvas.style.width = `${canvasW}px`;
+      canvas.style.height = `${canvasH}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 
-    const target = { x: 0, y: 0 };
-    const spot = { x: 0, y: 0, alpha: 0 };
-    let visible = false;
-    let frame = null;
+    const releaseCanvas = () => {
+      canvas.style.visibility = 'hidden';
+      if (canvasW === 0) return;
+      canvas.width = 0;
+      canvas.height = 0;
+      canvasW = 0;
+      canvasH = 0;
+    };
 
-    const draw = () => {
+    const draw = (time) => {
       frame = null;
+      const dt = lastTime === null ? 16.7 : Math.min(time - lastTime, 100);
+      lastTime = time;
 
-      // Sit exactly on the cursor; only the fade in/out animates
-      const goal = visible ? 1 : 0;
-      spot.x = target.x;
-      spot.y = target.y;
-      spot.alpha += (goal - spot.alpha) * 0.12;
+      const { scrollX, scrollY, innerWidth, innerHeight } = window;
 
-      const settled = Math.abs(goal - spot.alpha) < 0.01;
-      if (settled) spot.alpha = goal;
+      // Every dot fades toward nothing unless the spotlight is on it this frame
+      dots.forEach((dot) => { dot.target = 0; });
 
-      if (spot.alpha <= 0.01) {
-        canvas.style.visibility = 'hidden';
-      } else {
-        const left = Math.round(spot.x - SPOTLIGHT_SIZE / 2);
-        const top = Math.round(spot.y - SPOTLIGHT_SIZE / 2);
-        canvas.style.visibility = 'visible';
-        canvas.style.transform = `translate3d(${left}px, ${top}px, 0)`;
+      if (mouseInside) {
+        const px = mouse.x + scrollX; // cursor in page coordinates
+        const py = mouse.y + scrollY;
+        for (let col = Math.ceil((px - SPOTLIGHT_RADIUS) / DOT_SPACING); col * DOT_SPACING <= px + SPOTLIGHT_RADIUS; col++) {
+          for (let row = Math.ceil((py - SPOTLIGHT_RADIUS) / DOT_SPACING); row * DOT_SPACING <= py + SPOTLIGHT_RADIUS; row++) {
+            const distance = Math.hypot(col * DOT_SPACING - px, row * DOT_SPACING - py);
+            if (distance >= SPOTLIGHT_RADIUS) continue;
 
-        ctx.clearRect(0, 0, SPOTLIGHT_SIZE, SPOTLIGHT_SIZE);
-
-        // One dot per grid point (every DOT_SPACING px) inside the radius, fading toward the edge.
-        // Grid points use page coordinates, so the dots stay locked to the page while scrolling.
-        const { scrollX, scrollY } = window;
-        const fadeStart = GRID_RADIUS * 0.45;
-        ctx.fillStyle = `rgb(${DOT_RGB})`;
-        for (let col = Math.ceil((spot.x - GRID_RADIUS + scrollX) / DOT_SPACING); col * DOT_SPACING - scrollX <= spot.x + GRID_RADIUS; col++) {
-          for (let row = Math.ceil((spot.y - GRID_RADIUS + scrollY) / DOT_SPACING); row * DOT_SPACING - scrollY <= spot.y + GRID_RADIUS; row++) {
-            const pointX = Math.round(col * DOT_SPACING - scrollX);
-            const pointY = Math.round(row * DOT_SPACING - scrollY);
-            const distance = Math.hypot(pointX - spot.x, pointY - spot.y);
-            if (distance >= GRID_RADIUS) continue;
-
-            const fade = distance <= fadeStart ? 1 : 1 - (distance - fadeStart) / (GRID_RADIUS - fadeStart);
-            ctx.globalAlpha = DOT_OPACITY * fade * spot.alpha;
-            ctx.beginPath();
-            ctx.arc(pointX - left + 0.5, pointY - top + 0.5, DOT_RADIUS, 0, Math.PI * 2);
-            ctx.fill();
+            // Gradient: full brightness at the cursor, dimming evenly out to EDGE_STRENGTH at the rim
+            const strength = 1 - (1 - EDGE_STRENGTH) * (distance / SPOTLIGHT_RADIUS);
+            const key = `${col},${row}`;
+            let dot = dots.get(key);
+            if (!dot) {
+              dot = { col, row, alpha: 0, target: 0 };
+              dots.set(key, dot);
+            }
+            dot.target = strength;
           }
         }
+      }
+
+      // Ease each dot toward its target: quick fade in, slow fade out
+      let animating = false;
+      let minX = Infinity;
+      let minY = Infinity;
+      let maxX = -Infinity;
+      let maxY = -Infinity;
+      dots.forEach((dot, key) => {
+        const duration = dot.target > dot.alpha ? FADE_IN_MS : FADE_OUT_MS;
+        dot.alpha += (dot.target - dot.alpha) * (1 - Math.exp(-dt / duration));
+        if (dot.target === 0 && dot.alpha < 0.01) {
+          dots.delete(key);
+          return;
+        }
+        if (Math.abs(dot.target - dot.alpha) > 0.005) animating = true;
+
+        dot.x = Math.round(dot.col * DOT_SPACING - scrollX); // viewport position
+        dot.y = Math.round(dot.row * DOT_SPACING - scrollY);
+        dot.onScreen = dot.x > -8 && dot.y > -8 && dot.x < innerWidth + 8 && dot.y < innerHeight + 8;
+        if (!dot.onScreen) return;
+        minX = Math.min(minX, dot.x);
+        minY = Math.min(minY, dot.y);
+        maxX = Math.max(maxX, dot.x);
+        maxY = Math.max(maxY, dot.y);
+      });
+
+      if (minX === Infinity) {
+        if (dots.size === 0) releaseCanvas();
+        else canvas.style.visibility = 'hidden';
+      } else {
+        // Size and place the canvas to just cover the visible dots
+        const pad = Math.ceil(DOT_RADIUS) + 2;
+        const originX = minX - pad;
+        const originY = minY - pad;
+        sizeCanvas(maxX - minX + pad * 2 + 1, maxY - minY + pad * 2 + 1);
+        canvas.style.transform = `translate3d(${originX}px, ${originY}px, 0)`;
+        canvas.style.visibility = 'visible';
+
+        ctx.clearRect(0, 0, canvasW, canvasH);
+        ctx.fillStyle = `rgb(${DOT_RGB})`;
+        dots.forEach((dot) => {
+          if (!dot.onScreen) return;
+          ctx.globalAlpha = DOT_OPACITY * dot.alpha;
+          ctx.beginPath();
+          ctx.arc(dot.x - originX + 0.5, dot.y - originY + 0.5, DOT_RADIUS, 0, Math.PI * 2);
+          ctx.fill();
+        });
         ctx.globalAlpha = 1;
       }
 
-      // Keep animating only until the fade finishes; cursor moves wake a single redraw
-      if (!settled) frame = requestAnimationFrame(draw);
+      // Keep animating only while dots are still fading
+      if (animating) frame = requestAnimationFrame(draw);
+      else lastTime = null;
     };
 
     const wake = () => {
@@ -7570,24 +7616,23 @@ const CursorSpotlight = () => {
     };
 
     const handleMove = (e) => {
-      target.x = e.clientX;
-      target.y = e.clientY;
-      visible = true;
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+      mouseInside = true;
       wake();
     };
     const handleLeave = () => {
-      visible = false;
+      mouseInside = false;
       wake();
     };
     const handleScroll = () => {
-      if (spot.alpha > 0) wake();
+      if (dots.size > 0) wake();
     };
     const handleResize = () => {
-      setupCanvas();
-      wake();
+      canvasDpr = 0; // re-check pixel ratio on next draw
+      if (dots.size > 0) wake();
     };
 
-    setupCanvas();
     window.addEventListener('mousemove', handleMove, { passive: true });
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', handleResize);
@@ -7611,11 +7656,9 @@ const CursorSpotlight = () => {
         position: 'fixed',
         top: 0,
         left: 0,
-        width: SPOTLIGHT_SIZE,
-        height: SPOTLIGHT_SIZE,
         pointerEvents: 'none',
         // Between the page background (zIndex -2 / root) and content, so text and
-        // elements draw above the lines. Relies on the root's `isolation: isolate`
+        // elements draw above the dots. Relies on the root's `isolation: isolate`
         // in App.jsx and on sections not painting their own backgrounds.
         zIndex: -1,
         mixBlendMode: 'multiply',

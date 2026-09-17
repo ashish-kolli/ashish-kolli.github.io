@@ -83,22 +83,6 @@ const Header = ({ data, heroQuote }) => {
         }}
       />
 
-      {/*
-        Subtle bullet-journal dot grid, one dot every 20px. Dots are centered on
-        page pixel (20k + 0.5) so CursorSpotlight's dots land exactly on top of them.
-      */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          zIndex: -2,
-          backgroundImage: 'radial-gradient(circle, rgba(148, 163, 184, 0.45) 1px, transparent 1.5px)',
-          backgroundSize: '20px 20px',
-          backgroundPosition: '-9.5px -9.5px',
-          pointerEvents: 'none',
-        }}
-      />
-
       {/* Gradient accent shapes - colorful */}
       <div
         style={{
