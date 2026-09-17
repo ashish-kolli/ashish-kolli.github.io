@@ -1,13 +1,57 @@
-<!-- Maker project page → projects/vortex/index.html -->
+<!--
+================================================================================
+VORTEX — PROJECT PAGE
+================================================================================
+PLACEHOLDER DRAFT. Each bracketed line describes what belongs there; replace it
+with real copy. Each @image marker renders a dashed frame until you give it a
+src (e.g. src="assets/photos/vortex/hero.jpg").
+Previous copy is in git: `git show 97065c3:content/projects/vortex.md`
+================================================================================
+-->
 
-<!-- @page title="Vortex" eyebrow="Maker · Sculptural monolith" meta="Coastal repurposing · Santa Barbara, CA · Platform Holly" back="Maker" backHref="./#maker" -->
-Repurposing decommissioned oil platform Holly off the coast of Santa Barbara into a twisted sculptural tower.
+<!-- @page title="Vortex" eyebrow="Maker · Sculptural monolith" meta="[Role] · [Timeline] · [Context]" back="Maker" backHref="./#maker" -->
+[Positioning line — one or two sentences: what this is, who it was for, and why it mattered.]
 <!-- /@page -->
 
-## 1. The work
+## 1. Overview
 
-Five collage iterations (I–V) drove a procedural twist-tower geometry, refined through wire-frame studies and material studies in steel rod.
+[Context — 2–3 sentences on the situation you walked into and the problem worth solving.]
 
-## 2. Why it matters for PM
+[Your role — what you personally owned, and who you worked with.]
 
-The work asks what a coastline does with its inherited industrial scaffolding — the same structural question I now ask of any product I inherit. What stays, what gets reframed, what gets retired.
+<!-- @image src="" caption="[Hero image — the single image that best represents this project]" width="wide" -->
+
+## 2. Process
+
+[How the work moved — 2–3 sentences on the approach and the order you worked in.]
+
+- [Step 01 — what you did first, and what it told you.]
+- [Step 02 — the next move, and what changed because of it.]
+- [Step 03 — where the approach shifted.]
+- [Step 04 — how it came together.]
+
+<!-- @image src="" caption="[Process image — sketches, iterations, shop drawings, wireframes, test rigs]" width="wide" -->
+
+[The turning point — the decision or discovery the project hinged on, and the trade-off behind it.]
+
+<!-- @image src="" caption="[Detail image — the one moment worth zooming in on]" width="prose" -->
+
+## 3. Outcome
+
+[What shipped — 2–3 sentences on the result and how it was received or used.]
+
+<!-- @stats -->
+<!-- @stat value="[00]" label="[What this number measures]" source="[Where it comes from]" -->
+<!-- @stat value="[00]" label="[What this number measures]" source="[Where it comes from]" -->
+<!-- @stat value="[00]" label="[What this number measures]" source="[Where it comes from]" -->
+<!-- /@stats -->
+
+<!-- @image src="" caption="[Final image — the finished thing, in place]" width="wide" -->
+
+## 4. What I'd do differently
+
+[Reflection — what you would change, and the principle you carry forward from it.]
+
+<!-- @pullquote -->
+[Maxim — the one line this project taught you.]
+<!-- /@pullquote -->

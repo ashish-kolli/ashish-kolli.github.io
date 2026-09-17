@@ -50,6 +50,7 @@ import {
   WorkList,
   ProjectCards,
   ProjectHeader,
+  Figure,
 } from './components';
 
 
@@ -90,7 +91,7 @@ const BlockRenderer = ({ block, context }) => {
  * Render component markers (stats, charts, quotes, cards, etc.)
  */
 const renderComponent = (block, context) => {
-  const { chartsByType, getCardsBySection, getProjectsBySection, getQuotesBySection, terminalIndex } = context;
+  const { chartsByType, getCardsBySection, getProjectsBySection, getQuotesBySection, terminalIndex, imageIndex } = context;
 
   switch (block.component) {
     case 'stats': {
@@ -158,6 +159,15 @@ const renderComponent = (block, context) => {
       return projectRow && projectRow.projects.length > 0 ? (
         <ProjectCards projects={projectRow.projects} />
       ) : null;
+    }
+
+    case 'image': {
+      const image = CONTENT.images?.[imageIndex.current];
+      if (image) {
+        imageIndex.current++;
+        return <Figure {...image} />;
+      }
+      return null;
     }
 
     case 'credentials':
@@ -263,6 +273,7 @@ const App = () => {
   // Index refs for sequential components (tables, terminals, pullquotes)
   const tableIndex = { current: 0 };
   const terminalIndex = { current: 0 };
+  const imageIndex = { current: 0 };
   const pullquoteIndex = { current: 0 };
 
   // Component lookup by type
@@ -296,6 +307,7 @@ const App = () => {
     pullquoteIndex,
     tableIndex,
     terminalIndex,
+    imageIndex,
   };
 
   return (

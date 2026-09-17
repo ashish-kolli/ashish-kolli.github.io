@@ -1,42 +1,57 @@
-<!-- Tesla internship page → projects/tesla/index.html -->
+<!--
+================================================================================
+TESLA — PROJECT PAGE
+================================================================================
+PLACEHOLDER DRAFT. Each bracketed line describes what belongs there; replace it
+with real copy. Each @image marker renders a dashed frame until you give it a
+src (e.g. src="assets/photos/tesla/hero.jpg").
+Previous copy is in git: `git show 97065c3:content/projects/tesla.md`
+================================================================================
+-->
 
-<!-- @page title="Tesla" eyebrow="Internship · Retail Design Intern" meta="Retail Design Intern · June – Sept 2023 · Retail, service & body shop" back="Internships" backHref="./#internships" -->
-Three months on how the brand shows up in person: retail lounges, service centers, and body shops — and the specs that let teams build it the same way in every city.
+<!-- @page title="Tesla" eyebrow="Internship · Retail Design Intern" meta="[Role] · [Timeline] · [Context]" back="Internships" backHref="./#internships" -->
+[Positioning line — one or two sentences: what this is, who it was for, and why it mattered.]
 <!-- /@page -->
 
-## 1. The objective
+## 1. Overview
 
-Refresh Tesla's brand across its physical retail and service spaces, then turn it into a program that could be built the same way everywhere. Retail lounges, service centers, and body shop interiors each needed to express one consistent brand identity.
+[Context — 2–3 sentences on the situation you walked into and the problem worth solving.]
 
-My job was to prototype that refresh and document the retail program requirements so internal teams and vendors could execute it on site, without me there.
+[Your role — what you personally owned, and who you worked with.]
 
-## 2. What I achieved
+<!-- @image src="" caption="[Hero image — the single image that best represents this project]" width="wide" -->
+
+## 2. Process
+
+[How the work moved — 2–3 sentences on the approach and the order you worked in.]
+
+- [Step 01 — what you did first, and what it told you.]
+- [Step 02 — the next move, and what changed because of it.]
+- [Step 03 — where the approach shifted.]
+- [Step 04 — how it came together.]
+
+<!-- @image src="" caption="[Process image — sketches, iterations, shop drawings, wireframes, test rigs]" width="wide" -->
+
+[The turning point — the decision or discovery the project hinged on, and the trade-off behind it.]
+
+<!-- @image src="" caption="[Detail image — the one moment worth zooming in on]" width="prose" -->
+
+## 3. Outcome
+
+[What shipped — 2–3 sentences on the result and how it was received or used.]
 
 <!-- @stats -->
-<!-- @stat value="500+" label="Locations the refresh launched to" source="All Tesla retail & service locations" -->
-<!-- @stat value="45+" label="Locations I executed the program at" source="Retail program rollout" -->
-<!-- @stat value="15%" label="Saved in projected costs" source="Program execution" -->
-<!-- @stat value="2" label="Design sprints to prototype" source="Retail strategy iteration" -->
+<!-- @stat value="[00]" label="[What this number measures]" source="[Where it comes from]" -->
+<!-- @stat value="[00]" label="[What this number measures]" source="[Where it comes from]" -->
+<!-- @stat value="[00]" label="[What this number measures]" source="[Where it comes from]" -->
 <!-- /@stats -->
 
-A brand refresh that launched across **all 500+ Tesla retail and service locations**, and a retail program I executed across **45+ locations, saving 15% in projected costs**. I iterated the retail strategy over two design sprints to prototype the refresh.
+<!-- @image src="" caption="[Final image — the finished thing, in place]" width="wide" -->
 
-Two specs from that work show the level of detail it took:
+## 4. What I'd do differently
 
-- **Service intake plan** — a two-lane intake bay with light fixtures centered on each panel seam, a 6' lounge-door integration, and three service-advisor desks.
-- **Logo feature wall** — nine metallic-finish panels spaced 2" apart against a trout-grey back wall, anchored by an S830 61"-H illuminated Tesla logo.
-
-## 3. What I learned
-
-- **Design sprints** — scoping each sprint around one question and carrying forward only what held up.
-- **Spec writing** — documenting layout requirements precisely enough to be built without me on site.
-- **Stakeholder alignment** — coordinating internal teams and outside vendors around a single program.
-- **Cost discipline** — executing that program while saving 15% in projected costs.
-
-## 4. What I took with me
+[Reflection — what you would change, and the principle you carry forward from it.]
 
 <!-- @pullquote -->
-Write the spec for the store you'll never stand in.
+[Maxim — the one line this project taught you.]
 <!-- /@pullquote -->
-
-A requirement had to hold up when a team in another city built it without me there. That forced every line of the spec to be unambiguous — the same bar a good PRD has to clear.

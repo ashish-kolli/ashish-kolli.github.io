@@ -1,35 +1,57 @@
-<!-- Morphosis/Payette internship page → projects/morphosis-payette/index.html -->
+<!--
+================================================================================
+MORPHOSIS / PAYETTE — PROJECT PAGE
+================================================================================
+PLACEHOLDER DRAFT. Each bracketed line describes what belongs there; replace it
+with real copy. Each @image marker renders a dashed frame until you give it a
+src (e.g. src="assets/photos/morphosis-payette/hero.jpg").
+Previous copy is in git: `git show 97065c3:content/projects/morphosis-payette.md`
+================================================================================
+-->
 
-<!-- @page title="Morphosis / Payette" eyebrow="Internship · Designer & Fabricator" meta="Designer & Fabricator · June 2022 – May 2023 · Education & laboratory projects" back="Internships" backHref="./#internships" -->
-A year building the physical models project teams used to make design decisions — and starting the in-house function that produced them.
+<!-- @page title="Morphosis / Payette" eyebrow="Internship · Designer & Fabricator" meta="[Role] · [Timeline] · [Context]" back="Internships" backHref="./#internships" -->
+[Positioning line — one or two sentences: what this is, who it was for, and why it mattered.]
 <!-- /@page -->
 
-## 1. The objective
+## 1. Overview
 
-Give project teams physical models that answer design questions faster than drawings can. Architects needed to test design choices in three dimensions before committing to them. There was no dedicated function for that, so part of the job was creating one.
+[Context — 2–3 sentences on the situation you walked into and the problem worth solving.]
 
-## 2. What I achieved
+[Your role — what you personally owned, and who you worked with.]
+
+<!-- @image src="" caption="[Hero image — the single image that best represents this project]" width="wide" -->
+
+## 2. Process
+
+[How the work moved — 2–3 sentences on the approach and the order you worked in.]
+
+- [Step 01 — what you did first, and what it told you.]
+- [Step 02 — the next move, and what changed because of it.]
+- [Step 03 — where the approach shifted.]
+- [Step 04 — how it came together.]
+
+<!-- @image src="" caption="[Process image — sketches, iterations, shop drawings, wireframes, test rigs]" width="wide" -->
+
+[The turning point — the decision or discovery the project hinged on, and the trade-off behind it.]
+
+<!-- @image src="" caption="[Detail image — the one moment worth zooming in on]" width="prose" -->
+
+## 3. Outcome
+
+[What shipped — 2–3 sentences on the result and how it was received or used.]
 
 <!-- @stats -->
-<!-- @stat value="25+" label="High-impact models built" source="Education & laboratory projects" -->
-<!-- @stat value="930" label="Laser-cut steel parts fabricated" source="Northeastern University EXP" -->
-<!-- @stat value="1" label="Design services division started" source="In-house function, built from scratch" -->
+<!-- @stat value="[00]" label="[What this number measures]" source="[Where it comes from]" -->
+<!-- @stat value="[00]" label="[What this number measures]" source="[Where it comes from]" -->
+<!-- @stat value="[00]" label="[What this number measures]" source="[Where it comes from]" -->
 <!-- /@stats -->
 
-Pioneered a **design services division** that designed and built **25+ high-impact physical models** driving design decisions across education and laboratory projects.
+<!-- @image src="" caption="[Final image — the finished thing, in place]" width="wide" -->
 
-That work includes an archival model refresh for [Thom Mayne's personal office collection](projects/ningbo-pavilions/) and [930 laser-cut steel corner guards](projects/neu-exp-corner-guards/) for Northeastern University's EXP research building.
+## 4. What I'd do differently
 
-## 3. What I learned
-
-- **Fabrication** — CNC milling, laser cutting, welding, resin printing, and finishing.
-- **Iteration** — testing materials and joints until they held tolerance.
-- **Production** — shop drawings and batch tracking for runs of hundreds of parts.
-
-## 4. What I took with me
+[Reflection — what you would change, and the principle you carry forward from it.]
 
 <!-- @pullquote -->
-Build the model that settles the argument.
+[Maxim — the one line this project taught you.]
 <!-- /@pullquote -->
-
-Every model existed to answer a specific open design question, so the team could decide and move on instead of debating drawings.

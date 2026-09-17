@@ -1,21 +1,57 @@
-<!-- Arohai project page → projects/arohai/index.html -->
+<!--
+================================================================================
+AROHAI — PROJECT PAGE
+================================================================================
+PLACEHOLDER DRAFT. Each bracketed line describes what belongs there; replace it
+with real copy. Each @image marker renders a dashed frame until you give it a
+src (e.g. src="assets/photos/arohai/hero.jpg").
+Previous copy is in git: `git show 97065c3:content/projects/arohai.md`
+================================================================================
+-->
 
-<!-- @page title="Arohai" eyebrow="Experience · Pilot launched" meta="Founder / Product" back="Experience" backHref="./#experience" -->
-A CRM platform for mom-and-pop shops to scale into a franchise — giving independent owners the operating system to standardize what works at one location and replicate it across many.
+<!-- @page title="Arohai" eyebrow="Experience · Pilot launched" meta="[Role] · [Timeline] · [Context]" back="Experience" backHref="./#experience" -->
+[Positioning line — one or two sentences: what this is, who it was for, and why it mattered.]
 <!-- /@page -->
 
-## 1. What I'm building
+## 1. Overview
 
-Independent shop owners run their best location on instinct: the owner knows the regulars, the ordering rhythm, the staffing pattern that works on a Saturday. None of it is written down, so the second location starts from zero and the third one drifts.
+[Context — 2–3 sentences on the situation you walked into and the problem worth solving.]
 
-Arohai turns that instinct into an operating system — customer relationships, repeat-purchase behavior, and the day-to-day playbook captured in one place, so an owner can hand a new location a system instead of a hope.
+[Your role — what you personally owned, and who you worked with.]
 
-**Role:** Founder / Product · **Status:** Pilot launched
+<!-- @image src="" caption="[Hero image — the single image that best represents this project]" width="wide" -->
 
-## 2. Where it stands
+## 2. Process
 
-I'm in build mode: talking to owners, shaping the data model around how these businesses actually track customers, and testing which parts of the playbook are worth standardizing first.
+[How the work moved — 2–3 sentences on the approach and the order you worked in.]
+
+- [Step 01 — what you did first, and what it told you.]
+- [Step 02 — the next move, and what changed because of it.]
+- [Step 03 — where the approach shifted.]
+- [Step 04 — how it came together.]
+
+<!-- @image src="" caption="[Process image — sketches, iterations, shop drawings, wireframes, test rigs]" width="wide" -->
+
+[The turning point — the decision or discovery the project hinged on, and the trade-off behind it.]
+
+<!-- @image src="" caption="[Detail image — the one moment worth zooming in on]" width="prose" -->
+
+## 3. Outcome
+
+[What shipped — 2–3 sentences on the result and how it was received or used.]
+
+<!-- @stats -->
+<!-- @stat value="[00]" label="[What this number measures]" source="[Where it comes from]" -->
+<!-- @stat value="[00]" label="[What this number measures]" source="[Where it comes from]" -->
+<!-- @stat value="[00]" label="[What this number measures]" source="[Where it comes from]" -->
+<!-- /@stats -->
+
+<!-- @image src="" caption="[Final image — the finished thing, in place]" width="wide" -->
+
+## 4. What I'd do differently
+
+[Reflection — what you would change, and the principle you carry forward from it.]
 
 <!-- @pullquote -->
-Full case study coming soon — reach out and I'm happy to walk through where it stands.
+[Maxim — the one line this project taught you.]
 <!-- /@pullquote -->

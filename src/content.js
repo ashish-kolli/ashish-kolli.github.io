@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-17T18:34:39.748Z
+// Generated: 2026-09-17T18:46:30.579Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -25,7 +25,7 @@ const CONTENT = {
           "eyebrow": "Pilot launched",
           "meta": "Founder / Product",
           "icon": "rocket",
-          "summary": "A CRM platform that gives mom-and-pop shops the operating system to standardize what works at one location and replicate it across many."
+          "summary": "[Card summary — one or two sentences: what Arohai is, who it's for, and the outcome worth clicking for.]"
         },
         {
           "href": "projects/readyvault/",
@@ -33,7 +33,7 @@ const CONTENT = {
           "eyebrow": "Featured case study",
           "meta": "Newell Brands · 2025–26",
           "icon": "shield",
-          "summary": "A guided emergency-kit configurator for **Newell Brands**. 26 interviews uncovered a $400M segment, and the PRD and pricing behind it earned **$1.1M in pre-seed funding**."
+          "summary": "[Card summary — what ReadyVault is, who it was for, and the headline result.]"
         }
       ]
     },
@@ -46,7 +46,7 @@ const CONTENT = {
           "eyebrow": "Retail Design Intern",
           "meta": "Summer 2023",
           "icon": "zap",
-          "summary": "Prototyped a brand refresh that launched across **500+ retail and service locations**, then executed the retail program at 45+ of them while saving 15% in projected costs."
+          "summary": "[Card summary — what you shipped at Tesla and at what scale.]"
         },
         {
           "href": "projects/morphosis-payette/",
@@ -54,7 +54,7 @@ const CONTENT = {
           "eyebrow": "Designer & Fabricator",
           "meta": "2022–23",
           "icon": "cpu",
-          "summary": "Started a design services division that built **25+ physical models** to settle design decisions on education and laboratory projects."
+          "summary": "[Card summary — what you built at Morphosis/Payette and what it changed.]"
         }
       ]
     },
@@ -67,7 +67,7 @@ const CONTENT = {
           "eyebrow": "Archival model",
           "meta": "Thom Mayne · office collection",
           "icon": "lightbulb",
-          "summary": "A model refresh for **Thom Mayne's** personal office collection — seven fabrication steps from excavation to final resin seal."
+          "summary": "[Card summary — one sentence on what this piece is.]"
         },
         {
           "href": "projects/neu-exp-corner-guards/",
@@ -75,7 +75,7 @@ const CONTENT = {
           "eyebrow": "Fabrication",
           "meta": "930 parts · 7 levels",
           "icon": "cpu",
-          "summary": "Laser-cut, welded, and blackened steel corner guards for Northeastern University's EXP research building."
+          "summary": "[Card summary — one sentence on what this piece is.]"
         },
         {
           "href": "projects/spline-curve-pavilion/",
@@ -83,7 +83,7 @@ const CONTENT = {
           "eyebrow": "Design build",
           "meta": "ARCH 479 · Prof. Dale Clifford",
           "icon": "layers",
-          "summary": "A full-scale redwood pavilion designed and built collaboratively — drawings, A-frame fabrication, transport, and on-site install."
+          "summary": "[Card summary — one sentence on what this piece is.]"
         },
         {
           "href": "projects/waveform-acoustic-tiles/",
@@ -91,7 +91,7 @@ const CONTENT = {
           "eyebrow": "Joint design",
           "meta": "Museum atrium · Connecticut",
           "icon": "target",
-          "summary": "Sail-motif ceiling tiles built around three iterations of a keystone joint, each scoped against a specific failure mode."
+          "summary": "[Card summary — one sentence on what this piece is.]"
         },
         {
           "href": "projects/stagiare/",
@@ -99,7 +99,7 @@ const CONTENT = {
           "eyebrow": "Studio",
           "meta": "Heavy industrial typology",
           "icon": "layers",
-          "summary": "A heavy-industrial fabrication facility reimagined as a vertical typology — five steel-frame towers as discrete experiments."
+          "summary": "[Card summary — one sentence on what this piece is.]"
         },
         {
           "href": "projects/walnut-mockup/",
@@ -107,7 +107,7 @@ const CONTENT = {
           "eyebrow": "Pilot model",
           "meta": "Sectional volumetric study",
           "icon": "chart",
-          "summary": "The smallest model that proves the method — a feasibility study of scale, technique, and abstraction before the full production build."
+          "summary": "[Card summary — one sentence on what this piece is.]"
         },
         {
           "href": "projects/vortex/",
@@ -115,32 +115,41 @@ const CONTENT = {
           "eyebrow": "Sculptural monolith",
           "meta": "Santa Barbara, CA",
           "icon": "rocket",
-          "summary": "Repurposing decommissioned oil platform Holly off the California coast into a twisted sculptural tower."
+          "summary": "[Card summary — one sentence on what this piece is.]"
         }
       ]
+    }
+  ],
+  "images": [
+    {
+      "src": "",
+      "alt": "",
+      "caption": "[Optional — a photo of you working, or an image that sets the tone for this section]",
+      "width": "wide",
+      "ratio": "16 / 10"
     }
   ],
   "stats": [
     [
       {
-        "value": "$1.1M",
-        "label": "Pre-seed funding secured",
-        "source": "Newell Brands · ReadyVault"
+        "value": "[00]",
+        "label": "[What this number measures]",
+        "source": "[Company · context]"
       },
       {
-        "value": "40%",
-        "label": "Faster QA/QC review gates",
-        "source": "Jensen Hughes · workflow redesign"
+        "value": "[00]",
+        "label": "[What this number measures]",
+        "source": "[Company · context]"
       },
       {
-        "value": "500+",
-        "label": "Locations the brand refresh launched to",
-        "source": "Tesla · retail design intern"
+        "value": "[00]",
+        "label": "[What this number measures]",
+        "source": "[Company · context]"
       },
       {
-        "value": "25+",
-        "label": "Models driving design decisions",
-        "source": "Morphosis/Payette · education & lab projects"
+        "value": "[00]",
+        "label": "[What this number measures]",
+        "source": "[Company · context]"
       }
     ]
   ],
@@ -154,7 +163,7 @@ const CONTENT = {
     {
       "author": "",
       "title": "",
-      "quote": "The brief is never the problem. The brief is the symptom of a problem the user can't yet name."
+      "quote": "[Hero quote — one line that frames how you work, short enough to read in a glance.]"
     }
   ],
   "cards": [],
@@ -168,13 +177,13 @@ const CONTENT = {
       "command": "cat",
       "variant": "default",
       "lines": [
-        "• **Product strategy** → Market sizing (TAM/SAM/SOM), Blue Ocean positioning, roadmap, prioritization",
-        "• **Research** → Semi-structured interviews, synthesis, JTBD framing, competitive teardowns",
-        "• **PRD ownership** → Spec writing, principle-driven requirements, cross-functional alignment",
-        "• **UX collaboration** → Configurator UX, journey mapping, principle-driven wireframing",
-        "• **Business modeling** → Pricing, LTV/CAC, unit economics, launch sequencing",
-        "• **Cross-functional** → Engineering, industrial design, brand, executive stakeholders",
-        "• **Tools** → Figma, Notion, Miro, Rhino, Adobe CS, AutoCAD, Excel/Sheets"
+        "• **[Capability group]** → [Skills, methods, or frameworks in this group]",
+        "• **[Capability group]** → [Skills, methods, or frameworks in this group]",
+        "• **[Capability group]** → [Skills, methods, or frameworks in this group]",
+        "• **[Capability group]** → [Skills, methods, or frameworks in this group]",
+        "• **[Capability group]** → [Skills, methods, or frameworks in this group]",
+        "• **[Capability group]** → [Skills, methods, or frameworks in this group]",
+        "• **[Tools]** → [The software you actually work in]"
       ]
     }
   ],
@@ -192,7 +201,7 @@ const CONTENT = {
       "intro": [
         {
           "type": "paragraph",
-          "text": "Two products: one I'm building now, one I took from 26 interviews to $1.1M in pre-seed funding."
+          "text": "[Section intro — 1–2 sentences framing what these two products have in common and what you owned on each.]"
         },
         {
           "type": "component",
@@ -209,7 +218,7 @@ const CONTENT = {
       "intro": [
         {
           "type": "paragraph",
-          "text": "Two roles where the unit of work jumped from one object to hundreds of locations."
+          "text": "[Section intro — 1–2 sentences on what these roles have in common and what scaled between them.]"
         },
         {
           "type": "component",
@@ -226,7 +235,7 @@ const CONTENT = {
       "intro": [
         {
           "type": "paragraph",
-          "text": "Five years of architecture at Cal Poly, plus a year designing and fabricating at Morphosis/Payette. The disciplines compound: structural systems thinking, fabrication detail, and disciplined iteration all shape how I scope, prioritize, and ship."
+          "text": "[Section intro — 2–3 sentences on the architecture and fabrication background, and how it shows up in the way you build product.]"
         },
         {
           "type": "component",
@@ -243,32 +252,37 @@ const CONTENT = {
       "intro": [
         {
           "type": "paragraph",
-          "text": "I'm a product manager finishing Northwestern's **MS in Product Design & Development**. Before that, a five-year B.Arch at Cal Poly as a **Morphosis Fellow** — and four roles that each pushed the same instinct, *build the system and not just the artifact*, up one level of altitude."
+          "text": "[Opening — 2–3 sentences: who you are now, the training behind it, and the through-line across your roles.]"
         },
         {
           "type": "paragraph",
-          "text": "**Morphosis/Payette — I started a design services division that didn't exist.** 25+ physical models driving design decisions across education and laboratory projects, each one built to settle a specific design question. My first 0→1, before I had the vocabulary for it."
+          "text": "[Role paragraph 1 — lead with the bolded company and the one thing that mattered most there, then the evidence.]"
         },
         {
           "type": "paragraph",
-          "text": "**Tesla — the unit of work jumped from one model to 500+ locations.** The brand refresh I prototyped launched across all of Tesla's 500+ retail and service locations, and I executed the retail program at 45+ of them while saving 15% in projected costs: specs precise enough to build in stores I would never stand in."
+          "text": "[Role paragraph 2 — same shape: company, the shift in scale or scope, the proof.]"
         },
         {
           "type": "paragraph",
-          "text": "**Jensen Hughes — the highest-leverage thing I shipped wasn't a drawing.** While running fire suppression and life-safety design across TSMC semiconductor plants and airport terminals, I redesigned the internal QA/QC review workflow and moved approval gates **up to 40% faster** between design and engineering."
+          "text": "[Role paragraph 3 — same shape.]"
         },
         {
           "type": "paragraph",
-          "text": "**Newell Brands — all of it converged into product.** 26 interviews surfaced a **$400M segment** hiding under \"everyone should own an emergency kit.\" Willingness-to-pay studies turned that insight into a pricing model, and the business case behind it earned **$1.1M in pre-seed funding**."
+          "text": "[Role paragraph 4 — same shape, landing on the role closest to product.]"
         },
         {
           "type": "paragraph",
-          "text": "That sequence — research first, constraints second, ship last — is the one I bring to every product I touch."
+          "text": "[Closing line — the sentence you want a hiring manager to remember.]"
         },
         {
           "type": "component",
           "component": "stats",
-          "param": "$1.1M|Pre-seed funding secured"
+          "param": "[00]|[What this number measures]"
+        },
+        {
+          "type": "component",
+          "component": "image",
+          "param": ""
         }
       ]
     },

@@ -1,15 +1,57 @@
-<!-- Maker project page → projects/neu-exp-corner-guards/index.html -->
+<!--
+================================================================================
+NEU EXP CORNER GUARDS — PROJECT PAGE
+================================================================================
+PLACEHOLDER DRAFT. Each bracketed line describes what belongs there; replace it
+with real copy. Each @image marker renders a dashed frame until you give it a
+src (e.g. src="assets/photos/neu-exp-corner-guards/hero.jpg").
+Previous copy is in git: `git show 97065c3:content/projects/neu-exp-corner-guards.md`
+================================================================================
+-->
 
-<!-- @page title="NEU EXP Corner Guards" eyebrow="Maker · Fabrication" meta="Northeastern University EXP · 930 parts · In-house welding & finishing" back="Maker" backHref="./#maker" -->
-Cold-rolled and mill-scale steel corner guards for Northeastern University's **EXP** research building — 930 laser-cut parts, blackened with a wax and oil finish.
+<!-- @page title="NEU EXP Corner Guards" eyebrow="Maker · Fabrication" meta="[Role] · [Timeline] · [Context]" back="Maker" backHref="./#maker" -->
+[Positioning line — one or two sentences: what this is, who it was for, and why it mattered.]
 <!-- /@page -->
 
-## 1. The build
+## 1. Overview
 
-A fabrication-drawing-to-finished-component pipeline: 1/4" A36 steel laser-cut into A/B/C/D/S1/S2 profiles, in-house welding with 1/4" stand-off spacers tack-welded to the back, blackened and finished with wax + oil.
+[Context — 2–3 sentences on the situation you walked into and the problem worth solving.]
 
-Quantities were tracked across seven levels — 12 + 15 + 19 + 16 + 17 + 18 + 17 = 114 base units, plus bathroom and ramp variants. Shop drawings, batches, finishes, deliveries.
+[Your role — what you personally owned, and who you worked with.]
 
-## 2. Why it matters for PM
+<!-- @image src="" caption="[Hero image — the single image that best represents this project]" width="wide" -->
 
-Real-world manufacturing work taught me to think in *batches, tolerances, and acceptance criteria* — the language of shipped product.
+## 2. Process
+
+[How the work moved — 2–3 sentences on the approach and the order you worked in.]
+
+- [Step 01 — what you did first, and what it told you.]
+- [Step 02 — the next move, and what changed because of it.]
+- [Step 03 — where the approach shifted.]
+- [Step 04 — how it came together.]
+
+<!-- @image src="" caption="[Process image — sketches, iterations, shop drawings, wireframes, test rigs]" width="wide" -->
+
+[The turning point — the decision or discovery the project hinged on, and the trade-off behind it.]
+
+<!-- @image src="" caption="[Detail image — the one moment worth zooming in on]" width="prose" -->
+
+## 3. Outcome
+
+[What shipped — 2–3 sentences on the result and how it was received or used.]
+
+<!-- @stats -->
+<!-- @stat value="[00]" label="[What this number measures]" source="[Where it comes from]" -->
+<!-- @stat value="[00]" label="[What this number measures]" source="[Where it comes from]" -->
+<!-- @stat value="[00]" label="[What this number measures]" source="[Where it comes from]" -->
+<!-- /@stats -->
+
+<!-- @image src="" caption="[Final image — the finished thing, in place]" width="wide" -->
+
+## 4. What I'd do differently
+
+[Reflection — what you would change, and the principle you carry forward from it.]
+
+<!-- @pullquote -->
+[Maxim — the one line this project taught you.]
+<!-- /@pullquote -->

@@ -241,6 +241,23 @@ function extractProjects(content) {
   return groups;
 }
 
+function extractImages(content) {
+  const images = [];
+  const imageRegex = /<!-- @image ([^>]*?) -->/g;
+  let match;
+  while ((match = imageRegex.exec(content)) !== null) {
+    const attrs = match[1];
+    images.push({
+      src: extractAttr(attrs, 'src') || '',
+      alt: extractAttr(attrs, 'alt') || '',
+      caption: extractAttr(attrs, 'caption') || '',
+      width: extractAttr(attrs, 'width') || 'wide',
+      ratio: extractAttr(attrs, 'ratio') || '16 / 10',
+    });
+  }
+  return images;
+}
+
 function extractPage(content) {
   const match = content.match(/<!-- @page ([^>]*?) -->\s*([\s\S]*?)<!-- \/@page -->/);
   if (!match) return null;
@@ -437,6 +454,7 @@ function parseContentBlocks(text) {
       const sectionMatch = match.match(/section="([^"]*)"/);
       return `<!--COMPONENT:worklist:${sectionMatch ? sectionMatch[1] : ''}-->`;
     })
+    .replace(/<!-- @image[^>]*-->/g, '<!--COMPONENT:image-->')
     .replace(/<!-- @table[^>]*-->/g, '');
 
   // Split into paragraphs/elements
@@ -571,6 +589,7 @@ function extractContent(markdown) {
     header: extractHeader(markdown),
     page: extractPage(markdown),
     projects: extractProjects(markdown),
+    images: extractImages(markdown),
     stats: extractStats(markdown),
     charts: extractCharts(markdown),
     convergence: extractConvergence(markdown),
@@ -619,6 +638,7 @@ function main() {
   console.log(`- Convergence roles: ${content.convergence.roles.length}`);
   console.log(`- Industry quotes: ${content.quotes.length}`);
   console.log(`- Pull quotes: ${content.pullquotes.length}`);
+  console.log(`- Images: ${content.images.length}`);
   console.log(`- Project card rows: ${content.projects.length}`);
   console.log(`- Card groups: ${content.cards.length}`);
   console.log(`- Credentials: ${content.credentials.length}`);

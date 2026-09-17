@@ -123,6 +123,7 @@ northwestern/
 │   │   ├── SectionNav.jsx         # Floating section navigation (data-driven from the page's sections)
 │   │   ├── ProjectCards.jsx       # Horizontal row of project summary cards linking to project pages
 │   │   ├── ProjectHeader.jsx      # Compact hero for a project page (@page marker)
+│   │   ├── Figure.jsx             # Image + caption (@image marker); dashed placeholder when src is empty
 │   │   ├── TerminalWindow.jsx     # macOS-style terminal window
 │   │   ├── WorkList.jsx           # Work list items
 │   │   └── Citations.jsx          # Citation formatting
@@ -263,6 +264,20 @@ One or two sentence summary shown on the card. Supports **markdown**.
 
 `href` is relative to the site root and must match a `content/projects/<slug>.md` file.
 `section` is a name (not a number) used by `getProjectsBySection` in App.jsx.
+
+### Images
+```markdown
+<!-- @image src="assets/photos/readyvault/hero.jpg" alt="Kit configurator screen" caption="The configurator at the six-slot cap" width="wide" -->
+```
+
+- `src` — path from the **site root** (project pages set `<base href="../../">`). Leave it empty
+  and the page renders a dashed placeholder frame showing the caption, so a page can be laid out
+  before the photos exist. A broken `src` falls back to the same placeholder.
+- `width` — `prose` (text column), `wide` (default, content column), or `full`
+- `ratio` — placeholder frame aspect ratio only, default `16 / 10`
+- `caption` — shown under the image, and inside the placeholder frame
+
+Images render in document order, like terminals and tables.
 
 ### Project Page Header
 Replaces `@header` on a project page:

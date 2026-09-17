@@ -123,6 +123,7 @@ function build() {
     'CursorSpotlight',
     'ProjectCards',
     'ProjectHeader',
+    'Figure',
   ];
 
   // Read all components
