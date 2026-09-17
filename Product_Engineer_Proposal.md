@@ -28,9 +28,9 @@ PRODUCT MANAGER · NORTHWESTERN MPD '26
 
 I'm a product manager finishing Northwestern's **MS in Product Design & Development**. Before that, a five-year B.Arch at Cal Poly as a **Morphosis Fellow** — and four roles that each pushed the same instinct, *build the system and not just the artifact*, up one level of altitude.
 
-**Morphosis/Payette — I started a design services division that didn't exist.** 25+ physical models across 12 healthcare, higher-education, and commercial sites, each one built to settle a specific argument about CMF, interior layout, or massing. My first 0→1, before I had the vocabulary for it.
+**Morphosis/Payette — I started a design services division that didn't exist.** 25+ physical models driving design decisions across education and laboratory projects, each one built to settle a specific design question. My first 0→1, before I had the vocabulary for it.
 
-**Tesla — the unit of work jumped from one model to 350+ locations.** I documented the retail program layout requirements behind a brand refresh across lounges, service centers, and body shops: a spec precise enough to execute in stores I would never stand in.
+**Tesla — the unit of work jumped from one model to 500+ locations.** The brand refresh I prototyped launched across all of Tesla's 500+ retail and service locations, and I executed the retail program at 45+ of them while saving 15% in projected costs: specs precise enough to build in stores I would never stand in.
 
 **Jensen Hughes — the highest-leverage thing I shipped wasn't a drawing.** While running fire suppression and life-safety design across TSMC semiconductor plants and airport terminals, I redesigned the internal QA/QC review workflow and moved approval gates **up to 40% faster** between design and engineering.
 
@@ -41,8 +41,8 @@ That sequence — research first, constraints second, ship last — is the one I
 <!-- @stats -->
 <!-- @stat value="$1.1M" label="Pre-seed funding secured" source="Newell Brands · ReadyVault" -->
 <!-- @stat value="40%" label="Faster QA/QC review gates" source="Jensen Hughes · workflow redesign" -->
-<!-- @stat value="350+" label="Retail locations specified" source="Tesla · retail program layout" -->
-<!-- @stat value="25+" label="Models driving design decisions" source="Morphosis/Payette · 12 project sites" -->
+<!-- @stat value="500+" label="Locations the brand refresh launched to" source="Tesla · retail design intern" -->
+<!-- @stat value="25+" label="Models driving design decisions" source="Morphosis/Payette · education & lab projects" -->
 <!-- /@stats -->
 
 <!-- @pullquote -->
@@ -51,7 +51,19 @@ The brief is never the problem. The brief is the symptom of a problem the user c
 
 ---
 
-## 2. ReadyVault — Featured Case Study
+## 2. Kindling — Building Now
+
+A CRM platform for mom-and-pop shops to scale into a franchise — giving independent owners the operating system to standardize what works at one location and replicate it across many.
+
+**Role:** Founder / Product · **Status:** Actively building
+
+<!-- @pullquote -->
+Full case study coming soon — reach out and I'm happy to walk through where it stands.
+<!-- /@pullquote -->
+
+---
+
+## 3. ReadyVault — Featured Case Study
 
 A three-quarter capstone for **Newell Brands**, presented to their VP of Innovation as a Blue Ocean market entry for resilience systems. I led research, owned the PRD, and translated user findings into both digital UX and physical product requirements.
 
@@ -196,21 +208,61 @@ The slot-based subkit system came directly from manufacturing constraints — an
 
 ---
 
-## 3. Kindling — Building Now
+## 4. Internships
 
-A CRM platform for mom-and-pop shops to scale into a franchise — giving independent owners the operating system to standardize what works at one location and replicate it across many.
+### Tesla — Retail Design Intern
 
-**Role:** Founder / Product · **Status:** Actively building
+From June to September 2023 I was a **Retail Design Intern at Tesla**, working on how the brand shows up in person: retail lounges, service centers, and body shops.
 
-<!-- @pullquote -->
-Full case study coming soon — reach out and I'm happy to walk through where it stands.
-<!-- /@pullquote -->
+<!-- @cards type="topic" columns="2" section="intern-tesla" -->
+
+<!-- @card icon="lightbulb" title="Maxims and philosophies I picked up" audience="Philosophy" -->
+Write the spec for the store you'll never stand in. A requirement had to hold up when a team in another city built it without me there. That forced every line of the spec to be unambiguous, the same bar a good PRD has to clear.
+<!-- /@card -->
+
+<!-- @card icon="target" title="What was my objective?" audience="The brief" -->
+Refresh Tesla's brand across its physical retail and service spaces, then turn it into a program that could be built the same way everywhere. Retail lounges, service centers, and body shop interiors each needed to express one consistent brand identity. My job was to prototype that refresh and document the retail program requirements so internal teams and vendors could execute it on site.
+<!-- /@card -->
+
+<!-- @card icon="chart" title="What did I achieve?" audience="Results" -->
+A brand refresh that launched across **all 500+ Tesla retail and service locations**, and a retail program I executed across **45+ locations, saving 15% in projected costs**. I iterated the retail strategy over two design sprints to prototype the refresh. The specs I documented include a **service intake plan**, a two-lane intake bay with light fixtures centered on each panel seam, a 6' lounge-door integration, and three service-advisor desks, and a **logo feature wall** of nine metallic-finish panels spaced 2" apart against a trout-grey back wall, anchored by an S830 61"-H illuminated Tesla logo.
+<!-- /@card -->
+
+<!-- @card icon="layers" title="What skills did I learn?" audience="Skills" -->
+Running design sprints, writing execution-ready specs, and aligning internal teams and vendors around one plan. **Design sprints:** scoping each sprint around one question and carrying forward only what held up. **Spec writing:** documenting layout requirements precisely enough to be built without me on site. **Stakeholder alignment:** coordinating internal teams and outside vendors on a single program. **Cost discipline:** executing that program while saving 15% in projected costs.
+<!-- /@card -->
+
+<!-- /@cards -->
+
+### Morphosis/Payette — Designer & Fabricator
+
+From June 2022 to May 2023 I was a **Designer and Fabricator at Morphosis/Payette**, building the physical models project teams used to make design decisions.
+
+<!-- @cards type="topic" columns="2" section="intern-morphosis" -->
+
+<!-- @card icon="lightbulb" title="Maxims and philosophies I picked up" audience="Philosophy" -->
+Build the model that settles the argument. Every model existed to answer a specific open design question, so the team could decide and move on instead of debating drawings.
+<!-- /@card -->
+
+<!-- @card icon="target" title="What was my objective?" audience="The brief" -->
+Give project teams physical models that answer design questions faster than drawings can. Architects needed to test design choices in three dimensions before committing to them. There was no dedicated function for that, so part of the job was creating one.
+<!-- /@card -->
+
+<!-- @card icon="chart" title="What did I achieve?" audience="Results" -->
+Pioneered a **design services division** that designed and built **25+ high-impact physical models** driving design decisions across education and laboratory projects. That work includes an archival model refresh for **Thom Mayne's** personal office collection and **930** laser-cut steel corner guards for **Northeastern University's EXP** research building. The build process for both is in the Architecture section below.
+<!-- /@card -->
+
+<!-- @card icon="layers" title="What skills did I learn?" audience="Skills" -->
+Digital fabrication, material iteration, and turning design intent into buildable parts. **Fabrication:** CNC milling, laser cutting, welding, resin printing, and finishing. **Iteration:** testing materials and joints until they held tolerance. **Production:** shop drawings and batch tracking for runs of hundreds of parts.
+<!-- /@card -->
+
+<!-- /@cards -->
 
 ---
 
-## 4. Earlier Design Work — Foundations
+## 5. Architecture
 
-Before product management, a decade of architecture and design. I include a selection here because the disciplines compound: structural systems thinking, fabrication detail, brand identity, and corporate retail design all shape how I scope, prioritize, and ship.
+Five years of architecture at Cal Poly, plus a year designing and fabricating at Morphosis/Payette. The disciplines compound: structural systems thinking, fabrication detail, and disciplined iteration all shape how I scope, prioritize, and ship.
 
 <!-- @cards type="topic" columns="3" section="archive" -->
 
@@ -224,12 +276,6 @@ A multi-step archival fabrication: excavation, resin application, resin cure, de
 Cold-rolled and mill-scale steel corner guards for the **Northeastern University EXP** building — 930 laser-cut parts, blackened with a wax + oil finish.
 <!-- @expanded -->
 A fabrication-drawing-to-finished-component pipeline: 1/4" A36 steel laser-cut into A/B/C/D/S1/S2 profiles, in-house welding with 1/4" stand-off spacers tack-welded to the back, blackened and finished with wax + oil. Quantities tracked across 7 levels (12 + 15 + 19 + 16 + 17 + 18 + 17 = 114 base units, with bathroom and ramp variants). Shop drawings, batches, finishes, deliveries. **Why it matters for PM:** real-world manufacturing work taught me to think in *batches, tolerances, and acceptance criteria* — the language of shipped product.
-<!-- /@card -->
-
-<!-- @card icon="briefcase" title="Tesla — Service Intake Plan" audience="Tesla, Inc. · July 2023" -->
-Service-center plan for a two-lane intake bay with integrated lounge entry, centered lighting, and a feature-wall logo system.
-<!-- @expanded -->
-Two service lanes with light fixtures centered on each panel seam, a 6' lounge-door integration, and three service-advisor desks. The logo feature wall is lined with nine metallic-finish panels spaced 2" apart against a trout-grey back-wall, anchored by an S830 61"-H illuminated Tesla logo. **Why it matters for PM:** confidential, standards-bound corporate deliverables taught me how to translate brand requirements into stakeholder-aligned spec sheets — the same skill that turns research into a PRD.
 <!-- /@card -->
 
 <!-- @card icon="layers" title="Design Build — Spline-Curve Pavilion" audience="ARCH 479 · Prof. Dale Clifford" -->
@@ -266,7 +312,7 @@ Five collage iterations (I–V) drove a procedural twist-tower geometry, refined
 
 ---
 
-## 5. Capabilities
+## 6. Capabilities
 
 <!-- @terminal title="ashish/pm-stack.txt" command="cat" variant="default" -->
 - **Product strategy** → Market sizing (TAM/SAM/SOM), Blue Ocean positioning, roadmap, prioritization
@@ -280,7 +326,7 @@ Five collage iterations (I–V) drove a procedural twist-tower geometry, refined
 
 ---
 
-## 6. Highlights
+## 7. Highlights
 
 <!-- @credentials -->
 <!-- @credential value="MPD '26" label="Northwestern · Master of Product Design" -->
@@ -293,7 +339,7 @@ Five collage iterations (I–V) drove a procedural twist-tower geometry, refined
 
 ---
 
-## 7. Contact
+## 8. Contact
 
 I am graduating from **Northwestern's Master of Product Design** program in spring 2026 and looking for product manager roles where research, strategy, and craft all matter. Happy to walk through any of this work in more detail — the PRD, the research, the trade-offs, or the honest mess of cross-functional collaboration.
 

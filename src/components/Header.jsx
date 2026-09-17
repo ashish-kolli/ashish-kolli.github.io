@@ -255,36 +255,6 @@ const Header = ({ data, heroQuote }) => {
         >
           {/* Left column - Main content */}
           <div className="hero-main" style={{ gridColumn: 'span 8' }}>
-            {/* Kicker/Category */}
-            <div
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.75rem',
-                marginBottom: '2rem',
-              }}
-            >
-              <div
-                style={{
-                  width: '32px',
-                  height: '2px',
-                  background: COLORS.accent.primary,
-                }}
-              />
-              <span
-                style={{
-                  fontFamily: FONTS.ui,
-                  fontSize: TYPE_SCALE.ui.sm.size,
-                  fontWeight: 600,
-                  letterSpacing: '0.15em',
-                  textTransform: 'uppercase',
-                  color: COLORS.accent.primary,
-                }}
-              >
-                Product Manager · Bawarchi Biryanis
-              </span>
-            </div>
-
             {/* Main title */}
             <h1
               style={{

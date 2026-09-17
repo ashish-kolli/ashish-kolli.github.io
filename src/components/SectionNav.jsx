@@ -13,11 +13,13 @@ import { COLORS, FONTS, TYPE_SCALE, EFFECTS, SPACE } from '../design-tokens';
 // Section data - derived from document structure
 const SECTIONS = [
   { number: 1, short: 'About', title: 'About' },
-  { number: 2, short: 'Case', title: 'ReadyVault — Featured Case Study' },
-  { number: 3, short: 'Works', title: 'Earlier Design Work' },
-  { number: 4, short: 'Skills', title: 'Capabilities' },
-  { number: 5, short: 'Marks', title: 'Highlights' },
-  { number: 6, short: 'Reach', title: 'Contact' },
+  { number: 2, short: 'Kindling', title: 'Kindling — Building Now' },
+  { number: 3, short: 'Vault', title: 'ReadyVault — Featured Case Study' },
+  { number: 4, short: 'Intern', title: 'Internships' },
+  { number: 5, short: 'Arch', title: 'Architecture' },
+  { number: 6, short: 'Skills', title: 'Capabilities' },
+  { number: 7, short: 'Marks', title: 'Highlights' },
+  { number: 8, short: 'Reach', title: 'Contact' },
 ];
 
 // Hook to track current section based on scroll position

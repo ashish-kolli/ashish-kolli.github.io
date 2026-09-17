@@ -16,7 +16,7 @@
  */
 import React, { useEffect, useRef, useState } from 'react';
 
-const DOT_SPACING = 12;          // px - distance between dots
+const DOT_SPACING = 24;          // px - distance between dots
 const DOT_RADIUS = 0.75;         // px - size of each dot
 const DOT_OPACITY = 0.85;        // strength of a fully lit dot (0-1)
 const DOT_RGB = '91, 33, 182';   // COLORS.accent.primary
