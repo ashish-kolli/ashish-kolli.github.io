@@ -21,5 +21,7 @@ export { default as TerminalWindow } from './TerminalWindow';
 export { default as SectionNav } from './SectionNav';
 export { default as CursorSpotlight } from './CursorSpotlight';
 export { default as WorkList } from './WorkList';
+export { default as ProjectCards } from './ProjectCards';
+export { default as ProjectHeader } from './ProjectHeader';
 export { default as QuadrantChart } from './QuadrantChart';
 export { default as FlowDiagram } from './FlowDiagram';

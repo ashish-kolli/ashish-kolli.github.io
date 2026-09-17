@@ -38,3 +38,6 @@ articles/*/ref/
 
 # Claude Code / Sidecar local state
 .claude/
+
+# Intermediate project page bundles (rebuilt by scripts/build-pages.js)
+dist/pages/

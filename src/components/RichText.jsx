@@ -59,8 +59,15 @@ const RichText = ({ children, className = '' }) => {
         inLinkUrl = true;
         linkUrl = '';
       } else if (part === '___LINK_END___') {
+        // Links to other pages of this site stay in the same tab; external links open a new one
+        const isExternal = /^[a-z]+:/i.test(linkUrl);
         elements.push(
-          <a key={key++} href={linkUrl} className="text-indigo-600 hover:text-indigo-800 underline" target="_blank" rel="noopener noreferrer" style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}>
+          <a
+            key={key++}
+            href={linkUrl}
+            {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+            style={{ color: '#5B21B6', textDecoration: 'underline', textUnderlineOffset: '2px', wordBreak: 'break-word', overflowWrap: 'break-word' }}
+          >
             {linkText}
           </a>
         );

@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-04-12 -->
+<!-- Last updated: 2026-09-17 -->
 <!-- SYNCED FILE: Edit any of CLAUDE.md, AGENTS.md, or GEMINI.md then run `npm run sync-docs` -->
 
 # Northwestern Publishing System - Component Architecture
@@ -12,7 +12,7 @@ Both share the same design token system, React component library, and visual aes
 
 ## Overview
 
-### Proposal Pipeline (index.html)
+### Home Page Pipeline (index.html)
 
 ```
 Product_Engineer_Proposal.md  →  npm run parse  →  src/content.js
@@ -23,6 +23,28 @@ Product_Engineer_Proposal.md  →  npm run parse  →  src/content.js
                                                           ↓
                               npm run build  →  dist/index.html → index.html
 ```
+
+### Project Pages Pipeline (projects/<slug>/index.html)
+
+Each project has its own page, built by the same parser/bundler/HTML steps as the home page:
+
+```
+content/projects/<slug>.md  →  node scripts/build-pages.js  →  dist/pages/<slug>.content.js
+                                                                        ↓
+                                    src/components/*.jsx + src/App.jsx (same components)
+                                                                        ↓
+                                                        dist/pages/<slug>.jsx
+                                                                        ↓
+                                                        projects/<slug>/index.html
+```
+
+- `npm run build` builds the home page **and** every project page.
+- Home page cards link to these pages; the build fails if a card links to a page that does not exist.
+- Project pages set `<base href="../../">`, so links and asset paths inside them are written
+  relative to the site root (`projects/tesla/`, `assets/photos/headshot.jpg`).
+- A page's markdown drops the `@header` block and uses `@page` instead, which renders `ProjectHeader`
+  (compact hero + back link) rather than the full-height home hero.
+- Deleting a `content/projects/<slug>.md` removes `projects/<slug>/` on the next build.
 
 ### Article Pipeline (market-sizing/index.html)
 
@@ -42,7 +64,18 @@ articles/market-sizing/content.md + diagrams/*.svg + headshot.png
 
 ```
 northwestern/
-├── Product_Engineer_Proposal.md    # Proposal source (SINGLE SOURCE OF TRUTH)
+├── Product_Engineer_Proposal.md    # Home page source (SINGLE SOURCE OF TRUTH)
+│
+├── content/
+│   └── projects/                   # One markdown file per project page
+│       ├── arohai.md
+│       ├── readyvault.md
+│       ├── tesla.md
+│       ├── morphosis-payette.md
+│       └── ...                     # Maker projects
+│
+├── projects/                       # Generated project pages (GitHub Pages /projects/<slug>/)
+│   └── <slug>/index.html
 ├── package.json                    # npm scripts
 ├── CLAUDE.md                       # Agent docs (synced)
 ├── AGENTS.md                       # Agent docs (synced)
@@ -87,14 +120,17 @@ northwestern/
 │   │   ├── Testimonials.jsx       # Testimonial cards
 │   │   ├── Table.jsx              # Markdown tables
 │   │   ├── Section.jsx            # Section/subsection layout + useInView hook
-│   │   ├── SectionNav.jsx         # Floating section navigation (proposal)
+│   │   ├── SectionNav.jsx         # Floating section navigation (data-driven from the page's sections)
+│   │   ├── ProjectCards.jsx       # Horizontal row of project summary cards linking to project pages
+│   │   ├── ProjectHeader.jsx      # Compact hero for a project page (@page marker)
 │   │   ├── TerminalWindow.jsx     # macOS-style terminal window
 │   │   ├── WorkList.jsx           # Work list items
 │   │   └── Citations.jsx          # Citation formatting
 │   └── utils/
-│       ├── parser.js              # Proposal markdown → content.js
-│       └── build.js               # Proposal bundle → single artifact
+│       ├── parser.js              # Markdown → content.js (--input/--output for project pages)
+│       └── build.js               # Bundle → single artifact (--content/--output for project pages)
 ├── scripts/
+│   ├── build-pages.js             # Builds every content/projects/*.md → projects/<slug>/index.html
 │   ├── parse-article.js           # Article markdown → article-content.js
 │   ├── build-article.js           # Article bundle → MarketSizingGuide.jsx
 │   ├── update-article-preview.js  # Article bundle → market-sizing/index.html
@@ -110,7 +146,7 @@ northwestern/
 
 ## Core Principle: Single Source of Truth
 
-**All content lives in `Product_Engineer_Proposal.md`**. The markdown file is the authoritative source for:
+**Home page content lives in `Product_Engineer_Proposal.md`; each project page's content lives in `content/projects/<slug>.md`.** These markdown files are the authoritative source for:
 - All text content, quotes, statistics, and data
 - Component placement via section attributes
 - Citations and references
@@ -123,10 +159,11 @@ northwestern/
 
 ## Build Commands
 
-### Proposal (index.html)
+### Home page + project pages
 ```bash
 npm run parse         # Extract content from markdown → src/content.js
-npm run build         # Bundle components + validate → dist/ProductEngineerProposal.jsx
+npm run build         # Home page + validate + every project page
+npm run build:pages   # Project pages only (content/projects/*.md → projects/<slug>/)
 npm run all           # Run parse + build + verify in sequence
 npm run verify        # Check artifact compatibility with Claude
 ```
@@ -213,6 +250,30 @@ Longer detailed content revealed when user clicks to expand.
 ```
 
 Icons: `briefcase`, `code`, `rocket`, `palette`, `network`, `graduation`, `lightbulb`, `chart`, `users`, `shield`, `zap`, `target`, `layers`, `cpu`, `database`, `search`, `compass`
+
+### Project Cards (home page)
+A horizontal row of summary cards, each linking to that project's own page:
+```markdown
+<!-- @projects section="experience" -->
+<!-- @project href="projects/readyvault/" icon="shield" eyebrow="Featured case study" title="ReadyVault" meta="Newell Brands · 2025–26" -->
+One or two sentence summary shown on the card. Supports **markdown**.
+<!-- /@project -->
+<!-- /@projects -->
+```
+
+`href` is relative to the site root and must match a `content/projects/<slug>.md` file.
+`section` is a name (not a number) used by `getProjectsBySection` in App.jsx.
+
+### Project Page Header
+Replaces `@header` on a project page:
+```markdown
+<!-- @page title="ReadyVault" eyebrow="Experience · Featured case study" meta="Product Manager · Newell Brands · Sept 2025 – June 2026" back="Experience" backHref="./#experience" -->
+Summary paragraph shown under the title (also used as the page's meta description).
+<!-- /@page -->
+```
+
+`meta` is split on `·` into separate bullets. `backHref` points at the home page section the
+project belongs to (`./#experience`, `./#internships`, `./#maker`); App.jsx scrolls to it on load.
 
 ### Terminal
 macOS-style terminal window for section summaries:
@@ -401,6 +462,12 @@ macOS-style terminal window that provides visual summaries:
 - Content is rendered as bullet points inside the terminal
 
 ## Extending
+
+### Adding a Project Page
+
+1. Create `content/projects/<slug>.md` with a `<!-- @page ... -->` block and `## N. Title` sections
+2. Add a matching `<!-- @project href="projects/<slug>/" ... -->` card to the right section of `Product_Engineer_Proposal.md`
+3. Run `npm run build` — the page is generated and the card link is checked
 
 ### Adding a New Component
 

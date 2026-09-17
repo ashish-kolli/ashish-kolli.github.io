@@ -11,8 +11,13 @@
 const fs = require('fs');
 const path = require('path');
 
-const INPUT_FILE = path.resolve(__dirname, '../../Product_Engineer_Proposal.md');
-const OUTPUT_FILE = path.resolve(__dirname, '../content.js');
+// Defaults build the home page; project pages pass --input and --output (see scripts/build-pages.js)
+const argValue = (name) => {
+  const i = process.argv.indexOf(name);
+  return i > -1 ? process.argv[i + 1] : null;
+};
+const INPUT_FILE = path.resolve(argValue('--input') || path.resolve(__dirname, '../../Product_Engineer_Proposal.md'));
+const OUTPUT_FILE = path.resolve(argValue('--output') || path.resolve(__dirname, '../content.js'));
 
 // ============================================================================
 // UTILITY FUNCTIONS
@@ -211,6 +216,45 @@ function extractCards(content) {
   return cardsGroups;
 }
 
+function extractProjects(content) {
+  const groups = [];
+  const groupRegex = /<!-- @projects section="([^"]*)" -->([\s\S]*?)<!-- \/@projects -->/g;
+  let match;
+
+  while ((match = groupRegex.exec(content)) !== null) {
+    const projects = [];
+    const projectRegex = /<!-- @project ([^>]*?) -->\s*([\s\S]*?)<!-- \/@project -->/g;
+    let projectMatch;
+    while ((projectMatch = projectRegex.exec(match[2])) !== null) {
+      const attrs = projectMatch[1];
+      projects.push({
+        href: extractAttr(attrs, 'href') || '',
+        title: extractAttr(attrs, 'title') || '',
+        eyebrow: extractAttr(attrs, 'eyebrow') || '',
+        meta: extractAttr(attrs, 'meta') || '',
+        icon: extractAttr(attrs, 'icon') || 'layers',
+        summary: cleanText(projectMatch[2]),
+      });
+    }
+    groups.push({ section: match[1], projects });
+  }
+  return groups;
+}
+
+function extractPage(content) {
+  const match = content.match(/<!-- @page ([^>]*?) -->\s*([\s\S]*?)<!-- \/@page -->/);
+  if (!match) return null;
+  const attrs = match[1];
+  return {
+    title: extractAttr(attrs, 'title') || '',
+    eyebrow: extractAttr(attrs, 'eyebrow') || '',
+    meta: extractAttr(attrs, 'meta') || '',
+    back: extractAttr(attrs, 'back') || '',
+    backHref: extractAttr(attrs, 'backHref') || './',
+    summary: cleanText(match[2]),
+  };
+}
+
 function extractCredentials(content) {
   const credMatch = content.match(/<!-- @credentials -->[\s\S]*?<!-- \/@credentials -->/);
   if (!credMatch) return [];
@@ -378,6 +422,10 @@ function parseContentBlocks(text) {
       const sectionMatch = match.match(/section="([^"]*)"/);
       return `<!--COMPONENT:cards:${sectionMatch ? sectionMatch[1] : ''}-->`;
     })
+    .replace(/<!-- @projects[^>]*-->[\s\S]*?<!-- \/@projects -->/g, (match) => {
+      const sectionMatch = match.match(/section="([^"]*)"/);
+      return `<!--COMPONENT:projects:${sectionMatch ? sectionMatch[1] : ''}-->`;
+    })
     .replace(/<!-- @credentials -->[\s\S]*?<!-- \/@credentials -->/g, '<!--COMPONENT:credentials-->')
     .replace(/<!-- @timeline -->[\s\S]*?<!-- \/@timeline -->/g, '<!--COMPONENT:timeline-->')
     .replace(/<!-- @testimonials[^>]*-->[\s\S]*?<!-- \/@testimonials -->/g, (match) => {
@@ -444,10 +492,14 @@ function extractDocument(content) {
   if (headerMatch) {
     document.push({ type: 'header' });
   }
+  if (/<!-- @page /.test(content)) {
+    document.push({ type: 'page' });
+  }
 
   // Find the main content (after header, before citations)
   const mainContent = content
     .replace(/<!-- @header -->[\s\S]*?<!-- \/@header -->/, '')
+    .replace(/<!-- @page [\s\S]*?<!-- \/@page -->/, '')
     .replace(/## Citations[\s\S]*$/, '')
     .trim();
 
@@ -517,6 +569,8 @@ function extractDocument(content) {
 function extractContent(markdown) {
   return {
     header: extractHeader(markdown),
+    page: extractPage(markdown),
+    projects: extractProjects(markdown),
     stats: extractStats(markdown),
     charts: extractCharts(markdown),
     convergence: extractConvergence(markdown),
@@ -535,7 +589,7 @@ function extractContent(markdown) {
 }
 
 function generateOutput(content) {
-  return `// Auto-generated from Product_Engineer_Proposal.md
+  return `// Auto-generated from ${path.relative(path.resolve(__dirname, '../..'), INPUT_FILE)}
 // Generated: ${new Date().toISOString()}
 // Run: node src/utils/parser.js
 
@@ -546,7 +600,7 @@ export default CONTENT;
 }
 
 function main() {
-  console.log('Reading markdown...');
+  console.log(`Reading ${path.basename(INPUT_FILE)}...`);
   const markdown = readMarkdown();
 
   console.log('Extracting content...');
@@ -565,6 +619,7 @@ function main() {
   console.log(`- Convergence roles: ${content.convergence.roles.length}`);
   console.log(`- Industry quotes: ${content.quotes.length}`);
   console.log(`- Pull quotes: ${content.pullquotes.length}`);
+  console.log(`- Project card rows: ${content.projects.length}`);
   console.log(`- Card groups: ${content.cards.length}`);
   console.log(`- Credentials: ${content.credentials.length}`);
   console.log(`- Timeline entries: ${content.timeline.length}`);

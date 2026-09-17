@@ -48,6 +48,8 @@ import {
   SectionNav,
   CursorSpotlight,
   WorkList,
+  ProjectCards,
+  ProjectHeader,
 } from './components';
 
 
@@ -88,7 +90,7 @@ const BlockRenderer = ({ block, context }) => {
  * Render component markers (stats, charts, quotes, cards, etc.)
  */
 const renderComponent = (block, context) => {
-  const { chartsByType, getCardsBySection, getQuotesBySection, terminalIndex } = context;
+  const { chartsByType, getCardsBySection, getProjectsBySection, getQuotesBySection, terminalIndex } = context;
 
   switch (block.component) {
     case 'stats': {
@@ -150,6 +152,13 @@ const renderComponent = (block, context) => {
         );
       }
       return null;
+
+    case 'projects': {
+      const projectRow = getProjectsBySection(block.param);
+      return projectRow && projectRow.projects.length > 0 ? (
+        <ProjectCards projects={projectRow.projects} />
+      ) : null;
+    }
 
     case 'credentials':
       return CONTENT.credentials.length > 0 ? (
@@ -242,6 +251,13 @@ const App = () => {
   // Inject global smooth scrolling styles on mount
   useEffect(() => {
     injectGlobalStyles();
+
+    // Links like "./#maker" (the back link on project pages) land on their section.
+    // The browser can't do this itself because sections don't exist until React renders.
+    const target = window.location.hash && document.getElementById(window.location.hash.slice(1));
+    if (target) {
+      window.scrollTo({ top: target.offsetTop - 40, behavior: 'instant' });
+    }
   }, []);
 
   // Index refs for sequential components (tables, terminals, pullquotes)
@@ -261,6 +277,11 @@ const App = () => {
     return CONTENT.cards.find(group => group.section === String(sectionNum));
   };
 
+  // Helper to get a row of project cards by section name
+  const getProjectsBySection = (sectionName) => {
+    return CONTENT.projects?.find(group => group.section === sectionName);
+  };
+
   // Helper to get quotes by section
   const getQuotesBySection = (sectionName) => {
     return CONTENT.quotes.filter(q => q.section === sectionName);
@@ -270,6 +291,7 @@ const App = () => {
   const context = {
     chartsByType,
     getCardsBySection,
+    getProjectsBySection,
     getQuotesBySection,
     pullquoteIndex,
     tableIndex,
@@ -287,7 +309,7 @@ const App = () => {
       }}
     >
       {/* Section Navigation */}
-      <SectionNav />
+      <SectionNav sections={CONTENT.document.filter(item => item.type === 'section')} />
       <CursorSpotlight />
 
       {/* Render document from CONTENT.document */}
@@ -301,6 +323,9 @@ const App = () => {
                 heroQuote={CONTENT.pullquotes[0]}
               />
             ) : null;
+
+          case 'page':
+            return CONTENT.page ? <ProjectHeader key={`page-${i}`} page={CONTENT.page} /> : null;
 
           case 'section':
             return (
@@ -329,6 +354,30 @@ const App = () => {
             return null;
         }
       })}
+
+      {/* Project pages end with a way back to the rest of the work */}
+      {CONTENT.page && (
+        <div
+          style={{
+            maxWidth: LAYOUT.maxWidth.content,
+            margin: '0 auto',
+            padding: `0 ${LAYOUT.margin} ${SPACE[10]}`,
+          }}
+        >
+          <a
+            href={CONTENT.page.backHref}
+            style={{
+              fontFamily: FONTS.ui,
+              fontSize: TYPE_SCALE.ui.lg.size,
+              fontWeight: 600,
+              color: COLORS.accent.primary,
+              textDecoration: 'none',
+            }}
+          >
+            ← {CONTENT.page.back || 'Back'}
+          </a>
+        </div>
+      )}
 
       {/* Footer */}
       <footer
@@ -359,16 +408,19 @@ const App = () => {
         >
           Northwestern · Master of Product Design '26
         </p>
-        <p
-          style={{
-            fontFamily: FONTS.mono,
-            fontSize: TYPE_SCALE.mono.sm.size,
-            color: COLORS.accent.muted,
-            marginTop: SPACE[3],
-          }}
-        >
-          {CONTENT.header?.date || 'February 2026'}
-        </p>
+        {/* Only the home page carries a date; project pages have no @header block */}
+        {CONTENT.header?.date && (
+          <p
+            style={{
+              fontFamily: FONTS.mono,
+              fontSize: TYPE_SCALE.mono.sm.size,
+              color: COLORS.accent.muted,
+              marginTop: SPACE[3],
+            }}
+          >
+            {CONTENT.header.date}
+          </p>
+        )}
       </footer>
     </div>
   );

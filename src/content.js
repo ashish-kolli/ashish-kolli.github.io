@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-17T10:42:33.591Z
+// Generated: 2026-09-17T18:34:39.748Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -14,6 +14,112 @@ const CONTENT = {
     "title": "Ashish Kolli",
     "subtitle": "Accelerating and scaling product development with agentic AI."
   },
+  "page": null,
+  "projects": [
+    {
+      "section": "experience",
+      "projects": [
+        {
+          "href": "projects/arohai/",
+          "title": "Arohai",
+          "eyebrow": "Pilot launched",
+          "meta": "Founder / Product",
+          "icon": "rocket",
+          "summary": "A CRM platform that gives mom-and-pop shops the operating system to standardize what works at one location and replicate it across many."
+        },
+        {
+          "href": "projects/readyvault/",
+          "title": "ReadyVault",
+          "eyebrow": "Featured case study",
+          "meta": "Newell Brands · 2025–26",
+          "icon": "shield",
+          "summary": "A guided emergency-kit configurator for **Newell Brands**. 26 interviews uncovered a $400M segment, and the PRD and pricing behind it earned **$1.1M in pre-seed funding**."
+        }
+      ]
+    },
+    {
+      "section": "internships",
+      "projects": [
+        {
+          "href": "projects/tesla/",
+          "title": "Tesla",
+          "eyebrow": "Retail Design Intern",
+          "meta": "Summer 2023",
+          "icon": "zap",
+          "summary": "Prototyped a brand refresh that launched across **500+ retail and service locations**, then executed the retail program at 45+ of them while saving 15% in projected costs."
+        },
+        {
+          "href": "projects/morphosis-payette/",
+          "title": "Morphosis / Payette",
+          "eyebrow": "Designer & Fabricator",
+          "meta": "2022–23",
+          "icon": "cpu",
+          "summary": "Started a design services division that built **25+ physical models** to settle design decisions on education and laboratory projects."
+        }
+      ]
+    },
+    {
+      "section": "maker",
+      "projects": [
+        {
+          "href": "projects/ningbo-pavilions/",
+          "title": "Ningbo Oceanside Pavilions",
+          "eyebrow": "Archival model",
+          "meta": "Thom Mayne · office collection",
+          "icon": "lightbulb",
+          "summary": "A model refresh for **Thom Mayne's** personal office collection — seven fabrication steps from excavation to final resin seal."
+        },
+        {
+          "href": "projects/neu-exp-corner-guards/",
+          "title": "NEU EXP Corner Guards",
+          "eyebrow": "Fabrication",
+          "meta": "930 parts · 7 levels",
+          "icon": "cpu",
+          "summary": "Laser-cut, welded, and blackened steel corner guards for Northeastern University's EXP research building."
+        },
+        {
+          "href": "projects/spline-curve-pavilion/",
+          "title": "Spline-Curve Pavilion",
+          "eyebrow": "Design build",
+          "meta": "ARCH 479 · Prof. Dale Clifford",
+          "icon": "layers",
+          "summary": "A full-scale redwood pavilion designed and built collaboratively — drawings, A-frame fabrication, transport, and on-site install."
+        },
+        {
+          "href": "projects/waveform-acoustic-tiles/",
+          "title": "Waveform Acoustic Tiles",
+          "eyebrow": "Joint design",
+          "meta": "Museum atrium · Connecticut",
+          "icon": "target",
+          "summary": "Sail-motif ceiling tiles built around three iterations of a keystone joint, each scoped against a specific failure mode."
+        },
+        {
+          "href": "projects/stagiare/",
+          "title": "Stagiare",
+          "eyebrow": "Studio",
+          "meta": "Heavy industrial typology",
+          "icon": "layers",
+          "summary": "A heavy-industrial fabrication facility reimagined as a vertical typology — five steel-frame towers as discrete experiments."
+        },
+        {
+          "href": "projects/walnut-mockup/",
+          "title": "Walnut Mockup",
+          "eyebrow": "Pilot model",
+          "meta": "Sectional volumetric study",
+          "icon": "chart",
+          "summary": "The smallest model that proves the method — a feasibility study of scale, technique, and abstraction before the full production build."
+        },
+        {
+          "href": "projects/vortex/",
+          "title": "Vortex",
+          "eyebrow": "Sculptural monolith",
+          "meta": "Santa Barbara, CA",
+          "icon": "rocket",
+          "summary": "Repurposing decommissioned oil platform Holly off the California coast into a twisted sculptural tower."
+        }
+      ]
+    }
+  ],
   "stats": [
     [
       {
@@ -36,50 +142,6 @@ const CONTENT = {
         "label": "Models driving design decisions",
         "source": "Morphosis/Payette · education & lab projects"
       }
-    ],
-    [
-      {
-        "value": "$1T+",
-        "label": "U.S. tropical-cyclone damage",
-        "source": "NOAA / Climate Central, 1980–2024"
-      },
-      {
-        "value": "30 kts",
-        "label": "Faster intensification within 24h",
-        "source": "Atlantic hurricane research"
-      },
-      {
-        "value": "26.3M",
-        "label": "SAM — households w/ garage",
-        "source": "Hurricane-region market sizing"
-      },
-      {
-        "value": "$400M",
-        "label": "Customer segment discovered",
-        "source": "26 interviews · single-family homeowners"
-      }
-    ],
-    [
-      {
-        "value": "$249.99",
-        "label": "Base price",
-        "source": "Configured starter kit"
-      },
-      {
-        "value": "$429.99",
-        "label": "Projected LTV",
-        "source": "With sub-kit refills"
-      },
-      {
-        "value": "$1.1M",
-        "label": "Pre-seed funding secured",
-        "source": "Investor validation"
-      },
-      {
-        "value": "May 2028",
-        "label": "Projected launch",
-        "source": "Newell Brands roadmap"
-      }
     ]
   ],
   "charts": [],
@@ -93,307 +155,13 @@ const CONTENT = {
       "author": "",
       "title": "",
       "quote": "The brief is never the problem. The brief is the symptom of a problem the user can't yet name."
-    },
-    {
-      "author": "",
-      "title": "",
-      "quote": "Full case study coming soon — reach out and I'm happy to walk through where it stands."
-    },
-    {
-      "author": "Joseph M.",
-      "title": "Research interview",
-      "quote": "If I could just hop on a website... it kinda gives you confirmation that you're not missing anything or forgetting anything."
-    },
-    {
-      "author": "Tom C.",
-      "title": "Research interview · post-storm",
-      "quote": "When she looks back on it, she doesn't remember being that scared — she remembers sleeping bags and us all hanging out."
     }
   ],
-  "cards": [
-    {
-      "type": "topic",
-      "columns": 2,
-      "section": "rv-findings",
-      "cards": [
-        {
-          "icon": "search",
-          "title": "Decision paralysis was universal",
-          "audience": "Insight 01",
-          "content": "Every interviewee could name the supplies they \"should\" have but hadn't bought.",
-          "expandedContent": "The barrier wasn't money or access — it was uncertainty about what was actually needed. **PM implication:** the product wedge isn't supplies; it's confidence. This reframed the entire roadmap from \"kit catalog\" to \"configurator.\""
-        },
-        {
-          "icon": "shield",
-          "title": "The protector identity drove behavior",
-          "audience": "Insight 02",
-          "content": "Parents framed preparation as a duty to family. Failure carried emotional weight beyond logistics.",
-          "expandedContent": "**PM implication:** positioning, marketing copy, and onboarding all needed to make users feel like protectors, not victims. We rewrote the landing-page CTA from *\"Build a kit\"* to *\"Be Ready Before the Storm.\"*"
-        },
-        {
-          "icon": "zap",
-          "title": "Existing solutions failed at the moment of need",
-          "audience": "Insight 03",
-          "content": "Buckets and bins led to scrambling in the dark.",
-          "expandedContent": "**PM implication:** physical product specs (transparent lids, glow-in-dark labels, color-coded sub-kits) were prioritized in the PRD as P0 because they directly resolved the moment-of-need failure mode our research surfaced."
-        },
-        {
-          "icon": "target",
-          "title": "Customization was the unlock",
-          "audience": "Insight 04",
-          "content": "Users rejected pre-built kits as wasteful but couldn't build their own from scratch.",
-          "expandedContent": "**PM implication:** the central UX problem was guided choice. The 6-slot cap and *\"fill my kit based on expert advice\"* toggle came directly from this insight — small UI elements doing strategic work."
-        }
-      ]
-    },
-    {
-      "type": "profile",
-      "columns": 3,
-      "section": "rv-principles",
-      "cards": [
-        {
-          "icon": "target",
-          "title": "Customizable",
-          "audience": "",
-          "content": "The tool removes the burden of research, not the agency to choose. **(Functional)**"
-        },
-        {
-          "icon": "shield",
-          "title": "Confident",
-          "audience": "",
-          "content": "Every interaction reinforces \"you are prepared\" rather than \"here's what you're missing.\" **(Emotional)**"
-        },
-        {
-          "icon": "layers",
-          "title": "Organized",
-          "audience": "",
-          "content": "IA mirrors how families think: by need (Power, Lighting, Medical), not by SKU. **(Functional)**"
-        },
-        {
-          "icon": "users",
-          "title": "Accessible to all",
-          "audience": "",
-          "content": "A spouse or older child can use the kit in an emergency without instruction. **(Functional)**"
-        },
-        {
-          "icon": "lightbulb",
-          "title": "Reassuring",
-          "audience": "",
-          "content": "Quiet competence — not military gear. A calm presence in the garage. **(Emotional)**"
-        }
-      ]
-    },
-    {
-      "type": "topic",
-      "columns": 3,
-      "section": "rv-lessons",
-      "cards": [
-        {
-          "icon": "search",
-          "title": "Emotional research beats functional research",
-          "audience": "Lesson 01",
-          "content": "We started by asking what supplies people had.",
-          "expandedContent": "The breakthrough came when we asked how they *felt* during the last storm. Lead with emotion in user research — the functional requirements follow. As a PM, this changed my interview discussion guide for every project after."
-        },
-        {
-          "icon": "target",
-          "title": "Customization is a strategy, not a feature",
-          "audience": "Lesson 02",
-          "content": "Giving users choice is easy. Designing the guardrails around that choice is the hard part.",
-          "expandedContent": "The \"fill my kit based on expert advice\" toggle is a small UI element doing enormous strategic work. PM lesson: a single feature can carry a positioning statement."
-        },
-        {
-          "icon": "network",
-          "title": "Cross-functional fluency is the PM's edge",
-          "audience": "Lesson 03",
-          "content": "Working alongside engineers, ID, and brand forced me to write requirements they could actually build against.",
-          "expandedContent": "The slot-based subkit system came directly from manufacturing constraints — and ended up being the strongest interaction in the product. The best PRD requirements emerge from constraint, not from imagination."
-        }
-      ]
-    },
-    {
-      "type": "topic",
-      "columns": 2,
-      "section": "intern-tesla",
-      "cards": [
-        {
-          "icon": "lightbulb",
-          "title": "Maxims and philosophies I picked up",
-          "audience": "Philosophy",
-          "content": "Write the spec for the store you'll never stand in. A requirement had to hold up when a team in another city built it without me there. That forced every line of the spec to be unambiguous, the same bar a good PRD has to clear."
-        },
-        {
-          "icon": "target",
-          "title": "What was my objective?",
-          "audience": "The brief",
-          "content": "Refresh Tesla's brand across its physical retail and service spaces, then turn it into a program that could be built the same way everywhere. Retail lounges, service centers, and body shop interiors each needed to express one consistent brand identity. My job was to prototype that refresh and document the retail program requirements so internal teams and vendors could execute it on site."
-        },
-        {
-          "icon": "chart",
-          "title": "What did I achieve?",
-          "audience": "Results",
-          "content": "A brand refresh that launched across **all 500+ Tesla retail and service locations**, and a retail program I executed across **45+ locations, saving 15% in projected costs**. I iterated the retail strategy over two design sprints to prototype the refresh. The specs I documented include a **service intake plan**, a two-lane intake bay with light fixtures centered on each panel seam, a 6' lounge-door integration, and three service-advisor desks, and a **logo feature wall** of nine metallic-finish panels spaced 2\" apart against a trout-grey back wall, anchored by an S830 61\"-H illuminated Tesla logo."
-        },
-        {
-          "icon": "layers",
-          "title": "What skills did I learn?",
-          "audience": "Skills",
-          "content": "Running design sprints, writing execution-ready specs, and aligning internal teams and vendors around one plan. **Design sprints:** scoping each sprint around one question and carrying forward only what held up. **Spec writing:** documenting layout requirements precisely enough to be built without me on site. **Stakeholder alignment:** coordinating internal teams and outside vendors on a single program. **Cost discipline:** executing that program while saving 15% in projected costs."
-        }
-      ]
-    },
-    {
-      "type": "topic",
-      "columns": 2,
-      "section": "intern-morphosis",
-      "cards": [
-        {
-          "icon": "lightbulb",
-          "title": "Maxims and philosophies I picked up",
-          "audience": "Philosophy",
-          "content": "Build the model that settles the argument. Every model existed to answer a specific open design question, so the team could decide and move on instead of debating drawings."
-        },
-        {
-          "icon": "target",
-          "title": "What was my objective?",
-          "audience": "The brief",
-          "content": "Give project teams physical models that answer design questions faster than drawings can. Architects needed to test design choices in three dimensions before committing to them. There was no dedicated function for that, so part of the job was creating one."
-        },
-        {
-          "icon": "chart",
-          "title": "What did I achieve?",
-          "audience": "Results",
-          "content": "Pioneered a **design services division** that designed and built **25+ high-impact physical models** driving design decisions across education and laboratory projects. That work includes an archival model refresh for **Thom Mayne's** personal office collection and **930** laser-cut steel corner guards for **Northeastern University's EXP** research building. The build process for both is in the Architecture section below."
-        },
-        {
-          "icon": "layers",
-          "title": "What skills did I learn?",
-          "audience": "Skills",
-          "content": "Digital fabrication, material iteration, and turning design intent into buildable parts. **Fabrication:** CNC milling, laser cutting, welding, resin printing, and finishing. **Iteration:** testing materials and joints until they held tolerance. **Production:** shop drawings and batch tracking for runs of hundreds of parts."
-        }
-      ]
-    },
-    {
-      "type": "topic",
-      "columns": 3,
-      "section": "archive",
-      "cards": [
-        {
-          "icon": "lightbulb",
-          "title": "Ningbo Oceanside Pavilions — Archival Model",
-          "audience": "Thom Mayne · personal office collection",
-          "content": "Model refresh for **Thom Mayne's personal office collection** — fabricated in collaboration with Allan, Nihan, and Nigel.",
-          "expandedContent": "A multi-step archival fabrication: excavation, resin application, resin cure, depowdering, powder extraction, black primer, and a final resin seal. The project was a model refresh for the personal office collection of **Thom Mayne (Morphosis Architects, Pritzker Laureate)**. **Why it matters for PM:** archival-grade work demands process documentation as rigorous as the physical craft — the same discipline behind a well-written PRD."
-        },
-        {
-          "icon": "cpu",
-          "title": "Northeastern University EXP — Corner Guards",
-          "audience": "Fabrication · in-house welding & finishing",
-          "content": "Cold-rolled and mill-scale steel corner guards for the **Northeastern University EXP** building — 930 laser-cut parts, blackened with a wax + oil finish.",
-          "expandedContent": "A fabrication-drawing-to-finished-component pipeline: 1/4\" A36 steel laser-cut into A/B/C/D/S1/S2 profiles, in-house welding with 1/4\" stand-off spacers tack-welded to the back, blackened and finished with wax + oil. Quantities tracked across 7 levels (12 + 15 + 19 + 16 + 17 + 18 + 17 = 114 base units, with bathroom and ramp variants). Shop drawings, batches, finishes, deliveries. **Why it matters for PM:** real-world manufacturing work taught me to think in *batches, tolerances, and acceptance criteria* — the language of shipped product."
-        },
-        {
-          "icon": "layers",
-          "title": "Design Build — Spline-Curve Pavilion",
-          "audience": "ARCH 479 · Prof. Dale Clifford",
-          "content": "Full-scale redwood pavilion designed and built collaboratively. Drawings, A-frame fabrication, frame install, and on-site transport.",
-          "expandedContent": "Sketch → drawings → scale model → A-frame fabrication → on-site transport → install. Section drawings document eight trusses with multiple fold options each — the geometry that lets flat timber become curved enclosure. **Why it matters for PM:** every decision on a drawing has a torque-wrench equivalent in the field. The project trained me to think about manufacturability and constraint long before I called it product management."
-        },
-        {
-          "icon": "target",
-          "title": "Waveform Acoustic Tiles — Joint Design",
-          "audience": "Museum atrium ceiling · Connecticut",
-          "content": "Sail-motif ceiling tiles for a museum atrium in Connecticut. Three iterations of a keystone joint (miter-with-spline lineage) that progressively absorbed shear and torsional load.",
-          "expandedContent": "Three material studies: 1/16\" chipboard with super-glue ribs, 1/32\" acrylic with 1/4\" acrylic ribs, and 1/32\" polystyrene with ABS Weld-on. The final joint design eliminated the glue-up step entirely — a kerf-tuned snug fit that lets the scaffold ribs flex on impact rather than fracture, and supports both concave and convex configurations. **Why it matters for PM:** disciplined iteration. Each version of the joint was scoped against a specific failure mode."
-        },
-        {
-          "icon": "layers",
-          "title": "Stagiare — Vertical Industrial",
-          "audience": "Studio · Heavy industrial typology",
-          "content": "A heavy-industrial fabrication facility reimagined as a vertical typology — five steel-frame towers as discrete typological experiments.",
-          "expandedContent": "Different cladding logics, programmatic stacking, and circulation strategies, ranged across five typological alternatives (I–V). The systems-integration drawings work the section down to the catwalk. **Why it matters for PM:** a project that forced me to compare alternatives at the system level — exactly what a roadmap or strategy doc demands."
-        },
-        {
-          "icon": "chart",
-          "title": "Walnut Mockup — Sectional Volumetric Model",
-          "audience": "Pilot model · with Allan, Nihan, Nigel",
-          "content": "Pilot model fabricated to test feasibility of scale, method, and abstraction for a larger production model.",
-          "expandedContent": "A four-step pipeline: glue-up layout → CNC layout → glue-up → sanding. Walnut chosen for grain stability and finish density. The piece serves as a feasibility study for a larger archival production model. **Why it matters for PM:** an MVP for a model. Build the smallest version that proves the method before committing to the full deliverable."
-        },
-        {
-          "icon": "rocket",
-          "title": "Vortex — Sculptural Monolith",
-          "audience": "Coastal repurposing · Santa Barbara, CA",
-          "content": "Repurposing decommissioned oil platform Holly off the coast of Santa Barbara into a twisted sculptural tower.",
-          "expandedContent": "Five collage iterations (I–V) drove a procedural twist-tower geometry, refined through wire-frame studies and material studies in steel rod. **Why it matters for PM:** the work asks what a coastline does with its inherited industrial scaffolding — the same structural question I now ask of any product I inherit. What stays, what gets reframed, what gets retired."
-        }
-      ]
-    }
-  ],
-  "credentials": [
-    {
-      "value": "MPD '26",
-      "label": "Northwestern · Master of Product Design"
-    },
-    {
-      "value": "Newell",
-      "label": "13-page PRD · VP of Innovation"
-    },
-    {
-      "value": "Mayne",
-      "label": "Thom Mayne · archival model refresh"
-    },
-    {
-      "value": "NEU EXP",
-      "label": "Northeastern University · 930 fabricated parts"
-    },
-    {
-      "value": "Tesla",
-      "label": "Service-center retail design · 2023"
-    },
-    {
-      "value": "UXR",
-      "label": "26 interviews led · ReadyVault synthesis"
-    }
-  ],
+  "cards": [],
+  "credentials": [],
   "timeline": [],
   "testimonials": [],
-  "tables": [
-    {
-      "headers": [
-        "Screen",
-        "Principle",
-        "PRD decision"
-      ],
-      "rows": [
-        [
-          "01 — Landing",
-          "Confident",
-          "One image, one line, one CTA. *\"Be Ready Before the Storm.\"*",
-          ""
-        ],
-        [
-          "02 — Categories",
-          "Organized",
-          "3×3 grid in user language: Power, Medical, Cooking, Communications.",
-          ""
-        ],
-        [
-          "03 — Select & Size",
-          "Customizable",
-          "Slot tray caps choice at 6. Trade-off live; system never blocks.",
-          ""
-        ],
-        [
-          "04 — Cart",
-          "Accessible to all",
-          "Configured silhouette pinned beside line items — what you chose equals what opens.",
-          ""
-        ]
-      ],
-      "variant": "default"
-    }
-  ],
+  "tables": [],
   "terminals": [
     {
       "title": "ashish/pm-stack.txt",
@@ -419,6 +187,57 @@ const CONTENT = {
     {
       "type": "section",
       "number": 1,
+      "title": "Experience",
+      "subsections": [],
+      "intro": [
+        {
+          "type": "paragraph",
+          "text": "Two products: one I'm building now, one I took from 26 interviews to $1.1M in pre-seed funding."
+        },
+        {
+          "type": "component",
+          "component": "projects",
+          "param": "experience"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "number": 2,
+      "title": "Internships",
+      "subsections": [],
+      "intro": [
+        {
+          "type": "paragraph",
+          "text": "Two roles where the unit of work jumped from one object to hundreds of locations."
+        },
+        {
+          "type": "component",
+          "component": "projects",
+          "param": "internships"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "number": 3,
+      "title": "Maker",
+      "subsections": [],
+      "intro": [
+        {
+          "type": "paragraph",
+          "text": "Five years of architecture at Cal Poly, plus a year designing and fabricating at Morphosis/Payette. The disciplines compound: structural systems thinking, fabrication detail, and disciplined iteration all shape how I scope, prioritize, and ship."
+        },
+        {
+          "type": "component",
+          "component": "projects",
+          "param": "maker"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "number": 4,
       "title": "About",
       "subsections": [],
       "intro": [
@@ -450,217 +269,12 @@ const CONTENT = {
           "type": "component",
           "component": "stats",
           "param": "$1.1M|Pre-seed funding secured"
-        },
-        {
-          "type": "component",
-          "component": "pullquote",
-          "param": "The brief is never the problem. The brief is the s"
-        }
-      ]
-    },
-    {
-      "type": "section",
-      "number": 2,
-      "title": "Kindling — Building Now",
-      "subsections": [],
-      "intro": [
-        {
-          "type": "paragraph",
-          "text": "A CRM platform for mom-and-pop shops to scale into a franchise — giving independent owners the operating system to standardize what works at one location and replicate it across many."
-        },
-        {
-          "type": "paragraph",
-          "text": "**Role:** Founder / Product · **Status:** Actively building"
-        },
-        {
-          "type": "component",
-          "component": "pullquote",
-          "param": "Full case study coming soon — reach out and I'm ha"
-        }
-      ]
-    },
-    {
-      "type": "section",
-      "number": 3,
-      "title": "ReadyVault — Featured Case Study",
-      "subsections": [
-        {
-          "title": "The problem",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Hurricanes are intensifying. The emergency-preparedness market forces families into a false choice: disorganized bins, or tactical gear that doesn't belong in a suburban garage."
-            },
-            {
-              "type": "component",
-              "component": "stats",
-              "param": "$1T+|U.S. tropical-cyclone damage"
-            },
-            {
-              "type": "paragraph",
-              "text": "Through 26 user interviews in hurricane-prone regions, I uncovered a $400M customer segment among single-family homeowners and found a consistent pattern: families know they need to prepare. They don't trust government checklists, don't know what to buy, and don't have a system to organize what they have. Before ReadyVault, the best-case scenario was still a scramble."
-            },
-            {
-              "type": "component",
-              "component": "pullquote",
-              "param": "If I could just hop on a website... it kinda gives"
-            }
-          ]
-        },
-        {
-          "title": "The reframe",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "We weren't designing a kit. We were designing a *way out of decision paralysis.* Interviews mapped across the hurricane lifecycle surfaced one consistent emotional driver underneath every behavior — and gave me the wedge for product strategy:"
-            },
-            {
-              "type": "component",
-              "component": "cards",
-              "param": "rv-findings"
-            }
-          ]
-        },
-        {
-          "title": "Five product principles",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "I led the team in distilling five principles from research synthesis. Every PRD requirement, screen, and physical spec was measured against this framework. We balanced functional and emotional needs explicitly — because a prepared family feels ready long before the storm arrives."
-            },
-            {
-              "type": "component",
-              "component": "cards",
-              "param": "rv-principles"
-            }
-          ]
-        },
-        {
-          "title": "The Hill — IBM Enterprise Design Thinking intent statement",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "> Fred can configure a household-specific emergency kit in under ten minutes so that he feels prepared before his region's next severe-weather event."
-            }
-          ]
-        },
-        {
-          "title": "The roadmap → product",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "A guided configuration journey. Each screen makes one deliberate trade-off between guidance and agency, with each principle attached to a measurable spec in the PRD."
-            },
-            {
-              "type": "table"
-            }
-          ]
-        },
-        {
-          "title": "What I owned",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "I led research synthesis, the customer-journey map, the design-principles framework, and the PRD that pressure-tested every physical and digital spec. Industrial design, CAD, and rendering were collaborative with the ID and engineering specialists on the team — my job was translating research findings into requirements they designed against."
-            },
-            {
-              "type": "component",
-              "component": "pullquote",
-              "param": "When she looks back on it, she doesn't remember be"
-            }
-          ]
-        },
-        {
-          "title": "Outcome — what shipped",
-          "blocks": [
-            {
-              "type": "component",
-              "component": "stats",
-              "param": "$249.99|Base price"
-            },
-            {
-              "type": "paragraph",
-              "text": "**Deliverables:** A 13-page PRD delivered to Newell Brands' VP of Innovation; a 7-screen Kit Builder in Figma + prototype; a modular ReadyVault industrial-design concept validated in interviews; and a 20+ scene customer-journey storyboard. Presented as a **Blue Ocean market entry** — a defensible position between disorganized bins and tactical gear that earned a place in the suburban garage. I owned the willingness-to-pay studies that shaped the pricing strategy and mitigated risk in the business model, helping the project achieve investor validation and **$1.1M in pre-seed funding**."
-            }
-          ]
-        },
-        {
-          "title": "Three lessons for hiring managers",
-          "blocks": [
-            {
-              "type": "component",
-              "component": "cards",
-              "param": "rv-lessons"
-            }
-          ]
-        }
-      ],
-      "intro": [
-        {
-          "type": "paragraph",
-          "text": "A three-quarter capstone for **Newell Brands**, presented to their VP of Innovation as a Blue Ocean market entry for resilience systems. I led research, owned the PRD, and translated user findings into both digital UX and physical product requirements."
-        },
-        {
-          "type": "paragraph",
-          "text": "**Role:** Product Manager — Research, PRD, configurator UX **Team:** 5 (cross-functional: PM, ID, UX, engineering, brand) **Sponsor:** Newell Brands · **Timeline:** Sept 2025 – June 2026"
-        }
-      ]
-    },
-    {
-      "type": "section",
-      "number": 4,
-      "title": "Internships",
-      "subsections": [
-        {
-          "title": "Tesla — Retail Design Intern",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "From June to September 2023 I was a **Retail Design Intern at Tesla**, working on how the brand shows up in person: retail lounges, service centers, and body shops."
-            },
-            {
-              "type": "component",
-              "component": "cards",
-              "param": "intern-tesla"
-            }
-          ]
-        },
-        {
-          "title": "Morphosis/Payette — Designer & Fabricator",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "From June 2022 to May 2023 I was a **Designer and Fabricator at Morphosis/Payette**, building the physical models project teams used to make design decisions."
-            },
-            {
-              "type": "component",
-              "component": "cards",
-              "param": "intern-morphosis"
-            }
-          ]
         }
       ]
     },
     {
       "type": "section",
       "number": 5,
-      "title": "Architecture",
-      "subsections": [],
-      "intro": [
-        {
-          "type": "paragraph",
-          "text": "Five years of architecture at Cal Poly, plus a year designing and fabricating at Morphosis/Payette. The disciplines compound: structural systems thinking, fabrication detail, and disciplined iteration all shape how I scope, prioritize, and ship."
-        },
-        {
-          "type": "component",
-          "component": "cards",
-          "param": "archive"
-        }
-      ]
-    },
-    {
-      "type": "section",
-      "number": 6,
       "title": "Capabilities",
       "subsections": [],
       "intro": [
@@ -668,35 +282,6 @@ const CONTENT = {
           "type": "component",
           "component": "terminal",
           "param": ""
-        }
-      ]
-    },
-    {
-      "type": "section",
-      "number": 7,
-      "title": "Highlights",
-      "subsections": [],
-      "intro": [
-        {
-          "type": "component",
-          "component": "credentials",
-          "param": ""
-        }
-      ]
-    },
-    {
-      "type": "section",
-      "number": 8,
-      "title": "Contact",
-      "subsections": [],
-      "intro": [
-        {
-          "type": "paragraph",
-          "text": "I am graduating from **Northwestern's Master of Product Design** program in spring 2026 and looking for product manager roles where research, strategy, and craft all matter. Happy to walk through any of this work in more detail — the PRD, the research, the trade-offs, or the honest mess of cross-functional collaboration."
-        },
-        {
-          "type": "paragraph",
-          "text": "**Email:** ashish.n.kolli@gmail.com · ashishkolli2026@u.northwestern.edu **Phone:** (469)-562-9779"
         }
       ]
     },

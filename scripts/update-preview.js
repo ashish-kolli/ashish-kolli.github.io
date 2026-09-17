@@ -4,11 +4,25 @@
  *
  * - preview.html: Development React builds, for local debugging
  * - dist/index.html: Production React builds, for GitHub Pages deployment
+ *
+ * Project pages call this with --bundle, --output, --base, --title and --description
+ * (see scripts/build-pages.js) and only get the production file.
  */
 const fs = require('fs');
 const path = require('path');
 
-const distFile = path.resolve(__dirname, '../dist/ProductEngineerProposal.jsx');
+const argValue = (name) => {
+  const i = process.argv.indexOf(name);
+  return i > -1 ? process.argv[i + 1] : null;
+};
+const escapeAttr = (text) => text.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+
+const pageOutput = argValue('--output');
+const distFile = path.resolve(argValue('--bundle') || path.resolve(__dirname, '../dist/ProductEngineerProposal.jsx'));
+// Relative path from the page back to the site root, so shared assets and links resolve on nested pages
+const base = argValue('--base');
+const DEFAULT_DESCRIPTION = 'Ashish Kolli — product manager. Accelerating and scaling product development with agentic AI.';
+const description = argValue('--description') || DEFAULT_DESCRIPTION;
 const previewFile = path.resolve(__dirname, '../preview.html');
 const productionFile = path.resolve(__dirname, '../dist/index.html');
 
@@ -32,16 +46,16 @@ function generateHTML({ title, reactMode }) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${title}</title>
+  ${base ? `<base href="${base}">\n  ` : ''}<title>${escapeAttr(title)}</title>
   <!-- Raster icons first: Safari ignores data-URI SVG favicons and requests /favicon.ico -->
   <link rel="icon" href="favicon.ico" sizes="48x48 32x32 16x16">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%235B21B6'/><text x='32' y='43' font-family='Helvetica,Arial,sans-serif' font-size='28' font-weight='700' letter-spacing='-1' fill='%23ffffff' text-anchor='middle'>AK</text></svg>">
-  <meta name="description" content="Ashish Kolli — Product Manager. Northwestern MPD '26. Selected works including ReadyVault, a Newell Brands capstone.">
-  <meta property="og:title" content="Ashish Kolli — Product Manager">
-  <meta property="og:description" content="Northwestern MPD '26. PRD ownership, user research synthesis, and product strategy. Selected works 2026.">
-  <meta property="og:type" content="article">
+  <meta name="description" content="${escapeAttr(description)}">
+  <meta property="og:title" content="${escapeAttr(title)}">
+  <meta property="og:description" content="${escapeAttr(description)}">
+  <meta property="og:type" content="website">
 
   <!-- React ${reactMode} builds -->
   <script crossorigin src="https://unpkg.com/react@18/umd/react.${reactSuffix}.js"></script>
@@ -66,6 +80,15 @@ ${bundle}
   </script>
 </body>
 </html>`;
+}
+
+if (pageOutput) {
+  const outFile = path.resolve(pageOutput);
+  fs.mkdirSync(path.dirname(outFile), { recursive: true });
+  fs.writeFileSync(outFile, generateHTML({ title: argValue('--title') || 'ASHISH KOLLI', reactMode: 'production' }));
+  const size = (fs.statSync(outFile).size / 1024).toFixed(1);
+  console.log(`✓ ${path.relative(path.resolve(__dirname, '..'), outFile)} (${size} KB)`);
+  process.exit(0);
 }
 
 // Write development preview

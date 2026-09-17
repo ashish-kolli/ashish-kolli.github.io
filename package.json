@@ -5,7 +5,8 @@
   "main": "dist/ProductEngineerProposal.jsx",
   "scripts": {
     "parse": "node src/utils/parser.js",
-    "build": "node src/utils/parser.js && node src/utils/build.js && node scripts/update-preview.js && node scripts/validate-build.js",
+    "build": "node src/utils/parser.js && node src/utils/build.js && node scripts/update-preview.js && node scripts/validate-build.js && node scripts/build-pages.js",
+    "build:pages": "node scripts/build-pages.js",
     "build:quick": "node src/utils/build.js && node scripts/update-preview.js",
     "preview": "node scripts/update-preview.js",
     "validate": "node scripts/validate-build.js",

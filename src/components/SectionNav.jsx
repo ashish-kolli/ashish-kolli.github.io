@@ -6,21 +6,10 @@
  * - Scroll-aware current section highlighting
  * - Smooth transitions and hover states
  * - Fixed position on left side, hidden on mobile
+ * - Sections come from the page's document (App.jsx passes them in), so every page gets its own nav
  */
 import React, { useState, useEffect } from 'react';
 import { COLORS, FONTS, TYPE_SCALE, EFFECTS, SPACE } from '../design-tokens';
-
-// Section data - derived from document structure
-const SECTIONS = [
-  { number: 1, short: 'About', title: 'About' },
-  { number: 2, short: 'Kindling', title: 'Kindling — Building Now' },
-  { number: 3, short: 'Vault', title: 'ReadyVault — Featured Case Study' },
-  { number: 4, short: 'Intern', title: 'Internships' },
-  { number: 5, short: 'Arch', title: 'Architecture' },
-  { number: 6, short: 'Skills', title: 'Capabilities' },
-  { number: 7, short: 'Marks', title: 'Highlights' },
-  { number: 8, short: 'Reach', title: 'Contact' },
-];
 
 // Hook to track current section based on scroll position
 const useCurrentSection = () => {
@@ -81,7 +70,7 @@ const injectNavStyles = (() => {
   };
 })();
 
-const SectionNav = () => {
+const SectionNav = ({ sections = [] }) => {
   const currentSection = useCurrentSection();
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredSection, setHoveredSection] = useState(null);
@@ -111,6 +100,8 @@ const SectionNav = () => {
       });
     }
   };
+
+  if (sections.length < 2) return null;
 
   return (
     <nav
@@ -164,7 +155,7 @@ const SectionNav = () => {
         </div>
 
         {/* Section links */}
-        {SECTIONS.map((section) => {
+        {sections.map((section) => {
           const isActive = currentSection === section.number;
           const isHovered = hoveredSection === section.number;
 
@@ -234,7 +225,7 @@ const SectionNav = () => {
                   whiteSpace: 'nowrap',
                 }}
               >
-                {section.short}
+                {section.title}
               </span>
             </button>
           );
@@ -259,7 +250,7 @@ const SectionNav = () => {
             <div
               style={{
                 height: '100%',
-                width: `${(currentSection / SECTIONS.length) * 100}%`,
+                width: `${(currentSection / Math.max(sections.length, 1)) * 100}%`,
                 background: `linear-gradient(90deg, ${COLORS.accent.primary} 0%, ${COLORS.accent.light} 100%)`,
                 borderRadius: EFFECTS.radius.full,
                 transition: `width ${EFFECTS.transition.base}`,

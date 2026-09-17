@@ -12,7 +12,13 @@ const path = require('path');
 
 const SRC_DIR = path.resolve(__dirname, '..');
 const DIST_DIR = path.resolve(__dirname, '../../dist');
-const OUTPUT_FILE = path.join(DIST_DIR, 'ProductEngineerProposal.jsx');
+// Defaults bundle the home page; project pages pass --content and --output (see scripts/build-pages.js)
+const argValue = (name) => {
+  const i = process.argv.indexOf(name);
+  return i > -1 ? process.argv[i + 1] : null;
+};
+const CONTENT_FILE = path.resolve(argValue('--content') || path.join(SRC_DIR, 'content.js'));
+const OUTPUT_FILE = path.resolve(argValue('--output') || path.join(DIST_DIR, 'ProductEngineerProposal.jsx'));
 
 // Read all component files
 function readComponent(name) {
@@ -26,9 +32,9 @@ function readComponent(name) {
 
 // Read content file
 function readContent() {
-  const filePath = path.join(SRC_DIR, 'content.js');
+  const filePath = CONTENT_FILE;
   if (!fs.existsSync(filePath)) {
-    console.error('Error: content.js not found. Run parser.js first.');
+    console.error(`Error: ${filePath} not found. Run parser.js first.`);
     process.exit(1);
   }
   return fs.readFileSync(filePath, 'utf-8');
@@ -88,9 +94,7 @@ function build() {
   console.log('Building production bundle...\n');
 
   // Ensure dist directory exists
-  if (!fs.existsSync(DIST_DIR)) {
-    fs.mkdirSync(DIST_DIR, { recursive: true });
-  }
+  fs.mkdirSync(path.dirname(OUTPUT_FILE), { recursive: true });
 
   // Read design tokens first (single source of truth)
   console.log('  Reading design-tokens...');
@@ -117,6 +121,8 @@ function build() {
     'SectionNav',
     'WorkList',
     'CursorSpotlight',
+    'ProjectCards',
+    'ProjectHeader',
   ];
 
   // Read all components

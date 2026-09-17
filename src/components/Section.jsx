@@ -267,6 +267,7 @@ const Section = ({ number, title, children, className = '' }) => {
   return (
     <section
       className={className}
+      id={title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}
       data-section={number}
       style={{
         // No background here: the page root paints the paper color, so the
