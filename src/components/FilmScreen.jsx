@@ -109,6 +109,8 @@ const injectFilmStyles = (() => {
       .film-leader-run { animation: filmLeaderRun ${FILM_ADVANCE_MS}ms cubic-bezier(0.22, 0.61, 0.36, 1); }
       @media (max-width: 768px) {
         .film-leader { display: none; }
+        /* No strip continuing to the left on phones, so the left corners round too */
+        .film-frame { border-radius: ${EFFECTS.radius.lg} !important; }
       }
       .film-flash { animation: filmFlash ${FILM_FLASH_MS}ms ease-in-out both; }
       .film-gate { flex: 1; min-height: 160px; }
@@ -254,6 +256,7 @@ const FilmScreen = ({ images = [], keepOuts = [] }) => {
 
   return (
     <figure
+      className="film-frame"
       onMouseEnter={hoverCapable ? advance : undefined}
       onClick={handleClick}
       aria-label={count > 1 ? `Photo reel, ${count} photos. Hover, click, or tap to advance.` : 'Photo reel'}

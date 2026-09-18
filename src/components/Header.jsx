@@ -20,7 +20,11 @@ const RESUME_GRADIENT_HOVER = 'linear-gradient(115deg, rgba(109, 40, 217, 0.34) 
 const RESUME_TEXT_GRADIENT = 'linear-gradient(90deg, #EA580C 0%, #7C3AED 100%)';
 
 const Header = ({ data }) => {
-  const { from, fromEmail, linkedin, github, instagram, headshot, subtitle, title, resume, resumeLabel, reel = [] } = data;
+  const { from, fromEmail, linkedin, github, instagram, headshot, subtitle, title, resume, resumeLabel, reel = [], phrases = [] } = data;
+  // Everything the subtitle types, in order: the tagline first, then the phrase bank
+  const lines = [subtitle, ...phrases].filter(Boolean);
+  const linesKey = lines.join('\n');
+  const longestLine = lines.reduce((a, b) => (b.length > a.length ? b : a), '');
   const [imageError, setImageError] = useState(false);
   const [cardHovered, setCardHovered] = useState(false);
   const [resumeHovered, setResumeHovered] = useState(false);
@@ -44,10 +48,10 @@ const Header = ({ data }) => {
       if (titleRef.current) rects.push(titleRef.current.getBoundingClientRect());
       if (contactRef.current) rects.push(contactRef.current.getBoundingClientRect());
 
-      // The subtitle types out over a couple of seconds, so lay out its finished text in an
+      // The subtitle types and retypes, so lay out the longest line it will ever show in an
       // invisible copy and measure each line of that instead
       const subtitleEl = subtitleRef.current;
-      if (subtitleEl && subtitle) {
+      if (subtitleEl && longestLine) {
         const copy = subtitleEl.cloneNode(false);
         copy.style.position = 'absolute';
         copy.style.visibility = 'hidden';
@@ -58,7 +62,7 @@ const Header = ({ data }) => {
         const prompt = document.createElement('span');
         prompt.textContent = '>';
         prompt.style.marginRight = '0.5rem';
-        copy.append(prompt, document.createTextNode(`${subtitle}\u00a0\u00a0`));
+        copy.append(prompt, document.createTextNode(`${longestLine}\u00a0\u00a0`));
         subtitleEl.parentNode.appendChild(copy);
         const range = document.createRange();
         range.selectNodeContents(copy);
@@ -75,7 +79,7 @@ const Header = ({ data }) => {
     if (heroGridRef.current) observer.observe(heroGridRef.current);
     document.fonts?.ready.then(measure);
     return () => observer.disconnect();
-  }, [subtitle]);
+  }, [longestLine]);
 
   // The contact card is a shortcut into the About section
   const goToAbout = () => {
@@ -89,30 +93,56 @@ const Header = ({ data }) => {
   const [typedText, setTypedText] = useState('');
   const [isTyping, setIsTyping] = useState(true);
 
-  // Typewriter effect for subtitle
+  // Typewriter for the subtitle: types a line, holds it, backspaces it, and moves on to the
+  // next, looping through the tagline and the phrase bank. The tagline holds longest.
+  // Reduced-motion users just see the tagline.
   useEffect(() => {
-    if (!subtitle) return;
+    if (!lines.length) return undefined;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setTypedText(lines[0]);
+      setIsTyping(false);
+      return undefined;
+    }
+    const TYPE_MS = 35;       // per character typed
+    const DELETE_MS = 18;     // per character backspaced
+    const HOLD_TAGLINE_MS = 3200;
+    const HOLD_PHRASE_MS = 1900;
+    const GAP_MS = 380;       // empty prompt before the next line starts
 
-    let currentIndex = 0;
-    const typingSpeed = 35; // milliseconds per character
-
-    // Start typing after a short delay
-    const startDelay = setTimeout(() => {
-      const typeInterval = setInterval(() => {
-        if (currentIndex < subtitle.length) {
-          setTypedText(subtitle.slice(0, currentIndex + 1));
-          currentIndex++;
-        } else {
-          clearInterval(typeInterval);
+    let line = 0;
+    let length = 0;
+    let deleting = false;
+    let timer;
+    const tick = () => {
+      const text = lines[line];
+      if (!deleting) {
+        length += 1;
+        setTypedText(text.slice(0, length));
+        setIsTyping(true);
+        if (length >= text.length) {
           setIsTyping(false);
+          if (lines.length < 2) return; // nothing to cycle to
+          deleting = true;
+          timer = setTimeout(tick, line === 0 ? HOLD_TAGLINE_MS : HOLD_PHRASE_MS);
+          return;
         }
-      }, typingSpeed);
-
-      return () => clearInterval(typeInterval);
-    }, 800);
-
-    return () => clearTimeout(startDelay);
-  }, [subtitle]);
+        timer = setTimeout(tick, TYPE_MS);
+      } else {
+        length -= 1;
+        setTypedText(text.slice(0, length));
+        setIsTyping(true);
+        if (length <= 0) {
+          deleting = false;
+          line = (line + 1) % lines.length;
+          timer = setTimeout(tick, GAP_MS);
+          return;
+        }
+        timer = setTimeout(tick, DELETE_MS);
+      }
+    };
+    timer = setTimeout(tick, 800);
+    return () => clearTimeout(timer);
+  }, [linesKey]);
 
   // Get initials for fallback
   const getInitials = (name) => {

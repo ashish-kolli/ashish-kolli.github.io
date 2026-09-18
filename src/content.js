@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-18T18:04:34.643Z
+// Generated: 2026-09-18T20:27:47.923Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -22,7 +22,12 @@ const CONTENT = {
     ],
     "date": "September 2026",
     "title": "Ashish Kolli",
-    "subtitle": "Accelerating and scaling product with agents."
+    "subtitle": "Accelerating and scaling product with agents.",
+    "phrases": [
+      "tweaking Teriyaki Sauce recipe.",
+      "reading memoirs and crying.",
+      "flying FPV drones."
+    ]
   },
   "page": null,
   "projects": [

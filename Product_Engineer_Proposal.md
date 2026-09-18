@@ -19,6 +19,10 @@ Component marker reference: see CLAUDE.md
 <!-- @date value="September 2026" -->
 <!-- @title value="Ashish Kolli" -->
 <!-- @subtitle value="Accelerating and scaling product with agents." -->
+<!-- The subtitle types itself out, backspaces, and cycles through these, then starts over -->
+<!-- @phrase value="tweaking Teriyaki Sauce recipe." -->
+<!-- @phrase value="reading memoirs and crying." -->
+<!-- @phrase value="flying FPV drones." -->
 <!-- /@header -->
 
 

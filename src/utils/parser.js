@@ -78,6 +78,8 @@ function extractHeader(content) {
     date: dateMatch ? dateMatch[1] : '',
     title: titleMatch ? titleMatch[1] : '',
     subtitle: subtitleMatch ? subtitleMatch[1] : '',
+    // Extra lines the subtitle cycles through after itself, in order
+    phrases: [...block.matchAll(/<!-- @phrase value="([^"]*)" -->/g)].map((m) => m[1]),
   };
 }
 
