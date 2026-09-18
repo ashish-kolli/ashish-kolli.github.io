@@ -31,7 +31,7 @@
 
 /**
  * Product Engineer Proposal - Single File Bundle
- * Generated: 2026-09-18T04:29:39.409Z
+ * Generated: 2026-09-18T04:33:54.102Z
  *
  * This file is auto-generated. Do not edit directly.
  * To modify, edit the source files and run: node src/utils/build.js
@@ -42,7 +42,7 @@
 // ============================================================================
 
 // Auto-generated from content/projects/photography.md
-// Generated: 2026-09-18T04:29:39.387Z
+// Generated: 2026-09-18T04:33:54.080Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -6949,7 +6949,8 @@ const WorkList = ({ items }) => {
  *
  * Bullet-journal dots that appear around the cursor and fade back out after it passes.
  * - Dots sit on a fixed page grid (every DOT_SPACING px), so they stay put while scrolling
- * - Brightest at the cursor, dimming steadily toward the rim of the spotlight
+ * - Brightest (and slightly larger) at the cursor, dropping off steeply toward the rim of
+ *   the spotlight, so the center reads as a hot spot
  * - Dots fade in quickly inside the spotlight and fade out slowly once it moves on,
  *   leaving a short trail; everywhere else the page stays clean
  * - When the cursor rests in one place, a finer grid (half the spacing) fills in inside
@@ -6968,11 +6969,15 @@ const WorkList = ({ items }) => {
 
 
 const DOT_SPACING = 24;          // px - distance between dots
-const DOT_RADIUS = 0.75;         // px - size of each dot
-const DOT_OPACITY = 0.85;        // strength of a fully lit dot (0-1)
+const DOT_RADIUS = 0.7;          // px - size of a dim dot
+const DOT_RADIUS_BRIGHT = 1.15;  // px - size of a fully lit dot; dots grow as they brighten
+const DOT_OPACITY = 1;           // strength of a fully lit dot (0-1)
 const DOT_RGB = '249, 115, 22';  // orange, same as the Resume button's gradient
 const SPOTLIGHT_RADIUS = 40;     // px - dots within this distance of the cursor light up
-const EDGE_STRENGTH = 0.15;      // brightness of the outermost dots relative to the center (0-1)
+const EDGE_STRENGTH = 0.05;      // brightness of the outermost dots relative to the center (0-1)
+const CORE_RADIUS = 18;          // px - dots this close to the cursor are fully lit. Just over half a
+                                 // cell's diagonal, so the dots nearest the cursor always are
+const FALLOFF_POWER = 2;         // how steeply brightness drops from the core to the rim: higher = more contrast
 const FADE_IN_MS = 60;           // how quickly dots appear
 const FADE_OUT_MS = 450;         // how slowly dots fade after the cursor moves on
 const RESIZE_STEP = 128;         // px - canvas grows/shrinks in steps to avoid constant reallocation
@@ -7052,6 +7057,12 @@ const CursorSpotlight = () => {
       if (strength > dot.target) dot.target = strength;
     };
     const isEven = (n) => ((n % 2) + 2) % 2 === 0;
+    // Brightness by distance from the cursor: full inside the core, then a steep drop to
+    // EDGE_STRENGTH at the rim
+    const falloff = (distance) => {
+      const t = Math.min(Math.max((distance - CORE_RADIUS) / (SPOTLIGHT_RADIUS - CORE_RADIUS), 0), 1);
+      return EDGE_STRENGTH + (1 - EDGE_STRENGTH) * (1 - t) ** FALLOFF_POWER;
+    };
 
     const draw = (time) => {
       frame = null;
@@ -7071,8 +7082,7 @@ const CursorSpotlight = () => {
             const distance = Math.hypot(col * DOT_SPACING - px, row * DOT_SPACING - py);
             if (distance >= SPOTLIGHT_RADIUS) continue;
 
-            // Gradient: full brightness at the cursor, dimming evenly out to EDGE_STRENGTH at the rim
-            light(`${col},${row}`, col * DOT_SPACING, row * DOT_SPACING, 1 - (1 - EDGE_STRENGTH) * (distance / SPOTLIGHT_RADIUS));
+            light(`${col},${row}`, col * DOT_SPACING, row * DOT_SPACING, falloff(distance));
           }
         }
 
@@ -7084,8 +7094,7 @@ const CursorSpotlight = () => {
               if (isEven(col) && isEven(row)) continue;
               const distance = Math.hypot(col * SUBDIV_SPACING - px, row * SUBDIV_SPACING - py);
               if (distance >= SPOTLIGHT_RADIUS) continue;
-              const falloff = 1 - (1 - EDGE_STRENGTH) * (distance / SPOTLIGHT_RADIUS);
-              light(`f${col},${row}`, col * SUBDIV_SPACING, row * SUBDIV_SPACING, SUBDIV_STRENGTH * falloff, SUBDIV_FADE_IN_MS);
+              light(`f${col},${row}`, col * SUBDIV_SPACING, row * SUBDIV_SPACING, SUBDIV_STRENGTH * falloff(distance), SUBDIV_FADE_IN_MS);
             }
           }
         }
@@ -7142,7 +7151,7 @@ const CursorSpotlight = () => {
         else canvas.style.visibility = 'hidden';
       } else {
         // Size and place the canvas to just cover the visible dots
-        const pad = Math.ceil(DOT_RADIUS) + 2;
+        const pad = Math.ceil(DOT_RADIUS_BRIGHT) + 2;
         const originX = minX - pad;
         const originY = minY - pad;
         sizeCanvas(maxX - minX + pad * 2 + 1, maxY - minY + pad * 2 + 1);
@@ -7155,7 +7164,8 @@ const CursorSpotlight = () => {
           if (!dot.onScreen) return;
           ctx.globalAlpha = DOT_OPACITY * dot.alpha;
           ctx.beginPath();
-          ctx.arc(dot.x - originX + 0.5, dot.y - originY + 0.5, DOT_RADIUS, 0, Math.PI * 2);
+          const radius = DOT_RADIUS + (DOT_RADIUS_BRIGHT - DOT_RADIUS) * dot.alpha;
+          ctx.arc(dot.x - originX + 0.5, dot.y - originY + 0.5, radius, 0, Math.PI * 2);
           ctx.fill();
         });
         ctx.globalAlpha = 1;
