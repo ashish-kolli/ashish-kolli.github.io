@@ -31,7 +31,7 @@
 
 /**
  * Product Engineer Proposal - Single File Bundle
- * Generated: 2026-09-18T04:33:54.168Z
+ * Generated: 2026-09-18T04:41:23.191Z
  *
  * This file is auto-generated. Do not edit directly.
  * To modify, edit the source files and run: node src/utils/build.js
@@ -42,7 +42,7 @@
 // ============================================================================
 
 // Auto-generated from content/projects/readyvault.md
-// Generated: 2026-09-18T04:33:54.145Z
+// Generated: 2026-09-18T04:41:23.168Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -7012,18 +7012,19 @@ const WorkList = ({ items }) => {
  *
  * Bullet-journal dots that appear around the cursor and fade back out after it passes.
  * - Dots sit on a fixed page grid (every DOT_SPACING px), so they stay put while scrolling
- * - Brightest (and slightly larger) at the cursor, dropping off steeply toward the rim of
- *   the spotlight, so the center reads as a hot spot
+ * - Every dot's brightness (and size) depends only on its distance from the cursor: the
+ *   nearest dots are fully lit and brightness falls off steeply and evenly outward
  * - Dots fade in quickly inside the spotlight and fade out slowly once it moves on,
  *   leaving a short trail; everywhere else the page stays clean
- * - When the cursor rests in one place, a finer grid (half the spacing) fills in inside
- *   the spotlight, and a ripple rings out from it every second, lighting the dots it
- *   passes over. Moving again dissolves the fine grid back to the regular one
+ * - When the cursor rests in one place it slowly bores into the page: finer grids fill in
+ *   one after another, each twice as dense and confined to a smaller circle, so the
+ *   center gets tighter and denser the longer it stays. A ripple also rings out every
+ *   second. Moving again dissolves the fine grids back to the regular one
  *
  * Performance:
  * - The canvas only covers the area where dots are currently visible, and is released when none are
  * - The animation loop runs only while dots are fading or a ripple is spreading, and stops
- *   when idle; the fine grid and ripples are scheduled with timers, so a resting cursor
+ *   when idle; the fine grids and ripples are scheduled with timers, so a resting cursor
  *   costs one short animation per second
  *
  * Only rendered on devices with a real mouse (hover + fine pointer). Phones, tablets,
@@ -7038,9 +7039,7 @@ const DOT_OPACITY = 1;           // strength of a fully lit dot (0-1)
 const DOT_RGB = '249, 115, 22';  // orange, same as the Resume button's gradient
 const SPOTLIGHT_RADIUS = 40;     // px - dots within this distance of the cursor light up
 const EDGE_STRENGTH = 0.05;      // brightness of the outermost dots relative to the center (0-1)
-const CORE_RADIUS = 18;          // px - dots this close to the cursor are fully lit. Just over half a
-                                 // cell's diagonal, so the dots nearest the cursor always are
-const FALLOFF_POWER = 2;         // how steeply brightness drops from the core to the rim: higher = more contrast
+const FALLOFF_POWER = 2;         // how steeply brightness drops toward the rim: higher = more contrast
 const FADE_IN_MS = 60;           // how quickly dots appear
 const FADE_OUT_MS = 450;         // how slowly dots fade after the cursor moves on
 const RESIZE_STEP = 128;         // px - canvas grows/shrinks in steps to avoid constant reallocation
@@ -7050,10 +7049,18 @@ const RIPPLE_START = SPOTLIGHT_RADIUS * 0.6; // px - ripple begins just inside t
 const RIPPLE_END = 130;          // px - radius where the ripple has faded away
 const RIPPLE_BAND = 16;          // px - half-width of the ring of dots a ripple lights
 const RIPPLE_STRENGTH = 0.9;     // brightness of the ripple ring at its start (0-1)
-const SUBDIV_DELAY_MS = 500;     // a resting cursor reveals the fine grid after this long
-const SUBDIV_SPACING = DOT_SPACING / 2; // px - the fine grid splits each cell in four
-const SUBDIV_STRENGTH = 0.75;    // brightness of fine-grid dots relative to the regular ones
-const SUBDIV_FADE_IN_MS = 350;   // the fine grid eases in more gently than the spotlight
+// Finer grids a resting cursor reveals, in order. Each halves the spacing of the one before
+// and covers a smaller circle, so the dots concentrate toward the center over time. They
+// only add density: brightness always comes from the same radial falloff.
+//   delay   - how long the cursor must rest before this level appears (ms)
+//   spacing - distance between its dots (px)
+//   radius  - how far from the cursor it reaches (px)
+const SUBDIV_LEVELS = [
+  { delay: 500,  spacing: DOT_SPACING / 2, radius: SPOTLIGHT_RADIUS },
+  { delay: 2000, spacing: DOT_SPACING / 4, radius: SPOTLIGHT_RADIUS * 0.65 },
+  { delay: 3000, spacing: DOT_SPACING / 8, radius: SPOTLIGHT_RADIUS * 0.35 },
+];
+const SUBDIV_FADE_IN_MS = 450;   // fine grids ease in more gently than the spotlight
 
 const spotlightSupported = () =>
   typeof window !== 'undefined' &&
@@ -7077,7 +7084,7 @@ const CursorSpotlight = () => {
     let frame = null;
     let lastTime = null;
     let rippleTimer = null;
-    let subdivTimer = null;
+    let subdivTimers = [];
     let lastMove = 0;       // when the cursor last moved or the page last scrolled
 
     // Canvas backing size, in CSS px
@@ -7120,10 +7127,12 @@ const CursorSpotlight = () => {
       if (strength > dot.target) dot.target = strength;
     };
     const isEven = (n) => ((n % 2) + 2) % 2 === 0;
-    // Brightness by distance from the cursor: full inside the core, then a steep drop to
-    // EDGE_STRENGTH at the rim
-    const falloff = (distance) => {
-      const t = Math.min(Math.max((distance - CORE_RADIUS) / (SPOTLIGHT_RADIUS - CORE_RADIUS), 0), 1);
+    // Brightness by distance from the cursor, the same for every dot on every grid: full
+    // within `core`, then a steep, even drop to EDGE_STRENGTH at the rim. `core` is half the
+    // diagonal of the finest grid showing, so the dots nearest the cursor are always the
+    // fully lit ones - and as finer grids appear, the lit center tightens.
+    const falloff = (distance, core) => {
+      const t = Math.min(Math.max((distance - core) / (SPOTLIGHT_RADIUS - core), 0), 1);
       return EDGE_STRENGTH + (1 - EDGE_STRENGTH) * (1 - t) ** FALLOFF_POWER;
     };
 
@@ -7140,27 +7149,35 @@ const CursorSpotlight = () => {
       if (mouseInside) {
         const px = mouse.x + scrollX; // cursor in page coordinates
         const py = mouse.y + scrollY;
+
+        // Which finer grids are showing, and how tight the fully lit center is
+        const rested = time - lastMove;
+        const levels = SUBDIV_LEVELS.filter((level) => rested >= level.delay);
+        const finest = levels.length > 0 ? levels[levels.length - 1].spacing : DOT_SPACING;
+        const core = finest * Math.SQRT1_2;
+
         for (let col = Math.ceil((px - SPOTLIGHT_RADIUS) / DOT_SPACING); col * DOT_SPACING <= px + SPOTLIGHT_RADIUS; col++) {
           for (let row = Math.ceil((py - SPOTLIGHT_RADIUS) / DOT_SPACING); row * DOT_SPACING <= py + SPOTLIGHT_RADIUS; row++) {
             const distance = Math.hypot(col * DOT_SPACING - px, row * DOT_SPACING - py);
             if (distance >= SPOTLIGHT_RADIUS) continue;
 
-            light(`${col},${row}`, col * DOT_SPACING, row * DOT_SPACING, falloff(distance));
+            light(`${col},${row}`, col * DOT_SPACING, row * DOT_SPACING, falloff(distance, core));
           }
         }
 
-        // Resting: fill in the fine grid inside the spotlight, with the same falloff. Points
-        // that land on the regular grid are skipped, since those dots are already lit.
-        if (time - lastMove >= SUBDIV_DELAY_MS) {
-          for (let col = Math.ceil((px - SPOTLIGHT_RADIUS) / SUBDIV_SPACING); col * SUBDIV_SPACING <= px + SPOTLIGHT_RADIUS; col++) {
-            for (let row = Math.ceil((py - SPOTLIGHT_RADIUS) / SUBDIV_SPACING); row * SUBDIV_SPACING <= py + SPOTLIGHT_RADIUS; row++) {
+        // Resting: fill in each finer grid that is due. Points that land on a coarser grid
+        // are skipped, since those dots are already lit.
+        levels.forEach((level, index) => {
+          const { spacing, radius } = level;
+          for (let col = Math.ceil((px - radius) / spacing); col * spacing <= px + radius; col++) {
+            for (let row = Math.ceil((py - radius) / spacing); row * spacing <= py + radius; row++) {
               if (isEven(col) && isEven(row)) continue;
-              const distance = Math.hypot(col * SUBDIV_SPACING - px, row * SUBDIV_SPACING - py);
-              if (distance >= SPOTLIGHT_RADIUS) continue;
-              light(`f${col},${row}`, col * SUBDIV_SPACING, row * SUBDIV_SPACING, SUBDIV_STRENGTH * falloff(distance), SUBDIV_FADE_IN_MS);
+              const distance = Math.hypot(col * spacing - px, row * spacing - py);
+              if (distance >= radius) continue;
+              light(`f${index}:${col},${row}`, col * spacing, row * spacing, falloff(distance, core), SUBDIV_FADE_IN_MS);
             }
           }
-        }
+        });
       }
 
       // Ripples: a ring that spreads outward and dims, lighting the dots it crosses
@@ -7257,12 +7274,12 @@ const CursorSpotlight = () => {
       rippleTimer = mouseInside ? setTimeout(emitRipple, RIPPLE_INTERVAL_MS) : null;
     };
 
-    // Movement resets the rest clock; once the cursor has rested long enough, wake the
-    // loop so the fine grid can fade in (the loop itself stays asleep until then).
+    // Movement resets the rest clock; each time the cursor has rested long enough for the
+    // next level, wake the loop so it can fade in (the loop stays asleep in between).
     const restartRest = () => {
       lastMove = performance.now();
-      clearTimeout(subdivTimer);
-      subdivTimer = mouseInside ? setTimeout(wake, SUBDIV_DELAY_MS + 20) : null;
+      subdivTimers.forEach(clearTimeout);
+      subdivTimers = mouseInside ? SUBDIV_LEVELS.map((level) => setTimeout(wake, level.delay + 20)) : [];
     };
 
     const handleMove = (e) => {
@@ -7297,7 +7314,7 @@ const CursorSpotlight = () => {
     return () => {
       if (frame !== null) cancelAnimationFrame(frame);
       clearTimeout(rippleTimer);
-      clearTimeout(subdivTimer);
+      subdivTimers.forEach(clearTimeout);
       window.removeEventListener('mousemove', handleMove);
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
