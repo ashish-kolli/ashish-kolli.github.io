@@ -31,7 +31,7 @@
 
 /**
  * Product Engineer Proposal - Single File Bundle
- * Generated: 2026-09-18T04:26:36.399Z
+ * Generated: 2026-09-18T04:29:39.203Z
  *
  * This file is auto-generated. Do not edit directly.
  * To modify, edit the source files and run: node src/utils/build.js
@@ -42,7 +42,7 @@
 // ============================================================================
 
 // Auto-generated from content/projects/morphosis-payette.md
-// Generated: 2026-09-18T04:26:36.375Z
+// Generated: 2026-09-18T04:29:39.180Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -7015,14 +7015,15 @@ const WorkList = ({ items }) => {
  * - Brightest at the cursor, dimming steadily toward the rim of the spotlight
  * - Dots fade in quickly inside the spotlight and fade out slowly once it moves on,
  *   leaving a short trail; everywhere else the page stays clean
- * - When the cursor rests in one place, a ripple rings out from it every second,
- *   lighting the dots it passes over
+ * - When the cursor rests in one place, a finer grid (half the spacing) fills in inside
+ *   the spotlight, and a ripple rings out from it every second, lighting the dots it
+ *   passes over. Moving again dissolves the fine grid back to the regular one
  *
  * Performance:
  * - The canvas only covers the area where dots are currently visible, and is released when none are
  * - The animation loop runs only while dots are fading or a ripple is spreading, and stops
- *   when idle; ripples are scheduled with a timer, so a resting cursor costs one short
- *   animation per second
+ *   when idle; the fine grid and ripples are scheduled with timers, so a resting cursor
+ *   costs one short animation per second
  *
  * Only rendered on devices with a real mouse (hover + fine pointer). Phones, tablets,
  * and reduced-motion users get nothing at all.
@@ -7044,6 +7045,10 @@ const RIPPLE_START = SPOTLIGHT_RADIUS * 0.6; // px - ripple begins just inside t
 const RIPPLE_END = 130;          // px - radius where the ripple has faded away
 const RIPPLE_BAND = 16;          // px - half-width of the ring of dots a ripple lights
 const RIPPLE_STRENGTH = 0.9;     // brightness of the ripple ring at its start (0-1)
+const SUBDIV_DELAY_MS = 500;     // a resting cursor reveals the fine grid after this long
+const SUBDIV_SPACING = DOT_SPACING / 2; // px - the fine grid splits each cell in four
+const SUBDIV_STRENGTH = 0.75;    // brightness of fine-grid dots relative to the regular ones
+const SUBDIV_FADE_IN_MS = 350;   // the fine grid eases in more gently than the spotlight
 
 const spotlightSupported = () =>
   typeof window !== 'undefined' &&
@@ -7062,11 +7067,13 @@ const CursorSpotlight = () => {
 
     const mouse = { x: 0, y: 0 };
     let mouseInside = false;
-    const dots = new Map(); // "col,row" -> { col, row, alpha, target, x, y, onScreen }
+    const dots = new Map(); // key -> { px, py, fadeIn, alpha, target, x, y, onScreen }
     const ripples = [];     // { x, y, start } - page coordinates and start time
     let frame = null;
     let lastTime = null;
     let rippleTimer = null;
+    let subdivTimer = null;
+    let lastMove = 0;       // when the cursor last moved or the page last scrolled
 
     // Canvas backing size, in CSS px
     let canvasW = 0;
@@ -7097,16 +7104,17 @@ const CursorSpotlight = () => {
       canvasH = 0;
     };
 
-    // Raise a dot's brightness target for this frame (never lowers one another effect set)
-    const light = (col, row, strength) => {
-      const key = `${col},${row}`;
+    // Raise a dot's brightness target for this frame (never lowers one another effect set).
+    // px/py are the dot's fixed page position; fadeIn is how quickly it appears.
+    const light = (key, px, py, strength, fadeIn = FADE_IN_MS) => {
       let dot = dots.get(key);
       if (!dot) {
-        dot = { col, row, alpha: 0, target: 0 };
+        dot = { px, py, fadeIn, alpha: 0, target: 0 };
         dots.set(key, dot);
       }
       if (strength > dot.target) dot.target = strength;
     };
+    const isEven = (n) => ((n % 2) + 2) % 2 === 0;
 
     const draw = (time) => {
       frame = null;
@@ -7127,7 +7135,21 @@ const CursorSpotlight = () => {
             if (distance >= SPOTLIGHT_RADIUS) continue;
 
             // Gradient: full brightness at the cursor, dimming evenly out to EDGE_STRENGTH at the rim
-            light(col, row, 1 - (1 - EDGE_STRENGTH) * (distance / SPOTLIGHT_RADIUS));
+            light(`${col},${row}`, col * DOT_SPACING, row * DOT_SPACING, 1 - (1 - EDGE_STRENGTH) * (distance / SPOTLIGHT_RADIUS));
+          }
+        }
+
+        // Resting: fill in the fine grid inside the spotlight, with the same falloff. Points
+        // that land on the regular grid are skipped, since those dots are already lit.
+        if (time - lastMove >= SUBDIV_DELAY_MS) {
+          for (let col = Math.ceil((px - SPOTLIGHT_RADIUS) / SUBDIV_SPACING); col * SUBDIV_SPACING <= px + SPOTLIGHT_RADIUS; col++) {
+            for (let row = Math.ceil((py - SPOTLIGHT_RADIUS) / SUBDIV_SPACING); row * SUBDIV_SPACING <= py + SPOTLIGHT_RADIUS; row++) {
+              if (isEven(col) && isEven(row)) continue;
+              const distance = Math.hypot(col * SUBDIV_SPACING - px, row * SUBDIV_SPACING - py);
+              if (distance >= SPOTLIGHT_RADIUS) continue;
+              const falloff = 1 - (1 - EDGE_STRENGTH) * (distance / SPOTLIGHT_RADIUS);
+              light(`f${col},${row}`, col * SUBDIV_SPACING, row * SUBDIV_SPACING, SUBDIV_STRENGTH * falloff, SUBDIV_FADE_IN_MS);
+            }
           }
         }
       }
@@ -7148,7 +7170,7 @@ const CursorSpotlight = () => {
         for (let col = Math.ceil((ripple.x - reach) / DOT_SPACING); col * DOT_SPACING <= ripple.x + reach; col++) {
           for (let row = Math.ceil((ripple.y - reach) / DOT_SPACING); row * DOT_SPACING <= ripple.y + reach; row++) {
             const offRing = Math.abs(Math.hypot(col * DOT_SPACING - ripple.x, row * DOT_SPACING - ripple.y) - radius);
-            if (offRing < RIPPLE_BAND) light(col, row, ringStrength * (1 - offRing / RIPPLE_BAND));
+            if (offRing < RIPPLE_BAND) light(`${col},${row}`, col * DOT_SPACING, row * DOT_SPACING, ringStrength * (1 - offRing / RIPPLE_BAND));
           }
         }
       }
@@ -7160,7 +7182,7 @@ const CursorSpotlight = () => {
       let maxX = -Infinity;
       let maxY = -Infinity;
       dots.forEach((dot, key) => {
-        const duration = dot.target > dot.alpha ? FADE_IN_MS : FADE_OUT_MS;
+        const duration = dot.target > dot.alpha ? dot.fadeIn : FADE_OUT_MS;
         dot.alpha += (dot.target - dot.alpha) * (1 - Math.exp(-dt / duration));
         if (dot.target === 0 && dot.alpha < 0.01) {
           dots.delete(key);
@@ -7168,8 +7190,8 @@ const CursorSpotlight = () => {
         }
         if (Math.abs(dot.target - dot.alpha) > 0.005) animating = true;
 
-        dot.x = Math.round(dot.col * DOT_SPACING - scrollX); // viewport position
-        dot.y = Math.round(dot.row * DOT_SPACING - scrollY);
+        dot.x = Math.round(dot.px - scrollX); // viewport position
+        dot.y = Math.round(dot.py - scrollY);
         dot.onScreen = dot.x > -8 && dot.y > -8 && dot.x < innerWidth + 8 && dot.y < innerHeight + 8;
         if (!dot.onScreen) return;
         minX = Math.min(minX, dot.x);
@@ -7225,19 +7247,30 @@ const CursorSpotlight = () => {
       rippleTimer = mouseInside ? setTimeout(emitRipple, RIPPLE_INTERVAL_MS) : null;
     };
 
+    // Movement resets the rest clock; once the cursor has rested long enough, wake the
+    // loop so the fine grid can fade in (the loop itself stays asleep until then).
+    const restartRest = () => {
+      lastMove = performance.now();
+      clearTimeout(subdivTimer);
+      subdivTimer = mouseInside ? setTimeout(wake, SUBDIV_DELAY_MS + 20) : null;
+    };
+
     const handleMove = (e) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
       mouseInside = true;
+      restartRest();
       restartRippleWait();
       wake();
     };
     const handleLeave = () => {
       mouseInside = false;
+      restartRest();
       restartRippleWait();
       wake();
     };
     const handleScroll = () => {
+      restartRest();
       restartRippleWait();
       if (dots.size > 0) wake();
     };
@@ -7254,6 +7287,7 @@ const CursorSpotlight = () => {
     return () => {
       if (frame !== null) cancelAnimationFrame(frame);
       clearTimeout(rippleTimer);
+      clearTimeout(subdivTimer);
       window.removeEventListener('mousemove', handleMove);
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
