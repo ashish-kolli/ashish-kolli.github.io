@@ -62,7 +62,7 @@ Component marker reference: see CLAUDE.md
 
 ---
 
-## 3. Capabilities
+## 3. Skills
 
 <!-- @terminal title="ashish/pm-stack.txt" command="cat" variant="default" -->
 - **[Capability group]** → [Skills, methods, or frameworks in this group]
@@ -101,7 +101,7 @@ Component marker reference: see CLAUDE.md
 
 ---
 
-## 5. Maker
+## 5. Making
 
 [Section intro — 2–3 sentences on the architecture and fabrication background, and how it shows up in the way you build product.]
 

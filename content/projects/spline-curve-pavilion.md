@@ -9,7 +9,7 @@ Previous copy is in git: `git show 97065c3:content/projects/spline-curve-pavilio
 ================================================================================
 -->
 
-<!-- @page title="Spline-Curve Pavilion" eyebrow="Maker · Design build" meta="[Role] · [Timeline] · [Context]" back="Maker" backHref="./#maker" -->
+<!-- @page title="Spline-Curve Pavilion" eyebrow="Making · Design build" meta="[Role] · [Timeline] · [Context]" back="Making" backHref="./#making" -->
 [Positioning line — one or two sentences: what this is, who it was for, and why it mattered.]
 <!-- /@page -->
 

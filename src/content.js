@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-18T02:49:58.965Z
+// Generated: 2026-09-18T02:55:51.279Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -236,7 +236,7 @@ const CONTENT = {
     {
       "type": "section",
       "number": 3,
-      "title": "Capabilities",
+      "title": "Skills",
       "subsections": [],
       "intro": [
         {
@@ -291,7 +291,7 @@ const CONTENT = {
     {
       "type": "section",
       "number": 5,
-      "title": "Maker",
+      "title": "Making",
       "subsections": [],
       "intro": [
         {

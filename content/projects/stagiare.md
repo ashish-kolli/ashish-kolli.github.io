@@ -9,7 +9,7 @@ Previous copy is in git: `git show 97065c3:content/projects/stagiare.md`
 ================================================================================
 -->
 
-<!-- @page title="Stagiare" eyebrow="Maker · Studio" meta="[Role] · [Timeline] · [Context]" back="Maker" backHref="./#maker" -->
+<!-- @page title="Stagiare" eyebrow="Making · Studio" meta="[Role] · [Timeline] · [Context]" back="Making" backHref="./#making" -->
 [Positioning line — one or two sentences: what this is, who it was for, and why it mattered.]
 <!-- /@page -->
 
