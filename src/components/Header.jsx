@@ -343,9 +343,9 @@ const Header = ({ data }) => {
                 alignItems: 'center',
                 gap: '1.25rem',
                 padding: '1rem 1.5rem',
-                background: COLORS.ink[600], // dark gray
+                background: COLORS.ink[900], // same black as the name above it
                 borderRadius: EFFECTS.radius.xl,
-                border: `1px solid ${cardHovered ? COLORS.accent.primary : COLORS.ink[700]}`,
+                border: `1px solid ${cardHovered ? COLORS.accent.primary : COLORS.ink[900]}`,
                 boxShadow: EFFECTS.shadow.lg,
                 cursor: 'pointer',
                 transform: cardHovered ? 'translateY(-4px)' : 'translateY(0)',
@@ -360,9 +360,11 @@ const Header = ({ data }) => {
                   borderRadius: EFFECTS.radius.full,
                   overflow: 'hidden',
                   border: `3px solid ${COLORS.accent.primary}`,
+                  // Purple behind the photo, not near-white: at the circle's anti-aliased edge the
+                  // background shows through, and light gray read as a halo on the black card
                   background: imageError
                     ? `linear-gradient(135deg, ${COLORS.accent.primary} 0%, ${COLORS.accent.light} 100%)`
-                    : COLORS.ink[100],
+                    : COLORS.accent.primary,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -406,11 +408,11 @@ const Header = ({ data }) => {
                         width: '28px',
                         height: '28px',
                         borderRadius: EFFECTS.radius.md,
-                        background: COLORS.surface.elevated,
+                        background: 'transparent',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        color: COLORS.ink[500],
+                        color: '#FFFFFF', // white logos on the black card
                         textDecoration: 'none',
                         transition: 'all 0.2s ease',
                       }}
@@ -433,11 +435,11 @@ const Header = ({ data }) => {
                         width: '28px',
                         height: '28px',
                         borderRadius: EFFECTS.radius.md,
-                        background: COLORS.surface.elevated,
+                        background: 'transparent',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        color: COLORS.ink[500],
+                        color: '#FFFFFF', // white logos on the black card
                         textDecoration: 'none',
                         transition: 'all 0.2s ease',
                       }}
@@ -458,11 +460,11 @@ const Header = ({ data }) => {
                         width: '28px',
                         height: '28px',
                         borderRadius: EFFECTS.radius.md,
-                        background: COLORS.surface.elevated,
+                        background: 'transparent',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        color: COLORS.ink[500],
+                        color: '#FFFFFF', // white logos on the black card
                         textDecoration: 'none',
                         transition: 'all 0.2s ease',
                       }}
@@ -483,11 +485,11 @@ const Header = ({ data }) => {
                         width: '28px',
                         height: '28px',
                         borderRadius: EFFECTS.radius.md,
-                        background: COLORS.surface.elevated,
+                        background: 'transparent',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        color: COLORS.ink[500],
+                        color: '#FFFFFF', // white logos on the black card
                         textDecoration: 'none',
                         transition: 'all 0.2s ease',
                       }}
