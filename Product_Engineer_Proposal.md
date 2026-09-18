@@ -62,7 +62,46 @@ Component marker reference: see CLAUDE.md
 
 ---
 
-## 3. Maker
+## 3. Capabilities
+
+<!-- @terminal title="ashish/pm-stack.txt" command="cat" variant="default" -->
+- **[Capability group]** → [Skills, methods, or frameworks in this group]
+- **[Capability group]** → [Skills, methods, or frameworks in this group]
+- **[Capability group]** → [Skills, methods, or frameworks in this group]
+- **[Capability group]** → [Skills, methods, or frameworks in this group]
+- **[Capability group]** → [Skills, methods, or frameworks in this group]
+- **[Capability group]** → [Skills, methods, or frameworks in this group]
+- **[Tools]** → [The software you actually work in]
+<!-- /@terminal -->
+
+---
+
+## 4. About
+
+[Opening — 2–3 sentences: who you are now, the training behind it, and the through-line across your roles.]
+
+[Role paragraph 1 — lead with the bolded company and the one thing that mattered most there, then the evidence.]
+
+[Role paragraph 2 — same shape: company, the shift in scale or scope, the proof.]
+
+[Role paragraph 3 — same shape.]
+
+[Role paragraph 4 — same shape, landing on the role closest to product.]
+
+[Closing line — the sentence you want a hiring manager to remember.]
+
+<!-- @stats -->
+<!-- @stat value="[00]" label="[What this number measures]" source="[Company · context]" -->
+<!-- @stat value="[00]" label="[What this number measures]" source="[Company · context]" -->
+<!-- @stat value="[00]" label="[What this number measures]" source="[Company · context]" -->
+<!-- @stat value="[00]" label="[What this number measures]" source="[Company · context]" -->
+<!-- /@stats -->
+
+<!-- @image src="" caption="[Optional — a photo of you working, or an image that sets the tone for this section]" width="wide" -->
+
+---
+
+## 5. Maker
 
 [Section intro — 2–3 sentences on the architecture and fabrication background, and how it shows up in the way you build product.]
 
@@ -97,42 +136,3 @@ Component marker reference: see CLAUDE.md
 <!-- /@project -->
 
 <!-- /@projects -->
-
----
-
-## 4. About
-
-[Opening — 2–3 sentences: who you are now, the training behind it, and the through-line across your roles.]
-
-[Role paragraph 1 — lead with the bolded company and the one thing that mattered most there, then the evidence.]
-
-[Role paragraph 2 — same shape: company, the shift in scale or scope, the proof.]
-
-[Role paragraph 3 — same shape.]
-
-[Role paragraph 4 — same shape, landing on the role closest to product.]
-
-[Closing line — the sentence you want a hiring manager to remember.]
-
-<!-- @stats -->
-<!-- @stat value="[00]" label="[What this number measures]" source="[Company · context]" -->
-<!-- @stat value="[00]" label="[What this number measures]" source="[Company · context]" -->
-<!-- @stat value="[00]" label="[What this number measures]" source="[Company · context]" -->
-<!-- @stat value="[00]" label="[What this number measures]" source="[Company · context]" -->
-<!-- /@stats -->
-
-<!-- @image src="" caption="[Optional — a photo of you working, or an image that sets the tone for this section]" width="wide" -->
-
----
-
-## 5. Capabilities
-
-<!-- @terminal title="ashish/pm-stack.txt" command="cat" variant="default" -->
-- **[Capability group]** → [Skills, methods, or frameworks in this group]
-- **[Capability group]** → [Skills, methods, or frameworks in this group]
-- **[Capability group]** → [Skills, methods, or frameworks in this group]
-- **[Capability group]** → [Skills, methods, or frameworks in this group]
-- **[Capability group]** → [Skills, methods, or frameworks in this group]
-- **[Capability group]** → [Skills, methods, or frameworks in this group]
-- **[Tools]** → [The software you actually work in]
-<!-- /@terminal -->

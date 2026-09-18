@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-18T02:16:57.631Z
+// Generated: 2026-09-18T02:19:11.929Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -236,17 +236,13 @@ const CONTENT = {
     {
       "type": "section",
       "number": 3,
-      "title": "Maker",
+      "title": "Capabilities",
       "subsections": [],
       "intro": [
         {
-          "type": "paragraph",
-          "text": "[Section intro — 2–3 sentences on the architecture and fabrication background, and how it shows up in the way you build product.]"
-        },
-        {
           "type": "component",
-          "component": "projects",
-          "param": "maker"
+          "component": "terminal",
+          "param": ""
         }
       ]
     },
@@ -295,13 +291,17 @@ const CONTENT = {
     {
       "type": "section",
       "number": 5,
-      "title": "Capabilities",
+      "title": "Maker",
       "subsections": [],
       "intro": [
         {
+          "type": "paragraph",
+          "text": "[Section intro — 2–3 sentences on the architecture and fabrication background, and how it shows up in the way you build product.]"
+        },
+        {
           "type": "component",
-          "component": "terminal",
-          "param": ""
+          "component": "projects",
+          "param": "maker"
         }
       ]
     },
