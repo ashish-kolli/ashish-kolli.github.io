@@ -124,6 +124,7 @@ function build() {
     'ProjectCards',
     'ProjectHeader',
     'Figure',
+    'PageIntro',
   ];
 
   // Read all components
