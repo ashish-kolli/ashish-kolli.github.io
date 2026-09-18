@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Hero film reel: web copies of the photo bank.
+Hero photo reel: web copies of the photo bank.
 
 Drop full-size photos (straight off a phone or camera) into assets/photos/reel/.
 This writes a web-sized copy of each into assets/photos/reel-web/, which is what the
@@ -76,7 +76,7 @@ def main():
             os.remove(os.path.join(OUTPUT, existing))
             print(f'  removed reel-web/{existing} (original is gone)')
 
-    print(f'✓ Film reel: {len(wanted)} photo(s)')
+    print(f'✓ Photo reel: {len(wanted)} photo(s)')
 
 
 if __name__ == '__main__':

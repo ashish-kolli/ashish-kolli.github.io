@@ -7,7 +7,7 @@
  * - Geometric accent elements
  * - Magazine cover composition
  */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import FilmScreen from './FilmScreen';
 import { COLORS, FONTS, TYPE_SCALE, EFFECTS, LAYOUT, SPACE } from '../design-tokens';
 
@@ -30,6 +30,58 @@ const Header = ({ data }) => {
   const [imageError, setImageError] = useState(false);
   const [cardHovered, setCardHovered] = useState(false);
   const [resumeHovered, setResumeHovered] = useState(false);
+
+  // The film strip's leader runs behind the hero text; it needs to be gone before it reaches
+  // each piece of text on its row. Measure where the title, the subtitle (as it will read once
+  // fully typed), and the contact card end, relative to the leader's top-left corner.
+  const heroGridRef = useRef(null);
+  const titleRef = useRef(null);
+  const subtitleRef = useRef(null);
+  const contactRef = useRef(null);
+  const reelRef = useRef(null);
+  const [keepOuts, setKeepOuts] = useState([]);
+
+  useEffect(() => {
+    const measure = () => {
+      const leader = reelRef.current?.querySelector('.film-leader');
+      if (!leader || leader.offsetParent === null) return; // hidden on phones
+      const origin = leader.getBoundingClientRect();
+      const rects = [];
+      if (titleRef.current) rects.push(titleRef.current.getBoundingClientRect());
+      if (contactRef.current) rects.push(contactRef.current.getBoundingClientRect());
+
+      // The subtitle types out over a couple of seconds, so lay out its finished text in an
+      // invisible copy and measure each line of that instead
+      const subtitleEl = subtitleRef.current;
+      if (subtitleEl && subtitle) {
+        const copy = subtitleEl.cloneNode(false);
+        copy.style.position = 'absolute';
+        copy.style.visibility = 'hidden';
+        copy.style.left = `${subtitleEl.offsetLeft}px`;
+        copy.style.top = `${subtitleEl.offsetTop}px`;
+        copy.style.width = `${subtitleEl.offsetWidth}px`;
+        copy.style.margin = '0';
+        const prompt = document.createElement('span');
+        prompt.textContent = '>';
+        prompt.style.marginRight = '0.5rem';
+        copy.append(prompt, document.createTextNode(`${subtitle}\u00a0\u00a0`));
+        subtitleEl.parentNode.appendChild(copy);
+        const range = document.createRange();
+        range.selectNodeContents(copy);
+        rects.push(...range.getClientRects());
+        copy.remove();
+      }
+
+      setKeepOuts(rects
+        .map((r) => ({ right: Math.round(r.right - origin.left), top: Math.round(r.top - origin.top), bottom: Math.round(r.bottom - origin.top) }))
+        .filter((k) => k.bottom > 0 && k.top < origin.height && k.right > 0));
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    if (heroGridRef.current) observer.observe(heroGridRef.current);
+    document.fonts?.ready.then(measure);
+    return () => observer.disconnect();
+  }, [subtitle]);
 
   // The contact card is a shortcut into the About section
   const goToAbout = () => {
@@ -147,7 +199,6 @@ const Header = ({ data }) => {
           position: 'relative',
           zIndex: 10,
           padding: '1.5rem 0',
-          borderBottom: `1px solid ${COLORS.ink[200]}`,
         }}
       >
         <div
@@ -215,6 +266,7 @@ const Header = ({ data }) => {
         }}
       >
         <div
+          ref={heroGridRef}
           className="hero-grid"
           style={{
             display: 'grid',
@@ -225,7 +277,7 @@ const Header = ({ data }) => {
           }}
         >
           {/* Left column - Main content */}
-          <div className="hero-main" style={{ gridColumn: 'span 8' }}>
+          <div className="hero-main" style={{ gridColumn: 'span 8', position: 'relative', zIndex: 2 }}>
             {/* Main title */}
             <h1
               style={{
@@ -239,11 +291,12 @@ const Header = ({ data }) => {
                 textTransform: 'uppercase',
               }}
             >
-              <span>Ashish Kolli</span>
+              <span ref={titleRef}>Ashish Kolli</span>
             </h1>
 
             {/* Subtitle/Dek - Typewriter animation */}
             <p
+              ref={subtitleRef}
               style={{
                 fontFamily: FONTS.mono,
                 fontSize: 'clamp(1rem, 1.8vw, 1.25rem)',
@@ -272,6 +325,7 @@ const Header = ({ data }) => {
 
             {/* Author info - horizontal card, links through to the About section */}
             <div
+              ref={contactRef}
               role="link"
               tabIndex={0}
               aria-label="Read the about section"
@@ -289,9 +343,9 @@ const Header = ({ data }) => {
                 alignItems: 'center',
                 gap: '1.25rem',
                 padding: '1rem 1.5rem',
-                background: COLORS.surface.elevated,
+                background: COLORS.ink[600], // dark gray
                 borderRadius: EFFECTS.radius.xl,
-                border: `1px solid ${cardHovered ? COLORS.accent.primary : COLORS.ink[200]}`,
+                border: `1px solid ${cardHovered ? COLORS.accent.primary : COLORS.ink[700]}`,
                 boxShadow: EFFECTS.shadow.lg,
                 cursor: 'pointer',
                 transform: cardHovered ? 'translateY(-4px)' : 'translateY(0)',
@@ -352,7 +406,7 @@ const Header = ({ data }) => {
                         width: '28px',
                         height: '28px',
                         borderRadius: EFFECTS.radius.md,
-                        background: COLORS.ink[100],
+                        background: COLORS.surface.elevated,
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -379,7 +433,7 @@ const Header = ({ data }) => {
                         width: '28px',
                         height: '28px',
                         borderRadius: EFFECTS.radius.md,
-                        background: COLORS.ink[100],
+                        background: COLORS.surface.elevated,
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -404,7 +458,7 @@ const Header = ({ data }) => {
                         width: '28px',
                         height: '28px',
                         borderRadius: EFFECTS.radius.md,
-                        background: COLORS.ink[100],
+                        background: COLORS.surface.elevated,
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -429,7 +483,7 @@ const Header = ({ data }) => {
                         width: '28px',
                         height: '28px',
                         borderRadius: EFFECTS.radius.md,
-                        background: COLORS.ink[100],
+                        background: COLORS.surface.elevated,
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -449,9 +503,23 @@ const Header = ({ data }) => {
             </div>
           </div>
 
-          {/* Right column - film reel of photos */}
-          <div className="hero-reel" style={{ gridColumn: 'span 4' }}>
-            <FilmScreen images={reel} />
+          {/* Right column - film reel of photos, as tall as the text beside it (title top to
+              contact card bottom) */}
+          <div
+            ref={reelRef}
+            className="hero-reel"
+            style={{
+              gridColumn: 'span 4',
+              alignSelf: 'stretch',
+              display: 'flex',
+              position: 'relative',
+              zIndex: 1,
+              // A drop shadow follows the strip's fading edge, where a box shadow on the frame
+              // would draw a hard line where the strip meets it
+              filter: 'drop-shadow(0 6px 14px rgba(0, 0, 0, 0.08))',
+            }}
+          >
+            <FilmScreen images={reel} keepOuts={keepOuts} />
           </div>
         </div>
       </div>
@@ -525,6 +593,7 @@ const Header = ({ data }) => {
           .hero-main {
             grid-column: span 1 !important;
           }
+          /* Phones: the film reel drops below the contact card */
           .hero-reel {
             grid-column: span 1 !important;
           }

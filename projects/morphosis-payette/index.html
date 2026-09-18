@@ -31,7 +31,7 @@
 
 /**
  * Product Engineer Proposal - Single File Bundle
- * Generated: 2026-09-18T07:12:44.141Z
+ * Generated: 2026-09-18T08:09:14.971Z
  *
  * This file is auto-generated. Do not edit directly.
  * To modify, edit the source files and run: node src/utils/build.js
@@ -42,7 +42,7 @@
 // ============================================================================
 
 // Auto-generated from content/projects/morphosis-payette.md
-// Generated: 2026-09-18T07:12:44.117Z
+// Generated: 2026-09-18T08:09:14.947Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -1330,22 +1330,85 @@ const RichText = ({ children, className = '' }) => {
 /**
  * FilmScreen Component
  *
- * A 35mm film frame in the home page hero that plays through the photo reel.
+ * A white 35mm film strip in the home page hero that plays through the photo reel.
  * - Photos come from the reel folder, listed at build time in filename order - prefix names
  *   with 01-, 02-... to set the order. Originals go in assets/photos/reel/; the build
  *   (scripts/optimize-reel.py) publishes web-sized, metadata-free copies to reel-web/
- * - Every time the pointer moves onto the frame, the film advances to the next photo:
- *   the new frame slides up through the gate while the sprocket holes run with it
- * - On touch screens, where there is no hover, a tap advances instead
- * - Reduced-motion users get an instant swap
+ * - Every time the pointer moves onto the frame, the film advances to the next photo: the
+ *   sprocket holes run right to left, the photo cuts over instantly behind a split-second
+ *   black blink (a projector shutter), and a film filter - grain, scratches, a warm burn
+ *   at the edges - flickers over it for a moment before clearing
+ * - A click (or a tap on touch screens) advances too
+ * - The cut waits until the next photo is downloaded and decoded, so the blink and filter
+ *   always land on the new photo - on a slow first visit a hover could otherwise play the
+ *   transition over a blank or unchanged frame
+ * - The strip carries on to the left as blank film, fading out toward the page margin. Row by
+ *   row, it is gone before it reaches the hero text beside it (the title, subtitle, and
+ *   contact card each end at a different point): the Header measures them and passes them in
+ *   as keepOuts. Its sprocket holes run with the rest of the strip; only the right-hand frame
+ *   shows a photo
+ * - Reduced-motion users get an instant swap, with no blink or filter
+ * - Fills its container's height, so in the hero it lines up with the top of the title and
+ *   the bottom of the contact card; on phones (single column) the photo falls back to 16:9
  */
 
 
 
-const FILM_ADVANCE_MS = 420;
-const FILM_BASE = '#121214';       // film base, just off black
-const FILM_EDGE_TEXT = '#E8A33D';  // amber, like the edge markings printed on real film
-const FILM_HOLE = '#3A3A40';
+const FILM_ADVANCE_MS = 420;      // sprocket run
+const FILM_BLINK_MS = 70;         // the shutter blink as the photo cuts over
+const FILM_FILTER_MS = 480;       // the film filter flickering over the new photo
+
+// Film grain: fractal noise as a small tiling SVG, darkened to a speckle with some transparency
+const FILM_GRAIN = `url("data:image/svg+xml,${encodeURIComponent(
+  "<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'>"
+  + "<filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/>"
+  + "<feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.6 0'/></filter>"
+  + "<rect width='100%' height='100%' filter='url(#g)'/></svg>",
+)}")`;
+// Two hairline scratches running down the frame, one light and one dark
+const FILM_SCRATCHES = 'linear-gradient(90deg, transparent 23%, rgba(255, 255, 255, 0.6) 23.2%, transparent 23.5%, transparent 71%, rgba(0, 0, 0, 0.35) 71.15%, transparent 71.4%)';
+// Warm light in the middle burning to brown at the edges
+const FILM_BURN = 'radial-gradient(ellipse at center, rgba(255, 214, 160, 0.14) 0%, rgba(60, 30, 5, 0.45) 100%)';
+const FILM_BASE = '#FFFFFF';       // white film
+const FILM_EDGE_TEXT = '#B45309';  // amber, like the edge markings printed on real film, dark enough to read on white
+const FILM_HOLE = '#CFCFD4';       // light grey holes against the white base
+const FILM_HOLE_PITCH = 22;        // px - one sprocket hole plus the gap after it
+// Opacity of the strip's leader, left to right: nothing at the page margin, full strength
+// where it meets the photo frame. Eased (roughly quadratic) rather than linear, so it lingers
+// faint across most of the width and only firms up near the frame
+const FILM_LEADER_FADE = [[0, 0], [0.15, 0.03], [0.3, 0.09], [0.45, 0.19], [0.6, 0.33], [0.74, 0.52], [0.87, 0.75], [1, 1]];
+const FILM_LEADER_MASK = `linear-gradient(to right, ${FILM_LEADER_FADE.map(([at, a]) => `rgba(0, 0, 0, ${a}) ${at * 100}%`).join(', ')})`;
+// Cut-outs around the hero text: how far past the text's right edge the strip stays clear,
+// how much above and below it, and how softly the cut-out's edges blend (px)
+const KEEP_OUT_GAP = 28;
+const KEEP_OUT_PAD = 6;
+const KEEP_OUT_BLUR = 10;
+
+// The leader's mask as an SVG image: the left-to-right fade, with a soft-edged cut-out for
+// each piece of text (keepOuts: { right, top, bottom } in px from the leader's top-left)
+const leaderMaskImage = (width, height, keepOuts) => {
+  if (!width || !height) return FILM_LEADER_MASK;
+  const stops = FILM_LEADER_FADE
+    .map(([at, a]) => `<stop offset='${at}' stop-color='white' stop-opacity='${a}'/>`)
+    .join('');
+  const cutOuts = keepOuts
+    .map(({ right, top, bottom }) =>
+      `<rect x='-60' y='${top - KEEP_OUT_PAD}' width='${right + KEEP_OUT_GAP + 60}' height='${bottom - top + KEEP_OUT_PAD * 2}' fill='black'/>`)
+    .join('');
+  const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='${width}' height='${height}' viewBox='0 0 ${width} ${height}'>`
+    + `<defs><linearGradient id='fade'>${stops}</linearGradient>`
+    + `<filter id='soft' x='-50%' y='-50%' width='200%' height='200%'><feGaussianBlur stdDeviation='${KEEP_OUT_BLUR}'/></filter>`
+    + `<mask id='clear' maskUnits='userSpaceOnUse' x='0' y='0' width='${width}' height='${height}'>`
+    + `<rect width='${width}' height='${height}' fill='white'/><g filter='url(#soft)'>${cutOuts}</g></mask></defs>`
+    + `<rect width='${width}' height='${height}' fill='url(#fade)' mask='url(#clear)'/></svg>`;
+  return `url("data:image/svg+xml,${encodeURIComponent(svg)}")`;
+};
+const FILM_SPROCKET_ROW = {
+  height: '10px',
+  backgroundImage: `linear-gradient(90deg, ${FILM_HOLE} 0 14px, transparent 14px ${FILM_HOLE_PITCH}px)`,
+  backgroundSize: `${FILM_HOLE_PITCH}px 10px`,
+  backgroundRepeat: 'repeat-x',
+};
 
 // "01-cutting-steel.jpg" -> "Cutting steel"
 const altFromFilename = (src) => {
@@ -1359,19 +1422,56 @@ const injectFilmStyles = (() => {
     if (injected || typeof document === 'undefined') return;
     const style = document.createElement('style');
     style.textContent = `
-      @keyframes filmAdvanceIn {
-        0%   { transform: translateY(100%); filter: brightness(1.35); }
-        70%  { filter: brightness(1.1); }
-        100% { transform: translateY(0); filter: brightness(1); }
+      /* Shutter: black for a split second as the photo cuts over, then gone */
+      @keyframes filmBlink {
+        from { opacity: 1; }
+        to   { opacity: 0; }
       }
+      /* Film filter: flickers unevenly over the new photo, then clears */
+      @keyframes filmFilterFlicker {
+        0%   { opacity: 0; }
+        10%  { opacity: 0.9; }
+        20%  { opacity: 0.35; }
+        30%  { opacity: 0.8; }
+        42%  { opacity: 0.25; }
+        56%  { opacity: 0.6; }
+        72%  { opacity: 0.15; }
+        100% { opacity: 0; }
+      }
+      /* Grain jumps between positions so it crawls like real film */
+      @keyframes filmGrainJitter {
+        0%   { background-position: 0 0, 0 0, 0 0; }
+        25%  { background-position: 0 0, 0 0, 37px -21px; }
+        50%  { background-position: 3px 0, 0 0, -54px 43px; }
+        75%  { background-position: -2px 0, 0 0, 18px 67px; }
+      }
+      /* Sprockets run one frame's width (--film-travel, a whole number of holes so the
+         pattern lands where it started) */
       @keyframes filmSprocketRun {
         from { background-position-x: 0; }
-        to   { background-position-x: -44px; }
+        to   { background-position-x: calc(var(--film-travel, 44px) * -1); }
       }
-      .film-frame-in { animation: filmAdvanceIn ${FILM_ADVANCE_MS}ms cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+      @keyframes filmLeaderRun {
+        from { background-position-x: 100%; }
+        to   { background-position-x: calc(100% - var(--film-travel, 44px)); }
+      }
+      .film-leader-run { animation: filmLeaderRun ${FILM_ADVANCE_MS}ms cubic-bezier(0.22, 0.61, 0.36, 1); }
+      @media (max-width: 768px) {
+        .film-leader { display: none; }
+      }
+      .film-blink { animation: filmBlink ${FILM_BLINK_MS}ms steps(1, end) both; }
+      .film-filter {
+        animation: filmFilterFlicker ${FILM_FILTER_MS}ms steps(1, end) both,
+                   filmGrainJitter 120ms steps(1, end) 4;
+      }
+      .film-gate { flex: 1; min-height: 160px; }
+      @media (max-width: 768px) {
+        .film-gate { flex: none; aspect-ratio: 16 / 9; min-height: 0; }
+      }
       .film-sprockets-run { animation: filmSprocketRun ${FILM_ADVANCE_MS}ms cubic-bezier(0.22, 0.61, 0.36, 1); }
       @media (prefers-reduced-motion: reduce) {
-        .film-frame-in, .film-sprockets-run { animation: none; }
+        .film-sprockets-run, .film-leader-run { animation: none; }
+        .film-blink, .film-filter { display: none; }
       }
     `;
     document.head.appendChild(style);
@@ -1383,56 +1483,139 @@ const injectFilmStyles = (() => {
 const Sprockets = ({ running }) => (
   <div
     className={running ? 'film-sprockets-run' : undefined}
-    style={{
-      height: '10px',
-      margin: '0 10px',
-      backgroundImage: `linear-gradient(90deg, ${FILM_HOLE} 0 14px, transparent 14px 22px)`,
-      backgroundSize: '22px 10px',
-      backgroundRepeat: 'repeat-x',
-      borderRadius: '2px',
-    }}
+    style={{ ...FILM_SPROCKET_ROW, margin: '0 10px 0 0' }}
   />
 );
 
-const FilmScreen = ({ images = [] }) => {
+// Blank film running off to the left of the frame, from the frame's edge to the page margin.
+// Its width spans the hero's text column: two frame-widths plus two 2rem grid gaps.
+const FilmLeader = ({ running, advances, keepOuts }) => {
+  const leaderRef = useRef(null);
+  const [size, setSize] = useState({ width: 0, height: 0 });
+
+  useEffect(() => {
+    const leader = leaderRef.current;
+    if (!leader) return undefined;
+    const observer = new ResizeObserver(() => {
+      const { width, height } = leader.getBoundingClientRect();
+      setSize({ width: Math.round(width), height: Math.round(height) });
+    });
+    observer.observe(leader);
+    return () => observer.disconnect();
+  }, []);
+
+  const mask = leaderMaskImage(size.width, size.height, keepOuts);
+  return (
+  <div
+    ref={leaderRef}
+    className="film-leader"
+    aria-hidden="true"
+    style={{
+      position: 'absolute',
+      top: 0,
+      bottom: 0,
+      right: '100%',
+      width: 'calc(200% + 4rem)',
+      background: FILM_BASE,
+      pointerEvents: 'none',
+      WebkitMaskImage: mask,
+      maskImage: mask,
+      WebkitMaskSize: '100% 100%',
+      maskSize: '100% 100%',
+      WebkitMaskRepeat: 'no-repeat',
+      maskRepeat: 'no-repeat',
+    }}
+  >
+    {['top', 'bottom'].map((edge) => (
+      <div
+        key={`${edge}-${advances}`}
+        className={running ? 'film-leader-run' : undefined}
+        style={{ ...FILM_SPROCKET_ROW, position: 'absolute', left: 0, right: 0, [edge]: '10px', backgroundPositionX: '100%' }}
+      />
+    ))}
+  </div>
+  );
+};
+
+const FilmScreen = ({ images = [], keepOuts = [] }) => {
   const [index, setIndex] = useState(0);
-  const [previous, setPrevious] = useState(null);
-  const [advances, setAdvances] = useState(0); // remounts the incoming frame so it animates each time
+  const [advances, setAdvances] = useState(0); // remounts the blink and filter so they replay each time
   const [hoverCapable, setHoverCapable] = useState(true);
+  const gateRef = useRef(null);
+  const [gateWidth, setGateWidth] = useState(0);
+
+  useEffect(() => {
+    const gate = gateRef.current;
+    if (!gate) return undefined;
+    const observer = new ResizeObserver(() => setGateWidth(gate.getBoundingClientRect().width));
+    observer.observe(gate);
+    return () => observer.disconnect();
+  }, []);
+
+  // How far the sprockets run per advance: the photo's width, rounded to whole holes
+  const sprocketTravel = Math.max(1, Math.round(gateWidth / FILM_HOLE_PITCH)) * FILM_HOLE_PITCH;
+
+  // Every photo loaded and decoded ahead of time, so a cut can show the next one instantly
+  const preloaded = useRef([]);
+  const indexRef = useRef(0);
+  const waiting = useRef(false);
+  const lastAdvance = useRef(0);
 
   useEffect(() => {
     injectFilmStyles();
     setHoverCapable(window.matchMedia('(hover: hover)').matches);
-    // Warm the cache so each advance shows the next photo immediately
-    images.forEach((src) => { const img = new Image(); img.src = src; });
+    preloaded.current = images.map((src) => {
+      const img = new Image();
+      img.src = src;
+      img.decode?.().catch(() => {});
+      return img;
+    });
   }, [images]);
 
   const advance = () => {
-    if (images.length < 2) return;
-    setPrevious(index);
-    setIndex((i) => (i + 1) % images.length);
-    setAdvances((n) => n + 1);
+    if (images.length < 2 || waiting.current) return;
+    const next = (indexRef.current + 1) % images.length;
+    const nextImage = preloaded.current[next];
+    const cut = () => {
+      waiting.current = false;
+      lastAdvance.current = performance.now();
+      indexRef.current = next;
+      setIndex(next);
+      setAdvances((n) => n + 1);
+    };
+    // If the next photo is still loading, hold the cut until it's ready (or has failed)
+    waiting.current = true;
+    (nextImage?.decode ? nextImage.decode() : Promise.resolve()).then(cut, cut);
+  };
+
+  // A click right after the hover that already advanced shouldn't skip a second photo
+  const handleClick = () => {
+    if (performance.now() - lastAdvance.current > 400) advance();
   };
 
   const count = images.length;
-  const frameLabel = (n) => String(n + 1).padStart(2, '0');
 
   return (
     <figure
       onMouseEnter={hoverCapable ? advance : undefined}
-      onClick={hoverCapable ? undefined : advance}
-      aria-label={count > 1 ? `Photo reel, ${count} photos. Hover or tap to advance.` : 'Photo reel'}
+      onClick={handleClick}
+      aria-label={count > 1 ? `Photo reel, ${count} photos. Hover, click, or tap to advance.` : 'Photo reel'}
       style={{
+        position: 'relative',
         margin: 0,
         width: '100%',
+        boxSizing: 'border-box',
+        display: 'flex',
+        flexDirection: 'column',
         padding: '10px 0',
         background: FILM_BASE,
-        borderRadius: EFFECTS.radius.lg,
-        boxShadow: EFFECTS.shadow.lg,
+        borderRadius: `0 ${EFFECTS.radius.lg} ${EFFECTS.radius.lg} 0`,
         cursor: count > 1 ? 'pointer' : 'default',
         userSelect: 'none',
+        '--film-travel': `${sprocketTravel}px`,
       }}
     >
+      <FilmLeader running={advances > 0} advances={advances} keepOuts={keepOuts} />
       <Sprockets running={advances > 0} key={`top-${advances}`} />
 
       {/* Edge markings above the frame */}
@@ -1442,25 +1625,26 @@ const FilmScreen = ({ images = [] }) => {
           justifyContent: 'space-between',
           padding: '6px 14px 5px',
           fontFamily: FONTS.mono,
-          fontSize: '0.625rem',
+          fontSize: '0.375rem',
           letterSpacing: '0.14em',
           color: FILM_EDGE_TEXT,
           opacity: 0.85,
         }}
       >
-        <span>ASHISH KOLLI</span>
-        <span>{count > 0 ? `${frameLabel(index)} ▸` : '00 ▸'}</span>
+        <span>RICOH GR IIIx</span>
+        <span>{'<<'}</span>
       </div>
 
-      {/* The gate: current frame, with the next one sliding up over it */}
+      {/* The gate: the photo cuts over instantly; the shutter blink and film filter play on top */}
       <div
+        ref={gateRef}
+        className="film-gate"
         style={{
           position: 'relative',
           margin: '0 14px',
-          aspectRatio: '6 / 5',
           overflow: 'hidden',
           borderRadius: '3px',
-          background: '#000',
+          background: COLORS.surface.inset,
         }}
       >
         {count === 0 ? (
@@ -1483,30 +1667,33 @@ const FilmScreen = ({ images = [] }) => {
           </div>
         ) : (
           <>
-            {previous !== null && (
-              <img
-                src={images[previous]}
-                alt=""
-                aria-hidden="true"
-                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
-              />
-            )}
             <img
-              key={advances}
-              className={advances > 0 ? 'film-frame-in' : undefined}
               src={images[index]}
               alt={altFromFilename(images[index])}
               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
             />
-            {/* Soft vignette, like light falling off at the edges of a projected frame */}
-            <div
-              style={{
-                position: 'absolute',
-                inset: 0,
-                pointerEvents: 'none',
-                boxShadow: 'inset 0 0 40px rgba(0, 0, 0, 0.35)',
-              }}
-            />
+            {advances > 0 && (
+              <>
+                <div
+                  key={`filter-${advances}`}
+                  className="film-filter"
+                  aria-hidden="true"
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    pointerEvents: 'none',
+                    backgroundImage: `${FILM_SCRATCHES}, ${FILM_BURN}, ${FILM_GRAIN}`,
+                    backgroundSize: '100% 100%, 100% 100%, 160px 160px',
+                  }}
+                />
+                <div
+                  key={`blink-${advances}`}
+                  className="film-blink"
+                  aria-hidden="true"
+                  style={{ position: 'absolute', inset: 0, background: '#000', pointerEvents: 'none' }}
+                />
+              </>
+            )}
           </>
         )}
       </div>
@@ -1518,14 +1705,14 @@ const FilmScreen = ({ images = [] }) => {
           justifyContent: 'space-between',
           padding: '5px 14px 6px',
           fontFamily: FONTS.mono,
-          fontSize: '0.625rem',
+          fontSize: '0.375rem',
           letterSpacing: '0.14em',
           color: FILM_EDGE_TEXT,
           opacity: 0.85,
         }}
       >
-        <span>{count > 1 ? (hoverCapable ? 'HOVER TO ADVANCE' : 'TAP TO ADVANCE') : 'PORTFOLIO'}</span>
-        <span>{count > 0 ? `${frameLabel(index)} / ${frameLabel(count - 1)}` : '— / —'}</span>
+        <span>ASPHERICAL LENS</span>
+        <span>AK</span>
       </div>
 
       <Sprockets running={advances > 0} key={`bottom-${advances}`} />
@@ -1565,6 +1752,58 @@ const Header = ({ data }) => {
   const [imageError, setImageError] = useState(false);
   const [cardHovered, setCardHovered] = useState(false);
   const [resumeHovered, setResumeHovered] = useState(false);
+
+  // The film strip's leader runs behind the hero text; it needs to be gone before it reaches
+  // each piece of text on its row. Measure where the title, the subtitle (as it will read once
+  // fully typed), and the contact card end, relative to the leader's top-left corner.
+  const heroGridRef = useRef(null);
+  const titleRef = useRef(null);
+  const subtitleRef = useRef(null);
+  const contactRef = useRef(null);
+  const reelRef = useRef(null);
+  const [keepOuts, setKeepOuts] = useState([]);
+
+  useEffect(() => {
+    const measure = () => {
+      const leader = reelRef.current?.querySelector('.film-leader');
+      if (!leader || leader.offsetParent === null) return; // hidden on phones
+      const origin = leader.getBoundingClientRect();
+      const rects = [];
+      if (titleRef.current) rects.push(titleRef.current.getBoundingClientRect());
+      if (contactRef.current) rects.push(contactRef.current.getBoundingClientRect());
+
+      // The subtitle types out over a couple of seconds, so lay out its finished text in an
+      // invisible copy and measure each line of that instead
+      const subtitleEl = subtitleRef.current;
+      if (subtitleEl && subtitle) {
+        const copy = subtitleEl.cloneNode(false);
+        copy.style.position = 'absolute';
+        copy.style.visibility = 'hidden';
+        copy.style.left = `${subtitleEl.offsetLeft}px`;
+        copy.style.top = `${subtitleEl.offsetTop}px`;
+        copy.style.width = `${subtitleEl.offsetWidth}px`;
+        copy.style.margin = '0';
+        const prompt = document.createElement('span');
+        prompt.textContent = '>';
+        prompt.style.marginRight = '0.5rem';
+        copy.append(prompt, document.createTextNode(`${subtitle}\u00a0\u00a0`));
+        subtitleEl.parentNode.appendChild(copy);
+        const range = document.createRange();
+        range.selectNodeContents(copy);
+        rects.push(...range.getClientRects());
+        copy.remove();
+      }
+
+      setKeepOuts(rects
+        .map((r) => ({ right: Math.round(r.right - origin.left), top: Math.round(r.top - origin.top), bottom: Math.round(r.bottom - origin.top) }))
+        .filter((k) => k.bottom > 0 && k.top < origin.height && k.right > 0));
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    if (heroGridRef.current) observer.observe(heroGridRef.current);
+    document.fonts?.ready.then(measure);
+    return () => observer.disconnect();
+  }, [subtitle]);
 
   // The contact card is a shortcut into the About section
   const goToAbout = () => {
@@ -1682,7 +1921,6 @@ const Header = ({ data }) => {
           position: 'relative',
           zIndex: 10,
           padding: '1.5rem 0',
-          borderBottom: `1px solid ${COLORS.ink[200]}`,
         }}
       >
         <div
@@ -1750,6 +1988,7 @@ const Header = ({ data }) => {
         }}
       >
         <div
+          ref={heroGridRef}
           className="hero-grid"
           style={{
             display: 'grid',
@@ -1760,7 +1999,7 @@ const Header = ({ data }) => {
           }}
         >
           {/* Left column - Main content */}
-          <div className="hero-main" style={{ gridColumn: 'span 8' }}>
+          <div className="hero-main" style={{ gridColumn: 'span 8', position: 'relative', zIndex: 2 }}>
             {/* Main title */}
             <h1
               style={{
@@ -1774,11 +2013,12 @@ const Header = ({ data }) => {
                 textTransform: 'uppercase',
               }}
             >
-              <span>Ashish Kolli</span>
+              <span ref={titleRef}>Ashish Kolli</span>
             </h1>
 
             {/* Subtitle/Dek - Typewriter animation */}
             <p
+              ref={subtitleRef}
               style={{
                 fontFamily: FONTS.mono,
                 fontSize: 'clamp(1rem, 1.8vw, 1.25rem)',
@@ -1807,6 +2047,7 @@ const Header = ({ data }) => {
 
             {/* Author info - horizontal card, links through to the About section */}
             <div
+              ref={contactRef}
               role="link"
               tabIndex={0}
               aria-label="Read the about section"
@@ -1824,9 +2065,9 @@ const Header = ({ data }) => {
                 alignItems: 'center',
                 gap: '1.25rem',
                 padding: '1rem 1.5rem',
-                background: COLORS.surface.elevated,
+                background: COLORS.ink[600], // dark gray
                 borderRadius: EFFECTS.radius.xl,
-                border: `1px solid ${cardHovered ? COLORS.accent.primary : COLORS.ink[200]}`,
+                border: `1px solid ${cardHovered ? COLORS.accent.primary : COLORS.ink[700]}`,
                 boxShadow: EFFECTS.shadow.lg,
                 cursor: 'pointer',
                 transform: cardHovered ? 'translateY(-4px)' : 'translateY(0)',
@@ -1887,7 +2128,7 @@ const Header = ({ data }) => {
                         width: '28px',
                         height: '28px',
                         borderRadius: EFFECTS.radius.md,
-                        background: COLORS.ink[100],
+                        background: COLORS.surface.elevated,
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -1914,7 +2155,7 @@ const Header = ({ data }) => {
                         width: '28px',
                         height: '28px',
                         borderRadius: EFFECTS.radius.md,
-                        background: COLORS.ink[100],
+                        background: COLORS.surface.elevated,
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -1939,7 +2180,7 @@ const Header = ({ data }) => {
                         width: '28px',
                         height: '28px',
                         borderRadius: EFFECTS.radius.md,
-                        background: COLORS.ink[100],
+                        background: COLORS.surface.elevated,
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -1964,7 +2205,7 @@ const Header = ({ data }) => {
                         width: '28px',
                         height: '28px',
                         borderRadius: EFFECTS.radius.md,
-                        background: COLORS.ink[100],
+                        background: COLORS.surface.elevated,
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -1984,9 +2225,23 @@ const Header = ({ data }) => {
             </div>
           </div>
 
-          {/* Right column - film reel of photos */}
-          <div className="hero-reel" style={{ gridColumn: 'span 4' }}>
-            <FilmScreen images={reel} />
+          {/* Right column - film reel of photos, as tall as the text beside it (title top to
+              contact card bottom) */}
+          <div
+            ref={reelRef}
+            className="hero-reel"
+            style={{
+              gridColumn: 'span 4',
+              alignSelf: 'stretch',
+              display: 'flex',
+              position: 'relative',
+              zIndex: 1,
+              // A drop shadow follows the strip's fading edge, where a box shadow on the frame
+              // would draw a hard line where the strip meets it
+              filter: 'drop-shadow(0 6px 14px rgba(0, 0, 0, 0.08))',
+            }}
+          >
+            <FilmScreen images={reel} keepOuts={keepOuts} />
           </div>
         </div>
       </div>
@@ -2060,6 +2315,7 @@ const Header = ({ data }) => {
           .hero-main {
             grid-column: span 1 !important;
           }
+          /* Phones: the film reel drops below the contact card */
           .hero-reel {
             grid-column: span 1 !important;
           }

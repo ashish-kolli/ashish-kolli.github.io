@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-18T07:12:43.714Z
+// Generated: 2026-09-18T08:09:14.535Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -13,8 +13,11 @@ const CONTENT = {
     "resume": "assets/resume.pdf",
     "resumeLabel": "Resume",
     "reel": [
+      "assets/photos/reel-web/2x.jpg",
+      "assets/photos/reel-web/car-7.jpg",
       "assets/photos/reel-web/img-2838.jpg",
-      "assets/photos/reel-web/r0008919-3.jpg"
+      "assets/photos/reel-web/r0008919-3.jpg",
+      "assets/photos/reel-web/screenshot-2026-03-17-at-12-34-04-pm.jpg"
     ],
     "date": "September 2026",
     "title": "Ashish Kolli",

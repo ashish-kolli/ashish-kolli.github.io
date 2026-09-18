@@ -124,7 +124,7 @@ northwestern/
 │   │   ├── ProjectCards.jsx       # Horizontal row of project summary cards linking to project pages
 │   │   ├── ProjectHeader.jsx      # Compact hero for a project page (@page marker)
 │   │   ├── Figure.jsx             # Image + caption (@image marker); dashed placeholder when src is empty
-│   │   ├── FilmScreen.jsx         # Hero film frame; advances through the photo reel on each hover
+│   │   ├── FilmScreen.jsx         # Hero 35mm film frame; advances to the next reel photo on each hover
 │   │   ├── TerminalWindow.jsx     # macOS-style terminal window
 │   │   ├── WorkList.jsx           # Work list items
 │   │   └── Citations.jsx          # Citation formatting
@@ -281,14 +281,14 @@ One or two sentence summary shown on the card. Supports **markdown**.
 
 Images render in document order, like terminals and tables.
 
-### Hero Film Reel
+### Hero Photo Reel
 ```markdown
 <!-- @reel folder="assets/photos/reel-web" -->
 ```
 
-Inside the `@header` block. The hero's film frame plays through every image in the folder,
-in filename order, advancing one photo each time the pointer moves onto it (a tap on touch
-screens).
+Inside the `@header` block. The hero's 35mm film frame plays through every image in the
+folder, in filename order, advancing one photo each time the pointer moves onto it (a tap on
+touch screens).
 
 - Drop full-size originals into `assets/photos/reel/` (git ignores them). `npm run build`
   runs `scripts/optimize-reel.py`, which writes web copies to `assets/photos/reel-web/`:
