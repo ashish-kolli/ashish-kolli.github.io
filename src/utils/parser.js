@@ -274,6 +274,7 @@ function extractImages(content) {
       alt: extractAttr(attrs, 'alt') || '',
       caption: extractAttr(attrs, 'caption') || '',
       width: extractAttr(attrs, 'width') || 'wide',
+      align: extractAttr(attrs, 'align') || '',
       ratio: extractAttr(attrs, 'ratio') || '16 / 10',
     });
   }

@@ -1,6 +1,6 @@
 <!--
 ================================================================================
-AROHAI — PROJECT PAGE
+AROHAI — PROJECT PAGE (AroHai)
 ================================================================================
 PLACEHOLDER DRAFT. Each bracketed line describes what belongs there; replace it
 with real copy. Each @image marker renders a dashed frame until you give it a
@@ -9,8 +9,8 @@ Previous copy is in git: `git show 97065c3:content/projects/arohai.md`
 ================================================================================
 -->
 
-<!-- @page title="Arohai" eyebrow="Experience · Pilot launched" meta="[Role] · [Timeline] · [Context]" back="Experience" backHref="./#experience" -->
-[Positioning line — one or two sentences: what this is, who it was for, and why it mattered.]
+<!-- @page title="AroHai" eyebrow="Experience · Pilot launched" meta="[Role] · [Timeline] · [Context]" back="Experience" backHref="./#experience" -->
+CRM platform for scaling mom-and-pop shops from flagship to franchise.
 <!-- /@page -->
 
 ## 1. Overview

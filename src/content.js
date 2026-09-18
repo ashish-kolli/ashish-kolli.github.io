@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-18T08:25:01.854Z
+// Generated: 2026-09-18T16:16:16.984Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -15,8 +15,17 @@ const CONTENT = {
     "reel": [
       "assets/photos/reel-web/2x.jpg",
       "assets/photos/reel-web/car-7.jpg",
+      "assets/photos/reel-web/img-0024.jpg",
+      "assets/photos/reel-web/img-1481.jpg",
       "assets/photos/reel-web/img-2838.jpg",
+      "assets/photos/reel-web/img-6931.jpg",
+      "assets/photos/reel-web/lm-build-challenge-p2.jpg",
+      "assets/photos/reel-web/r0002590.jpg",
+      "assets/photos/reel-web/r0006920.jpg",
+      "assets/photos/reel-web/r0007406.jpg",
+      "assets/photos/reel-web/r0007820.jpg",
       "assets/photos/reel-web/r0008919-3.jpg",
+      "assets/photos/reel-web/screenshot-2026-01-15-at-7-54-30-pm.jpg",
       "assets/photos/reel-web/screenshot-2026-03-17-at-12-34-04-pm.jpg"
     ],
     "date": "September 2026",
@@ -32,11 +41,11 @@ const CONTENT = {
       "projects": [
         {
           "href": "projects/arohai/",
-          "title": "Arohai",
+          "title": "AroHai",
           "eyebrow": "Pilot launched",
           "meta": "Founder / Product",
           "icon": "rocket",
-          "summary": "[Card summary — one or two sentences: what Arohai is, who it's for, and the outcome worth clicking for.]"
+          "summary": "CRM platform for scaling mom-and-pop shops from flagship to franchise."
         },
         {
           "href": "projects/readyvault/",
@@ -121,10 +130,11 @@ const CONTENT = {
   ],
   "images": [
     {
-      "src": "",
-      "alt": "",
-      "caption": "[Optional — a photo of you working, or an image that sets the tone for this section]",
+      "src": "assets/photos/headshot.jpg",
+      "alt": "Ashish Kolli",
+      "caption": "",
       "width": "wide",
+      "align": "right",
       "ratio": "16 / 10"
     }
   ],
@@ -217,6 +227,11 @@ const CONTENT = {
       "subsections": [],
       "intro": [
         {
+          "type": "component",
+          "component": "image",
+          "param": ""
+        },
+        {
           "type": "paragraph",
           "text": "[Opening — 2–3 sentences: who you are now, the training behind it, and the through-line across your roles.]"
         },
@@ -239,11 +254,6 @@ const CONTENT = {
         {
           "type": "paragraph",
           "text": "[Closing line — the sentence you want a hiring manager to remember.]"
-        },
-        {
-          "type": "component",
-          "component": "image",
-          "param": ""
         }
       ]
     },

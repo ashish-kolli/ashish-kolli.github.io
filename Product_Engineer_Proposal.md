@@ -30,8 +30,8 @@ Component marker reference: see CLAUDE.md
 
 <!-- @projects section="experience" -->
 
-<!-- @project href="projects/arohai/" icon="rocket" eyebrow="Pilot launched" title="Arohai" meta="Founder / Product" -->
-[Card summary — one or two sentences: what Arohai is, who it's for, and the outcome worth clicking for.]
+<!-- @project href="projects/arohai/" icon="rocket" eyebrow="Pilot launched" title="AroHai" meta="Founder / Product" -->
+CRM platform for scaling mom-and-pop shops from flagship to franchise.
 <!-- /@project -->
 
 <!-- @project href="projects/readyvault/" icon="shield" eyebrow="Featured case study" title="ReadyVault" meta="Newell Brands · 2025–26" -->
@@ -76,6 +76,8 @@ Component marker reference: see CLAUDE.md
 
 ## 4. About
 
+<!-- @image src="assets/photos/headshot.jpg" alt="Ashish Kolli" align="right" -->
+
 [Opening — 2–3 sentences: who you are now, the training behind it, and the through-line across your roles.]
 
 [Role paragraph 1 — lead with the bolded company and the one thing that mattered most there, then the evidence.]
@@ -88,7 +90,6 @@ Component marker reference: see CLAUDE.md
 
 [Closing line — the sentence you want a hiring manager to remember.]
 
-<!-- @image src="" caption="[Optional — a photo of you working, or an image that sets the tone for this section]" width="wide" -->
 
 ---
 

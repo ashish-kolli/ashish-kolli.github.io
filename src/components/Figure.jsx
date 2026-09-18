@@ -6,8 +6,10 @@
  * - Without a src: a dashed placeholder frame showing where the image goes and
  *   what it should be, so a page can be laid out before the photos exist
  * - width="wide" breaks out past the prose column; "full" fills the content column
+ * - align="right" (or "left") sits the image beside the text that follows it, which wraps
+ *   around it; on phones it stacks above the text instead
  */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import RichText from './RichText';
 import { COLORS, FONTS, TYPE_SCALE, EFFECTS, SPACE, LAYOUT } from '../design-tokens';
 
@@ -18,6 +20,24 @@ const FIGURE_WIDTHS = {
   wide: LAYOUT.maxWidth.content,
   full: '100%',
 };
+
+// Floated figures: a third of the column beside the text, full width on phones
+const injectFigureStyles = (() => {
+  let injected = false;
+  return () => {
+    if (injected || typeof document === 'undefined') return;
+    const style = document.createElement('style');
+    style.textContent = `
+      .figure-float-right { float: right; width: 34%; max-width: 300px; margin: 0.35rem 0 ${SPACE[5]} ${SPACE[7]} !important; }
+      .figure-float-left { float: left; width: 34%; max-width: 300px; margin: 0.35rem ${SPACE[7]} ${SPACE[5]} 0 !important; }
+      @media (max-width: 640px) {
+        .figure-float-right, .figure-float-left { float: none; width: 100%; max-width: 360px; margin: 0 auto ${SPACE[6]} !important; }
+      }
+    `;
+    document.head.appendChild(style);
+    injected = true;
+  };
+})();
 
 const FigurePlaceholder = ({ caption, ratio }) => (
   <div
@@ -63,13 +83,19 @@ const FigurePlaceholder = ({ caption, ratio }) => (
   </div>
 );
 
-const Figure = ({ src, alt, caption, width = 'wide', ratio = '16 / 10' }) => {
+const Figure = ({ src, alt, caption, width = 'wide', ratio = '16 / 10', align = '' }) => {
   const [ref, inView] = useInView();
   const [failed, setFailed] = useState(false);
+  const floated = align === 'right' || align === 'left';
+
+  useEffect(() => {
+    if (floated) injectFigureStyles();
+  }, [floated]);
 
   return (
     <figure
       ref={ref}
+      className={floated ? `figure-float-${align}` : undefined}
       style={{
         maxWidth: FIGURE_WIDTHS[width] || FIGURE_WIDTHS.wide,
         margin: `${SPACE[8]} auto`,

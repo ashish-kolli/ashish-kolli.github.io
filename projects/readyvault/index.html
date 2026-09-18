@@ -31,7 +31,7 @@
 
 /**
  * Product Engineer Proposal - Single File Bundle
- * Generated: 2026-09-18T08:25:02.562Z
+ * Generated: 2026-09-18T16:16:17.738Z
  *
  * This file is auto-generated. Do not edit directly.
  * To modify, edit the source files and run: node src/utils/build.js
@@ -42,7 +42,7 @@
 // ============================================================================
 
 // Auto-generated from content/projects/readyvault.md
-// Generated: 2026-09-18T08:25:02.538Z
+// Generated: 2026-09-18T16:16:17.714Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -62,6 +62,7 @@ const CONTENT = {
       "alt": "",
       "caption": "[Hero image — the single image that best represents this project]",
       "width": "wide",
+      "align": "",
       "ratio": "16 / 10"
     },
     {
@@ -69,6 +70,7 @@ const CONTENT = {
       "alt": "",
       "caption": "[Process image — sketches, iterations, shop drawings, wireframes, test rigs]",
       "width": "wide",
+      "align": "",
       "ratio": "16 / 10"
     },
     {
@@ -76,6 +78,7 @@ const CONTENT = {
       "alt": "",
       "caption": "[Detail image — the one moment worth zooming in on]",
       "width": "prose",
+      "align": "",
       "ratio": "16 / 10"
     },
     {
@@ -83,6 +86,7 @@ const CONTENT = {
       "alt": "",
       "caption": "[Final image — the finished thing, in place]",
       "width": "wide",
+      "align": "",
       "ratio": "16 / 10"
     }
   ],
@@ -1699,19 +1703,10 @@ const FilmScreen = ({ images = [], keepOuts = [] }) => {
 
 
 
-// Soft see-through orange-to-purple wash for the Resume button, echoing the header's
-// amber and violet glows. `strength` is each color's opacity; a little white underneath
-// keeps it light.
-const RESUME_GRADIENT = [
-  [249, 115, 22],  // orange
-  [139, 92, 246],  // purple
-];
-const resumeGradient = (strength) => {
-  const stops = RESUME_GRADIENT
-    .map(([r, g, b], i) => `rgba(${r}, ${g}, ${b}, ${strength}) ${Math.round((i / (RESUME_GRADIENT.length - 1)) * 100)}%`)
-    .join(', ');
-  return `linear-gradient(115deg, ${stops}), rgba(255, 255, 255, 0.55)`;
-};
+// Resume button: a faint, see-through violet-to-lavender wash, close to the header's own
+// lavender background; a little stronger on hover
+const RESUME_GRADIENT = 'linear-gradient(115deg, rgba(109, 40, 217, 0.22) 0%, rgba(167, 139, 250, 0.14) 100%)';
+const RESUME_GRADIENT_HOVER = 'linear-gradient(115deg, rgba(109, 40, 217, 0.34) 0%, rgba(167, 139, 250, 0.24) 100%)';
 
 const Header = ({ data }) => {
   const { from, fromEmail, linkedin, github, instagram, headshot, subtitle, title, resume, resumeLabel, reel = [] } = data;
@@ -1915,12 +1910,13 @@ const Header = ({ data }) => {
               onMouseEnter={() => setResumeHovered(true)}
               onMouseLeave={() => setResumeHovered(false)}
               style={{
-                // Card treatment like the project and contact cards (hairline border, purple
-                // outline and a small lift on hover), over a translucent orange-to-purple wash instead of white
+                // Purple gradient with white text and a white outline; on hover the gradient
+                // deepens and the button lifts slightly, like the other cards
                 padding: '0.625rem 1.5rem',
-                background: resumeGradient(resumeHovered ? 0.34 : 0.24),
-                color: resumeHovered ? COLORS.accent.primary : COLORS.ink[900],
-                border: `1px solid ${resumeHovered ? COLORS.accent.primary : COLORS.ink[400]}`,
+                background: resumeHovered ? RESUME_GRADIENT_HOVER : RESUME_GRADIENT,
+                color: '#FFFFFF',
+                border: '1px solid #FFFFFF',
+                textShadow: '0 1px 1px rgba(0, 0, 0, 0.18)',
                 borderRadius: EFFECTS.radius.lg,
                 fontFamily: FONTS.ui,
                 fontSize: TYPE_SCALE.ui.md.size,
@@ -8170,6 +8166,8 @@ const ProjectHeader = ({ page }) => {
  * - Without a src: a dashed placeholder frame showing where the image goes and
  *   what it should be, so a page can be laid out before the photos exist
  * - width="wide" breaks out past the prose column; "full" fills the content column
+ * - align="right" (or "left") sits the image beside the text that follows it, which wraps
+ *   around it; on phones it stacks above the text instead
  */
 
 
@@ -8182,6 +8180,24 @@ const FIGURE_WIDTHS = {
   wide: LAYOUT.maxWidth.content,
   full: '100%',
 };
+
+// Floated figures: a third of the column beside the text, full width on phones
+const injectFigureStyles = (() => {
+  let injected = false;
+  return () => {
+    if (injected || typeof document === 'undefined') return;
+    const style = document.createElement('style');
+    style.textContent = `
+      .figure-float-right { float: right; width: 34%; max-width: 300px; margin: 0.35rem 0 ${SPACE[5]} ${SPACE[7]} !important; }
+      .figure-float-left { float: left; width: 34%; max-width: 300px; margin: 0.35rem ${SPACE[7]} ${SPACE[5]} 0 !important; }
+      @media (max-width: 640px) {
+        .figure-float-right, .figure-float-left { float: none; width: 100%; max-width: 360px; margin: 0 auto ${SPACE[6]} !important; }
+      }
+    `;
+    document.head.appendChild(style);
+    injected = true;
+  };
+})();
 
 const FigurePlaceholder = ({ caption, ratio }) => (
   <div
@@ -8227,13 +8243,19 @@ const FigurePlaceholder = ({ caption, ratio }) => (
   </div>
 );
 
-const Figure = ({ src, alt, caption, width = 'wide', ratio = '16 / 10' }) => {
+const Figure = ({ src, alt, caption, width = 'wide', ratio = '16 / 10', align = '' }) => {
   const [ref, inView] = useInView();
   const [failed, setFailed] = useState(false);
+  const floated = align === 'right' || align === 'left';
+
+  useEffect(() => {
+    if (floated) injectFigureStyles();
+  }, [floated]);
 
   return (
     <figure
       ref={ref}
+      className={floated ? `figure-float-${align}` : undefined}
       style={{
         maxWidth: FIGURE_WIDTHS[width] || FIGURE_WIDTHS.wide,
         margin: `${SPACE[8]} auto`,

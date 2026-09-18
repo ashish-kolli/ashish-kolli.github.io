@@ -11,19 +11,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import FilmScreen from './FilmScreen';
 import { COLORS, FONTS, TYPE_SCALE, EFFECTS, LAYOUT, SPACE } from '../design-tokens';
 
-// Soft see-through orange-to-purple wash for the Resume button, echoing the header's
-// amber and violet glows. `strength` is each color's opacity; a little white underneath
-// keeps it light.
-const RESUME_GRADIENT = [
-  [249, 115, 22],  // orange
-  [139, 92, 246],  // purple
-];
-const resumeGradient = (strength) => {
-  const stops = RESUME_GRADIENT
-    .map(([r, g, b], i) => `rgba(${r}, ${g}, ${b}, ${strength}) ${Math.round((i / (RESUME_GRADIENT.length - 1)) * 100)}%`)
-    .join(', ');
-  return `linear-gradient(115deg, ${stops}), rgba(255, 255, 255, 0.55)`;
-};
+// Resume button: a faint, see-through violet-to-lavender wash, close to the header's own
+// lavender background; a little stronger on hover
+const RESUME_GRADIENT = 'linear-gradient(115deg, rgba(109, 40, 217, 0.22) 0%, rgba(167, 139, 250, 0.14) 100%)';
+const RESUME_GRADIENT_HOVER = 'linear-gradient(115deg, rgba(109, 40, 217, 0.34) 0%, rgba(167, 139, 250, 0.24) 100%)';
 
 const Header = ({ data }) => {
   const { from, fromEmail, linkedin, github, instagram, headshot, subtitle, title, resume, resumeLabel, reel = [] } = data;
@@ -227,12 +218,13 @@ const Header = ({ data }) => {
               onMouseEnter={() => setResumeHovered(true)}
               onMouseLeave={() => setResumeHovered(false)}
               style={{
-                // Card treatment like the project and contact cards (hairline border, purple
-                // outline and a small lift on hover), over a translucent orange-to-purple wash instead of white
+                // Purple gradient with white text and a white outline; on hover the gradient
+                // deepens and the button lifts slightly, like the other cards
                 padding: '0.625rem 1.5rem',
-                background: resumeGradient(resumeHovered ? 0.34 : 0.24),
-                color: resumeHovered ? COLORS.accent.primary : COLORS.ink[900],
-                border: `1px solid ${resumeHovered ? COLORS.accent.primary : COLORS.ink[400]}`,
+                background: resumeHovered ? RESUME_GRADIENT_HOVER : RESUME_GRADIENT,
+                color: '#FFFFFF',
+                border: '1px solid #FFFFFF',
+                textShadow: '0 1px 1px rgba(0, 0, 0, 0.18)',
                 borderRadius: EFFECTS.radius.lg,
                 fontFamily: FONTS.ui,
                 fontSize: TYPE_SCALE.ui.md.size,

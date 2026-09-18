@@ -18,7 +18,9 @@ Usage: python3 scripts/optimize-reel.py   (run by `npm run build`)
 """
 import os
 import re
+import subprocess
 import sys
+import tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SOURCE = os.path.join(ROOT, 'assets', 'photos', 'reel')
@@ -37,6 +39,24 @@ try:  # iPhone photos
     register_heif_opener()
 except ImportError:
     pass
+
+
+def open_image(path):
+    """Open with Pillow; for formats it can't read (iPhone HEIC without pillow-heif),
+    fall back to converting a temporary JPEG with macOS's built-in `sips`."""
+    try:
+        return Image.open(path)
+    except OSError:
+        if sys.platform != 'darwin':
+            raise
+        tmp = tempfile.NamedTemporaryFile(suffix='.jpg', delete=False)
+        tmp.close()
+        subprocess.run(['sips', '-s', 'format', 'jpeg', path, '--out', tmp.name],
+                       check=True, capture_output=True)
+        im = Image.open(tmp.name)
+        im.load()
+        os.remove(tmp.name)
+        return im
 
 
 def web_name(filename):
@@ -59,12 +79,12 @@ def main():
         if os.path.exists(dest) and os.path.getmtime(dest) >= os.path.getmtime(src):
             continue
         try:
-            with Image.open(src) as im:
+            with open_image(src) as im:
                 im = ImageOps.exif_transpose(im).convert('RGB')
                 im.thumbnail((MAX_SIDE, MAX_SIDE), Image.LANCZOS)
                 # Saving without exif= drops every metadata block, including GPS
                 im.save(dest, 'JPEG', quality=QUALITY, optimize=True, progressive=True)
-        except OSError as err:
+        except (OSError, subprocess.CalledProcessError) as err:
             print(f'  ✗ skipped {filename}: {err}')
             continue
         before = os.path.getsize(src) / 1e6
