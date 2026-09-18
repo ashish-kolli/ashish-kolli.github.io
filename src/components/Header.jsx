@@ -226,6 +226,9 @@ const Header = ({ data }) => {
                 padding: '0.625rem 1.5rem',
                 background: resumeHovered ? RESUME_GRADIENT_HOVER : RESUME_GRADIENT,
                 border: '1px solid transparent', // no outline; keeps the button's size unchanged
+                // Paint the wash from the outer edge: from the default (inside the border) it
+                // repeats into the border and shows its lavender end as a line on the left
+                backgroundOrigin: 'border-box',
                 borderRadius: EFFECTS.radius.lg,
                 fontFamily: FONTS.ui,
                 fontSize: TYPE_SCALE.ui.md.size,

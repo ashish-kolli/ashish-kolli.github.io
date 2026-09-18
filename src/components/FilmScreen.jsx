@@ -44,6 +44,9 @@ const FILM_LEADER_MASK = `linear-gradient(to right, ${FILM_LEADER_FADE.map(([at,
 const KEEP_OUT_GAP = 28;
 const KEEP_OUT_PAD = 6;
 const KEEP_OUT_BLUR = 10;
+// The last stretch of the strip before the frame is always solid, so strip and frame meet
+// white-on-white: no text cut-out may reach into it, and the fade completes before it
+const LEADER_SOLID_END = 28;
 
 // The leader's mask as an SVG image: the left-to-right fade, with a soft-edged cut-out for
 // each piece of text (keepOuts: { right, top, bottom } in px from the leader's top-left)
@@ -52,15 +55,18 @@ const leaderMaskImage = (width, height, keepOuts) => {
   const stops = FILM_LEADER_FADE
     .map(([at, a]) => `<stop offset='${at}' stop-color='white' stop-opacity='${a}'/>`)
     .join('');
+  const solidFrom = width - LEADER_SOLID_END;
+  const maxCutRight = solidFrom - KEEP_OUT_BLUR * 3; // blur included, cut-outs end before the solid zone
   const cutOuts = keepOuts
     .map(({ right, top, bottom }) =>
-      `<rect x='-60' y='${top - KEEP_OUT_PAD}' width='${right + KEEP_OUT_GAP + 60}' height='${bottom - top + KEEP_OUT_PAD * 2}' fill='black'/>`)
+      `<rect x='-60' y='${top - KEEP_OUT_PAD}' width='${Math.min(right + KEEP_OUT_GAP, maxCutRight) + 60}' height='${bottom - top + KEEP_OUT_PAD * 2}' fill='black'/>`)
     .join('');
   const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='${width}' height='${height}' viewBox='0 0 ${width} ${height}'>`
-    + `<defs><linearGradient id='fade'>${stops}</linearGradient>`
+    + `<defs><linearGradient id='fade' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='${solidFrom}' y2='0'>${stops}</linearGradient>`
     + `<filter id='soft' x='-50%' y='-50%' width='200%' height='200%'><feGaussianBlur stdDeviation='${KEEP_OUT_BLUR}'/></filter>`
     + `<mask id='clear' maskUnits='userSpaceOnUse' x='0' y='0' width='${width}' height='${height}'>`
-    + `<rect width='${width}' height='${height}' fill='white'/><g filter='url(#soft)'>${cutOuts}</g></mask></defs>`
+    + `<rect width='${width}' height='${height}' fill='white'/><g filter='url(#soft)'>${cutOuts}</g>`
+    + `<rect x='${solidFrom}' width='${LEADER_SOLID_END + 1}' height='${height}' fill='white'/></mask></defs>`
     + `<rect width='${width}' height='${height}' fill='url(#fade)' mask='url(#clear)'/></svg>`;
   return `url("data:image/svg+xml,${encodeURIComponent(svg)}")`;
 };
@@ -349,7 +355,7 @@ const FilmScreen = ({ images = [], keepOuts = [] }) => {
         }}
       >
         <span />
-        <span>All Rights Reserved.</span>
+        <span style={{ color: COLORS.ink[900] }}>ALL RIGHTS RESERVED.</span>
       </div>
 
       <Sprockets running={advances > 0} key={`bottom-${advances}`} />
