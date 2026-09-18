@@ -21,7 +21,7 @@ const pageOutput = argValue('--output');
 const distFile = path.resolve(argValue('--bundle') || path.resolve(__dirname, '../dist/ProductEngineerProposal.jsx'));
 // Relative path from the page back to the site root, so shared assets and links resolve on nested pages
 const base = argValue('--base');
-const DEFAULT_DESCRIPTION = 'Ashish Kolli — product manager. Accelerating and scaling product development with agentic AI.';
+const DEFAULT_DESCRIPTION = 'Ashish Kolli — product manager. Accelerating and scaling product with agents.';
 const description = argValue('--description') || DEFAULT_DESCRIPTION;
 const previewFile = path.resolve(__dirname, '../preview.html');
 const productionFile = path.resolve(__dirname, '../dist/index.html');

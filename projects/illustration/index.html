@@ -31,7 +31,7 @@
 
 /**
  * Product Engineer Proposal - Single File Bundle
- * Generated: 2026-09-18T03:51:59.308Z
+ * Generated: 2026-09-18T04:00:10.496Z
  *
  * This file is auto-generated. Do not edit directly.
  * To modify, edit the source files and run: node src/utils/build.js
@@ -42,7 +42,7 @@
 // ============================================================================
 
 // Auto-generated from content/projects/illustration.md
-// Generated: 2026-09-18T03:51:59.284Z
+// Generated: 2026-09-18T04:00:10.472Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -1596,24 +1596,33 @@ const Header = ({ data, heroQuote }) => {
               </div>
 
               <div>
-                {fromEmail && (
-                  <a
-                    href={`mailto:${fromEmail}`}
-                    onClick={(e) => e.stopPropagation()}
-                    style={{
-                      fontFamily: FONTS.mono,
-                      fontSize: TYPE_SCALE.mono.sm.size,
-                      color: COLORS.ink[500],
-                      textDecoration: 'none',
-                      display: 'block',
-                      marginBottom: '0.5rem',
-                    }}
-                  >
-                    {fromEmail}
-                  </a>
-                )}
-                {/* Social links */}
+                {/* Contact + social links */}
                 <div style={{ display: 'flex', gap: '0.75rem' }}>
+                  {fromEmail && (
+                    <a
+                      href={`mailto:${fromEmail}`}
+                      onClick={(e) => e.stopPropagation()}
+                      style={{
+                        width: '28px',
+                        height: '28px',
+                        borderRadius: EFFECTS.radius.md,
+                        background: COLORS.ink[100],
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: COLORS.ink[500],
+                        textDecoration: 'none',
+                        transition: 'all 0.2s ease',
+                      }}
+                      title={`Email ${fromEmail}`}
+                      aria-label={`Email ${fromEmail}`}
+                    >
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="2" y="4" width="20" height="16" rx="2" />
+                        <path d="m22 7-10 6L2 7" />
+                      </svg>
+                    </a>
+                  )}
                   {linkedin && (
                     <a
                       href={linkedin}

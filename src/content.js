@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-18T03:51:59.021Z
+// Generated: 2026-09-18T04:00:10.207Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -14,7 +14,7 @@ const CONTENT = {
     "resumeLabel": "Resume",
     "date": "September 2026",
     "title": "Ashish Kolli",
-    "subtitle": "Accelerating and scaling product development with agentic AI."
+    "subtitle": "Accelerating and scaling product with agents."
   },
   "page": null,
   "projects": [

@@ -17,7 +17,7 @@ Component marker reference: see CLAUDE.md
 <!-- @resume url="assets/resume.pdf" label="Resume" -->
 <!-- @date value="September 2026" -->
 <!-- @title value="Ashish Kolli" -->
-<!-- @subtitle value="Accelerating and scaling product development with agentic AI." -->
+<!-- @subtitle value="Accelerating and scaling product with agents." -->
 <!-- /@header -->
 
 <!-- Hero quote: sits outside every section, so it renders once, in the header -->
