@@ -31,7 +31,7 @@
 
 /**
  * Product Engineer Proposal - Single File Bundle
- * Generated: 2026-09-18T04:13:07.379Z
+ * Generated: 2026-09-18T04:18:44.575Z
  *
  * This file is auto-generated. Do not edit directly.
  * To modify, edit the source files and run: node src/utils/build.js
@@ -42,7 +42,7 @@
 // ============================================================================
 
 // Auto-generated from content/projects/photography.md
-// Generated: 2026-09-18T04:13:07.354Z
+// Generated: 2026-09-18T04:18:44.552Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -6952,10 +6952,14 @@ const WorkList = ({ items }) => {
  * - Brightest at the cursor, dimming steadily toward the rim of the spotlight
  * - Dots fade in quickly inside the spotlight and fade out slowly once it moves on,
  *   leaving a short trail; everywhere else the page stays clean
+ * - When the cursor rests in one place, a ripple rings out from it every second,
+ *   lighting the dots it passes over
  *
  * Performance:
  * - The canvas only covers the area where dots are currently visible, and is released when none are
- * - The animation loop runs only while dots are fading, and stops when idle
+ * - The animation loop runs only while dots are fading or a ripple is spreading, and stops
+ *   when idle; ripples are scheduled with a timer, so a resting cursor costs one short
+ *   animation per second
  *
  * Only rendered on devices with a real mouse (hover + fine pointer). Phones, tablets,
  * and reduced-motion users get nothing at all.
@@ -6971,6 +6975,12 @@ const EDGE_STRENGTH = 0.15;      // brightness of the outermost dots relative to
 const FADE_IN_MS = 60;           // how quickly dots appear
 const FADE_OUT_MS = 450;         // how slowly dots fade after the cursor moves on
 const RESIZE_STEP = 128;         // px - canvas grows/shrinks in steps to avoid constant reallocation
+const RIPPLE_INTERVAL_MS = 1000; // a resting cursor sends out a ripple this often
+const RIPPLE_MS = 900;           // how long one ripple takes to spread out
+const RIPPLE_START = SPOTLIGHT_RADIUS * 0.6; // px - ripple begins just inside the spotlight
+const RIPPLE_END = 130;          // px - radius where the ripple has faded away
+const RIPPLE_BAND = 16;          // px - half-width of the ring of dots a ripple lights
+const RIPPLE_STRENGTH = 0.9;     // brightness of the ripple ring at its start (0-1)
 
 const spotlightSupported = () =>
   typeof window !== 'undefined' &&
@@ -6990,8 +7000,10 @@ const CursorSpotlight = () => {
     const mouse = { x: 0, y: 0 };
     let mouseInside = false;
     const dots = new Map(); // "col,row" -> { col, row, alpha, target, x, y, onScreen }
+    const ripples = [];     // { x, y, start } - page coordinates and start time
     let frame = null;
     let lastTime = null;
+    let rippleTimer = null;
 
     // Canvas backing size, in CSS px
     let canvasW = 0;
@@ -7022,6 +7034,17 @@ const CursorSpotlight = () => {
       canvasH = 0;
     };
 
+    // Raise a dot's brightness target for this frame (never lowers one another effect set)
+    const light = (col, row, strength) => {
+      const key = `${col},${row}`;
+      let dot = dots.get(key);
+      if (!dot) {
+        dot = { col, row, alpha: 0, target: 0 };
+        dots.set(key, dot);
+      }
+      if (strength > dot.target) dot.target = strength;
+    };
+
     const draw = (time) => {
       frame = null;
       const dt = lastTime === null ? 16.7 : Math.min(time - lastTime, 100);
@@ -7041,14 +7064,28 @@ const CursorSpotlight = () => {
             if (distance >= SPOTLIGHT_RADIUS) continue;
 
             // Gradient: full brightness at the cursor, dimming evenly out to EDGE_STRENGTH at the rim
-            const strength = 1 - (1 - EDGE_STRENGTH) * (distance / SPOTLIGHT_RADIUS);
-            const key = `${col},${row}`;
-            let dot = dots.get(key);
-            if (!dot) {
-              dot = { col, row, alpha: 0, target: 0 };
-              dots.set(key, dot);
-            }
-            dot.target = strength;
+            light(col, row, 1 - (1 - EDGE_STRENGTH) * (distance / SPOTLIGHT_RADIUS));
+          }
+        }
+      }
+
+      // Ripples: a ring that spreads outward and dims, lighting the dots it crosses
+      for (let i = ripples.length - 1; i >= 0; i--) {
+        const ripple = ripples[i];
+        const progress = (time - ripple.start) / RIPPLE_MS;
+        if (progress >= 1) {
+          ripples.splice(i, 1);
+          continue;
+        }
+        if (progress < 0) continue;
+        const eased = 1 - (1 - progress) * (1 - progress); // fast start, gentle finish
+        const radius = RIPPLE_START + (RIPPLE_END - RIPPLE_START) * eased;
+        const ringStrength = RIPPLE_STRENGTH * (1 - progress);
+        const reach = radius + RIPPLE_BAND;
+        for (let col = Math.ceil((ripple.x - reach) / DOT_SPACING); col * DOT_SPACING <= ripple.x + reach; col++) {
+          for (let row = Math.ceil((ripple.y - reach) / DOT_SPACING); row * DOT_SPACING <= ripple.y + reach; row++) {
+            const offRing = Math.abs(Math.hypot(col * DOT_SPACING - ripple.x, row * DOT_SPACING - ripple.y) - radius);
+            if (offRing < RIPPLE_BAND) light(col, row, ringStrength * (1 - offRing / RIPPLE_BAND));
           }
         }
       }
@@ -7102,8 +7139,8 @@ const CursorSpotlight = () => {
         ctx.globalAlpha = 1;
       }
 
-      // Keep animating only while dots are still fading
-      if (animating) frame = requestAnimationFrame(draw);
+      // Keep animating only while dots are still fading or a ripple is spreading
+      if (animating || ripples.length > 0) frame = requestAnimationFrame(draw);
       else lastTime = null;
     };
 
@@ -7111,17 +7148,34 @@ const CursorSpotlight = () => {
       if (frame === null) frame = requestAnimationFrame(draw);
     };
 
+    // A ripple goes out after the cursor has rested for RIPPLE_INTERVAL_MS, then every
+    // RIPPLE_INTERVAL_MS while it stays put. Any movement or scrolling restarts the wait.
+    const emitRipple = () => {
+      rippleTimer = null;
+      if (!mouseInside || document.hidden) return;
+      ripples.push({ x: mouse.x + window.scrollX, y: mouse.y + window.scrollY, start: performance.now() });
+      wake();
+      rippleTimer = setTimeout(emitRipple, RIPPLE_INTERVAL_MS);
+    };
+    const restartRippleWait = () => {
+      clearTimeout(rippleTimer);
+      rippleTimer = mouseInside ? setTimeout(emitRipple, RIPPLE_INTERVAL_MS) : null;
+    };
+
     const handleMove = (e) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
       mouseInside = true;
+      restartRippleWait();
       wake();
     };
     const handleLeave = () => {
       mouseInside = false;
+      restartRippleWait();
       wake();
     };
     const handleScroll = () => {
+      restartRippleWait();
       if (dots.size > 0) wake();
     };
     const handleResize = () => {
@@ -7136,6 +7190,7 @@ const CursorSpotlight = () => {
 
     return () => {
       if (frame !== null) cancelAnimationFrame(frame);
+      clearTimeout(rippleTimer);
       window.removeEventListener('mousemove', handleMove);
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
