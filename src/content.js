@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-18T02:55:51.279Z
+// Generated: 2026-09-18T03:01:17.478Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -135,30 +135,7 @@ const CONTENT = {
       "ratio": "16 / 10"
     }
   ],
-  "stats": [
-    [
-      {
-        "value": "[00]",
-        "label": "[What this number measures]",
-        "source": "[Company · context]"
-      },
-      {
-        "value": "[00]",
-        "label": "[What this number measures]",
-        "source": "[Company · context]"
-      },
-      {
-        "value": "[00]",
-        "label": "[What this number measures]",
-        "source": "[Company · context]"
-      },
-      {
-        "value": "[00]",
-        "label": "[What this number measures]",
-        "source": "[Company · context]"
-      }
-    ]
-  ],
+  "stats": [],
   "charts": [],
   "convergence": {
     "position": "after",
@@ -275,11 +252,6 @@ const CONTENT = {
         {
           "type": "paragraph",
           "text": "[Closing line — the sentence you want a hiring manager to remember.]"
-        },
-        {
-          "type": "component",
-          "component": "stats",
-          "param": "[00]|[What this number measures]"
         },
         {
           "type": "component",

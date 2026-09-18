@@ -423,33 +423,10 @@ const App = () => {
             fontFamily: FONTS.ui,
             fontSize: TYPE_SCALE.ui.sm.size,
             color: COLORS.ink[400],
-            marginBottom: SPACE[1],
           }}
         >
-          Ashish Kolli · Selected Works
+          Ashish Kolli. All Rights Reserved.
         </p>
-        <p
-          style={{
-            fontFamily: FONTS.mono,
-            fontSize: TYPE_SCALE.mono.sm.size,
-            color: COLORS.ink[400],
-          }}
-        >
-          Northwestern · Master of Product Design '26
-        </p>
-        {/* Only the home page carries a date; project pages have no @header block */}
-        {CONTENT.header?.date && (
-          <p
-            style={{
-              fontFamily: FONTS.mono,
-              fontSize: TYPE_SCALE.mono.sm.size,
-              color: COLORS.accent.muted,
-              marginTop: SPACE[3],
-            }}
-          >
-            {CONTENT.header.date}
-          </p>
-        )}
       </footer>
       </PageIntro>
     </div>

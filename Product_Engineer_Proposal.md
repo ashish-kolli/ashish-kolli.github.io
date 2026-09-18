@@ -90,13 +90,6 @@ Component marker reference: see CLAUDE.md
 
 [Closing line — the sentence you want a hiring manager to remember.]
 
-<!-- @stats -->
-<!-- @stat value="[00]" label="[What this number measures]" source="[Company · context]" -->
-<!-- @stat value="[00]" label="[What this number measures]" source="[Company · context]" -->
-<!-- @stat value="[00]" label="[What this number measures]" source="[Company · context]" -->
-<!-- @stat value="[00]" label="[What this number measures]" source="[Company · context]" -->
-<!-- /@stats -->
-
 <!-- @image src="" caption="[Optional — a photo of you working, or an image that sets the tone for this section]" width="wide" -->
 
 ---
