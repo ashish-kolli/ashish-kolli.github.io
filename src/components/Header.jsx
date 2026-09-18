@@ -10,6 +10,20 @@
 import React, { useState, useEffect } from 'react';
 import { COLORS, FONTS, TYPE_SCALE, EFFECTS, LAYOUT, SPACE } from '../design-tokens';
 
+// Soft see-through orange-to-purple wash for the Resume button, echoing the header's
+// amber and violet glows. `strength` is each color's opacity; a little white underneath
+// keeps it light.
+const RESUME_GRADIENT = [
+  [249, 115, 22],  // orange
+  [139, 92, 246],  // purple
+];
+const resumeGradient = (strength) => {
+  const stops = RESUME_GRADIENT
+    .map(([r, g, b], i) => `rgba(${r}, ${g}, ${b}, ${strength}) ${Math.round((i / (RESUME_GRADIENT.length - 1)) * 100)}%`)
+    .join(', ');
+  return `linear-gradient(115deg, ${stops}), rgba(255, 255, 255, 0.55)`;
+};
+
 const Header = ({ data, heroQuote }) => {
   const { from, fromEmail, linkedin, github, instagram, headshot, subtitle, title, resume, resumeLabel } = data;
   // Default quote if none provided
@@ -167,17 +181,20 @@ const Header = ({ data, heroQuote }) => {
               onMouseEnter={() => setResumeHovered(true)}
               onMouseLeave={() => setResumeHovered(false)}
               style={{
+                // Card treatment like the project and contact cards (hairline border, purple
+                // outline and a small lift on hover), over a translucent orange-to-purple wash instead of white
                 padding: '0.625rem 1.5rem',
-                background: resumeHovered ? COLORS.accent.light : COLORS.accent.primary,
-                color: '#FFFFFF',
-                borderRadius: EFFECTS.radius.full,
+                background: resumeGradient(resumeHovered ? 0.34 : 0.24),
+                color: resumeHovered ? COLORS.accent.primary : COLORS.ink[900],
+                border: `1px solid ${resumeHovered ? COLORS.accent.primary : COLORS.ink[400]}`,
+                borderRadius: EFFECTS.radius.lg,
                 fontFamily: FONTS.ui,
                 fontSize: TYPE_SCALE.ui.md.size,
-                fontWeight: 600,
+                fontWeight: 400,
                 letterSpacing: '0.02em',
                 textDecoration: 'none',
                 whiteSpace: 'nowrap',
-                boxShadow: resumeHovered ? EFFECTS.shadow.md : EFFECTS.shadow.sm,
+                boxShadow: resumeHovered ? EFFECTS.shadow.lg : EFFECTS.shadow.sm,
                 transform: resumeHovered ? 'translateY(-2px)' : 'translateY(0)',
                 transition: `all ${EFFECTS.transition.base}`,
               }}
