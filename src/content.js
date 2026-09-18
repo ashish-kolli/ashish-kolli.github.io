@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-18T16:16:16.984Z
+// Generated: 2026-09-18T17:54:17.873Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -15,17 +15,9 @@ const CONTENT = {
     "reel": [
       "assets/photos/reel-web/2x.jpg",
       "assets/photos/reel-web/car-7.jpg",
-      "assets/photos/reel-web/img-0024.jpg",
-      "assets/photos/reel-web/img-1481.jpg",
       "assets/photos/reel-web/img-2838.jpg",
-      "assets/photos/reel-web/img-6931.jpg",
       "assets/photos/reel-web/lm-build-challenge-p2.jpg",
-      "assets/photos/reel-web/r0002590.jpg",
-      "assets/photos/reel-web/r0006920.jpg",
-      "assets/photos/reel-web/r0007406.jpg",
-      "assets/photos/reel-web/r0007820.jpg",
       "assets/photos/reel-web/r0008919-3.jpg",
-      "assets/photos/reel-web/screenshot-2026-01-15-at-7-54-30-pm.jpg",
       "assets/photos/reel-web/screenshot-2026-03-17-at-12-34-04-pm.jpg"
     ],
     "date": "September 2026",

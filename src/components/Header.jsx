@@ -15,6 +15,9 @@ import { COLORS, FONTS, TYPE_SCALE, EFFECTS, LAYOUT, SPACE } from '../design-tok
 // lavender background; a little stronger on hover
 const RESUME_GRADIENT = 'linear-gradient(115deg, rgba(109, 40, 217, 0.22) 0%, rgba(167, 139, 250, 0.14) 100%)';
 const RESUME_GRADIENT_HOVER = 'linear-gradient(115deg, rgba(109, 40, 217, 0.34) 0%, rgba(167, 139, 250, 0.24) 100%)';
+// The label itself is painted with an orange-to-purple gradient (a shade deeper than the
+// Resume palette's orange and purple, so it stays legible on the pale wash)
+const RESUME_TEXT_GRADIENT = 'linear-gradient(90deg, #EA580C 0%, #7C3AED 100%)';
 
 const Header = ({ data }) => {
   const { from, fromEmail, linkedin, github, instagram, headshot, subtitle, title, resume, resumeLabel, reel = [] } = data;
@@ -218,13 +221,11 @@ const Header = ({ data }) => {
               onMouseEnter={() => setResumeHovered(true)}
               onMouseLeave={() => setResumeHovered(false)}
               style={{
-                // Purple gradient with white text and a white outline; on hover the gradient
-                // deepens and the button lifts slightly, like the other cards
+                // Pale purple wash, no outline, orange-to-purple gradient text; on hover the
+                // wash deepens and the button lifts slightly, like the other cards
                 padding: '0.625rem 1.5rem',
                 background: resumeHovered ? RESUME_GRADIENT_HOVER : RESUME_GRADIENT,
-                color: '#FFFFFF',
-                border: '1px solid #FFFFFF',
-                textShadow: '0 1px 1px rgba(0, 0, 0, 0.18)',
+                border: '1px solid transparent', // no outline; keeps the button's size unchanged
                 borderRadius: EFFECTS.radius.lg,
                 fontFamily: FONTS.ui,
                 fontSize: TYPE_SCALE.ui.md.size,
@@ -237,7 +238,17 @@ const Header = ({ data }) => {
                 transition: `all ${EFFECTS.transition.base}`,
               }}
             >
-              {resumeLabel}
+              <span
+                style={{
+                  backgroundImage: RESUME_TEXT_GRADIENT,
+                  WebkitBackgroundClip: 'text',
+                  backgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  color: 'transparent',
+                }}
+              >
+                {resumeLabel}
+              </span>
             </a>
           )}
         </div>

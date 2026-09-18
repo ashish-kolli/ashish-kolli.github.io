@@ -282,7 +282,7 @@ const FilmScreen = ({ images = [], keepOuts = [] }) => {
           opacity: 0.85,
         }}
       >
-        <span>RICOH GR IIIx</span>
+        <span />
         <span>{'<<'}</span>
       </div>
 
@@ -348,8 +348,8 @@ const FilmScreen = ({ images = [], keepOuts = [] }) => {
           opacity: 0.85,
         }}
       >
-        <span>ASPHERICAL LENS</span>
-        <span>AK</span>
+        <span />
+        <span>All Rights Reserved.</span>
       </div>
 
       <Sprockets running={advances > 0} key={`bottom-${advances}`} />
