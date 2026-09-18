@@ -31,7 +31,7 @@
 
 /**
  * Product Engineer Proposal - Single File Bundle
- * Generated: 2026-09-18T02:37:54.523Z
+ * Generated: 2026-09-18T02:49:58.991Z
  *
  * This file is auto-generated. Do not edit directly.
  * To modify, edit the source files and run: node src/utils/build.js
@@ -42,7 +42,7 @@
 // ============================================================================
 
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-18T02:37:54.490Z
+// Generated: 2026-09-18T02:49:58.965Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -1448,6 +1448,15 @@ const Header = ({ data, heroQuote }) => {
     title: '',
   };
   const [imageError, setImageError] = useState(false);
+  const [cardHovered, setCardHovered] = useState(false);
+
+  // The contact card is a shortcut into the About section
+  const goToAbout = () => {
+    const about = document.getElementById('about');
+    if (about) {
+      window.scrollTo({ top: about.offsetTop - 100, behavior: 'smooth' });
+    }
+  };
 
   // Typewriter animation state
   const [typedText, setTypedText] = useState('');
@@ -1696,8 +1705,20 @@ const Header = ({ data, heroQuote }) => {
               />
             </p>
 
-            {/* Author info - horizontal card */}
+            {/* Author info - horizontal card, links through to the About section */}
             <div
+              role="link"
+              tabIndex={0}
+              aria-label="Read the about section"
+              onClick={goToAbout}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  goToAbout();
+                }
+              }}
+              onMouseEnter={() => setCardHovered(true)}
+              onMouseLeave={() => setCardHovered(false)}
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -1705,8 +1726,11 @@ const Header = ({ data, heroQuote }) => {
                 padding: '1rem 1.5rem',
                 background: COLORS.surface.elevated,
                 borderRadius: EFFECTS.radius.xl,
-                border: `1px solid ${COLORS.ink[200]}`,
+                border: `1px solid ${cardHovered ? COLORS.accent.primary : COLORS.ink[200]}`,
                 boxShadow: EFFECTS.shadow.lg,
+                cursor: 'pointer',
+                transform: cardHovered ? 'translateY(-4px)' : 'translateY(0)',
+                transition: `transform ${EFFECTS.transition.base}, border-color ${EFFECTS.transition.base}`,
               }}
             >
               {/* Headshot with fallback */}
@@ -1767,6 +1791,7 @@ const Header = ({ data, heroQuote }) => {
                 {fromEmail && (
                   <a
                     href={`mailto:${fromEmail}`}
+                    onClick={(e) => e.stopPropagation()}
                     style={{
                       fontFamily: FONTS.mono,
                       fontSize: TYPE_SCALE.mono.sm.size,
@@ -1785,6 +1810,7 @@ const Header = ({ data, heroQuote }) => {
                     <a
                       href={linkedin}
                       target="_blank"
+                      onClick={(e) => e.stopPropagation()}
                       rel="noopener noreferrer"
                       style={{
                         width: '28px',
@@ -1809,6 +1835,7 @@ const Header = ({ data, heroQuote }) => {
                     <a
                       href={github}
                       target="_blank"
+                      onClick={(e) => e.stopPropagation()}
                       rel="noopener noreferrer"
                       style={{
                         width: '28px',
@@ -1833,6 +1860,7 @@ const Header = ({ data, heroQuote }) => {
                     <a
                       href={instagram}
                       target="_blank"
+                      onClick={(e) => e.stopPropagation()}
                       rel="noopener noreferrer"
                       style={{
                         width: '28px',
@@ -8239,11 +8267,21 @@ const App = () => {
   useEffect(() => {
     injectGlobalStyles();
 
+    // Opening the page always starts at the title, never wherever the browser
+    // last left off, so turn off the browser's own scroll restoration.
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
     // Links like "./#maker" (the back link on project pages) land on their section.
     // The browser can't do this itself because sections don't exist until React renders.
     const target = window.location.hash && document.getElementById(window.location.hash.slice(1));
     if (target) {
       window.scrollTo({ top: target.offsetTop - 40, behavior: 'instant' });
+      // Drop the hash so reloading or reopening the page starts at the top again
+      window.history.replaceState(null, '', window.location.pathname + window.location.search);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'instant' });
     }
   }, []);
 

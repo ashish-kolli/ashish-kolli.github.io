@@ -19,6 +19,15 @@ const Header = ({ data, heroQuote }) => {
     title: '',
   };
   const [imageError, setImageError] = useState(false);
+  const [cardHovered, setCardHovered] = useState(false);
+
+  // The contact card is a shortcut into the About section
+  const goToAbout = () => {
+    const about = document.getElementById('about');
+    if (about) {
+      window.scrollTo({ top: about.offsetTop - 100, behavior: 'smooth' });
+    }
+  };
 
   // Typewriter animation state
   const [typedText, setTypedText] = useState('');
@@ -267,8 +276,20 @@ const Header = ({ data, heroQuote }) => {
               />
             </p>
 
-            {/* Author info - horizontal card */}
+            {/* Author info - horizontal card, links through to the About section */}
             <div
+              role="link"
+              tabIndex={0}
+              aria-label="Read the about section"
+              onClick={goToAbout}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  goToAbout();
+                }
+              }}
+              onMouseEnter={() => setCardHovered(true)}
+              onMouseLeave={() => setCardHovered(false)}
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -276,8 +297,11 @@ const Header = ({ data, heroQuote }) => {
                 padding: '1rem 1.5rem',
                 background: COLORS.surface.elevated,
                 borderRadius: EFFECTS.radius.xl,
-                border: `1px solid ${COLORS.ink[200]}`,
+                border: `1px solid ${cardHovered ? COLORS.accent.primary : COLORS.ink[200]}`,
                 boxShadow: EFFECTS.shadow.lg,
+                cursor: 'pointer',
+                transform: cardHovered ? 'translateY(-4px)' : 'translateY(0)',
+                transition: `transform ${EFFECTS.transition.base}, border-color ${EFFECTS.transition.base}`,
               }}
             >
               {/* Headshot with fallback */}
@@ -338,6 +362,7 @@ const Header = ({ data, heroQuote }) => {
                 {fromEmail && (
                   <a
                     href={`mailto:${fromEmail}`}
+                    onClick={(e) => e.stopPropagation()}
                     style={{
                       fontFamily: FONTS.mono,
                       fontSize: TYPE_SCALE.mono.sm.size,
@@ -356,6 +381,7 @@ const Header = ({ data, heroQuote }) => {
                     <a
                       href={linkedin}
                       target="_blank"
+                      onClick={(e) => e.stopPropagation()}
                       rel="noopener noreferrer"
                       style={{
                         width: '28px',
@@ -380,6 +406,7 @@ const Header = ({ data, heroQuote }) => {
                     <a
                       href={github}
                       target="_blank"
+                      onClick={(e) => e.stopPropagation()}
                       rel="noopener noreferrer"
                       style={{
                         width: '28px',
@@ -404,6 +431,7 @@ const Header = ({ data, heroQuote }) => {
                     <a
                       href={instagram}
                       target="_blank"
+                      onClick={(e) => e.stopPropagation()}
                       rel="noopener noreferrer"
                       style={{
                         width: '28px',

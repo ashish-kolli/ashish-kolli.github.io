@@ -267,11 +267,21 @@ const App = () => {
   useEffect(() => {
     injectGlobalStyles();
 
+    // Opening the page always starts at the title, never wherever the browser
+    // last left off, so turn off the browser's own scroll restoration.
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
     // Links like "./#maker" (the back link on project pages) land on their section.
     // The browser can't do this itself because sections don't exist until React renders.
     const target = window.location.hash && document.getElementById(window.location.hash.slice(1));
     if (target) {
       window.scrollTo({ top: target.offsetTop - 40, behavior: 'instant' });
+      // Drop the hash so reloading or reopening the page starts at the top again
+      window.history.replaceState(null, '', window.location.pathname + window.location.search);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'instant' });
     }
   }, []);
 
