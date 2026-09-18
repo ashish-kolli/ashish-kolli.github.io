@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-18T03:24:20.706Z
+// Generated: 2026-09-18T03:51:59.021Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -102,12 +102,12 @@ const CONTENT = {
           "summary": "[Category summary — the kind of pieces you cut and the effects work behind them.]"
         },
         {
-          "href": "projects/cycling/",
-          "title": "Cycling",
+          "href": "projects/illustration/",
+          "title": "Illustration",
           "eyebrow": "Category",
-          "meta": "[Riding · routes]",
-          "icon": "bike",
-          "summary": "[Category summary — how you ride and what the discipline gives back.]"
+          "meta": "[Medium · subjects]",
+          "icon": "palette",
+          "summary": "[Category summary — what you draw and what keeps pulling you back to it.]"
         }
       ]
     }

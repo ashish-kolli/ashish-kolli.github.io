@@ -1,14 +1,14 @@
 <!--
 ================================================================================
-CYCLING — CATEGORY PAGE
+ILLUSTRATION — CATEGORY PAGE
 ================================================================================
 PLACEHOLDER DRAFT. Replace each bracketed line with real copy. Each @image
-marker renders a dashed frame until given a src (e.g. src="assets/photos/cycling/01.jpg").
+marker renders a dashed frame until given a src (e.g. src="assets/photos/illustration/01.jpg").
 ================================================================================
 -->
 
-<!-- @page title="Cycling" eyebrow="Making · Cycling" meta="[Years] · [Focus] · [Tools]" back="Making" backHref="./#making" -->
-[One or two sentences: how you ride, where, and what the discipline gives back.]
+<!-- @page title="Illustration" eyebrow="Making · Illustration" meta="[Years] · [Focus] · [Tools]" back="Making" backHref="./#making" -->
+[One or two sentences: what you draw, in what medium, and what draws you back to it.]
 <!-- /@page -->
 
 ## 1. What I make

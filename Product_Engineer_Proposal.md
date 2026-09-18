@@ -117,8 +117,8 @@ Component marker reference: see CLAUDE.md
 [Category summary — the kind of pieces you cut and the effects work behind them.]
 <!-- /@project -->
 
-<!-- @project href="projects/cycling/" icon="bike" eyebrow="Category" title="Cycling" meta="[Riding · routes]" -->
-[Category summary — how you ride and what the discipline gives back.]
+<!-- @project href="projects/illustration/" icon="palette" eyebrow="Category" title="Illustration" meta="[Medium · subjects]" -->
+[Category summary — what you draw and what keeps pulling you back to it.]
 <!-- /@project -->
 
 <!-- /@projects -->

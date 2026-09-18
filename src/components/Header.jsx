@@ -151,58 +151,12 @@ const Header = ({ data, heroQuote }) => {
             alignItems: 'center',
           }}
         >
-          {/* Logo/Brand mark */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <div
-              style={{
-                width: '40px',
-                height: '40px',
-                background: COLORS.accent.primary,
-                borderRadius: EFFECTS.radius.md,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                boxShadow: EFFECTS.shadow.md,
-              }}
-            >
-              <span
-                style={{
-                  color: 'white',
-                  fontFamily: FONTS.display,
-                  fontSize: '1.25rem',
-                  fontWeight: 500,
-                }}
-              >
-                AK
-              </span>
-            </div>
-            <div>
-              <span
-                style={{
-                  fontFamily: FONTS.ui,
-                  fontSize: TYPE_SCALE.ui.sm.size,
-                  fontWeight: 600,
-                  letterSpacing: '0.08em',
-                  textTransform: 'uppercase',
-                  color: COLORS.ink[700],
-                  display: 'block',
-                }}
-              >
-                Ashish Kolli
-              </span>
-              <span
-                style={{
-                  fontFamily: FONTS.ui,
-                  fontSize: TYPE_SCALE.ui.xs.size,
-                  letterSpacing: '0.05em',
-                  color: COLORS.ink[400],
-                  textTransform: 'uppercase',
-                }}
-              >
-                Portfolio
-              </span>
-            </div>
-          </div>
+          {/* Signature mark */}
+          <img
+            src="assets/brand/signature.png"
+            alt="Ashish Kolli"
+            style={{ display: 'block', height: '34px', width: 'auto' }}
+          />
 
           {/* Resume button */}
           {resume && (
@@ -376,17 +330,6 @@ const Header = ({ data, heroQuote }) => {
               </div>
 
               <div>
-                <p
-                  style={{
-                    fontFamily: FONTS.ui,
-                    fontSize: TYPE_SCALE.ui.lg.size,
-                    fontWeight: 600,
-                    color: COLORS.ink[800],
-                    marginBottom: '0.25rem',
-                  }}
-                >
-                  {from}
-                </p>
                 {fromEmail && (
                   <a
                     href={`mailto:${fromEmail}`}

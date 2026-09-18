@@ -4,11 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ASHISH KOLLI</title>
-  <!-- Raster icons first: Safari ignores data-URI SVG favicons and requests /favicon.ico -->
+  <!-- Signature favicon (generated from assets/brand/signature.png) -->
   <link rel="icon" href="favicon.ico" sizes="48x48 32x32 16x16">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%235B21B6'/><text x='32' y='43' font-family='Helvetica,Arial,sans-serif' font-size='28' font-weight='700' letter-spacing='-1' fill='%23ffffff' text-anchor='middle'>AK</text></svg>">
   <meta name="description" content="Ashish Kolli — product manager. Accelerating and scaling product development with agentic AI.">
   <meta property="og:title" content="ASHISH KOLLI">
   <meta property="og:description" content="Ashish Kolli — product manager. Accelerating and scaling product development with agentic AI.">
@@ -31,7 +30,7 @@
 
 /**
  * Product Engineer Proposal - Single File Bundle
- * Generated: 2026-09-18T03:24:20.739Z
+ * Generated: 2026-09-18T03:51:59.051Z
  *
  * This file is auto-generated. Do not edit directly.
  * To modify, edit the source files and run: node src/utils/build.js
@@ -42,7 +41,7 @@
 // ============================================================================
 
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-18T03:24:20.706Z
+// Generated: 2026-09-18T03:51:59.021Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -145,12 +144,12 @@ const CONTENT = {
           "summary": "[Category summary — the kind of pieces you cut and the effects work behind them.]"
         },
         {
-          "href": "projects/cycling/",
-          "title": "Cycling",
+          "href": "projects/illustration/",
+          "title": "Illustration",
           "eyebrow": "Category",
-          "meta": "[Riding · routes]",
-          "icon": "bike",
-          "summary": "[Category summary — how you ride and what the discipline gives back.]"
+          "meta": "[Medium · subjects]",
+          "icon": "palette",
+          "summary": "[Category summary — what you draw and what keeps pulling you back to it.]"
         }
       ]
     }
@@ -1561,58 +1560,12 @@ const Header = ({ data, heroQuote }) => {
             alignItems: 'center',
           }}
         >
-          {/* Logo/Brand mark */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <div
-              style={{
-                width: '40px',
-                height: '40px',
-                background: COLORS.accent.primary,
-                borderRadius: EFFECTS.radius.md,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                boxShadow: EFFECTS.shadow.md,
-              }}
-            >
-              <span
-                style={{
-                  color: 'white',
-                  fontFamily: FONTS.display,
-                  fontSize: '1.25rem',
-                  fontWeight: 500,
-                }}
-              >
-                AK
-              </span>
-            </div>
-            <div>
-              <span
-                style={{
-                  fontFamily: FONTS.ui,
-                  fontSize: TYPE_SCALE.ui.sm.size,
-                  fontWeight: 600,
-                  letterSpacing: '0.08em',
-                  textTransform: 'uppercase',
-                  color: COLORS.ink[700],
-                  display: 'block',
-                }}
-              >
-                Ashish Kolli
-              </span>
-              <span
-                style={{
-                  fontFamily: FONTS.ui,
-                  fontSize: TYPE_SCALE.ui.xs.size,
-                  letterSpacing: '0.05em',
-                  color: COLORS.ink[400],
-                  textTransform: 'uppercase',
-                }}
-              >
-                Portfolio
-              </span>
-            </div>
-          </div>
+          {/* Signature mark */}
+          <img
+            src="assets/brand/signature.png"
+            alt="Ashish Kolli"
+            style={{ display: 'block', height: '34px', width: 'auto' }}
+          />
 
           {/* Resume button */}
           {resume && (
@@ -1786,17 +1739,6 @@ const Header = ({ data, heroQuote }) => {
               </div>
 
               <div>
-                <p
-                  style={{
-                    fontFamily: FONTS.ui,
-                    fontSize: TYPE_SCALE.ui.lg.size,
-                    fontWeight: 600,
-                    color: COLORS.ink[800],
-                    marginBottom: '0.25rem',
-                  }}
-                >
-                  {from}
-                </p>
                 {fromEmail && (
                   <a
                     href={`mailto:${fromEmail}`}
@@ -7639,7 +7581,7 @@ const ProjectCards = ({ projects, layout = 'row', rows = 2 }) => {
  * ProjectHeader Component
  *
  * Compact hero for a project page, driven by the page's <!-- @page --> marker.
- * - Top bar matches the home page Header: AK mark links home, plus a back link
+ * - Top bar matches the home page Header: signature mark links home, plus a back link
  * - Eyebrow, project title (same Helvetica caps as the home page name), summary, meta line
  */
 
@@ -7699,49 +7641,12 @@ const ProjectHeader = ({ page }) => {
             gap: SPACE[4],
           }}
         >
-          <a href="./" style={{ display: 'flex', alignItems: 'center', gap: '1rem', textDecoration: 'none' }}>
-            <div
-              style={{
-                width: '40px',
-                height: '40px',
-                background: COLORS.accent.primary,
-                borderRadius: EFFECTS.radius.md,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                boxShadow: EFFECTS.shadow.md,
-              }}
-            >
-              <span style={{ color: 'white', fontFamily: FONTS.display, fontSize: '1.25rem', fontWeight: 500 }}>
-                AK
-              </span>
-            </div>
-            <div>
-              <span
-                style={{
-                  fontFamily: FONTS.ui,
-                  fontSize: TYPE_SCALE.ui.sm.size,
-                  fontWeight: 600,
-                  letterSpacing: '0.08em',
-                  textTransform: 'uppercase',
-                  color: COLORS.ink[700],
-                  display: 'block',
-                }}
-              >
-                Ashish Kolli
-              </span>
-              <span
-                style={{
-                  fontFamily: FONTS.ui,
-                  fontSize: TYPE_SCALE.ui.xs.size,
-                  letterSpacing: '0.05em',
-                  color: COLORS.ink[400],
-                  textTransform: 'uppercase',
-                }}
-              >
-                Portfolio
-              </span>
-            </div>
+          <a href="./" aria-label="Home" style={{ display: 'flex', alignItems: 'center' }}>
+            <img
+              src="assets/brand/signature.png"
+              alt="Ashish Kolli"
+              style={{ display: 'block', height: '34px', width: 'auto' }}
+            />
           </a>
 
           <a

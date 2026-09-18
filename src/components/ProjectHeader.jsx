@@ -2,7 +2,7 @@
  * ProjectHeader Component
  *
  * Compact hero for a project page, driven by the page's <!-- @page --> marker.
- * - Top bar matches the home page Header: AK mark links home, plus a back link
+ * - Top bar matches the home page Header: signature mark links home, plus a back link
  * - Eyebrow, project title (same Helvetica caps as the home page name), summary, meta line
  */
 import React, { useEffect, useState } from 'react';
@@ -62,49 +62,12 @@ const ProjectHeader = ({ page }) => {
             gap: SPACE[4],
           }}
         >
-          <a href="./" style={{ display: 'flex', alignItems: 'center', gap: '1rem', textDecoration: 'none' }}>
-            <div
-              style={{
-                width: '40px',
-                height: '40px',
-                background: COLORS.accent.primary,
-                borderRadius: EFFECTS.radius.md,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                boxShadow: EFFECTS.shadow.md,
-              }}
-            >
-              <span style={{ color: 'white', fontFamily: FONTS.display, fontSize: '1.25rem', fontWeight: 500 }}>
-                AK
-              </span>
-            </div>
-            <div>
-              <span
-                style={{
-                  fontFamily: FONTS.ui,
-                  fontSize: TYPE_SCALE.ui.sm.size,
-                  fontWeight: 600,
-                  letterSpacing: '0.08em',
-                  textTransform: 'uppercase',
-                  color: COLORS.ink[700],
-                  display: 'block',
-                }}
-              >
-                Ashish Kolli
-              </span>
-              <span
-                style={{
-                  fontFamily: FONTS.ui,
-                  fontSize: TYPE_SCALE.ui.xs.size,
-                  letterSpacing: '0.05em',
-                  color: COLORS.ink[400],
-                  textTransform: 'uppercase',
-                }}
-              >
-                Portfolio
-              </span>
-            </div>
+          <a href="./" aria-label="Home" style={{ display: 'flex', alignItems: 'center' }}>
+            <img
+              src="assets/brand/signature.png"
+              alt="Ashish Kolli"
+              style={{ display: 'block', height: '34px', width: 'auto' }}
+            />
           </a>
 
           <a
