@@ -15,15 +15,12 @@ Component marker reference: see CLAUDE.md
 <!-- @from name="Ashish Kolli" email="ashish.n.kolli@gmail.com" linkedin="https://linkedin.com/in/ashish-kolli" github="https://github.com/ashish-kolli" instagram="https://instagram.com/ashperical" -->
 <!-- @headshot url="assets/photos/headshot.jpg" -->
 <!-- @resume url="assets/resume.pdf" label="Resume" -->
+<!-- @reel folder="assets/photos/reel-web" -->
 <!-- @date value="September 2026" -->
 <!-- @title value="Ashish Kolli" -->
 <!-- @subtitle value="Accelerating and scaling product with agents." -->
 <!-- /@header -->
 
-<!-- Hero quote: sits outside every section, so it renders once, in the header -->
-<!-- @pullquote -->
-[Hero quote — one line that frames how you work, short enough to read in a glance.]
-<!-- /@pullquote -->
 
 ---
 

@@ -5,6 +5,7 @@
 
 export { default as RichText } from './RichText';
 export { default as Header } from './Header';
+export { default as FilmScreen } from './FilmScreen';
 export { default as StatsGrid } from './StatsGrid';
 export { default as Chart, GrowthChart, BarChart, HierarchyChart, RangeChart } from './Chart';
 export { default as Convergence } from './Convergence';

@@ -36,10 +36,16 @@ const FADE_OUT_MS = 450;         // how slowly dots fade after the cursor moves 
 const RESIZE_STEP = 128;         // px - canvas grows/shrinks in steps to avoid constant reallocation
 const RIPPLE_INTERVAL_MS = 1000; // a resting cursor sends out a ripple this often
 const RIPPLE_MS = 900;           // how long one ripple takes to spread out
-const RIPPLE_START = SPOTLIGHT_RADIUS * 0.6; // px - ripple begins just inside the spotlight
+const RIPPLE_START = SPOTLIGHT_RADIUS * 0.9; // px - ripple leaves from the spotlight's edge, so its
+                                 // brightest moment isn't hidden inside the lit spotlight
 const RIPPLE_END = 130;          // px - radius where the ripple has faded away
-const RIPPLE_BAND = 16;          // px - half-width of the ring of dots a ripple lights
-const RIPPLE_STRENGTH = 0.9;     // brightness of the ripple ring at its start (0-1)
+const RIPPLE_BAND = 14;          // px - half-width of the ring of dots a ripple lights
+const RIPPLE_STRENGTH = 1;       // brightness of the ripple ring as it leaves (0-1)
+const RIPPLE_DECAY = 2.2;        // how fast the ring dims as it spreads: higher = brighter start
+                                 // fading sooner, for more contrast between start and finish
+const RIPPLE_FADE_IN_MS = 12;    // ring dots light almost instantly: the ring moves too fast for
+                                 // a gradual fade-in to reach full brightness before it passes
+const RIPPLE_FADE_OUT_MS = 180;  // dots behind the ring go dark quickly, keeping the ring crisp
 // Finer grids a resting cursor reveals, in order. Each halves the spacing of the one before
 // and covers a smaller circle, so the dots concentrate toward the center over time. They
 // only add density: brightness always comes from the same radial falloff.
@@ -70,7 +76,7 @@ const CursorSpotlight = () => {
 
     const mouse = { x: 0, y: 0 };
     let mouseInside = false;
-    const dots = new Map(); // key -> { px, py, fadeIn, alpha, target, x, y, onScreen }
+    const dots = new Map(); // key -> { px, py, fadeIn, fadeOut, alpha, target, x, y, onScreen }
     const ripples = [];     // { x, y, start } - page coordinates and start time
     let frame = null;
     let lastTime = null;
@@ -108,14 +114,19 @@ const CursorSpotlight = () => {
     };
 
     // Raise a dot's brightness target for this frame (never lowers one another effect set).
-    // px/py are the dot's fixed page position; fadeIn is how quickly it appears.
-    const light = (key, px, py, strength, fadeIn = FADE_IN_MS) => {
+    // px/py are the dot's fixed page position; fadeIn / fadeOut are how quickly it appears
+    // and disappears, taken from whichever effect is lighting it most brightly.
+    const light = (key, px, py, strength, fadeIn = FADE_IN_MS, fadeOut = FADE_OUT_MS) => {
       let dot = dots.get(key);
       if (!dot) {
-        dot = { px, py, fadeIn, alpha: 0, target: 0 };
+        dot = { px, py, fadeIn, fadeOut, alpha: 0, target: 0 };
         dots.set(key, dot);
       }
-      if (strength > dot.target) dot.target = strength;
+      if (strength > dot.target) {
+        dot.target = strength;
+        dot.fadeIn = fadeIn;
+        dot.fadeOut = fadeOut;
+      }
     };
     const isEven = (n) => ((n % 2) + 2) % 2 === 0;
     // Brightness by distance from the cursor, the same for every dot on every grid: full
@@ -182,12 +193,17 @@ const CursorSpotlight = () => {
         if (progress < 0) continue;
         const eased = 1 - (1 - progress) * (1 - progress); // fast start, gentle finish
         const radius = RIPPLE_START + (RIPPLE_END - RIPPLE_START) * eased;
-        const ringStrength = RIPPLE_STRENGTH * (1 - progress);
+        // Bright as it leaves, dimming steeply as it spreads
+        const ringStrength = RIPPLE_STRENGTH * (1 - progress) ** RIPPLE_DECAY;
         const reach = radius + RIPPLE_BAND;
         for (let col = Math.ceil((ripple.x - reach) / DOT_SPACING); col * DOT_SPACING <= ripple.x + reach; col++) {
           for (let row = Math.ceil((ripple.y - reach) / DOT_SPACING); row * DOT_SPACING <= ripple.y + reach; row++) {
             const offRing = Math.abs(Math.hypot(col * DOT_SPACING - ripple.x, row * DOT_SPACING - ripple.y) - radius);
-            if (offRing < RIPPLE_BAND) light(`${col},${row}`, col * DOT_SPACING, row * DOT_SPACING, ringStrength * (1 - offRing / RIPPLE_BAND));
+            // Brightest on the ring's center line, easing off toward its edges
+            if (offRing < RIPPLE_BAND) {
+              light(`${col},${row}`, col * DOT_SPACING, row * DOT_SPACING,
+                ringStrength * Math.cos((offRing / RIPPLE_BAND) * (Math.PI / 2)), RIPPLE_FADE_IN_MS, RIPPLE_FADE_OUT_MS);
+            }
           }
         }
       }
@@ -199,7 +215,7 @@ const CursorSpotlight = () => {
       let maxX = -Infinity;
       let maxY = -Infinity;
       dots.forEach((dot, key) => {
-        const duration = dot.target > dot.alpha ? dot.fadeIn : FADE_OUT_MS;
+        const duration = dot.target > dot.alpha ? dot.fadeIn : dot.fadeOut;
         dot.alpha += (dot.target - dot.alpha) * (1 - Math.exp(-dt / duration));
         if (dot.target === 0 && dot.alpha < 0.01) {
           dots.delete(key);

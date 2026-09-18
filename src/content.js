@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-18T04:41:22.489Z
+// Generated: 2026-09-18T07:12:43.714Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -12,6 +12,10 @@ const CONTENT = {
     "headshot": "assets/photos/headshot.jpg",
     "resume": "assets/resume.pdf",
     "resumeLabel": "Resume",
+    "reel": [
+      "assets/photos/reel-web/img-2838.jpg",
+      "assets/photos/reel-web/r0008919-3.jpg"
+    ],
     "date": "September 2026",
     "title": "Ashish Kolli",
     "subtitle": "Accelerating and scaling product with agents."
@@ -128,13 +132,7 @@ const CONTENT = {
     "roles": []
   },
   "quotes": [],
-  "pullquotes": [
-    {
-      "author": "",
-      "title": "",
-      "quote": "[Hero quote — one line that frames how you work, short enough to read in a glance.]"
-    }
-  ],
+  "pullquotes": [],
   "cards": [],
   "credentials": [],
   "timeline": [],

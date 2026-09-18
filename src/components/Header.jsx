@@ -8,6 +8,7 @@
  * - Magazine cover composition
  */
 import React, { useState, useEffect } from 'react';
+import FilmScreen from './FilmScreen';
 import { COLORS, FONTS, TYPE_SCALE, EFFECTS, LAYOUT, SPACE } from '../design-tokens';
 
 // Soft see-through orange-to-purple wash for the Resume button, echoing the header's
@@ -24,14 +25,8 @@ const resumeGradient = (strength) => {
   return `linear-gradient(115deg, ${stops}), rgba(255, 255, 255, 0.55)`;
 };
 
-const Header = ({ data, heroQuote }) => {
-  const { from, fromEmail, linkedin, github, instagram, headshot, subtitle, title, resume, resumeLabel } = data;
-  // Default quote if none provided
-  const quote = heroQuote || {
-    quote: "The brief is never the problem. The brief is the symptom of a problem the user can't yet name.",
-    author: '',
-    title: '',
-  };
+const Header = ({ data }) => {
+  const { from, fromEmail, linkedin, github, instagram, headshot, subtitle, title, resume, resumeLabel, reel = [] } = data;
   const [imageError, setImageError] = useState(false);
   const [cardHovered, setCardHovered] = useState(false);
   const [resumeHovered, setResumeHovered] = useState(false);
@@ -454,117 +449,9 @@ const Header = ({ data, heroQuote }) => {
             </div>
           </div>
 
-          {/* Right column - Hero quote */}
-          <div
-            className="hero-quote"
-            style={{
-              gridColumn: 'span 4',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'flex-start',
-              gap: '1.5rem',
-            }}
-          >
-            {/* Hero quote */}
-            <div
-              style={{
-                position: 'relative',
-                padding: '2rem',
-                background: COLORS.surface.elevated,
-                borderRadius: EFFECTS.radius.xl,
-                border: `1px solid ${COLORS.ink[200]}`,
-                boxShadow: EFFECTS.shadow.lg,
-              }}
-            >
-              {/* Large quotation mark */}
-              <div
-                style={{
-                  position: 'absolute',
-                  top: '-0.5rem',
-                  left: '1.5rem',
-                  fontFamily: FONTS.display,
-                  fontSize: '5rem',
-                  fontWeight: 400,
-                  lineHeight: 1,
-                  color: COLORS.accent.primary,
-                  opacity: 0.2,
-                  userSelect: 'none',
-                }}
-              >
-                "
-              </div>
-              <blockquote
-                style={{
-                  position: 'relative',
-                  fontFamily: FONTS.body,
-                  fontSize: 'clamp(1.125rem, 1.5vw, 1.375rem)',
-                  fontWeight: 400,
-                  lineHeight: 1.5,
-                  color: COLORS.ink[700],
-                  fontStyle: 'italic',
-                  margin: 0,
-                }}
-              >
-                {quote.quote}
-              </blockquote>
-
-              {/* Attribution */}
-              {quote.author && (
-                <div
-                  style={{
-                    marginTop: '1rem',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.5rem',
-                  }}
-                >
-                  <span
-                    style={{
-                      width: '12px',
-                      height: '1px',
-                      background: COLORS.ink[300],
-                    }}
-                  />
-                  <span
-                    style={{
-                      fontFamily: FONTS.ui,
-                      fontSize: TYPE_SCALE.ui.sm.size,
-                      fontWeight: 600,
-                      color: COLORS.ink[600],
-                    }}
-                  >
-                    {quote.author}
-                  </span>
-                  {quote.title && (
-                    <>
-                      <span style={{ color: COLORS.ink[300] }}>·</span>
-                      <span
-                        style={{
-                          fontFamily: FONTS.ui,
-                          fontSize: TYPE_SCALE.ui.sm.size,
-                          color: COLORS.ink[400],
-                        }}
-                      >
-                        {quote.title}
-                      </span>
-                    </>
-                  )}
-                </div>
-              )}
-
-              {/* Accent bar (only if no attribution) */}
-              {!quote.author && (
-                <div
-                  style={{
-                    marginTop: '1.25rem',
-                    width: '48px',
-                    height: '3px',
-                    background: `linear-gradient(90deg, ${COLORS.accent.primary} 0%, ${COLORS.accent.light} 100%)`,
-                    borderRadius: EFFECTS.radius.full,
-                  }}
-                />
-              )}
-            </div>
+          {/* Right column - film reel of photos */}
+          <div className="hero-reel" style={{ gridColumn: 'span 4' }}>
+            <FilmScreen images={reel} />
           </div>
         </div>
       </div>
@@ -638,7 +525,7 @@ const Header = ({ data, heroQuote }) => {
           .hero-main {
             grid-column: span 1 !important;
           }
-          .hero-quote {
+          .hero-reel {
             grid-column: span 1 !important;
           }
         }

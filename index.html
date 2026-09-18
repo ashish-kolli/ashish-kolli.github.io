@@ -30,7 +30,7 @@
 
 /**
  * Product Engineer Proposal - Single File Bundle
- * Generated: 2026-09-18T04:41:22.519Z
+ * Generated: 2026-09-18T07:12:43.745Z
  *
  * This file is auto-generated. Do not edit directly.
  * To modify, edit the source files and run: node src/utils/build.js
@@ -41,7 +41,7 @@
 // ============================================================================
 
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-18T04:41:22.489Z
+// Generated: 2026-09-18T07:12:43.714Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -54,6 +54,10 @@ const CONTENT = {
     "headshot": "assets/photos/headshot.jpg",
     "resume": "assets/resume.pdf",
     "resumeLabel": "Resume",
+    "reel": [
+      "assets/photos/reel-web/img-2838.jpg",
+      "assets/photos/reel-web/r0008919-3.jpg"
+    ],
     "date": "September 2026",
     "title": "Ashish Kolli",
     "subtitle": "Accelerating and scaling product with agents."
@@ -170,13 +174,7 @@ const CONTENT = {
     "roles": []
   },
   "quotes": [],
-  "pullquotes": [
-    {
-      "author": "",
-      "title": "",
-      "quote": "[Hero quote — one line that frames how you work, short enough to read in a glance.]"
-    }
-  ],
+  "pullquotes": [],
   "cards": [],
   "credentials": [],
   "timeline": [],
@@ -1408,6 +1406,212 @@ const RichText = ({ children, className = '' }) => {
 };
 
 /**
+ * FilmScreen Component
+ *
+ * A 35mm film frame in the home page hero that plays through the photo reel.
+ * - Photos come from the reel folder, listed at build time in filename order - prefix names
+ *   with 01-, 02-... to set the order. Originals go in assets/photos/reel/; the build
+ *   (scripts/optimize-reel.py) publishes web-sized, metadata-free copies to reel-web/
+ * - Every time the pointer moves onto the frame, the film advances to the next photo:
+ *   the new frame slides up through the gate while the sprocket holes run with it
+ * - On touch screens, where there is no hover, a tap advances instead
+ * - Reduced-motion users get an instant swap
+ */
+
+
+
+const FILM_ADVANCE_MS = 420;
+const FILM_BASE = '#121214';       // film base, just off black
+const FILM_EDGE_TEXT = '#E8A33D';  // amber, like the edge markings printed on real film
+const FILM_HOLE = '#3A3A40';
+
+// "01-cutting-steel.jpg" -> "Cutting steel"
+const altFromFilename = (src) => {
+  const name = src.split('/').pop().replace(/\.[^.]+$/, '').replace(/^\d+[-_ ]*/, '').replace(/[-_]+/g, ' ').trim();
+  return name ? name.charAt(0).toUpperCase() + name.slice(1) : 'Photo';
+};
+
+const injectFilmStyles = (() => {
+  let injected = false;
+  return () => {
+    if (injected || typeof document === 'undefined') return;
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes filmAdvanceIn {
+        0%   { transform: translateY(100%); filter: brightness(1.35); }
+        70%  { filter: brightness(1.1); }
+        100% { transform: translateY(0); filter: brightness(1); }
+      }
+      @keyframes filmSprocketRun {
+        from { background-position-x: 0; }
+        to   { background-position-x: -44px; }
+      }
+      .film-frame-in { animation: filmAdvanceIn ${FILM_ADVANCE_MS}ms cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+      .film-sprockets-run { animation: filmSprocketRun ${FILM_ADVANCE_MS}ms cubic-bezier(0.22, 0.61, 0.36, 1); }
+      @media (prefers-reduced-motion: reduce) {
+        .film-frame-in, .film-sprockets-run { animation: none; }
+      }
+    `;
+    document.head.appendChild(style);
+    injected = true;
+  };
+})();
+
+// A row of sprocket holes along one edge of the film
+const Sprockets = ({ running }) => (
+  <div
+    className={running ? 'film-sprockets-run' : undefined}
+    style={{
+      height: '10px',
+      margin: '0 10px',
+      backgroundImage: `linear-gradient(90deg, ${FILM_HOLE} 0 14px, transparent 14px 22px)`,
+      backgroundSize: '22px 10px',
+      backgroundRepeat: 'repeat-x',
+      borderRadius: '2px',
+    }}
+  />
+);
+
+const FilmScreen = ({ images = [] }) => {
+  const [index, setIndex] = useState(0);
+  const [previous, setPrevious] = useState(null);
+  const [advances, setAdvances] = useState(0); // remounts the incoming frame so it animates each time
+  const [hoverCapable, setHoverCapable] = useState(true);
+
+  useEffect(() => {
+    injectFilmStyles();
+    setHoverCapable(window.matchMedia('(hover: hover)').matches);
+    // Warm the cache so each advance shows the next photo immediately
+    images.forEach((src) => { const img = new Image(); img.src = src; });
+  }, [images]);
+
+  const advance = () => {
+    if (images.length < 2) return;
+    setPrevious(index);
+    setIndex((i) => (i + 1) % images.length);
+    setAdvances((n) => n + 1);
+  };
+
+  const count = images.length;
+  const frameLabel = (n) => String(n + 1).padStart(2, '0');
+
+  return (
+    <figure
+      onMouseEnter={hoverCapable ? advance : undefined}
+      onClick={hoverCapable ? undefined : advance}
+      aria-label={count > 1 ? `Photo reel, ${count} photos. Hover or tap to advance.` : 'Photo reel'}
+      style={{
+        margin: 0,
+        width: '100%',
+        padding: '10px 0',
+        background: FILM_BASE,
+        borderRadius: EFFECTS.radius.lg,
+        boxShadow: EFFECTS.shadow.lg,
+        cursor: count > 1 ? 'pointer' : 'default',
+        userSelect: 'none',
+      }}
+    >
+      <Sprockets running={advances > 0} key={`top-${advances}`} />
+
+      {/* Edge markings above the frame */}
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          padding: '6px 14px 5px',
+          fontFamily: FONTS.mono,
+          fontSize: '0.625rem',
+          letterSpacing: '0.14em',
+          color: FILM_EDGE_TEXT,
+          opacity: 0.85,
+        }}
+      >
+        <span>ASHISH KOLLI</span>
+        <span>{count > 0 ? `${frameLabel(index)} ▸` : '00 ▸'}</span>
+      </div>
+
+      {/* The gate: current frame, with the next one sliding up over it */}
+      <div
+        style={{
+          position: 'relative',
+          margin: '0 14px',
+          aspectRatio: '6 / 5',
+          overflow: 'hidden',
+          borderRadius: '3px',
+          background: '#000',
+        }}
+      >
+        {count === 0 ? (
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '1.5rem',
+              textAlign: 'center',
+              fontFamily: FONTS.mono,
+              fontSize: '0.75rem',
+              lineHeight: 1.6,
+              color: COLORS.ink[400],
+            }}
+          >
+            Add photos to assets/photos/reel/ and rebuild
+          </div>
+        ) : (
+          <>
+            {previous !== null && (
+              <img
+                src={images[previous]}
+                alt=""
+                aria-hidden="true"
+                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+              />
+            )}
+            <img
+              key={advances}
+              className={advances > 0 ? 'film-frame-in' : undefined}
+              src={images[index]}
+              alt={altFromFilename(images[index])}
+              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+            />
+            {/* Soft vignette, like light falling off at the edges of a projected frame */}
+            <div
+              style={{
+                position: 'absolute',
+                inset: 0,
+                pointerEvents: 'none',
+                boxShadow: 'inset 0 0 40px rgba(0, 0, 0, 0.35)',
+              }}
+            />
+          </>
+        )}
+      </div>
+
+      {/* Edge markings below the frame */}
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          padding: '5px 14px 6px',
+          fontFamily: FONTS.mono,
+          fontSize: '0.625rem',
+          letterSpacing: '0.14em',
+          color: FILM_EDGE_TEXT,
+          opacity: 0.85,
+        }}
+      >
+        <span>{count > 1 ? (hoverCapable ? 'HOVER TO ADVANCE' : 'TAP TO ADVANCE') : 'PORTFOLIO'}</span>
+        <span>{count > 0 ? `${frameLabel(index)} / ${frameLabel(count - 1)}` : '— / —'}</span>
+      </div>
+
+      <Sprockets running={advances > 0} key={`bottom-${advances}`} />
+    </figure>
+  );
+};
+
+/**
  * Header Component - "The Scholarly Disruptor"
  *
  * Editorial magazine aesthetic - lighter, more compelling
@@ -1416,6 +1620,7 @@ const RichText = ({ children, className = '' }) => {
  * - Geometric accent elements
  * - Magazine cover composition
  */
+
 
 
 
@@ -1433,14 +1638,8 @@ const resumeGradient = (strength) => {
   return `linear-gradient(115deg, ${stops}), rgba(255, 255, 255, 0.55)`;
 };
 
-const Header = ({ data, heroQuote }) => {
-  const { from, fromEmail, linkedin, github, instagram, headshot, subtitle, title, resume, resumeLabel } = data;
-  // Default quote if none provided
-  const quote = heroQuote || {
-    quote: "The brief is never the problem. The brief is the symptom of a problem the user can't yet name.",
-    author: '',
-    title: '',
-  };
+const Header = ({ data }) => {
+  const { from, fromEmail, linkedin, github, instagram, headshot, subtitle, title, resume, resumeLabel, reel = [] } = data;
   const [imageError, setImageError] = useState(false);
   const [cardHovered, setCardHovered] = useState(false);
   const [resumeHovered, setResumeHovered] = useState(false);
@@ -1863,117 +2062,9 @@ const Header = ({ data, heroQuote }) => {
             </div>
           </div>
 
-          {/* Right column - Hero quote */}
-          <div
-            className="hero-quote"
-            style={{
-              gridColumn: 'span 4',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'flex-start',
-              gap: '1.5rem',
-            }}
-          >
-            {/* Hero quote */}
-            <div
-              style={{
-                position: 'relative',
-                padding: '2rem',
-                background: COLORS.surface.elevated,
-                borderRadius: EFFECTS.radius.xl,
-                border: `1px solid ${COLORS.ink[200]}`,
-                boxShadow: EFFECTS.shadow.lg,
-              }}
-            >
-              {/* Large quotation mark */}
-              <div
-                style={{
-                  position: 'absolute',
-                  top: '-0.5rem',
-                  left: '1.5rem',
-                  fontFamily: FONTS.display,
-                  fontSize: '5rem',
-                  fontWeight: 400,
-                  lineHeight: 1,
-                  color: COLORS.accent.primary,
-                  opacity: 0.2,
-                  userSelect: 'none',
-                }}
-              >
-                "
-              </div>
-              <blockquote
-                style={{
-                  position: 'relative',
-                  fontFamily: FONTS.body,
-                  fontSize: 'clamp(1.125rem, 1.5vw, 1.375rem)',
-                  fontWeight: 400,
-                  lineHeight: 1.5,
-                  color: COLORS.ink[700],
-                  fontStyle: 'italic',
-                  margin: 0,
-                }}
-              >
-                {quote.quote}
-              </blockquote>
-
-              {/* Attribution */}
-              {quote.author && (
-                <div
-                  style={{
-                    marginTop: '1rem',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.5rem',
-                  }}
-                >
-                  <span
-                    style={{
-                      width: '12px',
-                      height: '1px',
-                      background: COLORS.ink[300],
-                    }}
-                  />
-                  <span
-                    style={{
-                      fontFamily: FONTS.ui,
-                      fontSize: TYPE_SCALE.ui.sm.size,
-                      fontWeight: 600,
-                      color: COLORS.ink[600],
-                    }}
-                  >
-                    {quote.author}
-                  </span>
-                  {quote.title && (
-                    <>
-                      <span style={{ color: COLORS.ink[300] }}>·</span>
-                      <span
-                        style={{
-                          fontFamily: FONTS.ui,
-                          fontSize: TYPE_SCALE.ui.sm.size,
-                          color: COLORS.ink[400],
-                        }}
-                      >
-                        {quote.title}
-                      </span>
-                    </>
-                  )}
-                </div>
-              )}
-
-              {/* Accent bar (only if no attribution) */}
-              {!quote.author && (
-                <div
-                  style={{
-                    marginTop: '1.25rem',
-                    width: '48px',
-                    height: '3px',
-                    background: `linear-gradient(90deg, ${COLORS.accent.primary} 0%, ${COLORS.accent.light} 100%)`,
-                    borderRadius: EFFECTS.radius.full,
-                  }}
-                />
-              )}
-            </div>
+          {/* Right column - film reel of photos */}
+          <div className="hero-reel" style={{ gridColumn: 'span 4' }}>
+            <FilmScreen images={reel} />
           </div>
         </div>
       </div>
@@ -2047,7 +2138,7 @@ const Header = ({ data, heroQuote }) => {
           .hero-main {
             grid-column: span 1 !important;
           }
-          .hero-quote {
+          .hero-reel {
             grid-column: span 1 !important;
           }
         }
@@ -7125,10 +7216,16 @@ const FADE_OUT_MS = 450;         // how slowly dots fade after the cursor moves 
 const RESIZE_STEP = 128;         // px - canvas grows/shrinks in steps to avoid constant reallocation
 const RIPPLE_INTERVAL_MS = 1000; // a resting cursor sends out a ripple this often
 const RIPPLE_MS = 900;           // how long one ripple takes to spread out
-const RIPPLE_START = SPOTLIGHT_RADIUS * 0.6; // px - ripple begins just inside the spotlight
+const RIPPLE_START = SPOTLIGHT_RADIUS * 0.9; // px - ripple leaves from the spotlight's edge, so its
+                                 // brightest moment isn't hidden inside the lit spotlight
 const RIPPLE_END = 130;          // px - radius where the ripple has faded away
-const RIPPLE_BAND = 16;          // px - half-width of the ring of dots a ripple lights
-const RIPPLE_STRENGTH = 0.9;     // brightness of the ripple ring at its start (0-1)
+const RIPPLE_BAND = 14;          // px - half-width of the ring of dots a ripple lights
+const RIPPLE_STRENGTH = 1;       // brightness of the ripple ring as it leaves (0-1)
+const RIPPLE_DECAY = 2.2;        // how fast the ring dims as it spreads: higher = brighter start
+                                 // fading sooner, for more contrast between start and finish
+const RIPPLE_FADE_IN_MS = 12;    // ring dots light almost instantly: the ring moves too fast for
+                                 // a gradual fade-in to reach full brightness before it passes
+const RIPPLE_FADE_OUT_MS = 180;  // dots behind the ring go dark quickly, keeping the ring crisp
 // Finer grids a resting cursor reveals, in order. Each halves the spacing of the one before
 // and covers a smaller circle, so the dots concentrate toward the center over time. They
 // only add density: brightness always comes from the same radial falloff.
@@ -7159,7 +7256,7 @@ const CursorSpotlight = () => {
 
     const mouse = { x: 0, y: 0 };
     let mouseInside = false;
-    const dots = new Map(); // key -> { px, py, fadeIn, alpha, target, x, y, onScreen }
+    const dots = new Map(); // key -> { px, py, fadeIn, fadeOut, alpha, target, x, y, onScreen }
     const ripples = [];     // { x, y, start } - page coordinates and start time
     let frame = null;
     let lastTime = null;
@@ -7197,14 +7294,19 @@ const CursorSpotlight = () => {
     };
 
     // Raise a dot's brightness target for this frame (never lowers one another effect set).
-    // px/py are the dot's fixed page position; fadeIn is how quickly it appears.
-    const light = (key, px, py, strength, fadeIn = FADE_IN_MS) => {
+    // px/py are the dot's fixed page position; fadeIn / fadeOut are how quickly it appears
+    // and disappears, taken from whichever effect is lighting it most brightly.
+    const light = (key, px, py, strength, fadeIn = FADE_IN_MS, fadeOut = FADE_OUT_MS) => {
       let dot = dots.get(key);
       if (!dot) {
-        dot = { px, py, fadeIn, alpha: 0, target: 0 };
+        dot = { px, py, fadeIn, fadeOut, alpha: 0, target: 0 };
         dots.set(key, dot);
       }
-      if (strength > dot.target) dot.target = strength;
+      if (strength > dot.target) {
+        dot.target = strength;
+        dot.fadeIn = fadeIn;
+        dot.fadeOut = fadeOut;
+      }
     };
     const isEven = (n) => ((n % 2) + 2) % 2 === 0;
     // Brightness by distance from the cursor, the same for every dot on every grid: full
@@ -7271,12 +7373,17 @@ const CursorSpotlight = () => {
         if (progress < 0) continue;
         const eased = 1 - (1 - progress) * (1 - progress); // fast start, gentle finish
         const radius = RIPPLE_START + (RIPPLE_END - RIPPLE_START) * eased;
-        const ringStrength = RIPPLE_STRENGTH * (1 - progress);
+        // Bright as it leaves, dimming steeply as it spreads
+        const ringStrength = RIPPLE_STRENGTH * (1 - progress) ** RIPPLE_DECAY;
         const reach = radius + RIPPLE_BAND;
         for (let col = Math.ceil((ripple.x - reach) / DOT_SPACING); col * DOT_SPACING <= ripple.x + reach; col++) {
           for (let row = Math.ceil((ripple.y - reach) / DOT_SPACING); row * DOT_SPACING <= ripple.y + reach; row++) {
             const offRing = Math.abs(Math.hypot(col * DOT_SPACING - ripple.x, row * DOT_SPACING - ripple.y) - radius);
-            if (offRing < RIPPLE_BAND) light(`${col},${row}`, col * DOT_SPACING, row * DOT_SPACING, ringStrength * (1 - offRing / RIPPLE_BAND));
+            // Brightest on the ring's center line, easing off toward its edges
+            if (offRing < RIPPLE_BAND) {
+              light(`${col},${row}`, col * DOT_SPACING, row * DOT_SPACING,
+                ringStrength * Math.cos((offRing / RIPPLE_BAND) * (Math.PI / 2)), RIPPLE_FADE_IN_MS, RIPPLE_FADE_OUT_MS);
+            }
           }
         }
       }
@@ -7288,7 +7395,7 @@ const CursorSpotlight = () => {
       let maxX = -Infinity;
       let maxY = -Infinity;
       dots.forEach((dot, key) => {
-        const duration = dot.target > dot.alpha ? dot.fadeIn : FADE_OUT_MS;
+        const duration = dot.target > dot.alpha ? dot.fadeIn : dot.fadeOut;
         dot.alpha += (dot.target - dot.alpha) * (1 - Math.exp(-dt / duration));
         if (dot.target === 0 && dot.alpha < 0.01) {
           dots.delete(key);
@@ -8405,7 +8512,6 @@ const App = () => {
               <Header
                 key={`header-${i}`}
                 data={CONTENT.header}
-                heroQuote={CONTENT.pullquotes[0]}
               />
             ) : null;
 

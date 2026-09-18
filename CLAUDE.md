@@ -1,4 +1,4 @@
-<!-- Last updated: 2026-09-17 -->
+<!-- Last updated: 2026-09-18 -->
 <!-- SYNCED FILE: Edit any of CLAUDE.md, AGENTS.md, or GEMINI.md then run `npm run sync-docs` -->
 
 # Northwestern Publishing System - Component Architecture
@@ -124,6 +124,7 @@ northwestern/
 │   │   ├── ProjectCards.jsx       # Horizontal row of project summary cards linking to project pages
 │   │   ├── ProjectHeader.jsx      # Compact hero for a project page (@page marker)
 │   │   ├── Figure.jsx             # Image + caption (@image marker); dashed placeholder when src is empty
+│   │   ├── FilmScreen.jsx         # Hero film frame; advances through the photo reel on each hover
 │   │   ├── TerminalWindow.jsx     # macOS-style terminal window
 │   │   ├── WorkList.jsx           # Work list items
 │   │   └── Citations.jsx          # Citation formatting
@@ -132,6 +133,7 @@ northwestern/
 │       └── build.js               # Bundle → single artifact (--content/--output for project pages)
 ├── scripts/
 │   ├── build-pages.js             # Builds every content/projects/*.md → projects/<slug>/index.html
+│   ├── optimize-reel.py           # Hero reel: assets/photos/reel/ originals → reel-web/ (1600px, no metadata)
 │   ├── parse-article.js           # Article markdown → article-content.js
 │   ├── build-article.js           # Article bundle → MarketSizingGuide.jsx
 │   ├── update-article-preview.js  # Article bundle → market-sizing/index.html
@@ -278,6 +280,22 @@ One or two sentence summary shown on the card. Supports **markdown**.
 - `caption` — shown under the image, and inside the placeholder frame
 
 Images render in document order, like terminals and tables.
+
+### Hero Film Reel
+```markdown
+<!-- @reel folder="assets/photos/reel-web" -->
+```
+
+Inside the `@header` block. The hero's film frame plays through every image in the folder,
+in filename order, advancing one photo each time the pointer moves onto it (a tap on touch
+screens).
+
+- Drop full-size originals into `assets/photos/reel/` (git ignores them). `npm run build`
+  runs `scripts/optimize-reel.py`, which writes web copies to `assets/photos/reel-web/`:
+  max 1600px, JPEG q82, upright, **all metadata (including GPS) stripped**. Only those copies
+  are committed and published. Requires Python 3 with Pillow.
+- Name files `01-…`, `02-…` to set the order; the rest of the name becomes the alt text
+  (`01-cutting-steel.jpg` → "Cutting steel").
 
 ### Project Page Header
 Replaces `@header` on a project page:

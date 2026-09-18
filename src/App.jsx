@@ -349,7 +349,6 @@ const App = () => {
               <Header
                 key={`header-${i}`}
                 data={CONTENT.header}
-                heroQuote={CONTENT.pullquotes[0]}
               />
             ) : null;
 

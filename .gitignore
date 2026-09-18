@@ -41,3 +41,7 @@ articles/*/ref/
 
 # Intermediate project page bundles (rebuilt by scripts/build-pages.js)
 dist/pages/
+
+# Film reel originals stay local; the build publishes web copies to assets/photos/reel-web/
+assets/photos/reel/*
+!assets/photos/reel/.gitkeep

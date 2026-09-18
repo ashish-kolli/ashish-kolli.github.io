@@ -41,6 +41,17 @@ function extractAttr(line, attrName) {
 // COMPONENT EXTRACTORS (for top-level component data)
 // ============================================================================
 
+// Images in the hero film reel: every image file in the folder, in filename order, as
+// site-relative paths. Prefix filenames with 01-, 02-... to control the order.
+function listReelImages(folder) {
+  const dir = path.resolve(__dirname, '../..', folder);
+  if (!fs.existsSync(dir)) return [];
+  return fs.readdirSync(dir)
+    .filter((file) => /\.(jpe?g|png|webp|avif|gif)$/i.test(file))
+    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
+    .map((file) => `${folder.replace(/\/$/, '')}/${file}`);
+}
+
 function extractHeader(content) {
   const headerMatch = content.match(/<!-- @header -->[\s\S]*?<!-- \/@header -->/);
   if (!headerMatch) return null;
@@ -49,6 +60,7 @@ function extractHeader(content) {
   const fromMatch = block.match(/<!-- @from name="([^"]*)" email="([^"]*)"(?: linkedin="([^"]*)")?(?: github="([^"]*)")?(?: instagram="([^"]*)")? -->/);
   const headshotMatch = block.match(/<!-- @headshot url="([^"]*)" -->/);
   const resumeMatch = block.match(/<!-- @resume url="([^"]*)"(?: label="([^"]*)")? -->/);
+  const reelMatch = block.match(/<!-- @reel folder="([^"]*)" -->/);
   const dateMatch = block.match(/<!-- @date value="([^"]*)" -->/);
   const titleMatch = block.match(/<!-- @title value="([^"]*)" -->/);
   const subtitleMatch = block.match(/<!-- @subtitle value="([^"]*)" -->/);
@@ -62,6 +74,7 @@ function extractHeader(content) {
     headshot: headshotMatch ? headshotMatch[1] : '',
     resume: resumeMatch ? resumeMatch[1] : '',
     resumeLabel: resumeMatch && resumeMatch[2] ? resumeMatch[2] : 'Resume',
+    reel: reelMatch ? listReelImages(reelMatch[1]) : [],
     date: dateMatch ? dateMatch[1] : '',
     title: titleMatch ? titleMatch[1] : '',
     subtitle: subtitleMatch ? subtitleMatch[1] : '',

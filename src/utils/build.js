@@ -105,6 +105,7 @@ function build() {
   const components = [
     'Section',      // Must be first - defines useInView hook used by other components
     'RichText',
+    'FilmScreen',
     'Header',
     'CardGrid',
     'StatsGrid',
