@@ -257,12 +257,8 @@ const Section = ({ number, title, children, className = '' }) => {
     { speed: 70, startDelay: 200 + sectionLabel.length * 45 + 100, enabled: inView }
   );
 
-  // Typewriter for title - starts after terminal badge completes
+  // The title is not typed — it fades up once the terminal badge has finished
   const terminalDuration = 200 + sectionLabel.length * 45 + 100 + sectionNum.length * 70;
-  const { displayText: titleText } = useTypewriter(
-    title,
-    { speed: 28, startDelay: terminalDuration + 300, enabled: inView }
-  );
 
   return (
     <section
@@ -389,7 +385,7 @@ const Section = ({ number, title, children, className = '' }) => {
             </div>
           </div>
 
-          {/* Title with bottom rule - typewriter effect */}
+          {/* Title with bottom rule - fades up, no typing */}
           <h2
             style={{
               fontFamily: FONTS.headline,
@@ -402,14 +398,12 @@ const Section = ({ number, title, children, className = '' }) => {
               paddingBottom: SPACE[4],
               borderBottom: `1px solid ${COLORS.ink[100]}`,
               minHeight: '2.5rem', // Prevent layout shift
+              opacity: inView ? 1 : 0,
+              transform: inView ? 'translateY(0)' : 'translateY(8px)',
+              transition: `opacity 0.5s ease-out ${(terminalDuration + 150) / 1000}s, transform 0.5s ease-out ${(terminalDuration + 150) / 1000}s`,
             }}
           >
-            {titleText}
-            <TerminalCursor
-              visible={inView}
-              blink={true}
-              color={COLORS.ink[500]}
-            />
+            {title}
           </h2>
         </header>
 
