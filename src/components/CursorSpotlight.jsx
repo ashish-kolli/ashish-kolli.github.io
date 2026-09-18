@@ -23,7 +23,7 @@ import React, { useEffect, useRef, useState } from 'react';
 const DOT_SPACING = 24;          // px - distance between dots
 const DOT_RADIUS = 0.75;         // px - size of each dot
 const DOT_OPACITY = 0.85;        // strength of a fully lit dot (0-1)
-const DOT_RGB = '91, 33, 182';   // COLORS.accent.primary
+const DOT_RGB = '249, 115, 22';  // orange, same as the Resume button's gradient
 const SPOTLIGHT_RADIUS = 40;     // px - dots within this distance of the cursor light up
 const EDGE_STRENGTH = 0.15;      // brightness of the outermost dots relative to the center (0-1)
 const FADE_IN_MS = 60;           // how quickly dots appear
