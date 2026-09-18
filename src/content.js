@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-17T18:46:30.579Z
+// Generated: 2026-09-18T02:16:57.631Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -18,6 +18,8 @@ const CONTENT = {
   "projects": [
     {
       "section": "experience",
+      "layout": "row",
+      "rows": 2,
       "projects": [
         {
           "href": "projects/arohai/",
@@ -39,6 +41,8 @@ const CONTENT = {
     },
     {
       "section": "internships",
+      "layout": "row",
+      "rows": 2,
       "projects": [
         {
           "href": "projects/tesla/",
@@ -60,6 +64,8 @@ const CONTENT = {
     },
     {
       "section": "maker",
+      "layout": "grid",
+      "rows": 2,
       "projects": [
         {
           "href": "projects/ningbo-pavilions/",

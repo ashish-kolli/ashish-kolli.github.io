@@ -11,7 +11,7 @@ import React, { useState, useEffect } from 'react';
 import { COLORS, FONTS, TYPE_SCALE, EFFECTS, LAYOUT, SPACE } from '../design-tokens';
 
 const Header = ({ data, heroQuote }) => {
-  const { from, fromEmail, linkedin, github, instagram, headshot, date, subtitle, title } = data;
+  const { from, fromEmail, linkedin, github, instagram, headshot, subtitle, title } = data;
   // Default quote if none provided
   const quote = heroQuote || {
     quote: "The brief is never the problem. The brief is the symptom of a problem the user can't yet name.",
@@ -194,38 +194,6 @@ const Header = ({ data, heroQuote }) => {
             </div>
           </div>
 
-          {/* Date badge */}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.75rem',
-              padding: '0.5rem 1rem',
-              background: COLORS.surface.elevated,
-              borderRadius: EFFECTS.radius.full,
-              border: `1px solid ${COLORS.ink[200]}`,
-              boxShadow: EFFECTS.shadow.sm,
-            }}
-          >
-            <div
-              style={{
-                width: '8px',
-                height: '8px',
-                borderRadius: EFFECTS.radius.full,
-                background: COLORS.accent.primary,
-              }}
-            />
-            <span
-              style={{
-                fontFamily: FONTS.mono,
-                fontSize: TYPE_SCALE.mono.sm.size,
-                color: COLORS.ink[600],
-                letterSpacing: '0.02em',
-              }}
-            >
-              {date}
-            </span>
-          </div>
         </div>
       </nav>
 

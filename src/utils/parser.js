@@ -218,7 +218,7 @@ function extractCards(content) {
 
 function extractProjects(content) {
   const groups = [];
-  const groupRegex = /<!-- @projects section="([^"]*)" -->([\s\S]*?)<!-- \/@projects -->/g;
+  const groupRegex = /<!-- @projects ([^>]*?) -->([\s\S]*?)<!-- \/@projects -->/g;
   let match;
 
   while ((match = groupRegex.exec(content)) !== null) {
@@ -236,7 +236,13 @@ function extractProjects(content) {
         summary: cleanText(projectMatch[2]),
       });
     }
-    groups.push({ section: match[1], projects });
+    groups.push({
+      section: extractAttr(match[1], 'section') || '',
+      // "row" (default) scrolls sideways; "grid" wraps into `rows` rows
+      layout: extractAttr(match[1], 'layout') || 'row',
+      rows: parseInt(extractAttr(match[1], 'rows') || '2', 10),
+      projects,
+    });
   }
   return groups;
 }

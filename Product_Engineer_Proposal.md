@@ -66,7 +66,7 @@ Component marker reference: see CLAUDE.md
 
 [Section intro — 2–3 sentences on the architecture and fabrication background, and how it shows up in the way you build product.]
 
-<!-- @projects section="maker" -->
+<!-- @projects section="maker" layout="grid" rows="2" -->
 
 <!-- @project href="projects/ningbo-pavilions/" icon="lightbulb" eyebrow="Archival model" title="Ningbo Oceanside Pavilions" meta="Thom Mayne · office collection" -->
 [Card summary — one sentence on what this piece is.]

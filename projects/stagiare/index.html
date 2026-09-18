@@ -32,7 +32,7 @@
 
 /**
  * Product Engineer Proposal - Single File Bundle
- * Generated: 2026-09-17T18:46:31.146Z
+ * Generated: 2026-09-18T02:16:58.212Z
  *
  * This file is auto-generated. Do not edit directly.
  * To modify, edit the source files and run: node src/utils/build.js
@@ -43,7 +43,7 @@
 // ============================================================================
 
 // Auto-generated from content/projects/stagiare.md
-// Generated: 2026-09-17T18:46:31.122Z
+// Generated: 2026-09-18T02:16:58.188Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -1318,7 +1318,7 @@ const RichText = ({ children, className = '' }) => {
 
 
 const Header = ({ data, heroQuote }) => {
-  const { from, fromEmail, linkedin, github, instagram, headshot, date, subtitle, title } = data;
+  const { from, fromEmail, linkedin, github, instagram, headshot, subtitle, title } = data;
   // Default quote if none provided
   const quote = heroQuote || {
     quote: "The brief is never the problem. The brief is the symptom of a problem the user can't yet name.",
@@ -1501,38 +1501,6 @@ const Header = ({ data, heroQuote }) => {
             </div>
           </div>
 
-          {/* Date badge */}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.75rem',
-              padding: '0.5rem 1rem',
-              background: COLORS.surface.elevated,
-              borderRadius: EFFECTS.radius.full,
-              border: `1px solid ${COLORS.ink[200]}`,
-              boxShadow: EFFECTS.shadow.sm,
-            }}
-          >
-            <div
-              style={{
-                width: '8px',
-                height: '8px',
-                borderRadius: EFFECTS.radius.full,
-                background: COLORS.accent.primary,
-              }}
-            />
-            <span
-              style={{
-                fontFamily: FONTS.mono,
-                fontSize: TYPE_SCALE.mono.sm.size,
-                color: COLORS.ink[600],
-                letterSpacing: '0.02em',
-              }}
-            >
-              {date}
-            </span>
-          </div>
         </div>
       </nav>
 
@@ -7216,10 +7184,15 @@ const CursorSpotlight = () => {
 /**
  * ProjectCards Component
  *
- * A horizontal row of summary cards on the home page, each linking to a project's own page.
- * - Rows with more cards than fit scroll sideways (swipe, trackpad, or the arrow buttons)
- * - Edges fade out on whichever side has more cards to reveal
- * - Cards fade up in sequence when the row scrolls into view
+ * Summary cards on the home page, each linking to a project's own page.
+ *
+ * Two layouts, chosen per section by the @projects marker:
+ * - layout="row" (default): one horizontal row; more cards than fit scroll sideways
+ *   (swipe, trackpad, or the arrow buttons), with the overflowing edge fading out
+ * - layout="grid": cards wrap into `rows` rows instead of scrolling, dropping to
+ *   3 columns on narrow desktops and a single column on mobile
+ *
+ * Cards fade up in sequence when they scroll into view.
  */
 
 
@@ -7245,13 +7218,24 @@ const injectProjectCardStyles = (() => {
       @media (hover: hover) and (pointer: fine) {
         .project-row-arrows { display: flex; }
       }
+      .project-grid {
+        display: grid;
+        gap: ${PROJECT_ROW_GAP}px;
+        grid-template-columns: repeat(var(--project-columns, 3), minmax(0, 1fr));
+      }
+      @media (max-width: 1080px) {
+        .project-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      }
+      @media (max-width: 768px) {
+        .project-grid { grid-template-columns: minmax(0, 1fr); }
+      }
     `;
     document.head.appendChild(style);
     injected = true;
   };
 })();
 
-const ProjectCard = ({ project, index, inView }) => {
+const ProjectCard = ({ project, index, inView, inGrid }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -7261,9 +7245,12 @@ const ProjectCard = ({ project, index, inView }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{
-        flex: `1 0 ${PROJECT_CARD_WIDTH}px`,
-        maxWidth: `${PROJECT_CARD_MAX}px`,
-        scrollSnapAlign: 'start',
+        // In a grid the column track sizes the card; in a row it sets its own width
+        ...(inGrid ? {} : {
+          flex: `1 0 ${PROJECT_CARD_WIDTH}px`,
+          maxWidth: `${PROJECT_CARD_MAX}px`,
+          scrollSnapAlign: 'start',
+        }),
         display: 'flex',
         flexDirection: 'column',
         gap: SPACE[4],
@@ -7412,15 +7399,16 @@ const ProjectRowArrow = ({ direction, enabled, onClick }) => (
   </button>
 );
 
-const ProjectCards = ({ projects }) => {
+const ProjectCards = ({ projects, layout = 'row', rows = 2 }) => {
   const rowRef = useRef(null);
   const [wrapRef, inView] = useInView();
   const [edges, setEdges] = useState({ left: false, right: false });
+  const isGrid = layout === 'grid';
 
   useEffect(() => {
     injectProjectCardStyles();
     const row = rowRef.current;
-    if (!row) return undefined;
+    if (!row || isGrid) return undefined;
 
     const update = () => {
       const maxScroll = row.scrollWidth - row.clientWidth;
@@ -7433,7 +7421,7 @@ const ProjectCards = ({ projects }) => {
       row.removeEventListener('scroll', update);
       window.removeEventListener('resize', update);
     };
-  }, [projects.length]);
+  }, [projects.length, isGrid]);
 
   const scrollByCards = (direction) => {
     const row = rowRef.current;
@@ -7443,14 +7431,22 @@ const ProjectCards = ({ projects }) => {
 
   const fade = (side) => (edges[side] ? 'transparent' : 'black');
   const mask = `linear-gradient(to right, ${fade('left')} 0, black ${SPACE[8]}, black calc(100% - ${SPACE[8]}), ${fade('right')} 100%)`;
-  const scrollable = edges.left || edges.right;
+  const scrollable = !isGrid && (edges.left || edges.right);
+
+  // Enough columns to fit every card in `rows` rows, e.g. 7 cards in 2 rows → 4 + 3
+  const columns = Math.max(1, Math.ceil(projects.length / Math.max(rows, 1)));
 
   return (
     <div ref={wrapRef} style={{ margin: `${SPACE[6]} 0 ${SPACE[8]}` }}>
       <div
         ref={rowRef}
-        className="project-row"
-        style={{
+        className={isGrid ? 'project-grid' : 'project-row'}
+        style={isGrid ? {
+          '--project-columns': columns,
+          // Extend toward the right edge so four columns still read comfortably. Only to the
+          // right: the left stays aligned with the text, clear of the fixed SectionNav.
+          marginRight: 'max(-16rem, calc(50% - 50vw + 2rem))',
+        } : {
           display: 'flex',
           gap: `${PROJECT_ROW_GAP}px`,
           overflowX: 'auto',
@@ -7463,7 +7459,7 @@ const ProjectCards = ({ projects }) => {
         }}
       >
         {projects.map((project, i) => (
-          <ProjectCard key={project.href} project={project} index={i} inView={inView} />
+          <ProjectCard key={project.href} project={project} index={i} inView={inView} inGrid={isGrid} />
         ))}
       </div>
 
@@ -7957,7 +7953,11 @@ const renderComponent = (block, context) => {
     case 'projects': {
       const projectRow = getProjectsBySection(block.param);
       return projectRow && projectRow.projects.length > 0 ? (
-        <ProjectCards projects={projectRow.projects} />
+        <ProjectCards
+          projects={projectRow.projects}
+          layout={projectRow.layout}
+          rows={projectRow.rows}
+        />
       ) : null;
     }
 

@@ -157,7 +157,11 @@ const renderComponent = (block, context) => {
     case 'projects': {
       const projectRow = getProjectsBySection(block.param);
       return projectRow && projectRow.projects.length > 0 ? (
-        <ProjectCards projects={projectRow.projects} />
+        <ProjectCards
+          projects={projectRow.projects}
+          layout={projectRow.layout}
+          rows={projectRow.rows}
+        />
       ) : null;
     }
 
