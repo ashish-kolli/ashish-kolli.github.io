@@ -425,7 +425,7 @@ const App = () => {
             color: COLORS.ink[400],
           }}
         >
-          Ashish Kolli. All Rights Reserved.
+          © {new Date().getFullYear()} Ashish Kolli. All Rights Reserved.
         </p>
       </footer>
       </PageIntro>

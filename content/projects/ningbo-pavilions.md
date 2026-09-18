@@ -9,7 +9,7 @@ Previous copy is in git: `git show 97065c3:content/projects/ningbo-pavilions.md`
 ================================================================================
 -->
 
-<!-- @page title="Ningbo Oceanside Pavilions" eyebrow="Making · Archival model" meta="[Role] · [Timeline] · [Context]" back="Making" backHref="./#making" -->
+<!-- @page title="Ningbo Oceanside Pavilions" eyebrow="Architecture · Archival model" meta="[Role] · [Timeline] · [Context]" back="Architecture" backHref="projects/architecture/" -->
 [Positioning line — one or two sentences: what this is, who it was for, and why it mattered.]
 <!-- /@page -->
 

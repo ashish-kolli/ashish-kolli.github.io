@@ -213,6 +213,35 @@ export const targetConfigs = {
 // SVG ICONS - Refined, minimal strokes
 // =============================================================================
 export const Icons = {
+  camera: (color) => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/>
+      <circle cx="12" cy="13" r="3.5"/>
+    </svg>
+  ),
+  video: (color) => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="6" width="14" height="12" rx="2"/>
+      <path d="m16 11 6-3.5v9L16 13z"/>
+    </svg>
+  ),
+  bike: (color) => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="5.5" cy="17" r="3.5"/>
+      <circle cx="18.5" cy="17" r="3.5"/>
+      <path d="M5.5 17 10 8h5l3.5 9"/>
+      <path d="M10 8h5.5"/>
+      <path d="M15 5h2.5"/>
+    </svg>
+  ),
+  blocks: (color) => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="12" width="18" height="7" rx="1.5"/>
+      <path d="M7.5 12v-1.5M12 12v-1.5M16.5 12v-1.5"/>
+      <rect x="6" y="5" width="12" height="5" rx="1.5"/>
+      <path d="M9.5 5V3.5M14.5 5V3.5"/>
+    </svg>
+  ),
   briefcase: (color) => (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <rect x="2" y="7" width="20" height="14" rx="2"/>

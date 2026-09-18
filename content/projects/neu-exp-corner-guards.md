@@ -9,7 +9,7 @@ Previous copy is in git: `git show 97065c3:content/projects/neu-exp-corner-guard
 ================================================================================
 -->
 
-<!-- @page title="NEU EXP Corner Guards" eyebrow="Making · Fabrication" meta="[Role] · [Timeline] · [Context]" back="Making" backHref="./#making" -->
+<!-- @page title="NEU EXP Corner Guards" eyebrow="Architecture · Fabrication" meta="[Role] · [Timeline] · [Context]" back="Architecture" backHref="projects/architecture/" -->
 [Positioning line — one or two sentences: what this is, who it was for, and why it mattered.]
 <!-- /@page -->
 

@@ -9,7 +9,7 @@ Previous copy is in git: `git show 97065c3:content/projects/walnut-mockup.md`
 ================================================================================
 -->
 
-<!-- @page title="Walnut Mockup" eyebrow="Making · Pilot model" meta="[Role] · [Timeline] · [Context]" back="Making" backHref="./#making" -->
+<!-- @page title="Walnut Mockup" eyebrow="Architecture · Pilot model" meta="[Role] · [Timeline] · [Context]" back="Architecture" backHref="projects/architecture/" -->
 [Positioning line — one or two sentences: what this is, who it was for, and why it mattered.]
 <!-- /@page -->
 

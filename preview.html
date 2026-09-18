@@ -31,7 +31,7 @@
 
 /**
  * Product Engineer Proposal - Single File Bundle
- * Generated: 2026-09-18T03:01:17.509Z
+ * Generated: 2026-09-18T03:09:54.941Z
  *
  * This file is auto-generated. Do not edit directly.
  * To modify, edit the source files and run: node src/utils/build.js
@@ -42,7 +42,7 @@
 // ============================================================================
 
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-18T03:01:17.478Z
+// Generated: 2026-09-18T03:09:54.909Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -53,6 +53,8 @@ const CONTENT = {
     "github": "https://github.com/ashish-kolli",
     "instagram": "https://instagram.com/ashperical",
     "headshot": "assets/photos/headshot.jpg",
+    "resume": "assets/resume.pdf",
+    "resumeLabel": "Resume",
     "date": "September 2026",
     "title": "Ashish Kolli",
     "subtitle": "Accelerating and scaling product development with agentic AI."
@@ -111,60 +113,44 @@ const CONTENT = {
       "rows": 2,
       "projects": [
         {
-          "href": "projects/ningbo-pavilions/",
-          "title": "Ningbo Oceanside Pavilions",
-          "eyebrow": "Archival model",
-          "meta": "Thom Mayne · office collection",
-          "icon": "lightbulb",
-          "summary": "[Card summary — one sentence on what this piece is.]"
-        },
-        {
-          "href": "projects/neu-exp-corner-guards/",
-          "title": "NEU EXP Corner Guards",
-          "eyebrow": "Fabrication",
-          "meta": "930 parts · 7 levels",
-          "icon": "cpu",
-          "summary": "[Card summary — one sentence on what this piece is.]"
-        },
-        {
-          "href": "projects/spline-curve-pavilion/",
-          "title": "Spline-Curve Pavilion",
-          "eyebrow": "Design build",
-          "meta": "ARCH 479 · Prof. Dale Clifford",
+          "href": "projects/architecture/",
+          "title": "Architecture",
+          "eyebrow": "Category",
+          "meta": "Cal Poly · Morphosis / Payette",
           "icon": "layers",
-          "summary": "[Card summary — one sentence on what this piece is.]"
+          "summary": "[Category summary — one or two sentences on the architecture and fabrication work and what it taught you.]"
         },
         {
-          "href": "projects/waveform-acoustic-tiles/",
-          "title": "Waveform Acoustic Tiles",
-          "eyebrow": "Joint design",
-          "meta": "Museum atrium · Connecticut",
-          "icon": "target",
-          "summary": "[Card summary — one sentence on what this piece is.]"
+          "href": "projects/lego/",
+          "title": "LEGO",
+          "eyebrow": "Category",
+          "meta": "[Scale · focus]",
+          "icon": "blocks",
+          "summary": "[Category summary — what you build in LEGO and why it holds your attention.]"
         },
         {
-          "href": "projects/stagiare/",
-          "title": "Stagiare",
-          "eyebrow": "Studio",
-          "meta": "Heavy industrial typology",
-          "icon": "layers",
-          "summary": "[Card summary — one sentence on what this piece is.]"
+          "href": "projects/photography/",
+          "title": "Photography",
+          "eyebrow": "Category",
+          "meta": "[Subjects · gear]",
+          "icon": "camera",
+          "summary": "[Category summary — what you shoot and what you're chasing in a frame.]"
         },
         {
-          "href": "projects/walnut-mockup/",
-          "title": "Walnut Mockup",
-          "eyebrow": "Pilot model",
-          "meta": "Sectional volumetric study",
-          "icon": "chart",
-          "summary": "[Card summary — one sentence on what this piece is.]"
+          "href": "projects/videography-sfx/",
+          "title": "Videography & SFX",
+          "eyebrow": "Category",
+          "meta": "[Formats · tools]",
+          "icon": "video",
+          "summary": "[Category summary — the kind of pieces you cut and the effects work behind them.]"
         },
         {
-          "href": "projects/vortex/",
-          "title": "Vortex",
-          "eyebrow": "Sculptural monolith",
-          "meta": "Santa Barbara, CA",
-          "icon": "rocket",
-          "summary": "[Card summary — one sentence on what this piece is.]"
+          "href": "projects/cycling/",
+          "title": "Cycling",
+          "eyebrow": "Category",
+          "meta": "[Riding · routes]",
+          "icon": "bike",
+          "summary": "[Category summary — how you ride and what the discipline gives back.]"
         }
       ]
     }
@@ -311,7 +297,7 @@ const CONTENT = {
       "intro": [
         {
           "type": "paragraph",
-          "text": "[Section intro — 2–3 sentences on the architecture and fabrication background, and how it shows up in the way you build product.]"
+          "text": "[Section intro — 2–3 sentences on what you make outside of product work, and what these five pursuits have in common.]"
         },
         {
           "type": "component",
@@ -547,6 +533,35 @@ const targetConfigs = {
 // SVG ICONS - Refined, minimal strokes
 // =============================================================================
 const Icons = {
+  camera: (color) => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/>
+      <circle cx="12" cy="13" r="3.5"/>
+    </svg>
+  ),
+  video: (color) => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="6" width="14" height="12" rx="2"/>
+      <path d="m16 11 6-3.5v9L16 13z"/>
+    </svg>
+  ),
+  bike: (color) => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="5.5" cy="17" r="3.5"/>
+      <circle cx="18.5" cy="17" r="3.5"/>
+      <path d="M5.5 17 10 8h5l3.5 9"/>
+      <path d="M10 8h5.5"/>
+      <path d="M15 5h2.5"/>
+    </svg>
+  ),
+  blocks: (color) => (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="12" width="18" height="7" rx="1.5"/>
+      <path d="M7.5 12v-1.5M12 12v-1.5M16.5 12v-1.5"/>
+      <rect x="6" y="5" width="12" height="5" rx="1.5"/>
+      <path d="M9.5 5V3.5M14.5 5V3.5"/>
+    </svg>
+  ),
   briefcase: (color) => (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <rect x="2" y="7" width="20" height="14" rx="2"/>
@@ -1412,7 +1427,7 @@ const RichText = ({ children, className = '' }) => {
 
 
 const Header = ({ data, heroQuote }) => {
-  const { from, fromEmail, linkedin, github, instagram, headshot, subtitle, title } = data;
+  const { from, fromEmail, linkedin, github, instagram, headshot, subtitle, title, resume, resumeLabel } = data;
   // Default quote if none provided
   const quote = heroQuote || {
     quote: "The brief is never the problem. The brief is the symptom of a problem the user can't yet name.",
@@ -1421,6 +1436,7 @@ const Header = ({ data, heroQuote }) => {
   };
   const [imageError, setImageError] = useState(false);
   const [cardHovered, setCardHovered] = useState(false);
+  const [resumeHovered, setResumeHovered] = useState(false);
 
   // The contact card is a shortcut into the About section
   const goToAbout = () => {
@@ -1604,6 +1620,33 @@ const Header = ({ data, heroQuote }) => {
             </div>
           </div>
 
+          {/* Resume button */}
+          {resume && (
+            <a
+              href={resume}
+              target="_blank"
+              rel="noopener noreferrer"
+              onMouseEnter={() => setResumeHovered(true)}
+              onMouseLeave={() => setResumeHovered(false)}
+              style={{
+                padding: '0.625rem 1.5rem',
+                background: resumeHovered ? COLORS.accent.light : COLORS.accent.primary,
+                color: '#FFFFFF',
+                borderRadius: EFFECTS.radius.full,
+                fontFamily: FONTS.ui,
+                fontSize: TYPE_SCALE.ui.md.size,
+                fontWeight: 600,
+                letterSpacing: '0.02em',
+                textDecoration: 'none',
+                whiteSpace: 'nowrap',
+                boxShadow: resumeHovered ? EFFECTS.shadow.md : EFFECTS.shadow.sm,
+                transform: resumeHovered ? 'translateY(-2px)' : 'translateY(0)',
+                transition: `all ${EFFECTS.transition.base}`,
+              }}
+            >
+              {resumeLabel}
+            </a>
+          )}
         </div>
       </nav>
 
@@ -8397,7 +8440,7 @@ const App = () => {
             color: COLORS.ink[400],
           }}
         >
-          Ashish Kolli. All Rights Reserved.
+          © {new Date().getFullYear()} Ashish Kolli. All Rights Reserved.
         </p>
       </footer>
       </PageIntro>

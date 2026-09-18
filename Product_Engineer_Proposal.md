@@ -14,6 +14,7 @@ Component marker reference: see CLAUDE.md
 <!-- @header -->
 <!-- @from name="Ashish Kolli" email="ashish.n.kolli@gmail.com" linkedin="https://linkedin.com/in/ashish-kolli" github="https://github.com/ashish-kolli" instagram="https://instagram.com/ashperical" -->
 <!-- @headshot url="assets/photos/headshot.jpg" -->
+<!-- @resume url="assets/resume.pdf" label="Resume" -->
 <!-- @date value="September 2026" -->
 <!-- @title value="Ashish Kolli" -->
 <!-- @subtitle value="Accelerating and scaling product development with agentic AI." -->
@@ -96,36 +97,28 @@ Component marker reference: see CLAUDE.md
 
 ## 5. Making
 
-[Section intro — 2–3 sentences on the architecture and fabrication background, and how it shows up in the way you build product.]
+[Section intro — 2–3 sentences on what you make outside of product work, and what these five pursuits have in common.]
 
 <!-- @projects section="maker" layout="grid" rows="2" -->
 
-<!-- @project href="projects/ningbo-pavilions/" icon="lightbulb" eyebrow="Archival model" title="Ningbo Oceanside Pavilions" meta="Thom Mayne · office collection" -->
-[Card summary — one sentence on what this piece is.]
+<!-- @project href="projects/architecture/" icon="layers" eyebrow="Category" title="Architecture" meta="Cal Poly · Morphosis / Payette" -->
+[Category summary — one or two sentences on the architecture and fabrication work and what it taught you.]
 <!-- /@project -->
 
-<!-- @project href="projects/neu-exp-corner-guards/" icon="cpu" eyebrow="Fabrication" title="NEU EXP Corner Guards" meta="930 parts · 7 levels" -->
-[Card summary — one sentence on what this piece is.]
+<!-- @project href="projects/lego/" icon="blocks" eyebrow="Category" title="LEGO" meta="[Scale · focus]" -->
+[Category summary — what you build in LEGO and why it holds your attention.]
 <!-- /@project -->
 
-<!-- @project href="projects/spline-curve-pavilion/" icon="layers" eyebrow="Design build" title="Spline-Curve Pavilion" meta="ARCH 479 · Prof. Dale Clifford" -->
-[Card summary — one sentence on what this piece is.]
+<!-- @project href="projects/photography/" icon="camera" eyebrow="Category" title="Photography" meta="[Subjects · gear]" -->
+[Category summary — what you shoot and what you're chasing in a frame.]
 <!-- /@project -->
 
-<!-- @project href="projects/waveform-acoustic-tiles/" icon="target" eyebrow="Joint design" title="Waveform Acoustic Tiles" meta="Museum atrium · Connecticut" -->
-[Card summary — one sentence on what this piece is.]
+<!-- @project href="projects/videography-sfx/" icon="video" eyebrow="Category" title="Videography & SFX" meta="[Formats · tools]" -->
+[Category summary — the kind of pieces you cut and the effects work behind them.]
 <!-- /@project -->
 
-<!-- @project href="projects/stagiare/" icon="layers" eyebrow="Studio" title="Stagiare" meta="Heavy industrial typology" -->
-[Card summary — one sentence on what this piece is.]
-<!-- /@project -->
-
-<!-- @project href="projects/walnut-mockup/" icon="chart" eyebrow="Pilot model" title="Walnut Mockup" meta="Sectional volumetric study" -->
-[Card summary — one sentence on what this piece is.]
-<!-- /@project -->
-
-<!-- @project href="projects/vortex/" icon="rocket" eyebrow="Sculptural monolith" title="Vortex" meta="Santa Barbara, CA" -->
-[Card summary — one sentence on what this piece is.]
+<!-- @project href="projects/cycling/" icon="bike" eyebrow="Category" title="Cycling" meta="[Riding · routes]" -->
+[Category summary — how you ride and what the discipline gives back.]
 <!-- /@project -->
 
 <!-- /@projects -->

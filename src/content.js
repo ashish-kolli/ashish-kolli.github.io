@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-18T03:01:17.478Z
+// Generated: 2026-09-18T03:09:54.909Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -10,6 +10,8 @@ const CONTENT = {
     "github": "https://github.com/ashish-kolli",
     "instagram": "https://instagram.com/ashperical",
     "headshot": "assets/photos/headshot.jpg",
+    "resume": "assets/resume.pdf",
+    "resumeLabel": "Resume",
     "date": "September 2026",
     "title": "Ashish Kolli",
     "subtitle": "Accelerating and scaling product development with agentic AI."
@@ -68,60 +70,44 @@ const CONTENT = {
       "rows": 2,
       "projects": [
         {
-          "href": "projects/ningbo-pavilions/",
-          "title": "Ningbo Oceanside Pavilions",
-          "eyebrow": "Archival model",
-          "meta": "Thom Mayne · office collection",
-          "icon": "lightbulb",
-          "summary": "[Card summary — one sentence on what this piece is.]"
-        },
-        {
-          "href": "projects/neu-exp-corner-guards/",
-          "title": "NEU EXP Corner Guards",
-          "eyebrow": "Fabrication",
-          "meta": "930 parts · 7 levels",
-          "icon": "cpu",
-          "summary": "[Card summary — one sentence on what this piece is.]"
-        },
-        {
-          "href": "projects/spline-curve-pavilion/",
-          "title": "Spline-Curve Pavilion",
-          "eyebrow": "Design build",
-          "meta": "ARCH 479 · Prof. Dale Clifford",
+          "href": "projects/architecture/",
+          "title": "Architecture",
+          "eyebrow": "Category",
+          "meta": "Cal Poly · Morphosis / Payette",
           "icon": "layers",
-          "summary": "[Card summary — one sentence on what this piece is.]"
+          "summary": "[Category summary — one or two sentences on the architecture and fabrication work and what it taught you.]"
         },
         {
-          "href": "projects/waveform-acoustic-tiles/",
-          "title": "Waveform Acoustic Tiles",
-          "eyebrow": "Joint design",
-          "meta": "Museum atrium · Connecticut",
-          "icon": "target",
-          "summary": "[Card summary — one sentence on what this piece is.]"
+          "href": "projects/lego/",
+          "title": "LEGO",
+          "eyebrow": "Category",
+          "meta": "[Scale · focus]",
+          "icon": "blocks",
+          "summary": "[Category summary — what you build in LEGO and why it holds your attention.]"
         },
         {
-          "href": "projects/stagiare/",
-          "title": "Stagiare",
-          "eyebrow": "Studio",
-          "meta": "Heavy industrial typology",
-          "icon": "layers",
-          "summary": "[Card summary — one sentence on what this piece is.]"
+          "href": "projects/photography/",
+          "title": "Photography",
+          "eyebrow": "Category",
+          "meta": "[Subjects · gear]",
+          "icon": "camera",
+          "summary": "[Category summary — what you shoot and what you're chasing in a frame.]"
         },
         {
-          "href": "projects/walnut-mockup/",
-          "title": "Walnut Mockup",
-          "eyebrow": "Pilot model",
-          "meta": "Sectional volumetric study",
-          "icon": "chart",
-          "summary": "[Card summary — one sentence on what this piece is.]"
+          "href": "projects/videography-sfx/",
+          "title": "Videography & SFX",
+          "eyebrow": "Category",
+          "meta": "[Formats · tools]",
+          "icon": "video",
+          "summary": "[Category summary — the kind of pieces you cut and the effects work behind them.]"
         },
         {
-          "href": "projects/vortex/",
-          "title": "Vortex",
-          "eyebrow": "Sculptural monolith",
-          "meta": "Santa Barbara, CA",
-          "icon": "rocket",
-          "summary": "[Card summary — one sentence on what this piece is.]"
+          "href": "projects/cycling/",
+          "title": "Cycling",
+          "eyebrow": "Category",
+          "meta": "[Riding · routes]",
+          "icon": "bike",
+          "summary": "[Category summary — how you ride and what the discipline gives back.]"
         }
       ]
     }
@@ -268,7 +254,7 @@ const CONTENT = {
       "intro": [
         {
           "type": "paragraph",
-          "text": "[Section intro — 2–3 sentences on the architecture and fabrication background, and how it shows up in the way you build product.]"
+          "text": "[Section intro — 2–3 sentences on what you make outside of product work, and what these five pursuits have in common.]"
         },
         {
           "type": "component",

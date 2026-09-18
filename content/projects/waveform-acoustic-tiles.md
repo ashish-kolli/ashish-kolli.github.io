@@ -9,7 +9,7 @@ Previous copy is in git: `git show 97065c3:content/projects/waveform-acoustic-ti
 ================================================================================
 -->
 
-<!-- @page title="Waveform Acoustic Tiles" eyebrow="Making · Joint design" meta="[Role] · [Timeline] · [Context]" back="Making" backHref="./#making" -->
+<!-- @page title="Waveform Acoustic Tiles" eyebrow="Architecture · Joint design" meta="[Role] · [Timeline] · [Context]" back="Architecture" backHref="projects/architecture/" -->
 [Positioning line — one or two sentences: what this is, who it was for, and why it mattered.]
 <!-- /@page -->
 

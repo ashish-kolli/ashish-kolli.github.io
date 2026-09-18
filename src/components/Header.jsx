@@ -11,7 +11,7 @@ import React, { useState, useEffect } from 'react';
 import { COLORS, FONTS, TYPE_SCALE, EFFECTS, LAYOUT, SPACE } from '../design-tokens';
 
 const Header = ({ data, heroQuote }) => {
-  const { from, fromEmail, linkedin, github, instagram, headshot, subtitle, title } = data;
+  const { from, fromEmail, linkedin, github, instagram, headshot, subtitle, title, resume, resumeLabel } = data;
   // Default quote if none provided
   const quote = heroQuote || {
     quote: "The brief is never the problem. The brief is the symptom of a problem the user can't yet name.",
@@ -20,6 +20,7 @@ const Header = ({ data, heroQuote }) => {
   };
   const [imageError, setImageError] = useState(false);
   const [cardHovered, setCardHovered] = useState(false);
+  const [resumeHovered, setResumeHovered] = useState(false);
 
   // The contact card is a shortcut into the About section
   const goToAbout = () => {
@@ -203,6 +204,33 @@ const Header = ({ data, heroQuote }) => {
             </div>
           </div>
 
+          {/* Resume button */}
+          {resume && (
+            <a
+              href={resume}
+              target="_blank"
+              rel="noopener noreferrer"
+              onMouseEnter={() => setResumeHovered(true)}
+              onMouseLeave={() => setResumeHovered(false)}
+              style={{
+                padding: '0.625rem 1.5rem',
+                background: resumeHovered ? COLORS.accent.light : COLORS.accent.primary,
+                color: '#FFFFFF',
+                borderRadius: EFFECTS.radius.full,
+                fontFamily: FONTS.ui,
+                fontSize: TYPE_SCALE.ui.md.size,
+                fontWeight: 600,
+                letterSpacing: '0.02em',
+                textDecoration: 'none',
+                whiteSpace: 'nowrap',
+                boxShadow: resumeHovered ? EFFECTS.shadow.md : EFFECTS.shadow.sm,
+                transform: resumeHovered ? 'translateY(-2px)' : 'translateY(0)',
+                transition: `all ${EFFECTS.transition.base}`,
+              }}
+            >
+              {resumeLabel}
+            </a>
+          )}
         </div>
       </nav>
 
