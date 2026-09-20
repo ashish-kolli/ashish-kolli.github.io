@@ -45,3 +45,6 @@ dist/pages/
 # Film reel originals stay local; the build publishes web copies to assets/photos/reel-web/
 assets/photos/reel/*
 !assets/photos/reel/.gitkeep
+
+# Stray editor/console history files
+.Rhistory
