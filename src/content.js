@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-18T20:27:47.923Z
+// Generated: 2026-09-20T00:10:23.585Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -7,7 +7,8 @@ const CONTENT = {
     "from": "Ashish Kolli",
     "fromEmail": "ashish.n.kolli@gmail.com",
     "linkedin": "https://linkedin.com/in/ashish-kolli",
-    "github": "https://github.com/ashish-kolli",
+    "github": "",
+    "drive": "https://drive.google.com/drive/folders/1je1u3enMEVzVCqu-KKHXgetxCW0XvmyI?usp=share_link",
     "instagram": "https://instagram.com/ashperical",
     "headshot": "assets/photos/headshot.jpg",
     "resume": "assets/resume.pdf",
@@ -33,32 +34,33 @@ const CONTENT = {
   "projects": [
     {
       "section": "experience",
-      "layout": "row",
+      "layout": "stack",
       "rows": 2,
       "projects": [
         {
-          "href": "projects/arohai/",
-          "title": "AroHai",
-          "eyebrow": "Pilot launched",
-          "meta": "Founder / Product",
-          "icon": "rocket",
-          "summary": "CRM platform for scaling mom-and-pop shops from flagship to franchise."
+          "href": "projects/bawarchi-biryanis/",
+          "title": "Bawarchi Biryanis",
+          "eyebrow": "Growth Product Manager",
+          "meta": "[Dates]",
+          "icon": "chart",
+          "summary": "[Card summary — what you own there and the result worth clicking for.]"
         },
         {
-          "href": "projects/readyvault/",
-          "title": "ReadyVault",
-          "eyebrow": "Featured case study",
-          "meta": "Newell Brands · 2025–26",
+          "href": "projects/graduate-capstone/",
+          "title": "Graduate Capstone",
+          "eyebrow": "Product Manager",
+          "meta": "Northwestern · Newell Brands",
+          "icon": "graduation",
+          "summary": "[Card summary — what the capstone was and what you led.]"
+        },
+        {
+          "href": "projects/jensen-hughes/",
+          "title": "Jensen Hughes",
+          "eyebrow": "Associate Fire Protection Engineer",
+          "meta": "[Dates]",
           "icon": "shield",
-          "summary": "[Card summary — what ReadyVault is, who it was for, and the headline result.]"
-        }
-      ]
-    },
-    {
-      "section": "internships",
-      "layout": "row",
-      "rows": 2,
-      "projects": [
+          "summary": "[Card summary — what you worked on and the change you made.]"
+        },
         {
           "href": "projects/tesla/",
           "title": "Tesla",
@@ -74,6 +76,29 @@ const CONTENT = {
           "meta": "2022–23",
           "icon": "cpu",
           "summary": "[Card summary — what you built at Morphosis/Payette and what it changed.]"
+        }
+      ]
+    },
+    {
+      "section": "projects",
+      "layout": "row",
+      "rows": 2,
+      "projects": [
+        {
+          "href": "projects/readyvault/",
+          "title": "ReadyVault",
+          "eyebrow": "Featured case study",
+          "meta": "Newell Brands · 2025–26",
+          "icon": "shield",
+          "summary": "[Card summary — what ReadyVault is, who it was for, and the headline result.]"
+        },
+        {
+          "href": "projects/arohai/",
+          "title": "AroHai",
+          "eyebrow": "Pilot launched",
+          "meta": "Founder / Product",
+          "icon": "rocket",
+          "summary": "CRM platform for scaling mom-and-pop shops from flagship to franchise."
         }
       ]
     },
@@ -178,7 +203,7 @@ const CONTENT = {
       "intro": [
         {
           "type": "paragraph",
-          "text": "[Section intro — 1–2 sentences framing what these two products have in common and what you owned on each.]"
+          "text": "[Section intro — 1–2 sentences on the through-line across these roles.]"
         },
         {
           "type": "component",
@@ -190,17 +215,17 @@ const CONTENT = {
     {
       "type": "section",
       "number": 2,
-      "title": "Internships",
+      "title": "Projects",
       "subsections": [],
       "intro": [
         {
           "type": "paragraph",
-          "text": "[Section intro — 1–2 sentences on what these roles have in common and what scaled between them.]"
+          "text": "[Section intro — 1–2 sentences framing what these two products have in common and what you owned on each.]"
         },
         {
           "type": "component",
           "component": "projects",
-          "param": "internships"
+          "param": "projects"
         }
       ]
     },

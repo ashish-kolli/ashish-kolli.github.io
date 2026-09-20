@@ -57,7 +57,7 @@ function extractHeader(content) {
   if (!headerMatch) return null;
 
   const block = headerMatch[0];
-  const fromMatch = block.match(/<!-- @from name="([^"]*)" email="([^"]*)"(?: linkedin="([^"]*)")?(?: github="([^"]*)")?(?: instagram="([^"]*)")? -->/);
+  const fromMatch = block.match(/<!-- @from name="([^"]*)" email="([^"]*)"(?: linkedin="([^"]*)")?(?: github="([^"]*)")?(?: drive="([^"]*)")?(?: instagram="([^"]*)")? -->/);
   const headshotMatch = block.match(/<!-- @headshot url="([^"]*)" -->/);
   const resumeMatch = block.match(/<!-- @resume url="([^"]*)"(?: label="([^"]*)")? -->/);
   const reelMatch = block.match(/<!-- @reel folder="([^"]*)" -->/);
@@ -70,7 +70,8 @@ function extractHeader(content) {
     fromEmail: fromMatch ? fromMatch[2] : '',
     linkedin: fromMatch && fromMatch[3] ? fromMatch[3] : '',
     github: fromMatch && fromMatch[4] ? fromMatch[4] : '',
-    instagram: fromMatch && fromMatch[5] ? fromMatch[5] : '',
+    drive: fromMatch && fromMatch[5] ? fromMatch[5] : '',
+    instagram: fromMatch && fromMatch[6] ? fromMatch[6] : '',
     headshot: headshotMatch ? headshotMatch[1] : '',
     resume: resumeMatch ? resumeMatch[1] : '',
     resumeLabel: resumeMatch && resumeMatch[2] ? resumeMatch[2] : 'Resume',

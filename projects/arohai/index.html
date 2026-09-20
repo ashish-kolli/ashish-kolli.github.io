@@ -31,7 +31,7 @@
 
 /**
  * Product Engineer Proposal - Single File Bundle
- * Generated: 2026-09-18T20:27:48.133Z
+ * Generated: 2026-09-20T00:10:23.793Z
  *
  * This file is auto-generated. Do not edit directly.
  * To modify, edit the source files and run: node src/utils/build.js
@@ -42,17 +42,17 @@
 // ============================================================================
 
 // Auto-generated from content/projects/arohai.md
-// Generated: 2026-09-18T20:27:48.111Z
+// Generated: 2026-09-20T00:10:23.770Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
   "header": null,
   "page": {
     "title": "AroHai",
-    "eyebrow": "Experience · Pilot launched",
+    "eyebrow": "Project · Pilot launched",
     "meta": "[Role] · [Timeline] · [Context]",
-    "back": "Experience",
-    "backHref": "./#experience",
+    "back": "Projects",
+    "backHref": "./#projects",
     "summary": "CRM platform for scaling mom-and-pop shops from flagship to franchise."
   },
   "projects": [],
@@ -1721,7 +1721,7 @@ const RESUME_GRADIENT_HOVER = 'linear-gradient(115deg, rgba(109, 40, 217, 0.34) 
 const RESUME_TEXT_GRADIENT = 'linear-gradient(90deg, #EA580C 0%, #7C3AED 100%)';
 
 const Header = ({ data }) => {
-  const { from, fromEmail, linkedin, github, instagram, headshot, subtitle, title, resume, resumeLabel, reel = [], phrases = [] } = data;
+  const { from, fromEmail, linkedin, github, drive, instagram, headshot, subtitle, title, resume, resumeLabel, reel = [], phrases = [] } = data;
   // Everything the subtitle types, in order: the tagline first, then the phrase bank
   const lines = [subtitle, ...phrases].filter(Boolean);
   const linesKey = lines.join('\n');
@@ -2209,6 +2209,34 @@ const Header = ({ data }) => {
                     >
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                      </svg>
+                    </a>
+                  )}
+                  {drive && (
+                    <a
+                      href={drive}
+                      target="_blank"
+                      onClick={(e) => e.stopPropagation()}
+                      rel="noopener noreferrer"
+                      style={{
+                        width: '28px',
+                        height: '28px',
+                        borderRadius: EFFECTS.radius.md,
+                        background: 'transparent',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: '#FFFFFF', // white logos on the black card
+                        textDecoration: 'none',
+                        transition: 'all 0.2s ease',
+                      }}
+                      title="Google Drive"
+                      aria-label="Google Drive"
+                    >
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M12 10l-6 10l-3 -5l6 -10z" />
+                        <path d="M9 15h12l-3 5h-12" />
+                        <path d="M15 15l-6 -10h6l6 10z" />
                       </svg>
                     </a>
                   )}
@@ -7731,11 +7759,13 @@ const CursorSpotlight = () => {
  *
  * Summary cards on the home page, each linking to a project's own page.
  *
- * Two layouts, chosen per section by the @projects marker:
+ * Three layouts, chosen per section by the @projects marker:
  * - layout="row" (default): one horizontal row; more cards than fit scroll sideways
  *   (swipe, trackpad, or the arrow buttons), with the overflowing edge fading out
  * - layout="grid": cards wrap into `rows` rows instead of scrolling, dropping to
  *   3 columns on narrow desktops and a single column on mobile
+ * - layout="stack": one card per row, margin to margin, each laid out left to right
+ *   (icon and title, summary, then meta and the link cue); stacks on mobile
  *
  * Cards fade up in sequence when they scroll into view.
  */
@@ -7774,32 +7804,48 @@ const injectProjectCardStyles = (() => {
       @media (max-width: 768px) {
         .project-grid { grid-template-columns: minmax(0, 1fr); }
       }
+      .project-stack { display: grid; gap: ${PROJECT_ROW_GAP}px; }
+      /* Full-width card: title block, summary, meta */
+      .project-stack-card {
+        display: grid;
+        grid-template-columns: minmax(180px, 24%) 1fr auto;
+        align-items: center;
+        gap: ${SPACE[6]};
+        padding: ${SPACE[5]} ${SPACE[6]};
+      }
+      @media (max-width: 860px) {
+        .project-stack-card { grid-template-columns: 1fr; gap: ${SPACE[4]}; align-items: start; }
+        .project-stack-card .project-stack-meta { justify-content: flex-start; }
+      }
     `;
     document.head.appendChild(style);
     injected = true;
   };
 })();
 
-const ProjectCard = ({ project, index, inView, inGrid }) => {
+const ProjectCard = ({ project, index, inView, layout }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const stacked = layout === 'stack';
 
   return (
     <a
       href={project.href}
-      className="project-card"
+      className={stacked ? 'project-card project-stack-card' : 'project-card'}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{
-        // In a grid the column track sizes the card; in a row it sets its own width
-        ...(inGrid ? {} : {
+        // In a grid or stack the container sizes the card; in a row it sets its own width
+        ...(layout === 'row' ? {
           flex: `1 0 ${PROJECT_CARD_WIDTH}px`,
           maxWidth: `${PROJECT_CARD_MAX}px`,
           scrollSnapAlign: 'start',
+        } : {}),
+        ...(stacked ? {} : {
+          display: 'flex',
+          flexDirection: 'column',
+          gap: SPACE[4],
+          padding: SPACE[6],
         }),
-        display: 'flex',
-        flexDirection: 'column',
-        gap: SPACE[4],
-        padding: SPACE[6],
         background: COLORS.surface.elevated,
         border: `1px solid ${isHovered ? COLORS.accent.primary : COLORS.ink[200]}`,
         borderRadius: EFFECTS.radius.lg,
@@ -7811,7 +7857,7 @@ const ProjectCard = ({ project, index, inView, inGrid }) => {
         transition: `opacity 0.5s ease-out ${inView && !isHovered ? index * 0.08 : 0}s, transform ${EFFECTS.transition.base}, border-color ${EFFECTS.transition.base}, box-shadow ${EFFECTS.transition.base}`,
       }}
     >
-      {/* Icon + eyebrow */}
+      {/* Icon + eyebrow, with the title alongside when stacked */}
       <div style={{ display: 'flex', alignItems: 'center', gap: SPACE[3] }}>
         <div
           style={{
@@ -7829,37 +7875,56 @@ const ProjectCard = ({ project, index, inView, inGrid }) => {
         >
           {getIcon(project.icon, isHovered ? '#FFFFFF' : COLORS.ink[500])}
         </div>
-        {project.eyebrow && (
-          <span
-            style={{
-              fontFamily: FONTS.mono,
-              fontSize: TYPE_SCALE.ui.xs.size,
-              fontWeight: 600,
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              color: COLORS.accent.primary,
-            }}
-          >
-            {project.eyebrow}
-          </span>
-        )}
+        <div style={{ minWidth: 0 }}>
+          {project.eyebrow && (
+            <span
+              style={{
+                display: 'block',
+                fontFamily: FONTS.mono,
+                fontSize: TYPE_SCALE.ui.xs.size,
+                fontWeight: 600,
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                color: COLORS.accent.primary,
+              }}
+            >
+              {project.eyebrow}
+            </span>
+          )}
+          {stacked && (
+            <h3
+              style={{
+                fontFamily: FONTS.ui,
+                fontSize: TYPE_SCALE.headline.sm.size,
+                fontWeight: 600,
+                lineHeight: 1.25,
+                color: COLORS.ink[800],
+                margin: `${SPACE[1]} 0 0`,
+              }}
+            >
+              {project.title}
+            </h3>
+          )}
+        </div>
       </div>
 
-      {/* Title + summary */}
-      <div style={{ flex: 1 }}>
-        <h3
-          style={{
-            fontFamily: FONTS.ui,
-            fontSize: TYPE_SCALE.headline.sm.size,
-            fontWeight: 600,
-            lineHeight: 1.25,
-            color: COLORS.ink[800],
-            margin: 0,
-            marginBottom: SPACE[2],
-          }}
-        >
-          {project.title}
-        </h3>
+      {/* Title (tiles only) + summary */}
+      <div style={{ flex: 1, minWidth: 0 }}>
+        {!stacked && (
+          <h3
+            style={{
+              fontFamily: FONTS.ui,
+              fontSize: TYPE_SCALE.headline.sm.size,
+              fontWeight: 600,
+              lineHeight: 1.25,
+              color: COLORS.ink[800],
+              margin: 0,
+              marginBottom: SPACE[2],
+            }}
+          >
+            {project.title}
+          </h3>
+        )}
         <p
           style={{
             fontFamily: FONTS.body,
@@ -7875,13 +7940,13 @@ const ProjectCard = ({ project, index, inView, inGrid }) => {
 
       {/* Meta + link cue */}
       <div
+        className={stacked ? 'project-stack-meta' : undefined}
         style={{
           display: 'flex',
-          alignItems: 'flex-end',
-          justifyContent: 'space-between',
-          gap: SPACE[3],
-          paddingTop: SPACE[4],
-          borderTop: `1px solid ${COLORS.ink[100]}`,
+          alignItems: stacked ? 'center' : 'flex-end',
+          justifyContent: stacked ? 'flex-end' : 'space-between',
+          gap: stacked ? SPACE[5] : SPACE[3],
+          ...(stacked ? {} : { paddingTop: SPACE[4], borderTop: `1px solid ${COLORS.ink[100]}` }),
         }}
       >
         <span
@@ -7949,11 +8014,12 @@ const ProjectCards = ({ projects, layout = 'row', rows = 2 }) => {
   const [wrapRef, inView] = useInView();
   const [edges, setEdges] = useState({ left: false, right: false });
   const isGrid = layout === 'grid';
+  const isStack = layout === 'stack';
 
   useEffect(() => {
     injectProjectCardStyles();
     const row = rowRef.current;
-    if (!row || isGrid) return undefined;
+    if (!row || isGrid || isStack) return undefined;
 
     const update = () => {
       const maxScroll = row.scrollWidth - row.clientWidth;
@@ -7966,7 +8032,7 @@ const ProjectCards = ({ projects, layout = 'row', rows = 2 }) => {
       row.removeEventListener('scroll', update);
       window.removeEventListener('resize', update);
     };
-  }, [projects.length, isGrid]);
+  }, [projects.length, isGrid, isStack]);
 
   const scrollByCards = (direction) => {
     const row = rowRef.current;
@@ -7976,7 +8042,7 @@ const ProjectCards = ({ projects, layout = 'row', rows = 2 }) => {
 
   const fade = (side) => (edges[side] ? 'transparent' : 'black');
   const mask = `linear-gradient(to right, ${fade('left')} 0, black ${SPACE[8]}, black calc(100% - ${SPACE[8]}), ${fade('right')} 100%)`;
-  const scrollable = !isGrid && (edges.left || edges.right);
+  const scrollable = !isGrid && !isStack && (edges.left || edges.right);
 
   // Enough columns to fit every card in `rows` rows, e.g. 7 cards in 2 rows → 4 + 3
   const columns = Math.max(1, Math.ceil(projects.length / Math.max(rows, 1)));
@@ -7985,8 +8051,8 @@ const ProjectCards = ({ projects, layout = 'row', rows = 2 }) => {
     <div ref={wrapRef} style={{ margin: `${SPACE[6]} 0 ${SPACE[8]}` }}>
       <div
         ref={rowRef}
-        className={isGrid ? 'project-grid' : 'project-row'}
-        style={isGrid ? {
+        className={isGrid ? 'project-grid' : (isStack ? 'project-stack' : 'project-row')}
+        style={isStack ? {} : isGrid ? {
           '--project-columns': columns,
           // Extend toward the right edge so four columns still read comfortably. Only to the
           // right: the left stays aligned with the text, clear of the fixed SectionNav.
@@ -8004,7 +8070,7 @@ const ProjectCards = ({ projects, layout = 'row', rows = 2 }) => {
         }}
       >
         {projects.map((project, i) => (
-          <ProjectCard key={project.href} project={project} index={i} inView={inView} inGrid={isGrid} />
+          <ProjectCard key={project.href} project={project} index={i} inView={inView} layout={layout} />
         ))}
       </div>
 

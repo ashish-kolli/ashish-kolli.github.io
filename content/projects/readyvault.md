@@ -9,7 +9,7 @@ Previous copy is in git: `git show 97065c3:content/projects/readyvault.md`
 ================================================================================
 -->
 
-<!-- @page title="ReadyVault" eyebrow="Experience · Featured case study" meta="[Role] · [Timeline] · [Context]" back="Experience" backHref="./#experience" -->
+<!-- @page title="ReadyVault" eyebrow="Project · Featured case study" meta="[Role] · [Timeline] · [Context]" back="Projects" backHref="./#projects" -->
 [Positioning line — one or two sentences: what this is, who it was for, and why it mattered.]
 <!-- /@page -->
 

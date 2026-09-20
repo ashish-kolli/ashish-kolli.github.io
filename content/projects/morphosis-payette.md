@@ -9,7 +9,7 @@ Previous copy is in git: `git show 97065c3:content/projects/morphosis-payette.md
 ================================================================================
 -->
 
-<!-- @page title="Morphosis / Payette" eyebrow="Internship · Designer & Fabricator" meta="[Role] · [Timeline] · [Context]" back="Internships" backHref="./#internships" -->
+<!-- @page title="Morphosis / Payette" eyebrow="Experience · Designer & Fabricator" meta="[Role] · [Timeline] · [Context]" back="Experience" backHref="./#experience" -->
 [Positioning line — one or two sentences: what this is, who it was for, and why it mattered.]
 <!-- /@page -->
 

@@ -9,7 +9,7 @@ Previous copy is in git: `git show 97065c3:content/projects/tesla.md`
 ================================================================================
 -->
 
-<!-- @page title="Tesla" eyebrow="Internship · Retail Design Intern" meta="[Role] · [Timeline] · [Context]" back="Internships" backHref="./#internships" -->
+<!-- @page title="Tesla" eyebrow="Experience · Retail Design Intern" meta="[Role] · [Timeline] · [Context]" back="Experience" backHref="./#experience" -->
 [Positioning line — one or two sentences: what this is, who it was for, and why it mattered.]
 <!-- /@page -->
 

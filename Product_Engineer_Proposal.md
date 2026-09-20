@@ -12,7 +12,7 @@ Component marker reference: see CLAUDE.md
 -->
 
 <!-- @header -->
-<!-- @from name="Ashish Kolli" email="ashish.n.kolli@gmail.com" linkedin="https://linkedin.com/in/ashish-kolli" github="https://github.com/ashish-kolli" instagram="https://instagram.com/ashperical" -->
+<!-- @from name="Ashish Kolli" email="ashish.n.kolli@gmail.com" linkedin="https://linkedin.com/in/ashish-kolli" drive="https://drive.google.com/drive/folders/1je1u3enMEVzVCqu-KKHXgetxCW0XvmyI?usp=share_link" instagram="https://instagram.com/ashperical" -->
 <!-- @headshot url="assets/photos/headshot.jpg" -->
 <!-- @resume url="assets/resume.pdf" label="Resume" -->
 <!-- @reel folder="assets/photos/reel-web" -->
@@ -30,27 +30,21 @@ Component marker reference: see CLAUDE.md
 
 ## 1. Experience
 
-[Section intro — 1–2 sentences framing what these two products have in common and what you owned on each.]
+[Section intro — 1–2 sentences on the through-line across these roles.]
 
-<!-- @projects section="experience" -->
+<!-- @projects section="experience" layout="stack" -->
 
-<!-- @project href="projects/arohai/" icon="rocket" eyebrow="Pilot launched" title="AroHai" meta="Founder / Product" -->
-CRM platform for scaling mom-and-pop shops from flagship to franchise.
+<!-- @project href="projects/bawarchi-biryanis/" icon="chart" eyebrow="Growth Product Manager" title="Bawarchi Biryanis" meta="[Dates]" -->
+[Card summary — what you own there and the result worth clicking for.]
 <!-- /@project -->
 
-<!-- @project href="projects/readyvault/" icon="shield" eyebrow="Featured case study" title="ReadyVault" meta="Newell Brands · 2025–26" -->
-[Card summary — what ReadyVault is, who it was for, and the headline result.]
+<!-- @project href="projects/graduate-capstone/" icon="graduation" eyebrow="Product Manager" title="Graduate Capstone" meta="Northwestern · Newell Brands" -->
+[Card summary — what the capstone was and what you led.]
 <!-- /@project -->
 
-<!-- /@projects -->
-
----
-
-## 2. Internships
-
-[Section intro — 1–2 sentences on what these roles have in common and what scaled between them.]
-
-<!-- @projects section="internships" -->
+<!-- @project href="projects/jensen-hughes/" icon="shield" eyebrow="Associate Fire Protection Engineer" title="Jensen Hughes" meta="[Dates]" -->
+[Card summary — what you worked on and the change you made.]
+<!-- /@project -->
 
 <!-- @project href="projects/tesla/" icon="zap" eyebrow="Retail Design Intern" title="Tesla" meta="Summer 2023" -->
 [Card summary — what you shipped at Tesla and at what scale.]
@@ -58,6 +52,24 @@ CRM platform for scaling mom-and-pop shops from flagship to franchise.
 
 <!-- @project href="projects/morphosis-payette/" icon="cpu" eyebrow="Designer & Fabricator" title="Morphosis / Payette" meta="2022–23" -->
 [Card summary — what you built at Morphosis/Payette and what it changed.]
+<!-- /@project -->
+
+<!-- /@projects -->
+
+---
+
+## 2. Projects
+
+[Section intro — 1–2 sentences framing what these two products have in common and what you owned on each.]
+
+<!-- @projects section="projects" -->
+
+<!-- @project href="projects/readyvault/" icon="shield" eyebrow="Featured case study" title="ReadyVault" meta="Newell Brands · 2025–26" -->
+[Card summary — what ReadyVault is, who it was for, and the headline result.]
+<!-- /@project -->
+
+<!-- @project href="projects/arohai/" icon="rocket" eyebrow="Pilot launched" title="AroHai" meta="Founder / Product" -->
+CRM platform for scaling mom-and-pop shops from flagship to franchise.
 <!-- /@project -->
 
 <!-- /@projects -->

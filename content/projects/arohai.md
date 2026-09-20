@@ -9,7 +9,7 @@ Previous copy is in git: `git show 97065c3:content/projects/arohai.md`
 ================================================================================
 -->
 
-<!-- @page title="AroHai" eyebrow="Experience · Pilot launched" meta="[Role] · [Timeline] · [Context]" back="Experience" backHref="./#experience" -->
+<!-- @page title="AroHai" eyebrow="Project · Pilot launched" meta="[Role] · [Timeline] · [Context]" back="Projects" backHref="./#projects" -->
 CRM platform for scaling mom-and-pop shops from flagship to franchise.
 <!-- /@page -->
 

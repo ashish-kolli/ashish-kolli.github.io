@@ -3,11 +3,13 @@
  *
  * Summary cards on the home page, each linking to a project's own page.
  *
- * Two layouts, chosen per section by the @projects marker:
+ * Three layouts, chosen per section by the @projects marker:
  * - layout="row" (default): one horizontal row; more cards than fit scroll sideways
  *   (swipe, trackpad, or the arrow buttons), with the overflowing edge fading out
  * - layout="grid": cards wrap into `rows` rows instead of scrolling, dropping to
  *   3 columns on narrow desktops and a single column on mobile
+ * - layout="stack": one card per row, margin to margin, each laid out left to right
+ *   (icon and title, summary, then meta and the link cue); stacks on mobile
  *
  * Cards fade up in sequence when they scroll into view.
  */
@@ -46,32 +48,48 @@ const injectProjectCardStyles = (() => {
       @media (max-width: 768px) {
         .project-grid { grid-template-columns: minmax(0, 1fr); }
       }
+      .project-stack { display: grid; gap: ${PROJECT_ROW_GAP}px; }
+      /* Full-width card: title block, summary, meta */
+      .project-stack-card {
+        display: grid;
+        grid-template-columns: minmax(180px, 24%) 1fr auto;
+        align-items: center;
+        gap: ${SPACE[6]};
+        padding: ${SPACE[5]} ${SPACE[6]};
+      }
+      @media (max-width: 860px) {
+        .project-stack-card { grid-template-columns: 1fr; gap: ${SPACE[4]}; align-items: start; }
+        .project-stack-card .project-stack-meta { justify-content: flex-start; }
+      }
     `;
     document.head.appendChild(style);
     injected = true;
   };
 })();
 
-const ProjectCard = ({ project, index, inView, inGrid }) => {
+const ProjectCard = ({ project, index, inView, layout }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const stacked = layout === 'stack';
 
   return (
     <a
       href={project.href}
-      className="project-card"
+      className={stacked ? 'project-card project-stack-card' : 'project-card'}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{
-        // In a grid the column track sizes the card; in a row it sets its own width
-        ...(inGrid ? {} : {
+        // In a grid or stack the container sizes the card; in a row it sets its own width
+        ...(layout === 'row' ? {
           flex: `1 0 ${PROJECT_CARD_WIDTH}px`,
           maxWidth: `${PROJECT_CARD_MAX}px`,
           scrollSnapAlign: 'start',
+        } : {}),
+        ...(stacked ? {} : {
+          display: 'flex',
+          flexDirection: 'column',
+          gap: SPACE[4],
+          padding: SPACE[6],
         }),
-        display: 'flex',
-        flexDirection: 'column',
-        gap: SPACE[4],
-        padding: SPACE[6],
         background: COLORS.surface.elevated,
         border: `1px solid ${isHovered ? COLORS.accent.primary : COLORS.ink[200]}`,
         borderRadius: EFFECTS.radius.lg,
@@ -83,7 +101,7 @@ const ProjectCard = ({ project, index, inView, inGrid }) => {
         transition: `opacity 0.5s ease-out ${inView && !isHovered ? index * 0.08 : 0}s, transform ${EFFECTS.transition.base}, border-color ${EFFECTS.transition.base}, box-shadow ${EFFECTS.transition.base}`,
       }}
     >
-      {/* Icon + eyebrow */}
+      {/* Icon + eyebrow, with the title alongside when stacked */}
       <div style={{ display: 'flex', alignItems: 'center', gap: SPACE[3] }}>
         <div
           style={{
@@ -101,37 +119,56 @@ const ProjectCard = ({ project, index, inView, inGrid }) => {
         >
           {getIcon(project.icon, isHovered ? '#FFFFFF' : COLORS.ink[500])}
         </div>
-        {project.eyebrow && (
-          <span
-            style={{
-              fontFamily: FONTS.mono,
-              fontSize: TYPE_SCALE.ui.xs.size,
-              fontWeight: 600,
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              color: COLORS.accent.primary,
-            }}
-          >
-            {project.eyebrow}
-          </span>
-        )}
+        <div style={{ minWidth: 0 }}>
+          {project.eyebrow && (
+            <span
+              style={{
+                display: 'block',
+                fontFamily: FONTS.mono,
+                fontSize: TYPE_SCALE.ui.xs.size,
+                fontWeight: 600,
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                color: COLORS.accent.primary,
+              }}
+            >
+              {project.eyebrow}
+            </span>
+          )}
+          {stacked && (
+            <h3
+              style={{
+                fontFamily: FONTS.ui,
+                fontSize: TYPE_SCALE.headline.sm.size,
+                fontWeight: 600,
+                lineHeight: 1.25,
+                color: COLORS.ink[800],
+                margin: `${SPACE[1]} 0 0`,
+              }}
+            >
+              {project.title}
+            </h3>
+          )}
+        </div>
       </div>
 
-      {/* Title + summary */}
-      <div style={{ flex: 1 }}>
-        <h3
-          style={{
-            fontFamily: FONTS.ui,
-            fontSize: TYPE_SCALE.headline.sm.size,
-            fontWeight: 600,
-            lineHeight: 1.25,
-            color: COLORS.ink[800],
-            margin: 0,
-            marginBottom: SPACE[2],
-          }}
-        >
-          {project.title}
-        </h3>
+      {/* Title (tiles only) + summary */}
+      <div style={{ flex: 1, minWidth: 0 }}>
+        {!stacked && (
+          <h3
+            style={{
+              fontFamily: FONTS.ui,
+              fontSize: TYPE_SCALE.headline.sm.size,
+              fontWeight: 600,
+              lineHeight: 1.25,
+              color: COLORS.ink[800],
+              margin: 0,
+              marginBottom: SPACE[2],
+            }}
+          >
+            {project.title}
+          </h3>
+        )}
         <p
           style={{
             fontFamily: FONTS.body,
@@ -147,13 +184,13 @@ const ProjectCard = ({ project, index, inView, inGrid }) => {
 
       {/* Meta + link cue */}
       <div
+        className={stacked ? 'project-stack-meta' : undefined}
         style={{
           display: 'flex',
-          alignItems: 'flex-end',
-          justifyContent: 'space-between',
-          gap: SPACE[3],
-          paddingTop: SPACE[4],
-          borderTop: `1px solid ${COLORS.ink[100]}`,
+          alignItems: stacked ? 'center' : 'flex-end',
+          justifyContent: stacked ? 'flex-end' : 'space-between',
+          gap: stacked ? SPACE[5] : SPACE[3],
+          ...(stacked ? {} : { paddingTop: SPACE[4], borderTop: `1px solid ${COLORS.ink[100]}` }),
         }}
       >
         <span
@@ -221,11 +258,12 @@ const ProjectCards = ({ projects, layout = 'row', rows = 2 }) => {
   const [wrapRef, inView] = useInView();
   const [edges, setEdges] = useState({ left: false, right: false });
   const isGrid = layout === 'grid';
+  const isStack = layout === 'stack';
 
   useEffect(() => {
     injectProjectCardStyles();
     const row = rowRef.current;
-    if (!row || isGrid) return undefined;
+    if (!row || isGrid || isStack) return undefined;
 
     const update = () => {
       const maxScroll = row.scrollWidth - row.clientWidth;
@@ -238,7 +276,7 @@ const ProjectCards = ({ projects, layout = 'row', rows = 2 }) => {
       row.removeEventListener('scroll', update);
       window.removeEventListener('resize', update);
     };
-  }, [projects.length, isGrid]);
+  }, [projects.length, isGrid, isStack]);
 
   const scrollByCards = (direction) => {
     const row = rowRef.current;
@@ -248,7 +286,7 @@ const ProjectCards = ({ projects, layout = 'row', rows = 2 }) => {
 
   const fade = (side) => (edges[side] ? 'transparent' : 'black');
   const mask = `linear-gradient(to right, ${fade('left')} 0, black ${SPACE[8]}, black calc(100% - ${SPACE[8]}), ${fade('right')} 100%)`;
-  const scrollable = !isGrid && (edges.left || edges.right);
+  const scrollable = !isGrid && !isStack && (edges.left || edges.right);
 
   // Enough columns to fit every card in `rows` rows, e.g. 7 cards in 2 rows → 4 + 3
   const columns = Math.max(1, Math.ceil(projects.length / Math.max(rows, 1)));
@@ -257,8 +295,8 @@ const ProjectCards = ({ projects, layout = 'row', rows = 2 }) => {
     <div ref={wrapRef} style={{ margin: `${SPACE[6]} 0 ${SPACE[8]}` }}>
       <div
         ref={rowRef}
-        className={isGrid ? 'project-grid' : 'project-row'}
-        style={isGrid ? {
+        className={isGrid ? 'project-grid' : (isStack ? 'project-stack' : 'project-row')}
+        style={isStack ? {} : isGrid ? {
           '--project-columns': columns,
           // Extend toward the right edge so four columns still read comfortably. Only to the
           // right: the left stays aligned with the text, clear of the fixed SectionNav.
@@ -276,7 +314,7 @@ const ProjectCards = ({ projects, layout = 'row', rows = 2 }) => {
         }}
       >
         {projects.map((project, i) => (
-          <ProjectCard key={project.href} project={project} index={i} inView={inView} inGrid={isGrid} />
+          <ProjectCard key={project.href} project={project} index={i} inView={inView} layout={layout} />
         ))}
       </div>
 
