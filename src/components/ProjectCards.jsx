@@ -103,22 +103,32 @@ const ProjectCard = ({ project, index, inView, layout }) => {
     >
       {/* Icon + eyebrow, with the title alongside when stacked */}
       <div style={{ display: 'flex', alignItems: 'center', gap: SPACE[3] }}>
-        <div
-          style={{
-            width: '36px',
-            height: '36px',
-            flexShrink: 0,
-            borderRadius: EFFECTS.radius.md,
-            background: isHovered ? COLORS.accent.primary : COLORS.surface.inset,
-            border: `1px solid ${isHovered ? COLORS.accent.primary : COLORS.ink[200]}`,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            transition: EFFECTS.transition.base,
-          }}
-        >
-          {getIcon(project.icon, isHovered ? '#FFFFFF' : COLORS.ink[500])}
-        </div>
+        {project.logo ? (
+          // Logo artwork stands on its own - no chip behind it
+          <img
+            src={project.logo}
+            alt=""
+            aria-hidden="true"
+            style={{ width: '32px', height: '32px', objectFit: 'contain', flexShrink: 0 }}
+          />
+        ) : (
+          <div
+            style={{
+              width: '36px',
+              height: '36px',
+              flexShrink: 0,
+              borderRadius: EFFECTS.radius.md,
+              background: isHovered ? COLORS.accent.primary : COLORS.surface.inset,
+              border: `1px solid ${isHovered ? COLORS.accent.primary : COLORS.ink[200]}`,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transition: EFFECTS.transition.base,
+            }}
+          >
+            {getIcon(project.icon, isHovered ? '#FFFFFF' : COLORS.ink[500])}
+          </div>
+        )}
         <div style={{ minWidth: 0 }}>
           {project.eyebrow && (
             <span

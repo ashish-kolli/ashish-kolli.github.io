@@ -28,7 +28,25 @@ Component marker reference: see CLAUDE.md
 
 ---
 
-## 1. Experience
+## 1. Projects
+
+[Section intro — 1–2 sentences framing what these two products have in common and what you owned on each.]
+
+<!-- @projects section="projects" -->
+
+<!-- @project href="projects/readyvault/" icon="shield" logo="assets/brand/readyvault.png" eyebrow="Graduate capstone" title="ReadyVault" meta="Newell Brands · 2025–26" -->
+[Card summary — what ReadyVault is, who it was for, and the headline result.]
+<!-- /@project -->
+
+<!-- @project href="projects/arohai/" icon="rocket" logo="assets/brand/arohai.png" eyebrow="Pilot launched" title="AroHai" meta="Founder / Product" -->
+CRM platform for scaling mom-and-pop shops from flagship to franchise.
+<!-- /@project -->
+
+<!-- /@projects -->
+
+---
+
+## 2. Experience
 
 [Section intro — 1–2 sentences on the through-line across these roles.]
 
@@ -52,24 +70,6 @@ Component marker reference: see CLAUDE.md
 
 <!-- @project href="projects/morphosis-payette/" icon="cpu" eyebrow="Designer & Fabricator" title="Morphosis / Payette" meta="2022–23" -->
 [Card summary — what you built at Morphosis/Payette and what it changed.]
-<!-- /@project -->
-
-<!-- /@projects -->
-
----
-
-## 2. Projects
-
-[Section intro — 1–2 sentences framing what these two products have in common and what you owned on each.]
-
-<!-- @projects section="projects" -->
-
-<!-- @project href="projects/readyvault/" icon="shield" eyebrow="Featured case study" title="ReadyVault" meta="Newell Brands · 2025–26" -->
-[Card summary — what ReadyVault is, who it was for, and the headline result.]
-<!-- /@project -->
-
-<!-- @project href="projects/arohai/" icon="rocket" eyebrow="Pilot launched" title="AroHai" meta="Founder / Product" -->
-CRM platform for scaling mom-and-pop shops from flagship to franchise.
 <!-- /@project -->
 
 <!-- /@projects -->

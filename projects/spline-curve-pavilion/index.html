@@ -31,7 +31,7 @@
 
 /**
  * Product Engineer Proposal - Single File Bundle
- * Generated: 2026-09-20T00:10:24.560Z
+ * Generated: 2026-09-21T07:08:51.629Z
  *
  * This file is auto-generated. Do not edit directly.
  * To modify, edit the source files and run: node src/utils/build.js
@@ -42,7 +42,7 @@
 // ============================================================================
 
 // Auto-generated from content/projects/spline-curve-pavilion.md
-// Generated: 2026-09-20T00:10:24.537Z
+// Generated: 2026-09-21T07:08:51.605Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -7859,22 +7859,32 @@ const ProjectCard = ({ project, index, inView, layout }) => {
     >
       {/* Icon + eyebrow, with the title alongside when stacked */}
       <div style={{ display: 'flex', alignItems: 'center', gap: SPACE[3] }}>
-        <div
-          style={{
-            width: '36px',
-            height: '36px',
-            flexShrink: 0,
-            borderRadius: EFFECTS.radius.md,
-            background: isHovered ? COLORS.accent.primary : COLORS.surface.inset,
-            border: `1px solid ${isHovered ? COLORS.accent.primary : COLORS.ink[200]}`,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            transition: EFFECTS.transition.base,
-          }}
-        >
-          {getIcon(project.icon, isHovered ? '#FFFFFF' : COLORS.ink[500])}
-        </div>
+        {project.logo ? (
+          // Logo artwork stands on its own - no chip behind it
+          <img
+            src={project.logo}
+            alt=""
+            aria-hidden="true"
+            style={{ width: '32px', height: '32px', objectFit: 'contain', flexShrink: 0 }}
+          />
+        ) : (
+          <div
+            style={{
+              width: '36px',
+              height: '36px',
+              flexShrink: 0,
+              borderRadius: EFFECTS.radius.md,
+              background: isHovered ? COLORS.accent.primary : COLORS.surface.inset,
+              border: `1px solid ${isHovered ? COLORS.accent.primary : COLORS.ink[200]}`,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transition: EFFECTS.transition.base,
+            }}
+          >
+            {getIcon(project.icon, isHovered ? '#FFFFFF' : COLORS.ink[500])}
+          </div>
+        )}
         <div style={{ minWidth: 0 }}>
           {project.eyebrow && (
             <span

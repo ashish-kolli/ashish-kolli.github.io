@@ -31,7 +31,7 @@
 
 /**
  * Product Engineer Proposal - Single File Bundle
- * Generated: 2026-09-20T00:10:23.725Z
+ * Generated: 2026-09-21T07:08:50.792Z
  *
  * This file is auto-generated. Do not edit directly.
  * To modify, edit the source files and run: node src/utils/build.js
@@ -42,7 +42,7 @@
 // ============================================================================
 
 // Auto-generated from content/projects/architecture.md
-// Generated: 2026-09-20T00:10:23.702Z
+// Generated: 2026-09-21T07:08:50.768Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -67,6 +67,7 @@ const CONTENT = {
           "eyebrow": "Archival model",
           "meta": "Thom Mayne · office collection",
           "icon": "lightbulb",
+          "logo": "",
           "summary": "[Card summary — one sentence on what this piece is.]"
         },
         {
@@ -75,6 +76,7 @@ const CONTENT = {
           "eyebrow": "Fabrication",
           "meta": "930 parts · 7 levels",
           "icon": "cpu",
+          "logo": "",
           "summary": "[Card summary — one sentence on what this piece is.]"
         },
         {
@@ -83,6 +85,7 @@ const CONTENT = {
           "eyebrow": "Design build",
           "meta": "ARCH 479 · Prof. Dale Clifford",
           "icon": "layers",
+          "logo": "",
           "summary": "[Card summary — one sentence on what this piece is.]"
         },
         {
@@ -91,6 +94,7 @@ const CONTENT = {
           "eyebrow": "Joint design",
           "meta": "Museum atrium · Connecticut",
           "icon": "target",
+          "logo": "",
           "summary": "[Card summary — one sentence on what this piece is.]"
         },
         {
@@ -99,6 +103,7 @@ const CONTENT = {
           "eyebrow": "Studio",
           "meta": "Heavy industrial typology",
           "icon": "layers",
+          "logo": "",
           "summary": "[Card summary — one sentence on what this piece is.]"
         },
         {
@@ -107,6 +112,7 @@ const CONTENT = {
           "eyebrow": "Pilot model",
           "meta": "Sectional volumetric study",
           "icon": "chart",
+          "logo": "",
           "summary": "[Card summary — one sentence on what this piece is.]"
         },
         {
@@ -115,6 +121,7 @@ const CONTENT = {
           "eyebrow": "Sculptural monolith",
           "meta": "Santa Barbara, CA",
           "icon": "rocket",
+          "logo": "",
           "summary": "[Card summary — one sentence on what this piece is.]"
         }
       ]
@@ -7810,22 +7817,32 @@ const ProjectCard = ({ project, index, inView, layout }) => {
     >
       {/* Icon + eyebrow, with the title alongside when stacked */}
       <div style={{ display: 'flex', alignItems: 'center', gap: SPACE[3] }}>
-        <div
-          style={{
-            width: '36px',
-            height: '36px',
-            flexShrink: 0,
-            borderRadius: EFFECTS.radius.md,
-            background: isHovered ? COLORS.accent.primary : COLORS.surface.inset,
-            border: `1px solid ${isHovered ? COLORS.accent.primary : COLORS.ink[200]}`,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            transition: EFFECTS.transition.base,
-          }}
-        >
-          {getIcon(project.icon, isHovered ? '#FFFFFF' : COLORS.ink[500])}
-        </div>
+        {project.logo ? (
+          // Logo artwork stands on its own - no chip behind it
+          <img
+            src={project.logo}
+            alt=""
+            aria-hidden="true"
+            style={{ width: '32px', height: '32px', objectFit: 'contain', flexShrink: 0 }}
+          />
+        ) : (
+          <div
+            style={{
+              width: '36px',
+              height: '36px',
+              flexShrink: 0,
+              borderRadius: EFFECTS.radius.md,
+              background: isHovered ? COLORS.accent.primary : COLORS.surface.inset,
+              border: `1px solid ${isHovered ? COLORS.accent.primary : COLORS.ink[200]}`,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transition: EFFECTS.transition.base,
+            }}
+          >
+            {getIcon(project.icon, isHovered ? '#FFFFFF' : COLORS.ink[500])}
+          </div>
+        )}
         <div style={{ minWidth: 0 }}>
           {project.eyebrow && (
             <span

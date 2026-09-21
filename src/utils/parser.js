@@ -252,6 +252,7 @@ function extractProjects(content) {
         eyebrow: extractAttr(attrs, 'eyebrow') || '',
         meta: extractAttr(attrs, 'meta') || '',
         icon: extractAttr(attrs, 'icon') || 'layers',
+        logo: extractAttr(attrs, 'logo') || '',
         summary: cleanText(projectMatch[2]),
       });
     }

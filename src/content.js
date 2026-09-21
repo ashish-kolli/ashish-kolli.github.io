@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-20T00:10:23.585Z
+// Generated: 2026-09-21T07:08:50.647Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -33,6 +33,31 @@ const CONTENT = {
   "page": null,
   "projects": [
     {
+      "section": "projects",
+      "layout": "row",
+      "rows": 2,
+      "projects": [
+        {
+          "href": "projects/readyvault/",
+          "title": "ReadyVault",
+          "eyebrow": "Graduate capstone",
+          "meta": "Newell Brands · 2025–26",
+          "icon": "shield",
+          "logo": "assets/brand/readyvault.png",
+          "summary": "[Card summary — what ReadyVault is, who it was for, and the headline result.]"
+        },
+        {
+          "href": "projects/arohai/",
+          "title": "AroHai",
+          "eyebrow": "Pilot launched",
+          "meta": "Founder / Product",
+          "icon": "rocket",
+          "logo": "assets/brand/arohai.png",
+          "summary": "CRM platform for scaling mom-and-pop shops from flagship to franchise."
+        }
+      ]
+    },
+    {
       "section": "experience",
       "layout": "stack",
       "rows": 2,
@@ -43,6 +68,7 @@ const CONTENT = {
           "eyebrow": "Growth Product Manager",
           "meta": "[Dates]",
           "icon": "chart",
+          "logo": "",
           "summary": "[Card summary — what you own there and the result worth clicking for.]"
         },
         {
@@ -51,6 +77,7 @@ const CONTENT = {
           "eyebrow": "Product Manager",
           "meta": "Northwestern · Newell Brands",
           "icon": "graduation",
+          "logo": "",
           "summary": "[Card summary — what the capstone was and what you led.]"
         },
         {
@@ -59,6 +86,7 @@ const CONTENT = {
           "eyebrow": "Associate Fire Protection Engineer",
           "meta": "[Dates]",
           "icon": "shield",
+          "logo": "",
           "summary": "[Card summary — what you worked on and the change you made.]"
         },
         {
@@ -67,6 +95,7 @@ const CONTENT = {
           "eyebrow": "Retail Design Intern",
           "meta": "Summer 2023",
           "icon": "zap",
+          "logo": "",
           "summary": "[Card summary — what you shipped at Tesla and at what scale.]"
         },
         {
@@ -75,30 +104,8 @@ const CONTENT = {
           "eyebrow": "Designer & Fabricator",
           "meta": "2022–23",
           "icon": "cpu",
+          "logo": "",
           "summary": "[Card summary — what you built at Morphosis/Payette and what it changed.]"
-        }
-      ]
-    },
-    {
-      "section": "projects",
-      "layout": "row",
-      "rows": 2,
-      "projects": [
-        {
-          "href": "projects/readyvault/",
-          "title": "ReadyVault",
-          "eyebrow": "Featured case study",
-          "meta": "Newell Brands · 2025–26",
-          "icon": "shield",
-          "summary": "[Card summary — what ReadyVault is, who it was for, and the headline result.]"
-        },
-        {
-          "href": "projects/arohai/",
-          "title": "AroHai",
-          "eyebrow": "Pilot launched",
-          "meta": "Founder / Product",
-          "icon": "rocket",
-          "summary": "CRM platform for scaling mom-and-pop shops from flagship to franchise."
         }
       ]
     },
@@ -113,6 +120,7 @@ const CONTENT = {
           "eyebrow": "Category",
           "meta": "Cal Poly · Morphosis / Payette",
           "icon": "layers",
+          "logo": "",
           "summary": "[Category summary — one or two sentences on the architecture and fabrication work and what it taught you.]"
         },
         {
@@ -121,6 +129,7 @@ const CONTENT = {
           "eyebrow": "Category",
           "meta": "[Scale · focus]",
           "icon": "blocks",
+          "logo": "",
           "summary": "[Category summary — what you build in LEGO and why it holds your attention.]"
         },
         {
@@ -129,6 +138,7 @@ const CONTENT = {
           "eyebrow": "Category",
           "meta": "[Subjects · gear]",
           "icon": "camera",
+          "logo": "",
           "summary": "[Category summary — what you shoot and what you're chasing in a frame.]"
         },
         {
@@ -137,6 +147,7 @@ const CONTENT = {
           "eyebrow": "Category",
           "meta": "[Formats · tools]",
           "icon": "video",
+          "logo": "",
           "summary": "[Category summary — the kind of pieces you cut and the effects work behind them.]"
         },
         {
@@ -145,6 +156,7 @@ const CONTENT = {
           "eyebrow": "Category",
           "meta": "[Medium · subjects]",
           "icon": "palette",
+          "logo": "",
           "summary": "[Category summary — what you draw and what keeps pulling you back to it.]"
         }
       ]
@@ -198,23 +210,6 @@ const CONTENT = {
     {
       "type": "section",
       "number": 1,
-      "title": "Experience",
-      "subsections": [],
-      "intro": [
-        {
-          "type": "paragraph",
-          "text": "[Section intro — 1–2 sentences on the through-line across these roles.]"
-        },
-        {
-          "type": "component",
-          "component": "projects",
-          "param": "experience"
-        }
-      ]
-    },
-    {
-      "type": "section",
-      "number": 2,
       "title": "Projects",
       "subsections": [],
       "intro": [
@@ -226,6 +221,23 @@ const CONTENT = {
           "type": "component",
           "component": "projects",
           "param": "projects"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "number": 2,
+      "title": "Experience",
+      "subsections": [],
+      "intro": [
+        {
+          "type": "paragraph",
+          "text": "[Section intro — 1–2 sentences on the through-line across these roles.]"
+        },
+        {
+          "type": "component",
+          "component": "projects",
+          "param": "experience"
         }
       ]
     },
