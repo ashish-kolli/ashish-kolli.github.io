@@ -366,17 +366,19 @@ function extractTables(content) {
 
 function extractTerminals(content) {
   const terminals = [];
-  const terminalRegex = /<!-- @terminal title="([^"]*)"(?: command="([^"]*)")?(?: variant="([^"]*)")? -->\s*([\s\S]*?)<!-- \/@terminal -->/g;
+  const terminalRegex = /<!-- @terminal title="([^"]*)"(?: command="([^"]*)")?(?: variant="([^"]*)")?(?: typing="([^"]*)")? -->\s*([\s\S]*?)<!-- \/@terminal -->/g;
   let match;
 
   while ((match = terminalRegex.exec(content)) !== null) {
     const title = match[1];
     const command = match[2] || 'cat';
     const variant = match[3] || 'default';
-    const contentBlock = match[4].trim();
+    // typing="false" prints the whole block at once instead of typing it out
+    const typing = match[4] !== 'false';
+    const contentBlock = match[5].trim();
     const lines = contentBlock.split('\n').map(line => line.trim()).filter(line => line && !line.startsWith('<!--'))
       .map(line => (line.startsWith('- ') || line.startsWith('* ')) ? '• ' + line.slice(2) : line);
-    terminals.push({ title, command, variant, lines });
+    terminals.push({ title, command, variant, typing, lines });
   }
   return terminals;
 }
@@ -563,10 +565,18 @@ function extractDocument(content) {
     const nextIndex = i < sectionMatches.length - 1 ? sectionMatches[i + 1].index : mainContent.length;
     const sectionContent = mainContent.substring(section.index + section.fullMatch.length, nextIndex).trim();
 
+    // An optional <!-- @heading value="..." --> right under the header lets a
+    // section print one title and be navigated by another (the short one).
+    const headingMatch = sectionContent.match(/<!-- @heading value="([^"]*)" -->/);
+    const sectionBody = headingMatch
+      ? sectionContent.replace(headingMatch[0], '').trim()
+      : sectionContent;
+
     const sectionData = {
       type: 'section',
       number: parseInt(section.number, 10),
       title: section.title,
+      heading: headingMatch ? headingMatch[1] : '',
       subsections: []
     };
 
@@ -575,13 +585,13 @@ function extractDocument(content) {
     const subsectionMatches = [];
     let subMatch;
 
-    while ((subMatch = subsectionRegex.exec(sectionContent)) !== null) {
+    while ((subMatch = subsectionRegex.exec(sectionBody)) !== null) {
       subsectionMatches.push({ index: subMatch.index, title: subMatch[1].trim(), fullMatch: subMatch[0] });
     }
 
     // Content before first subsection (intro)
-    const introEnd = subsectionMatches.length > 0 ? subsectionMatches[0].index : sectionContent.length;
-    const introContent = sectionContent.substring(0, introEnd).trim();
+    const introEnd = subsectionMatches.length > 0 ? subsectionMatches[0].index : sectionBody.length;
+    const introContent = sectionBody.substring(0, introEnd).trim();
     if (introContent) {
       sectionData.intro = parseContentBlocks(introContent);
     }
@@ -589,12 +599,12 @@ function extractDocument(content) {
     // Process each subsection
     for (let j = 0; j < subsectionMatches.length; j++) {
       const subsection = subsectionMatches[j];
-      const nextSubIndex = j < subsectionMatches.length - 1 ? subsectionMatches[j + 1].index : sectionContent.length;
-      const subsectionContent = sectionContent.substring(subsection.index + subsection.fullMatch.length, nextSubIndex).trim();
+      const nextSubIndex = j < subsectionMatches.length - 1 ? subsectionMatches[j + 1].index : sectionBody.length;
+      const subsectionBody = sectionBody.substring(subsection.index + subsection.fullMatch.length, nextSubIndex).trim();
 
       sectionData.subsections.push({
         title: subsection.title,
-        blocks: parseContentBlocks(subsectionContent)
+        blocks: parseContentBlocks(subsectionBody)
       });
     }
 

@@ -234,7 +234,7 @@ const SectionDivider = ({ variant = 'default' }) => {
   );
 };
 
-const Section = ({ number, title, children, className = '' }) => {
+const Section = ({ number, title, heading, children, className = '' }) => {
   // Inject keyframes on mount
   useEffect(() => {
     injectKeyframes();
@@ -403,7 +403,7 @@ const Section = ({ number, title, children, className = '' }) => {
               transition: `opacity 0.5s ease-out ${(terminalDuration + 150) / 1000}s, transform 0.5s ease-out ${(terminalDuration + 150) / 1000}s`,
             }}
           >
-            {title}
+            {heading || title}
           </h2>
         </header>
 

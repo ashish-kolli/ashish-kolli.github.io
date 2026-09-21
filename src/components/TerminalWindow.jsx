@@ -80,6 +80,8 @@ const useMultiLineTypewriter = (lines, { speed = 35, lineDelay = 400, enabled = 
   useEffect(() => {
     if (!enabled) {
       setDisplayLines(lines);
+      // Past the last line, so every row clears the per-line reveal below
+      setCurrentLineIndex(lines.length);
       setIsDone(true);
       return;
     }
@@ -180,7 +182,8 @@ const TerminalWindow = ({
   title = 'summary.md',
   command = 'cat',
   lines = [],
-  variant = 'default'
+  variant = 'default',
+  typing = true
 }) => {
   const [ref, inView] = useTerminalInView();
 
@@ -193,7 +196,7 @@ const TerminalWindow = ({
 
   const { displayLines, isDone, currentLineIndex } = useMultiLineTypewriter(
     contentLines,
-    { speed: 12, lineDelay: 80, enabled: inView }
+    { speed: 12, lineDelay: 80, enabled: typing && inView }
   );
 
   const isCompact = variant === 'compact';

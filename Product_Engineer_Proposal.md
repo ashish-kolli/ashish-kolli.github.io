@@ -28,7 +28,9 @@ Component marker reference: see CLAUDE.md
 
 ---
 
-## 1. Projects
+## 1. Building
+
+<!-- @heading value="What I've Built" -->
 
 [Section intro — 1–2 sentences framing what these two products have in common and what you owned on each.]
 
@@ -78,19 +80,17 @@ CRM platform for scaling mom-and-pop shops from flagship to franchise.
 
 ## 3. Skills
 
-<!-- @terminal title="ashish/pm-stack.txt" command="cat" variant="default" -->
-- **[Capability group]** → [Skills, methods, or frameworks in this group]
-- **[Capability group]** → [Skills, methods, or frameworks in this group]
-- **[Capability group]** → [Skills, methods, or frameworks in this group]
-- **[Capability group]** → [Skills, methods, or frameworks in this group]
-- **[Capability group]** → [Skills, methods, or frameworks in this group]
-- **[Capability group]** → [Skills, methods, or frameworks in this group]
-- **[Tools]** → [The software you actually work in]
+<!-- @terminal title="ashish/pm-stack.txt" command="cat" variant="default" typing="false" -->
+- **Product Strategy** → Product Discovery, Vision and Sense, User Research, Agile Development, Go-to-Market Strategy
+- **Development Tools** → Jira, Figma, Miro, DScout, Notion, Excel, SQL, Claude Code, Cursor, Google Analytics
+- **Design & CAD Stack** → Rhino, Revit, AutoCAD, Grasshopper, SolidWorks, Photoshop, Illustrator, SketchUp, DaVinci Resolve
 <!-- /@terminal -->
 
 ---
 
 ## 4. About
+
+<!-- @heading value="Hello! I'm Ashish." -->
 
 <!-- @image src="assets/photos/headshot.jpg" alt="Ashish Kolli" align="right" -->
 

@@ -193,6 +193,7 @@ const renderComponent = (block, context) => {
             command={terminal.command}
             lines={terminal.lines}
             variant={terminal.variant}
+            typing={terminal.typing !== false}
           />
         );
       }
@@ -241,7 +242,7 @@ const SubsectionRenderer = ({ subsection, context }) => {
  */
 const SectionRenderer = ({ section, context }) => {
   return (
-    <Section number={section.number} title={section.title}>
+    <Section number={section.number} title={section.title} heading={section.heading}>
       {/* Intro blocks */}
       {section.intro?.map((block, i) => (
         <BlockRenderer key={`intro-${i}`} block={block} context={context} />

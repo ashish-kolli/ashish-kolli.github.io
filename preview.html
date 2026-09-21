@@ -30,7 +30,7 @@
 
 /**
  * Product Engineer Proposal - Single File Bundle
- * Generated: 2026-09-21T07:08:50.677Z
+ * Generated: 2026-09-21T08:48:24.592Z
  *
  * This file is auto-generated. Do not edit directly.
  * To modify, edit the source files and run: node src/utils/build.js
@@ -41,7 +41,7 @@
 // ============================================================================
 
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-21T07:08:50.647Z
+// Generated: 2026-09-21T08:48:24.562Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -232,14 +232,11 @@ const CONTENT = {
       "title": "ashish/pm-stack.txt",
       "command": "cat",
       "variant": "default",
+      "typing": false,
       "lines": [
-        "• **[Capability group]** → [Skills, methods, or frameworks in this group]",
-        "• **[Capability group]** → [Skills, methods, or frameworks in this group]",
-        "• **[Capability group]** → [Skills, methods, or frameworks in this group]",
-        "• **[Capability group]** → [Skills, methods, or frameworks in this group]",
-        "• **[Capability group]** → [Skills, methods, or frameworks in this group]",
-        "• **[Capability group]** → [Skills, methods, or frameworks in this group]",
-        "• **[Tools]** → [The software you actually work in]"
+        "• **Product Strategy** → Product Discovery, Vision and Sense, User Research, Agile Development, Go-to-Market Strategy",
+        "• **Development Tools** → Jira, Figma, Miro, DScout, Notion, Excel, SQL, Claude Code, Cursor, Google Analytics",
+        "• **Design & CAD Stack** → Rhino, Revit, AutoCAD, Grasshopper, SolidWorks, Photoshop, Illustrator, SketchUp, DaVinci Resolve"
       ]
     }
   ],
@@ -252,7 +249,8 @@ const CONTENT = {
     {
       "type": "section",
       "number": 1,
-      "title": "Projects",
+      "title": "Building",
+      "heading": "What I've Built",
       "subsections": [],
       "intro": [
         {
@@ -270,6 +268,7 @@ const CONTENT = {
       "type": "section",
       "number": 2,
       "title": "Experience",
+      "heading": "",
       "subsections": [],
       "intro": [
         {
@@ -287,6 +286,7 @@ const CONTENT = {
       "type": "section",
       "number": 3,
       "title": "Skills",
+      "heading": "",
       "subsections": [],
       "intro": [
         {
@@ -300,6 +300,7 @@ const CONTENT = {
       "type": "section",
       "number": 4,
       "title": "About",
+      "heading": "Hello! I'm Ashish.",
       "subsections": [],
       "intro": [
         {
@@ -337,6 +338,7 @@ const CONTENT = {
       "type": "section",
       "number": 5,
       "title": "Making",
+      "heading": "",
       "subsections": [],
       "intro": [
         {
@@ -1030,7 +1032,7 @@ const SectionDivider = ({ variant = 'default' }) => {
   );
 };
 
-const Section = ({ number, title, children, className = '' }) => {
+const Section = ({ number, title, heading, children, className = '' }) => {
   // Inject keyframes on mount
   useEffect(() => {
     injectKeyframes();
@@ -1199,7 +1201,7 @@ const Section = ({ number, title, children, className = '' }) => {
               transition: `opacity 0.5s ease-out ${(terminalDuration + 150) / 1000}s, transform 0.5s ease-out ${(terminalDuration + 150) / 1000}s`,
             }}
           >
-            {title}
+            {heading || title}
           </h2>
         </header>
 
@@ -6496,6 +6498,8 @@ const useMultiLineTypewriter = (lines, { speed = 35, lineDelay = 400, enabled = 
   useEffect(() => {
     if (!enabled) {
       setDisplayLines(lines);
+      // Past the last line, so every row clears the per-line reveal below
+      setCurrentLineIndex(lines.length);
       setIsDone(true);
       return;
     }
@@ -6596,7 +6600,8 @@ const TerminalWindow = ({
   title = 'summary.md',
   command = 'cat',
   lines = [],
-  variant = 'default'
+  variant = 'default',
+  typing = true
 }) => {
   const [ref, inView] = useTerminalInView();
 
@@ -6609,7 +6614,7 @@ const TerminalWindow = ({
 
   const { displayLines, isDone, currentLineIndex } = useMultiLineTypewriter(
     contentLines,
-    { speed: 12, lineDelay: 80, enabled: inView }
+    { speed: 12, lineDelay: 80, enabled: typing && inView }
   );
 
   const isCompact = variant === 'compact';
@@ -8774,6 +8779,7 @@ const renderComponent = (block, context) => {
             command={terminal.command}
             lines={terminal.lines}
             variant={terminal.variant}
+            typing={terminal.typing !== false}
           />
         );
       }
@@ -8822,7 +8828,7 @@ const SubsectionRenderer = ({ subsection, context }) => {
  */
 const SectionRenderer = ({ section, context }) => {
   return (
-    <Section number={section.number} title={section.title}>
+    <Section number={section.number} title={section.title} heading={section.heading}>
       {/* Intro blocks */}
       {section.intro?.map((block, i) => (
         <BlockRenderer key={`intro-${i}`} block={block} context={context} />

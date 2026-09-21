@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-21T07:08:50.647Z
+// Generated: 2026-09-21T08:48:24.562Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -190,14 +190,11 @@ const CONTENT = {
       "title": "ashish/pm-stack.txt",
       "command": "cat",
       "variant": "default",
+      "typing": false,
       "lines": [
-        "• **[Capability group]** → [Skills, methods, or frameworks in this group]",
-        "• **[Capability group]** → [Skills, methods, or frameworks in this group]",
-        "• **[Capability group]** → [Skills, methods, or frameworks in this group]",
-        "• **[Capability group]** → [Skills, methods, or frameworks in this group]",
-        "• **[Capability group]** → [Skills, methods, or frameworks in this group]",
-        "• **[Capability group]** → [Skills, methods, or frameworks in this group]",
-        "• **[Tools]** → [The software you actually work in]"
+        "• **Product Strategy** → Product Discovery, Vision and Sense, User Research, Agile Development, Go-to-Market Strategy",
+        "• **Development Tools** → Jira, Figma, Miro, DScout, Notion, Excel, SQL, Claude Code, Cursor, Google Analytics",
+        "• **Design & CAD Stack** → Rhino, Revit, AutoCAD, Grasshopper, SolidWorks, Photoshop, Illustrator, SketchUp, DaVinci Resolve"
       ]
     }
   ],
@@ -210,7 +207,8 @@ const CONTENT = {
     {
       "type": "section",
       "number": 1,
-      "title": "Projects",
+      "title": "Building",
+      "heading": "What I've Built",
       "subsections": [],
       "intro": [
         {
@@ -228,6 +226,7 @@ const CONTENT = {
       "type": "section",
       "number": 2,
       "title": "Experience",
+      "heading": "",
       "subsections": [],
       "intro": [
         {
@@ -245,6 +244,7 @@ const CONTENT = {
       "type": "section",
       "number": 3,
       "title": "Skills",
+      "heading": "",
       "subsections": [],
       "intro": [
         {
@@ -258,6 +258,7 @@ const CONTENT = {
       "type": "section",
       "number": 4,
       "title": "About",
+      "heading": "Hello! I'm Ashish.",
       "subsections": [],
       "intro": [
         {
@@ -295,6 +296,7 @@ const CONTENT = {
       "type": "section",
       "number": 5,
       "title": "Making",
+      "heading": "",
       "subsections": [],
       "intro": [
         {
