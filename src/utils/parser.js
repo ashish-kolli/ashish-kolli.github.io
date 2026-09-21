@@ -254,6 +254,9 @@ function extractProjects(content) {
         icon: extractAttr(attrs, 'icon') || 'layers',
         logo: extractAttr(attrs, 'logo') || '',
         cta: extractAttr(attrs, 'cta') || '',
+        image: extractAttr(attrs, 'image') || '',
+        // How far to darken the cover art behind the title, 0-1
+        fade: parseFloat(extractAttr(attrs, 'fade') || '0.25'),
         summary: cleanText(projectMatch[2]),
       });
     }

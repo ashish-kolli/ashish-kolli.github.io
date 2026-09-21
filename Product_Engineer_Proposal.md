@@ -34,13 +34,13 @@ Component marker reference: see CLAUDE.md
 
 [Section intro — 1–2 sentences framing what these two products have in common and what you owned on each.]
 
-<!-- @projects section="projects" -->
+<!-- @projects section="projects" layout="flip" -->
 
-<!-- @project href="assets/decks/readyvault-pitch.pdf" cta="View pitch deck" icon="shield" logo="assets/brand/readyvault.png" eyebrow="Graduate capstone" title="ReadyVault" meta="Newell Brands · 2025–26" -->
-[Card summary — what ReadyVault is, who it was for, and the headline result.]
+<!-- @project href="assets/decks/readyvault-pitch.pdf" cta="View pitch deck" image="assets/photos/projects/readyvault-hero.jpg" fade="0.3" icon="shield" logo="assets/brand/readyvault.png" eyebrow="Graduate capstone" title="ReadyVault" meta="Newell Brands · 2025–26" -->
+A modular storage system engineered for severe weather.
 <!-- /@project -->
 
-<!-- @project href="https://franchise-operations-crm--ashishkolli.replit.app/" cta="Open live demo" icon="rocket" logo="assets/brand/arohai.png" eyebrow="Pilot launched" title="AroHai" meta="Founder / Product" -->
+<!-- @project href="https://franchise-operations-crm--ashishkolli.replit.app/" cta="Open live demo" image="assets/photos/projects/arohai-dashboard.jpg" fade="0.55" icon="rocket" logo="assets/brand/arohai.png" eyebrow="Pilot launched" title="AroHai" meta="Founder / Product" -->
 CRM platform for scaling mom-and-pop shops from flagship to franchise.
 <!-- /@project -->
 

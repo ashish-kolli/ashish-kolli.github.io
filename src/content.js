@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-21T18:22:32.117Z
+// Generated: 2026-09-21T20:26:23.515Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -16,6 +16,8 @@ const CONTENT = {
     "reel": [
       "assets/photos/reel-web/2x.jpg",
       "assets/photos/reel-web/car-7.jpg",
+      "assets/photos/reel-web/Final Capstone Presentation.png",
+      "assets/photos/reel-web/final-capstone-presentation.jpg",
       "assets/photos/reel-web/img-2838.jpg",
       "assets/photos/reel-web/lm-build-challenge-p2.jpg",
       "assets/photos/reel-web/r0008919-3.jpg",
@@ -34,7 +36,7 @@ const CONTENT = {
   "projects": [
     {
       "section": "projects",
-      "layout": "row",
+      "layout": "flip",
       "rows": 2,
       "projects": [
         {
@@ -45,7 +47,9 @@ const CONTENT = {
           "icon": "shield",
           "logo": "assets/brand/readyvault.png",
           "cta": "View pitch deck",
-          "summary": "[Card summary — what ReadyVault is, who it was for, and the headline result.]"
+          "image": "assets/photos/projects/readyvault-hero.jpg",
+          "fade": 0.3,
+          "summary": "A modular storage system engineered for severe weather."
         },
         {
           "href": "https://franchise-operations-crm--ashishkolli.replit.app/",
@@ -55,6 +59,8 @@ const CONTENT = {
           "icon": "rocket",
           "logo": "assets/brand/arohai.png",
           "cta": "Open live demo",
+          "image": "assets/photos/projects/arohai-dashboard.jpg",
+          "fade": 0.55,
           "summary": "CRM platform for scaling mom-and-pop shops from flagship to franchise."
         }
       ]
@@ -72,6 +78,8 @@ const CONTENT = {
           "icon": "chart",
           "logo": "",
           "cta": "",
+          "image": "",
+          "fade": 0.25,
           "summary": "Recovered **$150k in monthly franchising fee revenue** in a four-week pilot, reaching 85% compliance across 29 locations."
         },
         {
@@ -82,6 +90,8 @@ const CONTENT = {
           "icon": "graduation",
           "logo": "",
           "cta": "",
+          "image": "",
+          "fade": 0.25,
           "summary": "Found a **$400M customer segment** in 26 user interviews, and built the roadmap and pricing strategy on top of it."
         },
         {
@@ -92,6 +102,8 @@ const CONTENT = {
           "icon": "shield",
           "logo": "",
           "cta": "",
+          "image": "",
+          "fade": 0.25,
           "summary": "Redesigned the internal QA/QC review workflow, moving work through design-to-engineering review gates **up to 40% faster**."
         },
         {
@@ -102,6 +114,8 @@ const CONTENT = {
           "icon": "zap",
           "logo": "",
           "cta": "",
+          "image": "",
+          "fade": 0.25,
           "summary": "Prototyped a brand refresh that **launched across 500+ centers**, over two design sprints."
         },
         {
@@ -112,6 +126,8 @@ const CONTENT = {
           "icon": "cpu",
           "logo": "",
           "cta": "",
+          "image": "",
+          "fade": 0.25,
           "summary": "Started a design services division that built **23+ scale models across 14 projects**, on a Morphosis Fellowship under Thom Mayne."
         }
       ]
@@ -129,6 +145,8 @@ const CONTENT = {
           "icon": "layers",
           "logo": "",
           "cta": "",
+          "image": "",
+          "fade": 0.25,
           "summary": "[Category summary — one or two sentences on the architecture and fabrication work and what it taught you.]"
         },
         {
@@ -139,6 +157,8 @@ const CONTENT = {
           "icon": "blocks",
           "logo": "",
           "cta": "",
+          "image": "",
+          "fade": 0.25,
           "summary": "[Category summary — what you build in LEGO and why it holds your attention.]"
         },
         {
@@ -149,6 +169,8 @@ const CONTENT = {
           "icon": "camera",
           "logo": "",
           "cta": "",
+          "image": "",
+          "fade": 0.25,
           "summary": "[Category summary — what you shoot and what you're chasing in a frame.]"
         },
         {
@@ -159,6 +181,8 @@ const CONTENT = {
           "icon": "video",
           "logo": "",
           "cta": "",
+          "image": "",
+          "fade": 0.25,
           "summary": "[Category summary — the kind of pieces you cut and the effects work behind them.]"
         },
         {
@@ -169,6 +193,8 @@ const CONTENT = {
           "icon": "palette",
           "logo": "",
           "cta": "",
+          "image": "",
+          "fade": 0.25,
           "summary": "[Category summary — what you draw and what keeps pulling you back to it.]"
         }
       ]

@@ -31,7 +31,7 @@
 
 /**
  * Product Engineer Proposal - Single File Bundle
- * Generated: 2026-09-21T18:22:32.343Z
+ * Generated: 2026-09-21T20:26:23.757Z
  *
  * This file is auto-generated. Do not edit directly.
  * To modify, edit the source files and run: node src/utils/build.js
@@ -42,7 +42,7 @@
 // ============================================================================
 
 // Auto-generated from content/projects/arohai.md
-// Generated: 2026-09-21T18:22:32.319Z
+// Generated: 2026-09-21T20:26:23.732Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -7824,6 +7824,37 @@ const injectProjectCardStyles = (() => {
         .project-stack-card { grid-template-columns: 1fr; gap: ${SPACE[4]}; align-items: start; }
         .project-stack-card .project-stack-meta { justify-content: flex-start; }
       }
+
+      /* Flip layout: a cover image up front, the write-up and its link on the back */
+      .project-flips {
+        display: grid;
+        gap: ${PROJECT_ROW_GAP}px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      @media (max-width: 860px) {
+        .project-flips { grid-template-columns: minmax(0, 1fr); }
+      }
+      .project-flip { perspective: 1600px; background: none; border: 0; padding: 0; }
+      .project-flip-inner {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        transform-style: preserve-3d;
+        transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+      }
+      .project-flip-face {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        border-radius: ${EFFECTS.radius.lg};
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+      }
+      .project-flip-back { transform: rotateY(180deg); }
+      .project-flip:focus-visible { outline: 2px solid ${COLORS.accent.light}; outline-offset: 3px; border-radius: ${EFFECTS.radius.lg}; }
+      @media (prefers-reduced-motion: reduce) {
+        .project-flip-inner { transition: none; }
+      }
     `;
     document.head.appendChild(style);
     injected = true;
@@ -8010,6 +8041,171 @@ const ProjectCard = ({ project, index, inView, layout }) => {
   );
 };
 
+// A card that turns over: cover art and title on the front, the summary and
+// its link on the back. Turns on hover or focus, and on tap where there is no hover.
+const FlipProjectCard = ({ project, index, inView }) => {
+  const [flipped, setFlipped] = useState(false);
+  const external = /^https?:\/\//.test(project.href) || /\.pdf$/i.test(project.href);
+  const scrim = project.image
+    ? `linear-gradient(180deg, rgba(10,10,11,${0.15 + project.fade * 0.5}) 0%, rgba(10,10,11,${0.45 + project.fade * 0.45}) 100%)`
+    : `linear-gradient(140deg, ${COLORS.ink[800]} 0%, ${COLORS.accent.primary} 100%)`;
+
+  return (
+    <div
+      className="project-flip"
+      onMouseEnter={() => setFlipped(true)}
+      onMouseLeave={() => setFlipped(false)}
+      onFocus={() => setFlipped(true)}
+      onBlur={() => setFlipped(false)}
+      onClick={() => setFlipped((f) => !f)}
+      style={{
+        opacity: inView ? 1 : 0,
+        transform: inView ? 'translateY(0)' : 'translateY(16px)',
+        transition: `opacity 0.5s ease-out ${inView ? index * 0.08 : 0}s, transform 0.5s ease-out ${inView ? index * 0.08 : 0}s`,
+      }}
+    >
+      <div className="project-flip-inner" style={{ transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)' }}>
+        {/* Front: cover art, darkened just enough to carry the title */}
+        <div
+          className="project-flip-face"
+          style={{
+            display: 'flex',
+            alignItems: 'flex-end',
+            padding: SPACE[6],
+            backgroundColor: COLORS.ink[800],
+            backgroundImage: project.image ? `url(${project.image})` : undefined,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            border: `1px solid ${COLORS.ink[200]}`,
+            boxShadow: EFFECTS.shadow.sm,
+            pointerEvents: flipped ? 'none' : 'auto',
+          }}
+        >
+          <div style={{ position: 'absolute', inset: 0, background: scrim }} />
+          <div style={{ position: 'relative' }}>
+            {project.eyebrow && (
+              <span
+                style={{
+                  display: 'block',
+                  fontFamily: FONTS.mono,
+                  fontSize: TYPE_SCALE.ui.xs.size,
+                  fontWeight: 600,
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  color: 'rgba(255, 255, 255, 0.75)',
+                  marginBottom: SPACE[2],
+                }}
+              >
+                {project.eyebrow}
+              </span>
+            )}
+            <h3
+              style={{
+                fontFamily: FONTS.ui,
+                fontSize: TYPE_SCALE.headline.lg.size,
+                fontWeight: 700,
+                lineHeight: 1.1,
+                color: '#FFFFFF',
+                margin: 0,
+                textShadow: '0 1px 24px rgba(10, 10, 11, 0.45)',
+              }}
+            >
+              {project.title}
+            </h3>
+          </div>
+        </div>
+
+        {/* Back: the write-up and the link out */}
+        <div
+          className="project-flip-face project-flip-back"
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: SPACE[4],
+            padding: SPACE[6],
+            background: COLORS.surface.elevated,
+            border: `1px solid ${COLORS.accent.primary}`,
+            boxShadow: EFFECTS.shadow.lg,
+            pointerEvents: flipped ? 'auto' : 'none',
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: SPACE[3] }}>
+            {project.logo ? (
+              <img
+                src={project.logo}
+                alt=""
+                aria-hidden="true"
+                style={{ width: '32px', height: '32px', objectFit: 'contain', flexShrink: 0 }}
+              />
+            ) : (
+              getIcon(project.icon, COLORS.ink[500])
+            )}
+            <h3
+              style={{
+                fontFamily: FONTS.ui,
+                fontSize: TYPE_SCALE.headline.sm.size,
+                fontWeight: 600,
+                lineHeight: 1.25,
+                color: COLORS.ink[800],
+                margin: 0,
+              }}
+            >
+              {project.title}
+            </h3>
+          </div>
+
+          <p
+            style={{
+              flex: 1,
+              fontFamily: FONTS.body,
+              fontSize: TYPE_SCALE.body.sm.size,
+              lineHeight: TYPE_SCALE.body.sm.lineHeight,
+              color: COLORS.ink[500],
+              margin: 0,
+            }}
+          >
+            <RichText>{project.summary}</RichText>
+          </p>
+
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: SPACE[4] }}>
+            <span
+              style={{
+                fontFamily: FONTS.mono,
+                fontSize: TYPE_SCALE.mono.sm.size,
+                color: COLORS.ink[400],
+              }}
+            >
+              {project.meta}
+            </span>
+            {project.href && (
+              <a
+                href={project.href}
+                target={external ? '_blank' : undefined}
+                rel={external ? 'noopener noreferrer' : undefined}
+                tabIndex={flipped ? 0 : -1}
+                style={{
+                  flexShrink: 0,
+                  padding: `${SPACE[2]} ${SPACE[4]}`,
+                  borderRadius: EFFECTS.radius.md,
+                  background: COLORS.accent.primary,
+                  color: '#FFFFFF',
+                  fontFamily: FONTS.ui,
+                  fontSize: TYPE_SCALE.ui.sm.size,
+                  fontWeight: 600,
+                  textDecoration: 'none',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {project.cta || 'View project'} {external ? '↗' : '→'}
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const ProjectRowArrow = ({ direction, enabled, onClick }) => (
   <button
     type="button"
@@ -8040,11 +8236,12 @@ const ProjectCards = ({ projects, layout = 'row', rows = 2 }) => {
   const [edges, setEdges] = useState({ left: false, right: false });
   const isGrid = layout === 'grid';
   const isStack = layout === 'stack';
+  const isFlip = layout === 'flip';
 
   useEffect(() => {
     injectProjectCardStyles();
     const row = rowRef.current;
-    if (!row || isGrid || isStack) return undefined;
+    if (!row || isGrid || isStack || isFlip) return undefined;
 
     const update = () => {
       const maxScroll = row.scrollWidth - row.clientWidth;
@@ -8057,7 +8254,7 @@ const ProjectCards = ({ projects, layout = 'row', rows = 2 }) => {
       row.removeEventListener('scroll', update);
       window.removeEventListener('resize', update);
     };
-  }, [projects.length, isGrid, isStack]);
+  }, [projects.length, isGrid, isStack, isFlip]);
 
   const scrollByCards = (direction) => {
     const row = rowRef.current;
@@ -8067,7 +8264,7 @@ const ProjectCards = ({ projects, layout = 'row', rows = 2 }) => {
 
   const fade = (side) => (edges[side] ? 'transparent' : 'black');
   const mask = `linear-gradient(to right, ${fade('left')} 0, black ${SPACE[8]}, black calc(100% - ${SPACE[8]}), ${fade('right')} 100%)`;
-  const scrollable = !isGrid && !isStack && (edges.left || edges.right);
+  const scrollable = !isGrid && !isStack && !isFlip && (edges.left || edges.right);
 
   // Enough columns to fit every card in `rows` rows, e.g. 7 cards in 2 rows → 4 + 3
   const columns = Math.max(1, Math.ceil(projects.length / Math.max(rows, 1)));
@@ -8076,8 +8273,8 @@ const ProjectCards = ({ projects, layout = 'row', rows = 2 }) => {
     <div ref={wrapRef} style={{ margin: `${SPACE[6]} 0 ${SPACE[8]}` }}>
       <div
         ref={rowRef}
-        className={isGrid ? 'project-grid' : (isStack ? 'project-stack' : 'project-row')}
-        style={isStack ? {} : isGrid ? {
+        className={isFlip ? 'project-flips' : isGrid ? 'project-grid' : (isStack ? 'project-stack' : 'project-row')}
+        style={isStack || isFlip ? {} : isGrid ? {
           '--project-columns': columns,
           // Extend toward the right edge so four columns still read comfortably. Only to the
           // right: the left stays aligned with the text, clear of the fixed SectionNav.
@@ -8095,7 +8292,9 @@ const ProjectCards = ({ projects, layout = 'row', rows = 2 }) => {
         }}
       >
         {projects.map((project, i) => (
-          <ProjectCard key={project.href || project.title} project={project} index={i} inView={inView} layout={layout} />
+          isFlip
+            ? <FlipProjectCard key={project.href || project.title} project={project} index={i} inView={inView} />
+            : <ProjectCard key={project.href || project.title} project={project} index={i} inView={inView} layout={layout} />
         ))}
       </div>
 
