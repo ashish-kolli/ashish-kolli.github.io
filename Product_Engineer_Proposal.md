@@ -36,11 +36,11 @@ Component marker reference: see CLAUDE.md
 
 <!-- @projects section="projects" -->
 
-<!-- @project href="projects/readyvault/" icon="shield" logo="assets/brand/readyvault.png" eyebrow="Graduate capstone" title="ReadyVault" meta="Newell Brands · 2025–26" -->
+<!-- @project href="assets/decks/readyvault-pitch.pdf" cta="View pitch deck" icon="shield" logo="assets/brand/readyvault.png" eyebrow="Graduate capstone" title="ReadyVault" meta="Newell Brands · 2025–26" -->
 [Card summary — what ReadyVault is, who it was for, and the headline result.]
 <!-- /@project -->
 
-<!-- @project href="projects/arohai/" icon="rocket" logo="assets/brand/arohai.png" eyebrow="Pilot launched" title="AroHai" meta="Founder / Product" -->
+<!-- @project href="https://franchise-operations-crm--ashishkolli.replit.app/" cta="Open live demo" icon="rocket" logo="assets/brand/arohai.png" eyebrow="Pilot launched" title="AroHai" meta="Founder / Product" -->
 CRM platform for scaling mom-and-pop shops from flagship to franchise.
 <!-- /@project -->
 
@@ -54,24 +54,24 @@ CRM platform for scaling mom-and-pop shops from flagship to franchise.
 
 <!-- @projects section="experience" layout="stack" -->
 
-<!-- @project href="projects/bawarchi-biryanis/" icon="chart" eyebrow="Growth Product Manager" title="Bawarchi Biryanis" meta="[Dates]" -->
-[Card summary — what you own there and the result worth clicking for.]
+<!-- @project icon="chart" eyebrow="Growth Product Manager" title="Bawarchi Biryanis" meta="2026" -->
+Recovered **$150k in monthly franchising fee revenue** in a four-week pilot, reaching 85% compliance across 29 locations.
 <!-- /@project -->
 
-<!-- @project href="projects/graduate-capstone/" icon="graduation" eyebrow="Product Manager" title="Graduate Capstone" meta="Northwestern · Newell Brands" -->
-[Card summary — what the capstone was and what you led.]
+<!-- @project icon="graduation" eyebrow="Product Manager" title="Graduate Capstone" meta="Northwestern · Newell Brands · 2025–26" -->
+Found a **$400M customer segment** in 26 user interviews, and built the roadmap and pricing strategy on top of it.
 <!-- /@project -->
 
-<!-- @project href="projects/jensen-hughes/" icon="shield" eyebrow="Associate Fire Protection Engineer" title="Jensen Hughes" meta="[Dates]" -->
-[Card summary — what you worked on and the change you made.]
+<!-- @project icon="shield" eyebrow="Associate Fire Protection Engineer" title="Jensen Hughes" meta="Aug 2024 – Aug 2025" -->
+Redesigned the internal QA/QC review workflow, moving work through design-to-engineering review gates **up to 40% faster**.
 <!-- /@project -->
 
-<!-- @project href="projects/tesla/" icon="zap" eyebrow="Retail Design Intern" title="Tesla" meta="Summer 2023" -->
-[Card summary — what you shipped at Tesla and at what scale.]
+<!-- @project icon="zap" eyebrow="Retail Design Intern" title="Tesla" meta="Summer 2023" -->
+Prototyped a brand refresh that **launched across 500+ centers**, over two design sprints.
 <!-- /@project -->
 
-<!-- @project href="projects/morphosis-payette/" icon="cpu" eyebrow="Designer & Fabricator" title="Morphosis / Payette" meta="2022–23" -->
-[Card summary — what you built at Morphosis/Payette and what it changed.]
+<!-- @project icon="cpu" eyebrow="Designer & Fabricator" title="Morphosis / Payette" meta="2022–23" -->
+Started a design services division that built **23+ scale models across 14 projects**, on a Morphosis Fellowship under Thom Mayne.
 <!-- /@project -->
 
 <!-- /@projects -->

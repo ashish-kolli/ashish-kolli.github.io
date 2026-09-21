@@ -253,6 +253,7 @@ function extractProjects(content) {
         meta: extractAttr(attrs, 'meta') || '',
         icon: extractAttr(attrs, 'icon') || 'layers',
         logo: extractAttr(attrs, 'logo') || '',
+        cta: extractAttr(attrs, 'cta') || '',
         summary: cleanText(projectMatch[2]),
       });
     }

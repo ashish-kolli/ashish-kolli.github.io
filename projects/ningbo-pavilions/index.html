@@ -31,7 +31,7 @@
 
 /**
  * Product Engineer Proposal - Single File Bundle
- * Generated: 2026-09-21T08:48:25.321Z
+ * Generated: 2026-09-21T18:22:32.624Z
  *
  * This file is auto-generated. Do not edit directly.
  * To modify, edit the source files and run: node src/utils/build.js
@@ -42,7 +42,7 @@
 // ============================================================================
 
 // Auto-generated from content/projects/ningbo-pavilions.md
-// Generated: 2026-09-21T08:48:25.298Z
+// Generated: 2026-09-21T18:22:32.599Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -7833,13 +7833,19 @@ const injectProjectCardStyles = (() => {
 const ProjectCard = ({ project, index, inView, layout }) => {
   const [isHovered, setIsHovered] = useState(false);
   const stacked = layout === 'stack';
+  // A card without an href is just a panel - no link, no hover lift, no call to action
+  const linked = Boolean(project.href);
+  const external = /^https?:\/\//.test(project.href) || /\.pdf$/i.test(project.href);
+  const Tag = linked ? 'a' : 'div';
 
   return (
-    <a
-      href={project.href}
+    <Tag
+      href={linked ? project.href : undefined}
+      target={external ? '_blank' : undefined}
+      rel={external ? 'noopener noreferrer' : undefined}
       className={stacked ? 'project-card project-stack-card' : 'project-card'}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={() => linked && setIsHovered(true)}
+      onMouseLeave={() => linked && setIsHovered(false)}
       style={{
         // In a grid or stack the container sizes the card; in a row it sets its own width
         ...(layout === 'row' ? {
@@ -7976,29 +7982,31 @@ const ProjectCard = ({ project, index, inView, layout }) => {
         >
           {project.meta}
         </span>
-        <span
-          style={{
-            fontFamily: FONTS.ui,
-            fontSize: TYPE_SCALE.ui.sm.size,
-            fontWeight: 600,
-            whiteSpace: 'nowrap',
-            color: isHovered ? COLORS.accent.primary : COLORS.ink[600],
-            transition: `color ${EFFECTS.transition.fast}`,
-          }}
-        >
-          View project{' '}
+        {linked && (
           <span
             style={{
-              display: 'inline-block',
-              transform: isHovered ? 'translateX(4px)' : 'translateX(0)',
-              transition: `transform ${EFFECTS.transition.base}`,
+              fontFamily: FONTS.ui,
+              fontSize: TYPE_SCALE.ui.sm.size,
+              fontWeight: 600,
+              whiteSpace: 'nowrap',
+              color: isHovered ? COLORS.accent.primary : COLORS.ink[600],
+              transition: `color ${EFFECTS.transition.fast}`,
             }}
           >
-            →
+            {project.cta || 'View project'}{' '}
+            <span
+              style={{
+                display: 'inline-block',
+                transform: isHovered ? 'translateX(4px)' : 'translateX(0)',
+                transition: `transform ${EFFECTS.transition.base}`,
+              }}
+            >
+              {external ? '↗' : '→'}
+            </span>
           </span>
-        </span>
+        )}
       </div>
-    </a>
+    </Tag>
   );
 };
 
@@ -8087,7 +8095,7 @@ const ProjectCards = ({ projects, layout = 'row', rows = 2 }) => {
         }}
       >
         {projects.map((project, i) => (
-          <ProjectCard key={project.href} project={project} index={i} inView={inView} layout={layout} />
+          <ProjectCard key={project.href || project.title} project={project} index={i} inView={inView} layout={layout} />
         ))}
       </div>
 

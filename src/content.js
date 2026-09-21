@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-21T08:48:24.562Z
+// Generated: 2026-09-21T18:22:32.117Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -38,21 +38,23 @@ const CONTENT = {
       "rows": 2,
       "projects": [
         {
-          "href": "projects/readyvault/",
+          "href": "assets/decks/readyvault-pitch.pdf",
           "title": "ReadyVault",
           "eyebrow": "Graduate capstone",
           "meta": "Newell Brands · 2025–26",
           "icon": "shield",
           "logo": "assets/brand/readyvault.png",
+          "cta": "View pitch deck",
           "summary": "[Card summary — what ReadyVault is, who it was for, and the headline result.]"
         },
         {
-          "href": "projects/arohai/",
+          "href": "https://franchise-operations-crm--ashishkolli.replit.app/",
           "title": "AroHai",
           "eyebrow": "Pilot launched",
           "meta": "Founder / Product",
           "icon": "rocket",
           "logo": "assets/brand/arohai.png",
+          "cta": "Open live demo",
           "summary": "CRM platform for scaling mom-and-pop shops from flagship to franchise."
         }
       ]
@@ -63,49 +65,54 @@ const CONTENT = {
       "rows": 2,
       "projects": [
         {
-          "href": "projects/bawarchi-biryanis/",
+          "href": "",
           "title": "Bawarchi Biryanis",
           "eyebrow": "Growth Product Manager",
-          "meta": "[Dates]",
+          "meta": "2026",
           "icon": "chart",
           "logo": "",
-          "summary": "[Card summary — what you own there and the result worth clicking for.]"
+          "cta": "",
+          "summary": "Recovered **$150k in monthly franchising fee revenue** in a four-week pilot, reaching 85% compliance across 29 locations."
         },
         {
-          "href": "projects/graduate-capstone/",
+          "href": "",
           "title": "Graduate Capstone",
           "eyebrow": "Product Manager",
-          "meta": "Northwestern · Newell Brands",
+          "meta": "Northwestern · Newell Brands · 2025–26",
           "icon": "graduation",
           "logo": "",
-          "summary": "[Card summary — what the capstone was and what you led.]"
+          "cta": "",
+          "summary": "Found a **$400M customer segment** in 26 user interviews, and built the roadmap and pricing strategy on top of it."
         },
         {
-          "href": "projects/jensen-hughes/",
+          "href": "",
           "title": "Jensen Hughes",
           "eyebrow": "Associate Fire Protection Engineer",
-          "meta": "[Dates]",
+          "meta": "Aug 2024 – Aug 2025",
           "icon": "shield",
           "logo": "",
-          "summary": "[Card summary — what you worked on and the change you made.]"
+          "cta": "",
+          "summary": "Redesigned the internal QA/QC review workflow, moving work through design-to-engineering review gates **up to 40% faster**."
         },
         {
-          "href": "projects/tesla/",
+          "href": "",
           "title": "Tesla",
           "eyebrow": "Retail Design Intern",
           "meta": "Summer 2023",
           "icon": "zap",
           "logo": "",
-          "summary": "[Card summary — what you shipped at Tesla and at what scale.]"
+          "cta": "",
+          "summary": "Prototyped a brand refresh that **launched across 500+ centers**, over two design sprints."
         },
         {
-          "href": "projects/morphosis-payette/",
+          "href": "",
           "title": "Morphosis / Payette",
           "eyebrow": "Designer & Fabricator",
           "meta": "2022–23",
           "icon": "cpu",
           "logo": "",
-          "summary": "[Card summary — what you built at Morphosis/Payette and what it changed.]"
+          "cta": "",
+          "summary": "Started a design services division that built **23+ scale models across 14 projects**, on a Morphosis Fellowship under Thom Mayne."
         }
       ]
     },
@@ -121,6 +128,7 @@ const CONTENT = {
           "meta": "Cal Poly · Morphosis / Payette",
           "icon": "layers",
           "logo": "",
+          "cta": "",
           "summary": "[Category summary — one or two sentences on the architecture and fabrication work and what it taught you.]"
         },
         {
@@ -130,6 +138,7 @@ const CONTENT = {
           "meta": "[Scale · focus]",
           "icon": "blocks",
           "logo": "",
+          "cta": "",
           "summary": "[Category summary — what you build in LEGO and why it holds your attention.]"
         },
         {
@@ -139,6 +148,7 @@ const CONTENT = {
           "meta": "[Subjects · gear]",
           "icon": "camera",
           "logo": "",
+          "cta": "",
           "summary": "[Category summary — what you shoot and what you're chasing in a frame.]"
         },
         {
@@ -148,6 +158,7 @@ const CONTENT = {
           "meta": "[Formats · tools]",
           "icon": "video",
           "logo": "",
+          "cta": "",
           "summary": "[Category summary — the kind of pieces you cut and the effects work behind them.]"
         },
         {
@@ -157,6 +168,7 @@ const CONTENT = {
           "meta": "[Medium · subjects]",
           "icon": "palette",
           "logo": "",
+          "cta": "",
           "summary": "[Category summary — what you draw and what keeps pulling you back to it.]"
         }
       ]

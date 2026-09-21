@@ -73,7 +73,10 @@ slugs.forEach((slug) => {
 
 // Every home page card must link to a page that was just built
 const home = fs.readFileSync(path.join(ROOT, 'Product_Engineer_Proposal.md'), 'utf-8');
-const links = [...home.matchAll(/<!-- @project [^>]*href="([^"]*)"/g)].map((m) => m[1]);
+const links = [...home.matchAll(/<!-- @project [^>]*href="([^"]*)"/g)]
+  .map((m) => m[1])
+  // Cards can be unlinked, or point off-site / at a file rather than a page here
+  .filter((href) => href && !/^https?:\/\//.test(href) && !/\.[a-z0-9]+$/i.test(href));
 const broken = links.filter((href) => !fs.existsSync(path.join(ROOT, href, 'index.html')));
 if (broken.length > 0) {
   console.error(`\n✗ Home page cards link to missing pages: ${broken.join(', ')}`);
