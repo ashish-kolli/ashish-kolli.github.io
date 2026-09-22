@@ -25,6 +25,5 @@ export { default as WorkList } from './WorkList';
 export { default as ProjectCards } from './ProjectCards';
 export { default as ProjectHeader } from './ProjectHeader';
 export { default as Figure } from './Figure';
-export { default as PageIntro } from './PageIntro';
 export { default as QuadrantChart } from './QuadrantChart';
 export { default as FlowDiagram } from './FlowDiagram';

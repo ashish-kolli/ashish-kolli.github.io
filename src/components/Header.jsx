@@ -254,11 +254,17 @@ const Header = ({ data }) => {
                 // Pale purple wash, no outline, orange-to-purple gradient text; on hover the
                 // wash deepens and the button lifts slightly, like the other cards
                 padding: '0.625rem 1.5rem',
-                background: resumeHovered ? RESUME_GRADIENT_HOVER : RESUME_GRADIENT,
+                // backgroundImage, not the `background` shorthand: on hover React updates
+                // only the property that changed, and the shorthand would reset the
+                // origin and repeat longhands below it, putting the edge lines back
+                backgroundImage: resumeHovered ? RESUME_GRADIENT_HOVER : RESUME_GRADIENT,
                 border: '1px solid transparent', // no outline; keeps the button's size unchanged
                 // Paint the wash from the outer edge: from the default (inside the border) it
                 // repeats into the border and shows its lavender end as a line on the left
                 backgroundOrigin: 'border-box',
+                // The button's width is fractional, so a repeating gradient starts a second
+                // tile at the right edge and shows its first stop there as a line
+                backgroundRepeat: 'no-repeat',
                 borderRadius: EFFECTS.radius.lg,
                 fontFamily: FONTS.ui,
                 fontSize: TYPE_SCALE.ui.md.size,

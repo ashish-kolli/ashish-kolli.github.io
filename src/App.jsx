@@ -51,7 +51,6 @@ import {
   ProjectCards,
   ProjectHeader,
   Figure,
-  PageIntro,
 } from './components';
 
 
@@ -341,8 +340,6 @@ const App = () => {
       <SectionNav sections={CONTENT.document.filter(item => item.type === 'section')} />
       <CursorSpotlight />
 
-      {/* Everything except the fixed-position nav and spotlight comes into focus on load */}
-      <PageIntro>
       {/* Render document from CONTENT.document */}
       {CONTENT.document.map((item, i) => {
         switch (item.type) {
@@ -429,7 +426,6 @@ const App = () => {
           © {new Date().getFullYear()} Ashish Kolli. All Rights Reserved.
         </p>
       </footer>
-      </PageIntro>
     </div>
   );
 };

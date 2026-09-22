@@ -979,11 +979,8 @@ const Section = ({ number, title, heading, children, className = "" }) => {
               margin: 0,
               paddingBottom: SPACE[4],
               borderBottom: `1px solid ${COLORS.ink[100]}`,
-              minHeight: "2.5rem",
+              minHeight: "2.5rem"
               // Prevent layout shift
-              opacity: inView ? 1 : 0,
-              transform: inView ? "translateY(0)" : "translateY(8px)",
-              transition: `opacity 0.5s ease-out ${(terminalDuration + 150) / 1e3}s, transform 0.5s ease-out ${(terminalDuration + 150) / 1e3}s`
             }
           },
           heading || title
@@ -996,10 +993,7 @@ const Section = ({ number, title, heading, children, className = "" }) => {
             fontFamily: FONTS.body,
             fontSize: TYPE_SCALE.body.md.size,
             lineHeight: TYPE_SCALE.body.md.lineHeight,
-            color: COLORS.ink[500],
-            opacity: inView ? 1 : 0,
-            transform: inView ? "translateY(0)" : "translateY(12px)",
-            transition: "opacity 0.6s ease-out 0.3s, transform 0.6s ease-out 0.3s"
+            color: COLORS.ink[500]
           }
         },
         children
@@ -1016,10 +1010,7 @@ const Subsection = ({ title, children }) => {
         display: "flex",
         alignItems: "flex-start",
         gap: SPACE[4],
-        marginBottom: SPACE[5],
-        opacity: inView ? 1 : 0.15,
-        transform: inView ? "translateY(0)" : "translateY(8px)",
-        transition: "opacity 0.4s ease-out, transform 0.4s ease-out"
+        marginBottom: SPACE[5]
       }
     },
     /* @__PURE__ */ React.createElement(
@@ -1051,17 +1042,7 @@ const Subsection = ({ title, children }) => {
       },
       title
     ))
-  ), /* @__PURE__ */ React.createElement(
-    "div",
-    {
-      style: {
-        opacity: inView ? 1 : 0.15,
-        transform: inView ? "translateY(0)" : "translateY(6px)",
-        transition: "opacity 0.35s ease-out 0.1s, transform 0.35s ease-out 0.1s"
-      }
-    },
-    children
-  ));
+  ), /* @__PURE__ */ React.createElement("div", null, children));
 };
 const Paragraph = ({ children }) => /* @__PURE__ */ React.createElement(
   "p",
@@ -1723,12 +1704,18 @@ const Header = ({ data }) => {
               // Pale purple wash, no outline, orange-to-purple gradient text; on hover the
               // wash deepens and the button lifts slightly, like the other cards
               padding: "0.625rem 1.5rem",
-              background: resumeHovered ? RESUME_GRADIENT_HOVER : RESUME_GRADIENT,
+              // backgroundImage, not the `background` shorthand: on hover React updates
+              // only the property that changed, and the shorthand would reset the
+              // origin and repeat longhands below it, putting the edge lines back
+              backgroundImage: resumeHovered ? RESUME_GRADIENT_HOVER : RESUME_GRADIENT,
               border: "1px solid transparent",
               // no outline; keeps the button's size unchanged
               // Paint the wash from the outer edge: from the default (inside the border) it
               // repeats into the border and shows its lavender end as a line on the left
               backgroundOrigin: "border-box",
+              // The button's width is fractional, so a repeating gradient starts a second
+              // tile at the right edge and shows its first stop there as a line
+              backgroundRepeat: "no-repeat",
               borderRadius: EFFECTS.radius.lg,
               fontFamily: FONTS.ui,
               fontSize: TYPE_SCALE.ui.md.size,
@@ -6146,9 +6133,11 @@ const injectNavStyles = /* @__PURE__ */ (() => {
     if (injected || typeof document === "undefined") return;
     const style = document.createElement("style");
     style.textContent = `
+      /* Keep the -50% that centres the nav: a transform here replaces the inline one
+         outright, so leaving it out drops the nav half a viewport and it slides back */
       @keyframes navFadeIn {
-        from { opacity: 0; transform: translateX(-20px); }
-        to { opacity: 1; transform: translateX(0); }
+        from { opacity: 0; transform: translate(-20px, -50%); }
+        to { opacity: 1; transform: translate(0, -50%); }
       }
       @keyframes navPulse {
         0%, 100% { transform: scale(1); }
@@ -6204,7 +6193,7 @@ const SectionNav = ({ sections = [] }) => {
         zIndex: 100,
         opacity: isVisible ? 1 : 0,
         pointerEvents: isVisible ? "auto" : "none",
-        transition: `opacity ${EFFECTS.transition.slow}, transform ${EFFECTS.transition.slow}`,
+        transition: `opacity ${EFFECTS.transition.slow}`,
         animation: isVisible ? "navFadeIn 0.5s ease-out" : "none"
       }
     },
@@ -7108,9 +7097,8 @@ const ProjectCard = ({ project, index, inView, layout }) => {
         boxShadow: isHovered ? EFFECTS.shadow.lg : EFFECTS.shadow.sm,
         textDecoration: "none",
         color: "inherit",
-        opacity: inView ? 1 : 0,
-        transform: inView ? `translateY(${isHovered ? -4 : 0}px)` : "translateY(16px)",
-        transition: `opacity 0.5s ease-out ${inView && !isHovered ? index * 0.08 : 0}s, transform ${EFFECTS.transition.base}, border-color ${EFFECTS.transition.base}, box-shadow ${EFFECTS.transition.base}`
+        transform: `translateY(${isHovered ? -4 : 0}px)`,
+        transition: `transform ${EFFECTS.transition.base}, border-color ${EFFECTS.transition.base}, box-shadow ${EFFECTS.transition.base}`
       }
     },
     /* @__PURE__ */ React.createElement("div", { style: { display: "flex", alignItems: "center", gap: SPACE[3] } }, /* @__PURE__ */ React.createElement("div", { style: { width: `${MARK_SLOT}px`, height: `${MARK_HEIGHT}px`, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" } }, project.logo && !logoFailed ? (
@@ -7275,9 +7263,8 @@ const FlipProjectCard = ({ project, index, inView }) => {
       },
       style: {
         cursor: "pointer",
-        opacity: inView ? 1 : 0,
-        transform: inView ? `translateY(${isHovered ? -4 : 0}px)` : "translateY(16px)",
-        transition: `opacity 0.5s ease-out ${inView ? index * 0.08 : 0}s, transform ${inView ? EFFECTS.transition.base : "0.5s ease-out"}`
+        transform: `translateY(${isHovered ? -4 : 0}px)`,
+        transition: `transform ${EFFECTS.transition.base}`
       }
     },
     /* @__PURE__ */ React.createElement("div", { className: "project-flip-inner", style: { transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)" } }, /* @__PURE__ */ React.createElement(
@@ -7801,40 +7788,6 @@ const Figure = ({ src, alt, caption, width = "wide", ratio = "16 / 10", align = 
     )
   );
 };
-const INTRO_MS = 650;
-const prefersReducedMotion = () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const injectIntroStyles = /* @__PURE__ */ (() => {
-  let injected = false;
-  return () => {
-    if (injected || typeof document === "undefined") return;
-    const style = document.createElement("style");
-    style.textContent = `
-      @keyframes pageIntroFocus {
-        from { filter: blur(10px); opacity: 0.55; transform: scale(1.006); }
-        to   { filter: blur(0);    opacity: 1;    transform: scale(1); }
-      }
-      .page-intro {
-        animation: pageIntroFocus ${INTRO_MS}ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
-        will-change: filter, opacity;
-      }
-      @media (prefers-reduced-motion: reduce) {
-        .page-intro { animation: none; }
-      }
-    `;
-    document.head.appendChild(style);
-    injected = true;
-  };
-})();
-const PageIntro = ({ children }) => {
-  const [settled, setSettled] = useState(prefersReducedMotion);
-  useEffect(() => {
-    if (settled) return void 0;
-    injectIntroStyles();
-    const timer = setTimeout(() => setSettled(true), INTRO_MS + 80);
-    return () => clearTimeout(timer);
-  }, [settled]);
-  return /* @__PURE__ */ React.createElement("div", { className: settled ? void 0 : "page-intro" }, children);
-};
 const injectGlobalStyles = /* @__PURE__ */ (() => {
   let injected = false;
   return () => {
@@ -8063,7 +8016,7 @@ const App = () => {
     },
     /* @__PURE__ */ React.createElement(SectionNav, { sections: CONTENT.document.filter((item) => item.type === "section") }),
     /* @__PURE__ */ React.createElement(CursorSpotlight, null),
-    /* @__PURE__ */ React.createElement(PageIntro, null, CONTENT.document.map((item, i) => {
+    CONTENT.document.map((item, i) => {
       switch (item.type) {
         case "header":
           return CONTENT.header ? /* @__PURE__ */ React.createElement(
@@ -8100,7 +8053,8 @@ const App = () => {
         default:
           return null;
       }
-    }), CONTENT.page && /* @__PURE__ */ React.createElement(
+    }),
+    CONTENT.page && /* @__PURE__ */ React.createElement(
       "div",
       {
         style: {
@@ -8124,7 +8078,8 @@ const App = () => {
         "\u2190 ",
         CONTENT.page.back || "Back"
       )
-    ), /* @__PURE__ */ React.createElement(
+    ),
+    /* @__PURE__ */ React.createElement(
       "footer",
       {
         style: {
@@ -8148,7 +8103,7 @@ const App = () => {
         (/* @__PURE__ */ new Date()).getFullYear(),
         " Ashish Kolli. All Rights Reserved."
       )
-    ))
+    )
   );
 };
 const root = ReactDOM.createRoot(document.getElementById("root"));

@@ -48,9 +48,11 @@ const injectNavStyles = (() => {
     if (injected || typeof document === 'undefined') return;
     const style = document.createElement('style');
     style.textContent = `
+      /* Keep the -50% that centres the nav: a transform here replaces the inline one
+         outright, so leaving it out drops the nav half a viewport and it slides back */
       @keyframes navFadeIn {
-        from { opacity: 0; transform: translateX(-20px); }
-        to { opacity: 1; transform: translateX(0); }
+        from { opacity: 0; transform: translate(-20px, -50%); }
+        to { opacity: 1; transform: translate(0, -50%); }
       }
       @keyframes navPulse {
         0%, 100% { transform: scale(1); }
@@ -114,7 +116,7 @@ const SectionNav = ({ sections = [] }) => {
         zIndex: 100,
         opacity: isVisible ? 1 : 0,
         pointerEvents: isVisible ? 'auto' : 'none',
-        transition: `opacity ${EFFECTS.transition.slow}, transform ${EFFECTS.transition.slow}`,
+        transition: `opacity ${EFFECTS.transition.slow}`,
         animation: isVisible ? 'navFadeIn 0.5s ease-out' : 'none',
       }}
     >

@@ -398,25 +398,19 @@ const Section = ({ number, title, heading, children, className = '' }) => {
               paddingBottom: SPACE[4],
               borderBottom: `1px solid ${COLORS.ink[100]}`,
               minHeight: '2.5rem', // Prevent layout shift
-              opacity: inView ? 1 : 0,
-              transform: inView ? 'translateY(0)' : 'translateY(8px)',
-              transition: `opacity 0.5s ease-out ${(terminalDuration + 150) / 1000}s, transform 0.5s ease-out ${(terminalDuration + 150) / 1000}s`,
             }}
           >
             {heading || title}
           </h2>
         </header>
 
-        {/* Section content - fades in when section is in view */}
+        {/* Section content is present from the start - no scroll reveal */}
         <div
           style={{
             fontFamily: FONTS.body,
             fontSize: TYPE_SCALE.body.md.size,
             lineHeight: TYPE_SCALE.body.md.lineHeight,
             color: COLORS.ink[500],
-            opacity: inView ? 1 : 0,
-            transform: inView ? 'translateY(0)' : 'translateY(12px)',
-            transition: 'opacity 0.6s ease-out 0.3s, transform 0.6s ease-out 0.3s',
           }}
         >
           {children}
@@ -439,9 +433,6 @@ const Subsection = ({ title, children }) => {
           alignItems: 'flex-start',
           gap: SPACE[4],
           marginBottom: SPACE[5],
-          opacity: inView ? 1 : 0.15,
-          transform: inView ? 'translateY(0)' : 'translateY(8px)',
-          transition: 'opacity 0.4s ease-out, transform 0.4s ease-out',
         }}
       >
         {/* Vertical accent marker */}
@@ -472,15 +463,7 @@ const Subsection = ({ title, children }) => {
           </h3>
         </div>
       </div>
-      <div
-        style={{
-          opacity: inView ? 1 : 0.15,
-          transform: inView ? 'translateY(0)' : 'translateY(6px)',
-          transition: 'opacity 0.35s ease-out 0.1s, transform 0.35s ease-out 0.1s',
-        }}
-      >
-        {children}
-      </div>
+      <div>{children}</div>
     </div>
   );
 };

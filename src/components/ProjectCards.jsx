@@ -140,9 +140,8 @@ const ProjectCard = ({ project, index, inView, layout }) => {
         boxShadow: isHovered ? EFFECTS.shadow.lg : EFFECTS.shadow.sm,
         textDecoration: 'none',
         color: 'inherit',
-        opacity: inView ? 1 : 0,
-        transform: inView ? `translateY(${isHovered ? -4 : 0}px)` : 'translateY(16px)',
-        transition: `opacity 0.5s ease-out ${inView && !isHovered ? index * 0.08 : 0}s, transform ${EFFECTS.transition.base}, border-color ${EFFECTS.transition.base}, box-shadow ${EFFECTS.transition.base}`,
+        transform: `translateY(${isHovered ? -4 : 0}px)`,
+        transition: `transform ${EFFECTS.transition.base}, border-color ${EFFECTS.transition.base}, box-shadow ${EFFECTS.transition.base}`,
       }}
     >
       {/* Icon + eyebrow, with the title alongside when stacked */}
@@ -317,9 +316,8 @@ const FlipProjectCard = ({ project, index, inView }) => {
       }}
       style={{
         cursor: 'pointer',
-        opacity: inView ? 1 : 0,
-        transform: inView ? `translateY(${isHovered ? -4 : 0}px)` : 'translateY(16px)',
-        transition: `opacity 0.5s ease-out ${inView ? index * 0.08 : 0}s, transform ${inView ? EFFECTS.transition.base : '0.5s ease-out'}`,
+        transform: `translateY(${isHovered ? -4 : 0}px)`,
+        transition: `transform ${EFFECTS.transition.base}`,
       }}
     >
       <div className="project-flip-inner" style={{ transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)' }}>
