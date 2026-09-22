@@ -112,7 +112,7 @@ const CONTENT = {
           "eyebrow": "Product Manager",
           "meta": "Northwestern \xB7 Newell Brands \xB7 2025\u201326",
           "icon": "graduation",
-          "logo": "",
+          "logo": "assets/brand/rubbermaid.png",
           "cta": "",
           "image": "",
           "fade": 0.25,
@@ -6995,6 +6995,8 @@ const PROJECT_CARD_WIDTH = 300;
 const PROJECT_CARD_MAX = 440;
 const PROJECT_ROW_GAP = 20;
 const PROJECT_ROW_BLEED = 12;
+const MARK_SLOT = 64;
+const MARK_HEIGHT = 36;
 const injectProjectCardStyles = /* @__PURE__ */ (() => {
   let injected = false;
   return () => {
@@ -7111,7 +7113,7 @@ const ProjectCard = ({ project, index, inView, layout }) => {
         transition: `opacity 0.5s ease-out ${inView && !isHovered ? index * 0.08 : 0}s, transform ${EFFECTS.transition.base}, border-color ${EFFECTS.transition.base}, box-shadow ${EFFECTS.transition.base}`
       }
     },
-    /* @__PURE__ */ React.createElement("div", { style: { display: "flex", alignItems: "center", gap: SPACE[3] } }, project.logo && !logoFailed ? (
+    /* @__PURE__ */ React.createElement("div", { style: { display: "flex", alignItems: "center", gap: SPACE[3] } }, /* @__PURE__ */ React.createElement("div", { style: { width: `${MARK_SLOT}px`, height: `${MARK_HEIGHT}px`, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" } }, project.logo && !logoFailed ? (
       // Logo artwork stands on its own - no chip behind it
       /* @__PURE__ */ React.createElement(
         "img",
@@ -7120,7 +7122,7 @@ const ProjectCard = ({ project, index, inView, layout }) => {
           alt: "",
           "aria-hidden": "true",
           onError: () => setLogoFailed(true),
-          style: { width: "32px", height: "32px", objectFit: "contain", flexShrink: 0 }
+          style: { maxWidth: "100%", maxHeight: `${MARK_HEIGHT}px`, objectFit: "contain" }
         }
       )
     ) : /* @__PURE__ */ React.createElement(
@@ -7140,7 +7142,7 @@ const ProjectCard = ({ project, index, inView, layout }) => {
         }
       },
       getIcon(project.icon, isHovered ? "#FFFFFF" : COLORS.ink[500])
-    ), /* @__PURE__ */ React.createElement("div", { style: { minWidth: 0 } }, project.eyebrow && /* @__PURE__ */ React.createElement(
+    )), /* @__PURE__ */ React.createElement("div", { style: { minWidth: 0 } }, project.eyebrow && /* @__PURE__ */ React.createElement(
       "span",
       {
         style: {
@@ -7342,16 +7344,16 @@ const FlipProjectCard = ({ project, index, inView }) => {
           pointerEvents: flipped ? "auto" : "none"
         }
       },
-      /* @__PURE__ */ React.createElement("div", { style: { display: "flex", alignItems: "center", gap: SPACE[3] } }, project.logo && !logoFailed ? /* @__PURE__ */ React.createElement(
+      /* @__PURE__ */ React.createElement("div", { style: { display: "flex", alignItems: "center", gap: SPACE[3] } }, /* @__PURE__ */ React.createElement("div", { style: { width: `${MARK_SLOT}px`, height: `${MARK_HEIGHT}px`, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" } }, project.logo && !logoFailed ? /* @__PURE__ */ React.createElement(
         "img",
         {
           src: project.logo,
           alt: "",
           "aria-hidden": "true",
           onError: () => setLogoFailed(true),
-          style: { width: "32px", height: "32px", objectFit: "contain", flexShrink: 0 }
+          style: { maxWidth: "100%", maxHeight: `${MARK_HEIGHT}px`, objectFit: "contain" }
         }
-      ) : getIcon(project.icon, COLORS.ink[500]), /* @__PURE__ */ React.createElement(
+      ) : getIcon(project.icon, COLORS.ink[500])), /* @__PURE__ */ React.createElement(
         "h3",
         {
           style: {

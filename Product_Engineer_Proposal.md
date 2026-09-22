@@ -54,7 +54,7 @@ CRM platform for scaling mom-and-pop shops from flagship to franchise.
 Recovered **$150k in monthly franchising fee revenue** in a four-week pilot with Bawarchi Biryanis, reaching 85% compliance across 29 locations.
 <!-- /@project -->
 
-<!-- @project icon="graduation" eyebrow="Product Manager" title="Graduate Capstone" meta="Northwestern · Newell Brands · 2025–26" -->
+<!-- @project logo="assets/brand/rubbermaid.png" icon="graduation" eyebrow="Product Manager" title="Graduate Capstone" meta="Northwestern · Newell Brands · 2025–26" -->
 Found a **$400M customer segment** in 26 user interviews, and built the roadmap and pricing strategy on top of it.
 <!-- /@project -->
 

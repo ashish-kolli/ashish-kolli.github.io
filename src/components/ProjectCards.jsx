@@ -23,6 +23,8 @@ const PROJECT_CARD_WIDTH = 300;  // px - cards grow to fill short rows, never sh
 const PROJECT_CARD_MAX = 440;    // px - keeps two-card rows from stretching too wide
 const PROJECT_ROW_GAP = 20;      // px
 const PROJECT_ROW_BLEED = 12;    // px - room inside the scroll area so hover shadows aren't clipped
+const MARK_SLOT = 64;            // px - fixed width for a card's logo or icon chip
+const MARK_HEIGHT = 36;          // px
 
 const injectProjectCardStyles = (() => {
   let injected = false;
@@ -145,6 +147,7 @@ const ProjectCard = ({ project, index, inView, layout }) => {
     >
       {/* Icon + eyebrow, with the title alongside when stacked */}
       <div style={{ display: 'flex', alignItems: 'center', gap: SPACE[3] }}>
+        <div style={{ width: `${MARK_SLOT}px`, height: `${MARK_HEIGHT}px`, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         {project.logo && !logoFailed ? (
           // Logo artwork stands on its own - no chip behind it
           <img
@@ -152,7 +155,7 @@ const ProjectCard = ({ project, index, inView, layout }) => {
             alt=""
             aria-hidden="true"
             onError={() => setLogoFailed(true)}
-            style={{ width: '32px', height: '32px', objectFit: 'contain', flexShrink: 0 }}
+            style={{ maxWidth: '100%', maxHeight: `${MARK_HEIGHT}px`, objectFit: 'contain' }}
           />
         ) : (
           <div
@@ -172,6 +175,7 @@ const ProjectCard = ({ project, index, inView, layout }) => {
             {getIcon(project.icon, isHovered ? '#FFFFFF' : COLORS.ink[500])}
           </div>
         )}
+        </div>
         <div style={{ minWidth: 0 }}>
           {project.eyebrow && (
             <span
@@ -385,17 +389,19 @@ const FlipProjectCard = ({ project, index, inView }) => {
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: SPACE[3] }}>
+            <div style={{ width: `${MARK_SLOT}px`, height: `${MARK_HEIGHT}px`, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             {project.logo && !logoFailed ? (
               <img
                 src={project.logo}
                 alt=""
                 aria-hidden="true"
                 onError={() => setLogoFailed(true)}
-                style={{ width: '32px', height: '32px', objectFit: 'contain', flexShrink: 0 }}
+                style={{ maxWidth: '100%', maxHeight: `${MARK_HEIGHT}px`, objectFit: 'contain' }}
               />
             ) : (
               getIcon(project.icon, COLORS.ink[500])
             )}
+            </div>
             <h3
               style={{
                 fontFamily: FONTS.ui,

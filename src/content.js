@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-22T16:08:17.171Z
+// Generated: 2026-09-22T19:41:32.693Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -89,7 +89,7 @@ const CONTENT = {
           "eyebrow": "Product Manager",
           "meta": "Northwestern · Newell Brands · 2025–26",
           "icon": "graduation",
-          "logo": "",
+          "logo": "assets/brand/rubbermaid.png",
           "cta": "",
           "image": "",
           "fade": 0.25,
