@@ -47,6 +47,9 @@ const KEEP_OUT_BLUR = 10;
 // The last stretch of the strip before the frame is always solid, so strip and frame meet
 // white-on-white: no text cut-out may reach into it, and the fade completes before it
 const LEADER_SOLID_END = 28;
+// How far the leader runs past the frame's left edge. More than a pixel, so a
+// fractional layout position can never open a gap between the two whites.
+const LEADER_OVERLAP = 6;
 
 // The leader's mask as an SVG image: the left-to-right fade, with a soft-edged cut-out for
 // each piece of text (keepOuts: { right, top, bottom } in px from the leader's top-left)
@@ -103,8 +106,8 @@ const injectFilmStyles = (() => {
         to   { background-position-x: calc(var(--film-travel, 44px) * -1); }
       }
       @keyframes filmLeaderRun {
-        from { background-position-x: calc(100% - 1px); }
-        to   { background-position-x: calc(100% - 1px - var(--film-travel, 44px)); }
+        from { background-position-x: calc(100% - ${LEADER_OVERLAP}px); }
+        to   { background-position-x: calc(100% - ${LEADER_OVERLAP}px - var(--film-travel, 44px)); }
       }
       .film-leader-run { animation: filmLeaderRun ${FILM_ADVANCE_MS}ms cubic-bezier(0.22, 0.61, 0.36, 1); }
       @media (max-width: 768px) {
@@ -132,7 +135,7 @@ const injectFilmStyles = (() => {
 const Sprockets = ({ running }) => (
   <div
     className={running ? 'film-sprockets-run' : undefined}
-    style={{ ...FILM_SPROCKET_ROW, margin: '0 10px 0 0' }}
+    style={FILM_SPROCKET_ROW}
   />
 );
 
@@ -165,8 +168,8 @@ const FilmLeader = ({ running, advances, keepOuts }) => {
       bottom: 0,
       // Tucked 1px under the frame: edge to edge at a fractional pixel, the page background
       // shows through as a hairline seam
-      right: 'calc(100% - 1px)',
-      width: 'calc(200% + 4rem + 1px)',
+      right: `calc(100% - ${LEADER_OVERLAP}px)`,
+      width: `calc(200% + 4rem + ${LEADER_OVERLAP}px)`,
       background: FILM_BASE,
       pointerEvents: 'none',
       WebkitMaskImage: mask,
@@ -181,7 +184,7 @@ const FilmLeader = ({ running, advances, keepOuts }) => {
       <div
         key={`${edge}-${advances}`}
         className={running ? 'film-leader-run' : undefined}
-        style={{ ...FILM_SPROCKET_ROW, position: 'absolute', left: 0, right: 0, [edge]: '10px', backgroundPositionX: 'calc(100% - 1px)' }}
+        style={{ ...FILM_SPROCKET_ROW, position: 'absolute', left: 0, right: 0, [edge]: '10px', backgroundPositionX: `calc(100% - ${LEADER_OVERLAP}px)` }}
       />
     ))}
   </div>
