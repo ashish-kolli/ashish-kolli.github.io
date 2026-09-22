@@ -10,6 +10,7 @@
  */
 const fs = require('fs');
 const path = require('path');
+const esbuild = require('esbuild');
 
 const argValue = (name) => {
   const i = process.argv.indexOf(name);
@@ -36,10 +37,29 @@ bundle = bundle.replace(/^import.*from ['"]react['"];?\s*$/gm, '');
 // Remove the export default line
 bundle = bundle.replace(/^export default App;?\s*$/m, '');
 
+// The whole app as one script: hooks off the React global, the bundle, then the render
+const appSource = `const { useState, useEffect, useRef, useCallback, useMemo } = React;
+
+${bundle}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+`;
+
+// JSX is compiled here, at build time. Nothing compiles in the browser, and nothing
+// is fetched from a third-party CDN - React is served from this domain.
+const compile = (minify) => esbuild.transformSync(appSource, {
+  loader: 'jsx',
+  target: 'es2019',
+  minify,
+  legalComments: 'none',
+}).code.replace(/<\/script/gi, '<\\/script');
+
+const compiled = { true: compile(true), false: compile(false) };
+
 // Generate HTML with specified React builds
 function generateHTML({ title, reactMode }) {
   const isProd = reactMode === 'production';
-  const reactSuffix = isProd ? 'production.min' : 'development';
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -56,10 +76,9 @@ function generateHTML({ title, reactMode }) {
   <meta property="og:description" content="${escapeAttr(description)}">
   <meta property="og:type" content="website">
 
-  <!-- React ${reactMode} builds -->
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.${reactSuffix}.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.${reactSuffix}.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- React 18, served from this domain: no third-party CDN to go down -->
+  <script src="assets/vendor/react.production.min.js"></script>
+  <script src="assets/vendor/react-dom.production.min.js"></script>
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -68,15 +87,7 @@ function generateHTML({ title, reactMode }) {
 </head>
 <body>
   <div id="root"></div>
-  <script type="text/babel">
-    const { useState, useEffect, useRef, useCallback, useMemo } = React;
-
-${bundle}
-
-    // Render the app
-    const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(<App />);
-  </script>
+  <script>${compiled[isProd]}</script>
 </body>
 </html>`;
 }

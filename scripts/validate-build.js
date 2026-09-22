@@ -129,23 +129,30 @@ function validatePreviewHtml() {
 
   const content = fs.readFileSync(PREVIEW_FILE, 'utf-8');
 
-  // Check for required script tags
-  if (!content.includes('unpkg.com/react@18')) {
-    error('Missing React UMD script');
+  // React must come from this domain, not a third-party CDN
+  if (!content.includes('assets/vendor/react.production.min.js')) {
+    error('Missing self-hosted React script');
   } else {
-    success('React UMD script present');
+    success('Self-hosted React present');
   }
 
-  if (!content.includes('unpkg.com/react-dom@18')) {
-    error('Missing ReactDOM UMD script');
+  if (!content.includes('assets/vendor/react-dom.production.min.js')) {
+    error('Missing self-hosted ReactDOM script');
   } else {
-    success('ReactDOM UMD script present');
+    success('Self-hosted ReactDOM present');
   }
 
-  if (!content.includes('@babel/standalone')) {
-    error('Missing Babel standalone script');
+  // JSX is compiled at build time; nothing may load a compiler or any third-party script
+  if (content.includes('@babel/standalone') || content.includes('type="text/babel"')) {
+    error('Babel is still being shipped to the browser - JSX should compile at build time');
   } else {
-    success('Babel standalone present');
+    success('No in-browser compiler');
+  }
+
+  if (content.includes('unpkg.com') || content.includes('cdn.jsdelivr.net')) {
+    error('Page still loads a third-party CDN script');
+  } else {
+    success('No third-party CDN dependencies');
   }
 
   // Check that ES module imports are NOT present (should use UMD globals)
