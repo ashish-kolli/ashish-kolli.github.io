@@ -264,6 +264,8 @@ function extractProjects(content) {
       section: extractAttr(match[1], 'section') || '',
       // "row" (default) scrolls sideways; "grid" wraps into `rows` rows
       layout: extractAttr(match[1], 'layout') || 'row',
+      // Columns for layout="flip" on wide screens
+      columns: parseInt(extractAttr(match[1], 'columns') || '2', 10),
       rows: parseInt(extractAttr(match[1], 'rows') || '2', 10),
       projects,
     });

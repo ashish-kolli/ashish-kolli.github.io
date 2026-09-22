@@ -162,6 +162,7 @@ const renderComponent = (block, context) => {
           projects={projectRow.projects}
           layout={projectRow.layout}
           rows={projectRow.rows}
+          columns={projectRow.columns}
         />
       ) : null;
     }

@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-21T20:26:23.515Z
+// Generated: 2026-09-22T04:14:23.989Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -16,7 +16,6 @@ const CONTENT = {
     "reel": [
       "assets/photos/reel-web/2x.jpg",
       "assets/photos/reel-web/car-7.jpg",
-      "assets/photos/reel-web/Final Capstone Presentation.png",
       "assets/photos/reel-web/final-capstone-presentation.jpg",
       "assets/photos/reel-web/img-2838.jpg",
       "assets/photos/reel-web/lm-build-challenge-p2.jpg",
@@ -37,6 +36,7 @@ const CONTENT = {
     {
       "section": "projects",
       "layout": "flip",
+      "columns": 2,
       "rows": 2,
       "projects": [
         {
@@ -68,19 +68,20 @@ const CONTENT = {
     {
       "section": "experience",
       "layout": "stack",
+      "columns": 2,
       "rows": 2,
       "projects": [
         {
           "href": "",
-          "title": "Bawarchi Biryanis",
-          "eyebrow": "Growth Product Manager",
-          "meta": "2026",
-          "icon": "chart",
-          "logo": "",
+          "title": "AroHai",
+          "eyebrow": "Product Founder",
+          "meta": "March 2026 – Present",
+          "icon": "rocket",
+          "logo": "assets/brand/arohai.png",
           "cta": "",
           "image": "",
           "fade": 0.25,
-          "summary": "Recovered **$150k in monthly franchising fee revenue** in a four-week pilot, reaching 85% compliance across 29 locations."
+          "summary": "Recovered **$150k in monthly franchising fee revenue** in a four-week pilot with Bawarchi Biryanis, reaching 85% compliance across 29 locations."
         },
         {
           "href": "",
@@ -100,7 +101,7 @@ const CONTENT = {
           "eyebrow": "Associate Fire Protection Engineer",
           "meta": "Aug 2024 – Aug 2025",
           "icon": "shield",
-          "logo": "",
+          "logo": "assets/brand/jensen-hughes.png",
           "cta": "",
           "image": "",
           "fade": 0.25,
@@ -112,7 +113,7 @@ const CONTENT = {
           "eyebrow": "Retail Design Intern",
           "meta": "Summer 2023",
           "icon": "zap",
-          "logo": "",
+          "logo": "assets/brand/tesla.png",
           "cta": "",
           "image": "",
           "fade": 0.25,
@@ -124,7 +125,7 @@ const CONTENT = {
           "eyebrow": "Designer & Fabricator",
           "meta": "2022–23",
           "icon": "cpu",
-          "logo": "",
+          "logo": "assets/brand/morphosis-payette.png",
           "cta": "",
           "image": "",
           "fade": 0.25,
@@ -134,56 +135,45 @@ const CONTENT = {
     },
     {
       "section": "maker",
-      "layout": "grid",
+      "layout": "flip",
+      "columns": 3,
       "rows": 2,
       "projects": [
         {
-          "href": "projects/architecture/",
+          "href": "assets/decks/architecture-portfolio.pdf",
           "title": "Architecture",
           "eyebrow": "Category",
           "meta": "Cal Poly · Morphosis / Payette",
           "icon": "layers",
           "logo": "",
-          "cta": "",
+          "cta": "View portfolio",
           "image": "",
           "fade": 0.25,
           "summary": "[Category summary — one or two sentences on the architecture and fabrication work and what it taught you.]"
         },
         {
-          "href": "projects/lego/",
+          "href": "assets/decks/extracurricular-portfolio.pdf",
           "title": "LEGO",
           "eyebrow": "Category",
           "meta": "[Scale · focus]",
           "icon": "blocks",
           "logo": "",
-          "cta": "",
+          "cta": "View portfolio",
           "image": "",
           "fade": 0.25,
           "summary": "[Category summary — what you build in LEGO and why it holds your attention.]"
         },
         {
-          "href": "projects/photography/",
+          "href": "https://instagram.com/ashperical",
           "title": "Photography",
           "eyebrow": "Category",
           "meta": "[Subjects · gear]",
           "icon": "camera",
           "logo": "",
-          "cta": "",
+          "cta": "View on Instagram",
           "image": "",
           "fade": 0.25,
           "summary": "[Category summary — what you shoot and what you're chasing in a frame.]"
-        },
-        {
-          "href": "projects/videography-sfx/",
-          "title": "Videography & SFX",
-          "eyebrow": "Category",
-          "meta": "[Formats · tools]",
-          "icon": "video",
-          "logo": "",
-          "cta": "",
-          "image": "",
-          "fade": 0.25,
-          "summary": "[Category summary — the kind of pieces you cut and the effects work behind them.]"
         },
         {
           "href": "projects/illustration/",
@@ -196,6 +186,18 @@ const CONTENT = {
           "image": "",
           "fade": 0.25,
           "summary": "[Category summary — what you draw and what keeps pulling you back to it.]"
+        },
+        {
+          "href": "https://substack.com/@ashperical/posts",
+          "title": "Writing",
+          "eyebrow": "Category",
+          "meta": "[Subjects · cadence]",
+          "icon": "lightbulb",
+          "logo": "",
+          "cta": "Read on Substack",
+          "image": "",
+          "fade": 0.25,
+          "summary": "[Category summary — what you write about and why.]"
         }
       ]
     }
@@ -250,10 +252,6 @@ const CONTENT = {
       "subsections": [],
       "intro": [
         {
-          "type": "paragraph",
-          "text": "[Section intro — 1–2 sentences framing what these two products have in common and what you owned on each.]"
-        },
-        {
           "type": "component",
           "component": "projects",
           "param": "projects"
@@ -267,10 +265,6 @@ const CONTENT = {
       "heading": "",
       "subsections": [],
       "intro": [
-        {
-          "type": "paragraph",
-          "text": "[Section intro — 1–2 sentences on the through-line across these roles.]"
-        },
         {
           "type": "component",
           "component": "projects",
@@ -306,27 +300,15 @@ const CONTENT = {
         },
         {
           "type": "paragraph",
-          "text": "[Opening — 2–3 sentences: who you are now, the training behind it, and the through-line across your roles.]"
+          "text": "Growing up, I liked to think Indian restaurants served food and sold nostalgia. It gave Indian immigrants in Texas a respite into an old realm: one where wispy chai and filter coffee were waterfalled from stainless steel cups, paired with warm earth-tone interiors cozily reminiscent of bustling Chennai bazaars back home. What started as an observational exercise as a customer turned into a playground of quick product lifecycles with immediate customer feedback when I joined the operation in high school."
         },
         {
           "type": "paragraph",
-          "text": "[Role paragraph 1 — lead with the bolded company and the one thing that mattered most there, then the evidence.]"
+          "text": "This early exposure to the multi-stage product development cycle taught me fundamental user empathy and strict process prioritization."
         },
         {
           "type": "paragraph",
-          "text": "[Role paragraph 2 — same shape: company, the shift in scale or scope, the proof.]"
-        },
-        {
-          "type": "paragraph",
-          "text": "[Role paragraph 3 — same shape.]"
-        },
-        {
-          "type": "paragraph",
-          "text": "[Role paragraph 4 — same shape, landing on the role closest to product.]"
-        },
-        {
-          "type": "paragraph",
-          "text": "[Closing line — the sentence you want a hiring manager to remember.]"
+          "text": "I studied architecture to explore my curiosity around design thinking, material, and scale. A series of internships led me towards engineering where I developed a deep understanding of systems-thinking and governance."
         }
       ]
     },
@@ -337,10 +319,6 @@ const CONTENT = {
       "heading": "",
       "subsections": [],
       "intro": [
-        {
-          "type": "paragraph",
-          "text": "[Section intro — 2–3 sentences on what you make outside of product work, and what these five pursuits have in common.]"
-        },
         {
           "type": "component",
           "component": "projects",

@@ -66,7 +66,10 @@ const injectProjectCardStyles = (() => {
       .project-flips {
         display: grid;
         gap: ${PROJECT_ROW_GAP}px;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(var(--flip-columns, 2), minmax(0, 1fr));
+      }
+      @media (max-width: 1080px) {
+        .project-flips { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       }
       @media (max-width: 860px) {
         .project-flips { grid-template-columns: minmax(0, 1fr); }
@@ -100,6 +103,8 @@ const injectProjectCardStyles = (() => {
 
 const ProjectCard = ({ project, index, inView, layout }) => {
   const [isHovered, setIsHovered] = useState(false);
+  // A logo file that isn't there yet falls back to the icon chip
+  const [logoFailed, setLogoFailed] = useState(false);
   const stacked = layout === 'stack';
   // A card without an href is just a panel - no link, no hover lift, no call to action
   const linked = Boolean(project.href);
@@ -140,12 +145,13 @@ const ProjectCard = ({ project, index, inView, layout }) => {
     >
       {/* Icon + eyebrow, with the title alongside when stacked */}
       <div style={{ display: 'flex', alignItems: 'center', gap: SPACE[3] }}>
-        {project.logo ? (
+        {project.logo && !logoFailed ? (
           // Logo artwork stands on its own - no chip behind it
           <img
             src={project.logo}
             alt=""
             aria-hidden="true"
+            onError={() => setLogoFailed(true)}
             style={{ width: '32px', height: '32px', objectFit: 'contain', flexShrink: 0 }}
           />
         ) : (
@@ -282,6 +288,8 @@ const ProjectCard = ({ project, index, inView, layout }) => {
 // its link on the back. Turns on hover or focus, and on tap where there is no hover.
 const FlipProjectCard = ({ project, index, inView }) => {
   const [flipped, setFlipped] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [logoFailed, setLogoFailed] = useState(false);
   const external = /^https?:\/\//.test(project.href) || /\.pdf$/i.test(project.href);
   const scrim = project.image
     ? `linear-gradient(180deg, rgba(10,10,11,${0.15 + project.fade * 0.5}) 0%, rgba(10,10,11,${0.45 + project.fade * 0.45}) 100%)`
@@ -290,15 +298,24 @@ const FlipProjectCard = ({ project, index, inView }) => {
   return (
     <div
       className="project-flip"
-      onMouseEnter={() => setFlipped(true)}
-      onMouseLeave={() => setFlipped(false)}
-      onFocus={() => setFlipped(true)}
-      onBlur={() => setFlipped(false)}
+      role="button"
+      tabIndex={0}
+      aria-pressed={flipped}
+      aria-label={`${project.title} - turn over for details`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       onClick={() => setFlipped((f) => !f)}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          setFlipped((f) => !f);
+        }
+      }}
       style={{
+        cursor: 'pointer',
         opacity: inView ? 1 : 0,
-        transform: inView ? 'translateY(0)' : 'translateY(16px)',
-        transition: `opacity 0.5s ease-out ${inView ? index * 0.08 : 0}s, transform 0.5s ease-out ${inView ? index * 0.08 : 0}s`,
+        transform: inView ? `translateY(${isHovered ? -4 : 0}px)` : 'translateY(16px)',
+        transition: `opacity 0.5s ease-out ${inView ? index * 0.08 : 0}s, transform ${inView ? EFFECTS.transition.base : '0.5s ease-out'}`,
       }}
     >
       <div className="project-flip-inner" style={{ transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)' }}>
@@ -313,8 +330,9 @@ const FlipProjectCard = ({ project, index, inView }) => {
             backgroundImage: project.image ? `url(${project.image})` : undefined,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            border: `1px solid ${COLORS.ink[200]}`,
-            boxShadow: EFFECTS.shadow.sm,
+            border: `1px solid ${isHovered ? COLORS.accent.primary : COLORS.ink[200]}`,
+            boxShadow: isHovered ? EFFECTS.shadow.lg : EFFECTS.shadow.sm,
+            transition: `border-color ${EFFECTS.transition.base}, box-shadow ${EFFECTS.transition.base}`,
             pointerEvents: flipped ? 'none' : 'auto',
           }}
         >
@@ -367,11 +385,12 @@ const FlipProjectCard = ({ project, index, inView }) => {
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: SPACE[3] }}>
-            {project.logo ? (
+            {project.logo && !logoFailed ? (
               <img
                 src={project.logo}
                 alt=""
                 aria-hidden="true"
+                onError={() => setLogoFailed(true)}
                 style={{ width: '32px', height: '32px', objectFit: 'contain', flexShrink: 0 }}
               />
             ) : (
@@ -467,7 +486,7 @@ const ProjectRowArrow = ({ direction, enabled, onClick }) => (
   </button>
 );
 
-const ProjectCards = ({ projects, layout = 'row', rows = 2 }) => {
+const ProjectCards = ({ projects, layout = 'row', rows = 2, columns: flipColumns = 2 }) => {
   const rowRef = useRef(null);
   const [wrapRef, inView] = useInView();
   const [edges, setEdges] = useState({ left: false, right: false });
@@ -511,7 +530,7 @@ const ProjectCards = ({ projects, layout = 'row', rows = 2 }) => {
       <div
         ref={rowRef}
         className={isFlip ? 'project-flips' : isGrid ? 'project-grid' : (isStack ? 'project-stack' : 'project-row')}
-        style={isStack || isFlip ? {} : isGrid ? {
+        style={isFlip ? { '--flip-columns': flipColumns } : isStack ? {} : isGrid ? {
           '--project-columns': columns,
           // Extend toward the right edge so four columns still read comfortably. Only to the
           // right: the left stays aligned with the text, clear of the fixed SectionNav.

@@ -32,8 +32,6 @@ Component marker reference: see CLAUDE.md
 
 <!-- @heading value="What I've Built" -->
 
-[Section intro — 1–2 sentences framing what these two products have in common and what you owned on each.]
-
 <!-- @projects section="projects" layout="flip" -->
 
 <!-- @project href="assets/decks/readyvault-pitch.pdf" cta="View pitch deck" image="assets/photos/projects/readyvault-hero.jpg" fade="0.3" icon="shield" logo="assets/brand/readyvault.png" eyebrow="Graduate capstone" title="ReadyVault" meta="Newell Brands · 2025–26" -->
@@ -50,27 +48,25 @@ CRM platform for scaling mom-and-pop shops from flagship to franchise.
 
 ## 2. Experience
 
-[Section intro — 1–2 sentences on the through-line across these roles.]
-
 <!-- @projects section="experience" layout="stack" -->
 
-<!-- @project icon="chart" eyebrow="Growth Product Manager" title="Bawarchi Biryanis" meta="2026" -->
-Recovered **$150k in monthly franchising fee revenue** in a four-week pilot, reaching 85% compliance across 29 locations.
+<!-- @project logo="assets/brand/arohai.png" icon="rocket" eyebrow="Product Founder" title="AroHai" meta="March 2026 – Present" -->
+Recovered **$150k in monthly franchising fee revenue** in a four-week pilot with Bawarchi Biryanis, reaching 85% compliance across 29 locations.
 <!-- /@project -->
 
 <!-- @project icon="graduation" eyebrow="Product Manager" title="Graduate Capstone" meta="Northwestern · Newell Brands · 2025–26" -->
 Found a **$400M customer segment** in 26 user interviews, and built the roadmap and pricing strategy on top of it.
 <!-- /@project -->
 
-<!-- @project icon="shield" eyebrow="Associate Fire Protection Engineer" title="Jensen Hughes" meta="Aug 2024 – Aug 2025" -->
+<!-- @project logo="assets/brand/jensen-hughes.png" icon="shield" eyebrow="Associate Fire Protection Engineer" title="Jensen Hughes" meta="Aug 2024 – Aug 2025" -->
 Redesigned the internal QA/QC review workflow, moving work through design-to-engineering review gates **up to 40% faster**.
 <!-- /@project -->
 
-<!-- @project icon="zap" eyebrow="Retail Design Intern" title="Tesla" meta="Summer 2023" -->
+<!-- @project logo="assets/brand/tesla.png" icon="zap" eyebrow="Retail Design Intern" title="Tesla" meta="Summer 2023" -->
 Prototyped a brand refresh that **launched across 500+ centers**, over two design sprints.
 <!-- /@project -->
 
-<!-- @project icon="cpu" eyebrow="Designer & Fabricator" title="Morphosis / Payette" meta="2022–23" -->
+<!-- @project logo="assets/brand/morphosis-payette.png" icon="cpu" eyebrow="Designer & Fabricator" title="Morphosis / Payette" meta="2022–23" -->
 Started a design services division that built **23+ scale models across 14 projects**, on a Morphosis Fellowship under Thom Mayne.
 <!-- /@project -->
 
@@ -94,45 +90,37 @@ Started a design services division that built **23+ scale models across 14 proje
 
 <!-- @image src="assets/photos/headshot.jpg" alt="Ashish Kolli" align="right" -->
 
-[Opening — 2–3 sentences: who you are now, the training behind it, and the through-line across your roles.]
+Growing up, I liked to think Indian restaurants served food and sold nostalgia. It gave Indian immigrants in Texas a respite into an old realm: one where wispy chai and filter coffee were waterfalled from stainless steel cups, paired with warm earth-tone interiors cozily reminiscent of bustling Chennai bazaars back home. What started as an observational exercise as a customer turned into a playground of quick product lifecycles with immediate customer feedback when I joined the operation in high school.
 
-[Role paragraph 1 — lead with the bolded company and the one thing that mattered most there, then the evidence.]
+This early exposure to the multi-stage product development cycle taught me fundamental user empathy and strict process prioritization.
 
-[Role paragraph 2 — same shape: company, the shift in scale or scope, the proof.]
-
-[Role paragraph 3 — same shape.]
-
-[Role paragraph 4 — same shape, landing on the role closest to product.]
-
-[Closing line — the sentence you want a hiring manager to remember.]
+I studied architecture to explore my curiosity around design thinking, material, and scale. A series of internships led me towards engineering where I developed a deep understanding of systems-thinking and governance.
 
 
 ---
 
 ## 5. Making
 
-[Section intro — 2–3 sentences on what you make outside of product work, and what these five pursuits have in common.]
+<!-- @projects section="maker" layout="flip" columns="3" -->
 
-<!-- @projects section="maker" layout="grid" rows="2" -->
-
-<!-- @project href="projects/architecture/" icon="layers" eyebrow="Category" title="Architecture" meta="Cal Poly · Morphosis / Payette" -->
+<!-- @project href="assets/decks/architecture-portfolio.pdf" cta="View portfolio" icon="layers" eyebrow="Category" title="Architecture" meta="Cal Poly · Morphosis / Payette" -->
 [Category summary — one or two sentences on the architecture and fabrication work and what it taught you.]
 <!-- /@project -->
 
-<!-- @project href="projects/lego/" icon="blocks" eyebrow="Category" title="LEGO" meta="[Scale · focus]" -->
+<!-- @project href="assets/decks/extracurricular-portfolio.pdf" cta="View portfolio" icon="blocks" eyebrow="Category" title="LEGO" meta="[Scale · focus]" -->
 [Category summary — what you build in LEGO and why it holds your attention.]
 <!-- /@project -->
 
-<!-- @project href="projects/photography/" icon="camera" eyebrow="Category" title="Photography" meta="[Subjects · gear]" -->
+<!-- @project href="https://instagram.com/ashperical" cta="View on Instagram" icon="camera" eyebrow="Category" title="Photography" meta="[Subjects · gear]" -->
 [Category summary — what you shoot and what you're chasing in a frame.]
-<!-- /@project -->
-
-<!-- @project href="projects/videography-sfx/" icon="video" eyebrow="Category" title="Videography & SFX" meta="[Formats · tools]" -->
-[Category summary — the kind of pieces you cut and the effects work behind them.]
 <!-- /@project -->
 
 <!-- @project href="projects/illustration/" icon="palette" eyebrow="Category" title="Illustration" meta="[Medium · subjects]" -->
 [Category summary — what you draw and what keeps pulling you back to it.]
+<!-- /@project -->
+
+<!-- @project href="https://substack.com/@ashperical/posts" cta="Read on Substack" icon="lightbulb" eyebrow="Category" title="Writing" meta="[Subjects · cadence]" -->
+[Category summary — what you write about and why.]
 <!-- /@project -->
 
 <!-- /@projects -->
