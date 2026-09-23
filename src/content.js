@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-23T00:13:00.286Z
+// Generated: 2026-09-23T18:57:03.255Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -85,6 +85,19 @@ const CONTENT = {
           "image": "",
           "fade": 0.25,
           "summary": "Recovered **$150k in monthly franchising fee revenue** in a four-week pilot with Bawarchi Biryanis, reaching 85% compliance across 29 locations."
+        },
+        {
+          "href": "",
+          "title": "Bawarchi Biryanis",
+          "eyebrow": "Product Owner",
+          "meta": "",
+          "icon": "chart",
+          "logo": "assets/brand/bawarchi-biryanis.png",
+          "logoScale": 1,
+          "cta": "",
+          "image": "",
+          "fade": 0.25,
+          "summary": ""
         },
         {
           "href": "",
