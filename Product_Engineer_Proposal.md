@@ -38,7 +38,7 @@ Component marker reference: see CLAUDE.md
 A modular storage system engineered for severe weather.
 <!-- /@project -->
 
-<!-- @project href="https://franchise-operations-crm--ashishkolli.replit.app/" cta="Open live demo" image="assets/photos/projects/arohai-dashboard.jpg" fade="0.55" icon="rocket" logo="assets/brand/arohai.png" eyebrow="Pilot launched" title="AroHai" meta="Founder / Product" -->
+<!-- @project href="https://franchise-operations-crm--ashishkolli.replit.app/" cta="Open live demo" image="assets/photos/projects/arohai-dashboard.jpg" fade="0.55" icon="rocket" logo="assets/brand/arohai.png" logoScale="1.5" eyebrow="Pilot launched" title="AroHai" meta="Founder / Product" -->
 CRM platform for scaling mom-and-pop shops from flagship to franchise.
 <!-- /@project -->
 
@@ -50,7 +50,7 @@ CRM platform for scaling mom-and-pop shops from flagship to franchise.
 
 <!-- @projects section="experience" layout="stack" -->
 
-<!-- @project logo="assets/brand/arohai.png" icon="rocket" eyebrow="Product Founder" title="AroHai" meta="March 2026 – Present" -->
+<!-- @project logo="assets/brand/arohai.png" logoScale="1.5" icon="rocket" eyebrow="Product Founder" title="AroHai" meta="March 2026 – Present" -->
 Recovered **$150k in monthly franchising fee revenue** in a four-week pilot with Bawarchi Biryanis, reaching 85% compliance across 29 locations.
 <!-- /@project -->
 

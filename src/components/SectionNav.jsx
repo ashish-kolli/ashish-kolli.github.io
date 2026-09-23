@@ -48,12 +48,6 @@ const injectNavStyles = (() => {
     if (injected || typeof document === 'undefined') return;
     const style = document.createElement('style');
     style.textContent = `
-      /* Keep the -50% that centres the nav: a transform here replaces the inline one
-         outright, so leaving it out drops the nav half a viewport and it slides back */
-      @keyframes navFadeIn {
-        from { opacity: 0; transform: translate(-20px, -50%); }
-        to { opacity: 1; transform: translate(0, -50%); }
-      }
       @keyframes navPulse {
         0%, 100% { transform: scale(1); }
         50% { transform: scale(1.05); }
@@ -112,12 +106,15 @@ const SectionNav = ({ sections = [] }) => {
         position: 'fixed',
         left: SPACE[6],
         top: '50%',
-        transform: 'translateY(-50%)',
+        // Slides in from the left as it fades. Both axes live in the one transform,
+        // since a transform replaces rather than adds to the centring one
+        transform: isVisible ? 'translate(0, -50%)' : 'translate(-20px, -50%)',
         zIndex: 100,
         opacity: isVisible ? 1 : 0,
         pointerEvents: isVisible ? 'auto' : 'none',
-        transition: `opacity ${EFFECTS.transition.slow}`,
-        animation: isVisible ? 'navFadeIn 0.5s ease-out' : 'none',
+        // Transitions, not keyframes: an animation running alongside a transition on the
+        // same property snapped to its own value when it ended, which read as a flash
+        transition: `opacity ${EFFECTS.transition.slow}, transform ${EFFECTS.transition.slow}`,
       }}
     >
       <div

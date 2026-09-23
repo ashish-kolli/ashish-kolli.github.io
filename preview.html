@@ -69,6 +69,7 @@ const CONTENT = {
           "meta": "Newell Brands \xB7 2025\u201326",
           "icon": "shield",
           "logo": "assets/brand/readyvault.png",
+          "logoScale": 1,
           "cta": "View pitch deck",
           "image": "assets/photos/projects/readyvault-hero.jpg",
           "fade": 0.3,
@@ -81,6 +82,7 @@ const CONTENT = {
           "meta": "Founder / Product",
           "icon": "rocket",
           "logo": "assets/brand/arohai.png",
+          "logoScale": 1.5,
           "cta": "Open live demo",
           "image": "assets/photos/projects/arohai-dashboard.jpg",
           "fade": 0.55,
@@ -101,6 +103,7 @@ const CONTENT = {
           "meta": "March 2026 \u2013 Present",
           "icon": "rocket",
           "logo": "assets/brand/arohai.png",
+          "logoScale": 1.5,
           "cta": "",
           "image": "",
           "fade": 0.25,
@@ -113,6 +116,7 @@ const CONTENT = {
           "meta": "Northwestern \xB7 Newell Brands \xB7 2025\u201326",
           "icon": "graduation",
           "logo": "assets/brand/rubbermaid.png",
+          "logoScale": 1,
           "cta": "",
           "image": "",
           "fade": 0.25,
@@ -125,6 +129,7 @@ const CONTENT = {
           "meta": "Aug 2024 \u2013 Aug 2025",
           "icon": "shield",
           "logo": "assets/brand/jensen-hughes.png",
+          "logoScale": 1,
           "cta": "",
           "image": "",
           "fade": 0.25,
@@ -137,6 +142,7 @@ const CONTENT = {
           "meta": "Summer 2023",
           "icon": "zap",
           "logo": "assets/brand/tesla.png",
+          "logoScale": 1,
           "cta": "",
           "image": "",
           "fade": 0.25,
@@ -149,6 +155,7 @@ const CONTENT = {
           "meta": "2022\u201323",
           "icon": "cpu",
           "logo": "assets/brand/morphosis-payette.png",
+          "logoScale": 1,
           "cta": "",
           "image": "",
           "fade": 0.25,
@@ -169,6 +176,7 @@ const CONTENT = {
           "meta": "Cal Poly \xB7 Morphosis / Payette",
           "icon": "layers",
           "logo": "",
+          "logoScale": 1,
           "cta": "View portfolio",
           "image": "",
           "fade": 0.25,
@@ -181,6 +189,7 @@ const CONTENT = {
           "meta": "[Scale \xB7 focus]",
           "icon": "blocks",
           "logo": "",
+          "logoScale": 1,
           "cta": "View portfolio",
           "image": "",
           "fade": 0.25,
@@ -193,6 +202,7 @@ const CONTENT = {
           "meta": "[Subjects \xB7 gear]",
           "icon": "camera",
           "logo": "",
+          "logoScale": 1,
           "cta": "View on Instagram",
           "image": "",
           "fade": 0.25,
@@ -205,6 +215,7 @@ const CONTENT = {
           "meta": "[Medium \xB7 subjects]",
           "icon": "palette",
           "logo": "",
+          "logoScale": 1,
           "cta": "",
           "image": "",
           "fade": 0.25,
@@ -217,6 +228,7 @@ const CONTENT = {
           "meta": "[Subjects \xB7 cadence]",
           "icon": "lightbulb",
           "logo": "",
+          "logoScale": 1,
           "cta": "Read on Substack",
           "image": "",
           "fade": 0.25,
@@ -6133,12 +6145,6 @@ const injectNavStyles = /* @__PURE__ */ (() => {
     if (injected || typeof document === "undefined") return;
     const style = document.createElement("style");
     style.textContent = `
-      /* Keep the -50% that centres the nav: a transform here replaces the inline one
-         outright, so leaving it out drops the nav half a viewport and it slides back */
-      @keyframes navFadeIn {
-        from { opacity: 0; transform: translate(-20px, -50%); }
-        to { opacity: 1; transform: translate(0, -50%); }
-      }
       @keyframes navPulse {
         0%, 100% { transform: scale(1); }
         50% { transform: scale(1.05); }
@@ -6189,12 +6195,15 @@ const SectionNav = ({ sections = [] }) => {
         position: "fixed",
         left: SPACE[6],
         top: "50%",
-        transform: "translateY(-50%)",
+        // Slides in from the left as it fades. Both axes live in the one transform,
+        // since a transform replaces rather than adds to the centring one
+        transform: isVisible ? "translate(0, -50%)" : "translate(-20px, -50%)",
         zIndex: 100,
         opacity: isVisible ? 1 : 0,
         pointerEvents: isVisible ? "auto" : "none",
-        transition: `opacity ${EFFECTS.transition.slow}`,
-        animation: isVisible ? "navFadeIn 0.5s ease-out" : "none"
+        // Transitions, not keyframes: an animation running alongside a transition on the
+        // same property snapped to its own value when it ended, which read as a flash
+        transition: `opacity ${EFFECTS.transition.slow}, transform ${EFFECTS.transition.slow}`
       }
     },
     /* @__PURE__ */ React.createElement(
@@ -7076,8 +7085,8 @@ const ProjectCard = ({ project, index, inView, layout }) => {
       target: external ? "_blank" : void 0,
       rel: external ? "noopener noreferrer" : void 0,
       className: stacked ? "project-card project-stack-card" : "project-card",
-      onMouseEnter: () => linked && setIsHovered(true),
-      onMouseLeave: () => linked && setIsHovered(false),
+      onMouseEnter: () => setIsHovered(true),
+      onMouseLeave: () => setIsHovered(false),
       style: {
         // In a grid or stack the container sizes the card; in a row it sets its own width
         ...layout === "row" ? {
@@ -7110,7 +7119,7 @@ const ProjectCard = ({ project, index, inView, layout }) => {
           alt: "",
           "aria-hidden": "true",
           onError: () => setLogoFailed(true),
-          style: { maxWidth: "100%", maxHeight: `${MARK_HEIGHT}px`, objectFit: "contain" }
+          style: { maxWidth: `${100 * (project.logoScale || 1)}%`, maxHeight: `${MARK_HEIGHT * (project.logoScale || 1)}px`, objectFit: "contain" }
         }
       )
     ) : /* @__PURE__ */ React.createElement(
@@ -7338,7 +7347,7 @@ const FlipProjectCard = ({ project, index, inView }) => {
           alt: "",
           "aria-hidden": "true",
           onError: () => setLogoFailed(true),
-          style: { maxWidth: "100%", maxHeight: `${MARK_HEIGHT}px`, objectFit: "contain" }
+          style: { maxWidth: `${100 * (project.logoScale || 1)}%`, maxHeight: `${MARK_HEIGHT * (project.logoScale || 1)}px`, objectFit: "contain" }
         }
       ) : getIcon(project.icon, COLORS.ink[500])), /* @__PURE__ */ React.createElement(
         "h3",

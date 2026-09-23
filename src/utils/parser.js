@@ -253,6 +253,9 @@ function extractProjects(content) {
         meta: extractAttr(attrs, 'meta') || '',
         icon: extractAttr(attrs, 'icon') || 'layers',
         logo: extractAttr(attrs, 'logo') || '',
+        // Multiplies the logo's size in its slot; the slot itself stays fixed, so
+        // titles keep lining up no matter what a mark is scaled to
+        logoScale: parseFloat(extractAttr(attrs, 'logoScale') || '1'),
         cta: extractAttr(attrs, 'cta') || '',
         image: extractAttr(attrs, 'image') || '',
         // How far to darken the cover art behind the title, 0-1

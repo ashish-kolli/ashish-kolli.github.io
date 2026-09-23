@@ -119,8 +119,8 @@ const ProjectCard = ({ project, index, inView, layout }) => {
       target={external ? '_blank' : undefined}
       rel={external ? 'noopener noreferrer' : undefined}
       className={stacked ? 'project-card project-stack-card' : 'project-card'}
-      onMouseEnter={() => linked && setIsHovered(true)}
-      onMouseLeave={() => linked && setIsHovered(false)}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       style={{
         // In a grid or stack the container sizes the card; in a row it sets its own width
         ...(layout === 'row' ? {
@@ -154,7 +154,7 @@ const ProjectCard = ({ project, index, inView, layout }) => {
             alt=""
             aria-hidden="true"
             onError={() => setLogoFailed(true)}
-            style={{ maxWidth: '100%', maxHeight: `${MARK_HEIGHT}px`, objectFit: 'contain' }}
+            style={{ maxWidth: `${100 * (project.logoScale || 1)}%`, maxHeight: `${MARK_HEIGHT * (project.logoScale || 1)}px`, objectFit: 'contain' }}
           />
         ) : (
           <div
@@ -394,7 +394,7 @@ const FlipProjectCard = ({ project, index, inView }) => {
                 alt=""
                 aria-hidden="true"
                 onError={() => setLogoFailed(true)}
-                style={{ maxWidth: '100%', maxHeight: `${MARK_HEIGHT}px`, objectFit: 'contain' }}
+                style={{ maxWidth: `${100 * (project.logoScale || 1)}%`, maxHeight: `${MARK_HEIGHT * (project.logoScale || 1)}px`, objectFit: 'contain' }}
               />
             ) : (
               getIcon(project.icon, COLORS.ink[500])
