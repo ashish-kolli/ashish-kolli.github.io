@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-23T18:57:03.255Z
+// Generated: 2026-09-23T19:37:25.274Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -93,7 +93,7 @@ const CONTENT = {
           "meta": "",
           "icon": "chart",
           "logo": "assets/brand/bawarchi-biryanis.png",
-          "logoScale": 1,
+          "logoScale": 1.5,
           "cta": "",
           "image": "",
           "fade": 0.25,
@@ -102,7 +102,7 @@ const CONTENT = {
         {
           "href": "",
           "title": "Graduate Capstone",
-          "eyebrow": "Product Manager",
+          "eyebrow": "Product Lead",
           "meta": "Northwestern · Newell Brands · 2025–26",
           "icon": "graduation",
           "logo": "assets/brand/rubbermaid.png",
