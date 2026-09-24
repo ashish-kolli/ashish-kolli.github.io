@@ -107,7 +107,7 @@ const CONTENT = {
           "cta": "",
           "image": "",
           "fade": 0.25,
-          "summary": "Recovered **$150k in monthly franchising fee revenue** in a four-week pilot with Bawarchi Biryanis, reaching 85% compliance across 29 locations."
+          "summary": ""
         },
         {
           "href": "",
@@ -133,7 +133,7 @@ const CONTENT = {
           "cta": "",
           "image": "",
           "fade": 0.25,
-          "summary": "Found a **$400M customer segment** in 26 user interviews, and built the roadmap and pricing strategy on top of it."
+          "summary": ""
         },
         {
           "href": "",
@@ -146,7 +146,7 @@ const CONTENT = {
           "cta": "",
           "image": "",
           "fade": 0.25,
-          "summary": "Redesigned the internal QA/QC review workflow, moving work through design-to-engineering review gates **up to 40% faster**."
+          "summary": ""
         },
         {
           "href": "",
@@ -159,7 +159,7 @@ const CONTENT = {
           "cta": "",
           "image": "",
           "fade": 0.25,
-          "summary": "Prototyped a brand refresh that **launched across 500+ centers**, over two design sprints."
+          "summary": ""
         },
         {
           "href": "",
@@ -172,7 +172,7 @@ const CONTENT = {
           "cta": "",
           "image": "",
           "fade": 0.25,
-          "summary": "Started a design services division that built **23+ scale models across 14 projects**, on a Morphosis Fellowship under Thom Mayne."
+          "summary": ""
         }
       ]
     },
@@ -193,7 +193,7 @@ const CONTENT = {
           "cta": "View portfolio",
           "image": "",
           "fade": 0.25,
-          "summary": "[Category summary \u2014 one or two sentences on the architecture and fabrication work and what it taught you.]"
+          "summary": ""
         },
         {
           "href": "assets/decks/extracurricular-portfolio.pdf",
@@ -206,7 +206,7 @@ const CONTENT = {
           "cta": "View portfolio",
           "image": "",
           "fade": 0.25,
-          "summary": "[Category summary \u2014 what you build in LEGO and why it holds your attention.]"
+          "summary": ""
         },
         {
           "href": "https://instagram.com/ashperical",
@@ -219,7 +219,7 @@ const CONTENT = {
           "cta": "View on Instagram",
           "image": "",
           "fade": 0.25,
-          "summary": "[Category summary \u2014 what you shoot and what you're chasing in a frame.]"
+          "summary": ""
         },
         {
           "href": "projects/illustration/",
@@ -232,7 +232,7 @@ const CONTENT = {
           "cta": "",
           "image": "",
           "fade": 0.25,
-          "summary": "[Category summary \u2014 what you draw and what keeps pulling you back to it.]"
+          "summary": ""
         },
         {
           "href": "https://substack.com/@ashperical/posts",
@@ -245,7 +245,7 @@ const CONTENT = {
           "cta": "Read on Substack",
           "image": "",
           "fade": 0.25,
-          "summary": "[Category summary \u2014 what you write about and why.]"
+          "summary": ""
         }
       ]
     }
@@ -273,19 +273,7 @@ const CONTENT = {
   "timeline": [],
   "testimonials": [],
   "tables": [],
-  "terminals": [
-    {
-      "title": "ashish/pm-stack.txt",
-      "command": "cat",
-      "variant": "default",
-      "typing": false,
-      "lines": [
-        "\u2022 **Product Strategy** \u2192 Product Discovery, Vision and Sense, User Research, Agile Development, Go-to-Market Strategy",
-        "\u2022 **Development Tools** \u2192 Jira, Figma, Miro, DScout, Notion, Excel, SQL, Claude Code, Cursor, Google Analytics",
-        "\u2022 **Design & CAD Stack** \u2192 Rhino, Revit, AutoCAD, Grasshopper, SolidWorks, Photoshop, Illustrator, SketchUp, DaVinci Resolve"
-      ]
-    }
-  ],
+  "terminals": [],
   "workLists": [],
   "citations": [],
   "document": [
@@ -328,9 +316,12 @@ const CONTENT = {
       "subsections": [],
       "intro": [
         {
-          "type": "component",
-          "component": "terminal",
-          "param": ""
+          "type": "bulletList",
+          "items": [
+            "**Product Strategy** \u2192 Product Discovery, Vision and Sense, User Research, Agile Development, Go-to-Market Strategy",
+            "**Development Tools** \u2192 Jira, Figma, Miro, DScout, Notion, Excel, SQL, Claude Code, Cursor, Google Analytics",
+            "**Design & CAD Stack** \u2192 Rhino, Revit, AutoCAD, Grasshopper, SolidWorks, Photoshop, Illustrator, SketchUp, DaVinci Resolve"
+          ]
         }
       ]
     },
@@ -6165,8 +6156,43 @@ const injectNavStyles = /* @__PURE__ */ (() => {
       .section-nav-wrapper {
         display: none;
       }
-      @media (min-width: 1280px) {
+      /* Below 1280 the full rail would sit on top of the text column, so it drops to
+         numbers only - narrow enough to clear the copy and still navigable. */
+      @media (min-width: 1100px) {
         .section-nav-wrapper {
+          display: block;
+        }
+        .section-nav-label {
+          display: none;
+        }
+        /* Squeeze the rail so the numbers clear the text column. These override
+           inline styles, hence the !important. */
+        .section-nav-wrapper > div {
+          padding: 0.5rem 0.25rem !important;
+          align-items: center !important;
+        }
+        .section-nav-wrapper button {
+          padding: 0.35rem 0.4rem !important;
+        }
+        .section-nav-wrapper button > span {
+          min-width: 0 !important;
+        }
+        .section-nav-head {
+          display: none;
+        }
+      }
+      @media (min-width: 1280px) {
+        .section-nav-label {
+          display: inline;
+        }
+        .section-nav-wrapper > div {
+          padding: ${SPACE[3]} ${SPACE[2]} !important;
+          align-items: flex-start !important;
+        }
+        .section-nav-wrapper button > span {
+          min-width: 1.5rem !important;
+        }
+        .section-nav-head {
           display: block;
         }
       }
@@ -6239,6 +6265,7 @@ const SectionNav = ({ sections = [] }) => {
       /* @__PURE__ */ React.createElement(
         "div",
         {
+          className: "section-nav-head",
           style: {
             padding: `${SPACE[1]} ${SPACE[3]}`,
             marginBottom: SPACE[1]
@@ -6318,6 +6345,7 @@ const SectionNav = ({ sections = [] }) => {
           /* @__PURE__ */ React.createElement(
             "span",
             {
+              className: "section-nav-label",
               style: {
                 fontFamily: FONTS.ui,
                 fontSize: TYPE_SCALE.ui.sm.size,

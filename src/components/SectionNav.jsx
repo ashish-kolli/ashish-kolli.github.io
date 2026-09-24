@@ -55,8 +55,43 @@ const injectNavStyles = (() => {
       .section-nav-wrapper {
         display: none;
       }
-      @media (min-width: 1280px) {
+      /* Below 1280 the full rail would sit on top of the text column, so it drops to
+         numbers only - narrow enough to clear the copy and still navigable. */
+      @media (min-width: 1100px) {
         .section-nav-wrapper {
+          display: block;
+        }
+        .section-nav-label {
+          display: none;
+        }
+        /* Squeeze the rail so the numbers clear the text column. These override
+           inline styles, hence the !important. */
+        .section-nav-wrapper > div {
+          padding: 0.5rem 0.25rem !important;
+          align-items: center !important;
+        }
+        .section-nav-wrapper button {
+          padding: 0.35rem 0.4rem !important;
+        }
+        .section-nav-wrapper button > span {
+          min-width: 0 !important;
+        }
+        .section-nav-head {
+          display: none;
+        }
+      }
+      @media (min-width: 1280px) {
+        .section-nav-label {
+          display: inline;
+        }
+        .section-nav-wrapper > div {
+          padding: ${SPACE[3]} ${SPACE[2]} !important;
+          align-items: flex-start !important;
+        }
+        .section-nav-wrapper button > span {
+          min-width: 1.5rem !important;
+        }
+        .section-nav-head {
           display: block;
         }
       }
@@ -134,6 +169,7 @@ const SectionNav = ({ sections = [] }) => {
       >
         {/* Header label */}
         <div
+          className="section-nav-head"
           style={{
             padding: `${SPACE[1]} ${SPACE[3]}`,
             marginBottom: SPACE[1],
@@ -215,6 +251,7 @@ const SectionNav = ({ sections = [] }) => {
 
               {/* Section short name */}
               <span
+                className="section-nav-label"
                 style={{
                   fontFamily: FONTS.ui,
                   fontSize: TYPE_SCALE.ui.sm.size,

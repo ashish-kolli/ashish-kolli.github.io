@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-23T19:37:25.274Z
+// Generated: 2026-09-24T11:45:19.166Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -84,7 +84,7 @@ const CONTENT = {
           "cta": "",
           "image": "",
           "fade": 0.25,
-          "summary": "Recovered **$150k in monthly franchising fee revenue** in a four-week pilot with Bawarchi Biryanis, reaching 85% compliance across 29 locations."
+          "summary": ""
         },
         {
           "href": "",
@@ -110,7 +110,7 @@ const CONTENT = {
           "cta": "",
           "image": "",
           "fade": 0.25,
-          "summary": "Found a **$400M customer segment** in 26 user interviews, and built the roadmap and pricing strategy on top of it."
+          "summary": ""
         },
         {
           "href": "",
@@ -123,7 +123,7 @@ const CONTENT = {
           "cta": "",
           "image": "",
           "fade": 0.25,
-          "summary": "Redesigned the internal QA/QC review workflow, moving work through design-to-engineering review gates **up to 40% faster**."
+          "summary": ""
         },
         {
           "href": "",
@@ -136,7 +136,7 @@ const CONTENT = {
           "cta": "",
           "image": "",
           "fade": 0.25,
-          "summary": "Prototyped a brand refresh that **launched across 500+ centers**, over two design sprints."
+          "summary": ""
         },
         {
           "href": "",
@@ -149,7 +149,7 @@ const CONTENT = {
           "cta": "",
           "image": "",
           "fade": 0.25,
-          "summary": "Started a design services division that built **23+ scale models across 14 projects**, on a Morphosis Fellowship under Thom Mayne."
+          "summary": ""
         }
       ]
     },
@@ -170,7 +170,7 @@ const CONTENT = {
           "cta": "View portfolio",
           "image": "",
           "fade": 0.25,
-          "summary": "[Category summary — one or two sentences on the architecture and fabrication work and what it taught you.]"
+          "summary": ""
         },
         {
           "href": "assets/decks/extracurricular-portfolio.pdf",
@@ -183,7 +183,7 @@ const CONTENT = {
           "cta": "View portfolio",
           "image": "",
           "fade": 0.25,
-          "summary": "[Category summary — what you build in LEGO and why it holds your attention.]"
+          "summary": ""
         },
         {
           "href": "https://instagram.com/ashperical",
@@ -196,7 +196,7 @@ const CONTENT = {
           "cta": "View on Instagram",
           "image": "",
           "fade": 0.25,
-          "summary": "[Category summary — what you shoot and what you're chasing in a frame.]"
+          "summary": ""
         },
         {
           "href": "projects/illustration/",
@@ -209,7 +209,7 @@ const CONTENT = {
           "cta": "",
           "image": "",
           "fade": 0.25,
-          "summary": "[Category summary — what you draw and what keeps pulling you back to it.]"
+          "summary": ""
         },
         {
           "href": "https://substack.com/@ashperical/posts",
@@ -222,7 +222,7 @@ const CONTENT = {
           "cta": "Read on Substack",
           "image": "",
           "fade": 0.25,
-          "summary": "[Category summary — what you write about and why.]"
+          "summary": ""
         }
       ]
     }
@@ -250,19 +250,7 @@ const CONTENT = {
   "timeline": [],
   "testimonials": [],
   "tables": [],
-  "terminals": [
-    {
-      "title": "ashish/pm-stack.txt",
-      "command": "cat",
-      "variant": "default",
-      "typing": false,
-      "lines": [
-        "• **Product Strategy** → Product Discovery, Vision and Sense, User Research, Agile Development, Go-to-Market Strategy",
-        "• **Development Tools** → Jira, Figma, Miro, DScout, Notion, Excel, SQL, Claude Code, Cursor, Google Analytics",
-        "• **Design & CAD Stack** → Rhino, Revit, AutoCAD, Grasshopper, SolidWorks, Photoshop, Illustrator, SketchUp, DaVinci Resolve"
-      ]
-    }
-  ],
+  "terminals": [],
   "workLists": [],
   "citations": [],
   "document": [
@@ -305,9 +293,12 @@ const CONTENT = {
       "subsections": [],
       "intro": [
         {
-          "type": "component",
-          "component": "terminal",
-          "param": ""
+          "type": "bulletList",
+          "items": [
+            "**Product Strategy** → Product Discovery, Vision and Sense, User Research, Agile Development, Go-to-Market Strategy",
+            "**Development Tools** → Jira, Figma, Miro, DScout, Notion, Excel, SQL, Claude Code, Cursor, Google Analytics",
+            "**Design & CAD Stack** → Rhino, Revit, AutoCAD, Grasshopper, SolidWorks, Photoshop, Illustrator, SketchUp, DaVinci Resolve"
+          ]
         }
       ]
     },
