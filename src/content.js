@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-24T11:45:19.166Z
+// Generated: 2026-09-25T12:46:23.699Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -75,7 +75,7 @@ const CONTENT = {
       "projects": [
         {
           "href": "",
-          "title": "AroHai",
+          "title": "AroHai CRM",
           "eyebrow": "Product Founder",
           "meta": "March 2026 – Present",
           "icon": "rocket",
@@ -89,7 +89,7 @@ const CONTENT = {
         {
           "href": "",
           "title": "Bawarchi Biryanis",
-          "eyebrow": "Product Owner",
+          "eyebrow": "Product Consultant - Change Management",
           "meta": "",
           "icon": "chart",
           "logo": "assets/brand/bawarchi-biryanis.png",
@@ -103,7 +103,7 @@ const CONTENT = {
           "href": "",
           "title": "Graduate Capstone",
           "eyebrow": "Product Lead",
-          "meta": "Northwestern · Newell Brands · 2025–26",
+          "meta": "Northwestern · Rubbermaid · Sept 2025 – June 2026",
           "icon": "graduation",
           "logo": "assets/brand/rubbermaid.png",
           "logoScale": 1,
@@ -114,9 +114,22 @@ const CONTENT = {
         },
         {
           "href": "",
+          "title": "Segal Design Institute",
+          "eyebrow": "Teaching Assistant",
+          "meta": "",
+          "icon": "graduation",
+          "logo": "assets/brand/segal-northwestern.png",
+          "logoScale": 1,
+          "cta": "",
+          "image": "",
+          "fade": 0.25,
+          "summary": ""
+        },
+        {
+          "href": "",
           "title": "Jensen Hughes",
           "eyebrow": "Associate Fire Protection Engineer",
-          "meta": "Aug 2024 – Aug 2025",
+          "meta": "July 2024 – September 2025",
           "icon": "shield",
           "logo": "assets/brand/jensen-hughes.png",
           "logoScale": 1,
@@ -128,8 +141,8 @@ const CONTENT = {
         {
           "href": "",
           "title": "Tesla",
-          "eyebrow": "Retail Design Intern",
-          "meta": "Summer 2023",
+          "eyebrow": "Retail Development Intern",
+          "meta": "June 2023 – September 2023",
           "icon": "zap",
           "logo": "assets/brand/tesla.png",
           "logoScale": 1,
@@ -140,11 +153,50 @@ const CONTENT = {
         },
         {
           "href": "",
-          "title": "Morphosis / Payette",
-          "eyebrow": "Designer & Fabricator",
+          "title": "Morphosis Architects",
+          "eyebrow": "Intern Architect",
           "meta": "2022–23",
+          "icon": "layers",
+          "logo": "assets/brand/morphosis.png",
+          "logoScale": 1,
+          "cta": "",
+          "image": "",
+          "fade": 0.25,
+          "summary": ""
+        },
+        {
+          "href": "",
+          "title": "Payette",
+          "eyebrow": "Designer & Fabricator",
+          "meta": "",
+          "icon": "compass",
+          "logo": "assets/brand/payette.png",
+          "logoScale": 1,
+          "cta": "",
+          "image": "",
+          "fade": 0.25,
+          "summary": ""
+        },
+        {
+          "href": "",
+          "title": "Cal Poly Machine Shop",
+          "eyebrow": "Student Technician",
+          "meta": "",
           "icon": "cpu",
-          "logo": "assets/brand/morphosis-payette.png",
+          "logo": "assets/brand/cal-poly.png",
+          "logoScale": 1.4,
+          "cta": "",
+          "image": "",
+          "fade": 0.25,
+          "summary": ""
+        },
+        {
+          "href": "",
+          "title": "Hotel Saravanaa Bhavan",
+          "eyebrow": "Prep Kitchen Lead",
+          "meta": "",
+          "icon": "users",
+          "logo": "",
           "logoScale": 1,
           "cta": "",
           "image": "",

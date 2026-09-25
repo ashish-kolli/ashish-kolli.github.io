@@ -50,27 +50,43 @@ CRM platform for scaling mom-and-pop shops from flagship to franchise.
 
 <!-- @projects section="experience" layout="stack" -->
 
-<!-- @project logo="assets/brand/arohai.png" logoScale="1.5" icon="rocket" eyebrow="Product Founder" title="AroHai" meta="March 2026 – Present" -->
+<!-- @project logo="assets/brand/arohai.png" logoScale="1.5" icon="rocket" eyebrow="Product Founder" title="AroHai CRM" meta="March 2026 – Present" -->
 
 <!-- /@project -->
 
-<!-- @project logo="assets/brand/bawarchi-biryanis.png" logoScale="1.5" icon="chart" eyebrow="Product Owner" title="Bawarchi Biryanis" meta="" -->
+<!-- @project logo="assets/brand/bawarchi-biryanis.png" logoScale="1.5" icon="chart" eyebrow="Product Consultant - Change Management" title="Bawarchi Biryanis" meta="" -->
 
 <!-- /@project -->
 
-<!-- @project logo="assets/brand/rubbermaid.png" icon="graduation" eyebrow="Product Lead" title="Graduate Capstone" meta="Northwestern · Newell Brands · 2025–26" -->
+<!-- @project logo="assets/brand/rubbermaid.png" icon="graduation" eyebrow="Product Lead" title="Graduate Capstone" meta="Northwestern · Rubbermaid · Sept 2025 – June 2026" -->
 
 <!-- /@project -->
 
-<!-- @project logo="assets/brand/jensen-hughes.png" icon="shield" eyebrow="Associate Fire Protection Engineer" title="Jensen Hughes" meta="Aug 2024 – Aug 2025" -->
+<!-- @project logo="assets/brand/segal-northwestern.png" icon="graduation" eyebrow="Teaching Assistant" title="Segal Design Institute" meta="" -->
 
 <!-- /@project -->
 
-<!-- @project logo="assets/brand/tesla.png" icon="zap" eyebrow="Retail Design Intern" title="Tesla" meta="Summer 2023" -->
+<!-- @project logo="assets/brand/jensen-hughes.png" icon="shield" eyebrow="Associate Fire Protection Engineer" title="Jensen Hughes" meta="July 2024 – September 2025" -->
 
 <!-- /@project -->
 
-<!-- @project logo="assets/brand/morphosis-payette.png" icon="cpu" eyebrow="Designer & Fabricator" title="Morphosis / Payette" meta="2022–23" -->
+<!-- @project logo="assets/brand/tesla.png" icon="zap" eyebrow="Retail Development Intern" title="Tesla" meta="June 2023 – September 2023" -->
+
+<!-- /@project -->
+
+<!-- @project logo="assets/brand/morphosis.png" icon="layers" eyebrow="Intern Architect" title="Morphosis Architects" meta="2022–23" -->
+
+<!-- /@project -->
+
+<!-- @project logo="assets/brand/payette.png" icon="compass" eyebrow="Designer & Fabricator" title="Payette" meta="" -->
+
+<!-- /@project -->
+
+<!-- @project logo="assets/brand/cal-poly.png" logoScale="1.4" icon="cpu" eyebrow="Student Technician" title="Cal Poly Machine Shop" meta="" -->
+
+<!-- /@project -->
+
+<!-- @project icon="users" eyebrow="Prep Kitchen Lead" title="Hotel Saravanaa Bhavan" meta="" -->
 
 <!-- /@project -->
 
