@@ -66,7 +66,7 @@ CRM platform for scaling mom-and-pop shops from flagship to franchise.
 
 <!-- /@project -->
 
-<!-- @project logo="assets/brand/jensen-hughes.png" icon="shield" eyebrow="Associate Fire Protection Engineer" title="Jensen Hughes" meta="July 2024 – September 2025" -->
+<!-- @project logo="assets/brand/jensen-hughes.png" icon="shield" eyebrow="Associate Fire Protection Engineer" title="Jensen Hughes" meta="August 2024 – August 2025" -->
 
 <!-- /@project -->
 
@@ -78,7 +78,7 @@ CRM platform for scaling mom-and-pop shops from flagship to franchise.
 
 <!-- /@project -->
 
-<!-- @project logo="assets/brand/payette.png" icon="compass" eyebrow="Designer & Fabricator" title="Payette" meta="" -->
+<!-- @project logo="assets/brand/payette.png" icon="compass" eyebrow="Industrial Design Intern" title="Payette Associates" meta="" -->
 
 <!-- /@project -->
 
@@ -87,6 +87,14 @@ CRM platform for scaling mom-and-pop shops from flagship to franchise.
 <!-- /@project -->
 
 <!-- @project icon="users" eyebrow="Prep Kitchen Lead" title="Hotel Saravanaa Bhavan" meta="" -->
+
+<!-- /@project -->
+
+<!-- @project logo="assets/brand/millennial-design-build.png" icon="layers" eyebrow="Project Management Intern" title="Millennial Design & Build" meta="June 2021 – September 2021" -->
+
+<!-- /@project -->
+
+<!-- @project logo="assets/brand/d1-architect.png" icon="compass" eyebrow="Design Intern" title="D1 Architects and Associates" meta="June 2020 – September 2020" -->
 
 <!-- /@project -->
 

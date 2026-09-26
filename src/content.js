@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-25T12:46:23.699Z
+// Generated: 2026-09-26T15:47:34.909Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -129,7 +129,7 @@ const CONTENT = {
           "href": "",
           "title": "Jensen Hughes",
           "eyebrow": "Associate Fire Protection Engineer",
-          "meta": "July 2024 – September 2025",
+          "meta": "August 2024 – August 2025",
           "icon": "shield",
           "logo": "assets/brand/jensen-hughes.png",
           "logoScale": 1,
@@ -166,8 +166,8 @@ const CONTENT = {
         },
         {
           "href": "",
-          "title": "Payette",
-          "eyebrow": "Designer & Fabricator",
+          "title": "Payette Associates",
+          "eyebrow": "Industrial Design Intern",
           "meta": "",
           "icon": "compass",
           "logo": "assets/brand/payette.png",
@@ -197,6 +197,32 @@ const CONTENT = {
           "meta": "",
           "icon": "users",
           "logo": "",
+          "logoScale": 1,
+          "cta": "",
+          "image": "",
+          "fade": 0.25,
+          "summary": ""
+        },
+        {
+          "href": "",
+          "title": "Millennial Design & Build",
+          "eyebrow": "Project Management Intern",
+          "meta": "June 2021 – September 2021",
+          "icon": "layers",
+          "logo": "assets/brand/millennial-design-build.png",
+          "logoScale": 1,
+          "cta": "",
+          "image": "",
+          "fade": 0.25,
+          "summary": ""
+        },
+        {
+          "href": "",
+          "title": "D1 Architects and Associates",
+          "eyebrow": "Design Intern",
+          "meta": "June 2020 – September 2020",
+          "icon": "compass",
+          "logo": "assets/brand/d1-architect.png",
           "logoScale": 1,
           "cta": "",
           "image": "",
