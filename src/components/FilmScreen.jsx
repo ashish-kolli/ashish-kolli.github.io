@@ -110,7 +110,11 @@ const injectFilmStyles = (() => {
         to   { background-position-x: calc(100% - ${LEADER_OVERLAP}px - var(--film-travel, 44px)); }
       }
       .film-leader-run { animation: filmLeaderRun ${FILM_ADVANCE_MS}ms cubic-bezier(0.22, 0.61, 0.36, 1); }
+      /* The tap hint is only true where there is no pointer to hover with. It stays in
+         the layout so space-between still pins the << to the right. */
+      .film-tap { visibility: hidden; }
       @media (max-width: 768px) {
+        .film-tap { visibility: visible; }
         .film-leader { display: none; }
         /* No strip continuing to the left on phones, so the left corners round too */
         .film-frame { border-radius: ${EFFECTS.radius.lg} !important; }
@@ -294,8 +298,8 @@ const FilmScreen = ({ images = [], keepOuts = [] }) => {
           opacity: 0.85,
         }}
       >
-        <span />
-        <span>{'<<'}</span>
+        <span className="film-tap" style={{ color: COLORS.ink[900] }}>TAP</span>
+        <span style={{ color: COLORS.ink[900] }}>{'<<'}</span>
       </div>
 
       {/* The gate: the photo cuts over instantly; the gradient flash plays on top */}

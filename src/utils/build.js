@@ -125,6 +125,7 @@ function build() {
     'ProjectCards',
     'ProjectHeader',
     'Figure',
+    'MarkRow',
   ];
 
   // Read all components

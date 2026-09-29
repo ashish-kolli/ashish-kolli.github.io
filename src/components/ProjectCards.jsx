@@ -51,16 +51,26 @@ const injectProjectCardStyles = (() => {
         .project-grid { grid-template-columns: minmax(0, 1fr); }
       }
       .project-stack { display: grid; gap: ${PROJECT_ROW_GAP}px; }
-      /* Full-width card: title block, summary, meta */
+      /* One line: mark, role, company, then dates pushed right. Nothing wraps. */
       .project-stack-card {
-        display: grid;
-        grid-template-columns: minmax(180px, 24%) 1fr auto;
+        display: flex;
         align-items: center;
-        gap: ${SPACE[6]};
-        padding: ${SPACE[5]} ${SPACE[6]};
+        gap: ${SPACE[4]};
+        /* Even inset all round, so the space above the mark matches the space left of it */
+        padding: ${SPACE[5]};
       }
+      .project-stack-head {
+        display: flex;
+        align-items: baseline;
+        gap: ${SPACE[3]};
+        min-width: 0;
+        white-space: nowrap;
+      }
+      .project-stack-card .project-stack-meta { white-space: nowrap; }
+      /* Narrow screens have no room for one line, so the row becomes a block again */
       @media (max-width: 860px) {
-        .project-stack-card { grid-template-columns: 1fr; gap: ${SPACE[4]}; align-items: start; }
+        .project-stack-card { flex-direction: column; align-items: flex-start; gap: ${SPACE[3]}; padding: ${SPACE[5]}; }
+        .project-stack-head { flex-direction: column; align-items: flex-start; gap: ${SPACE[1]}; white-space: normal; }
         .project-stack-card .project-stack-meta { justify-content: flex-start; }
       }
 
@@ -192,11 +202,11 @@ const ProjectCard = ({ project, index, inView, layout }) => {
           </div>
         )}
         </div>
-        <div style={{ minWidth: 0 }}>
+        <div className={stacked ? 'project-stack-head' : undefined} style={{ minWidth: 0 }}>
           {project.eyebrow && (
             <span
               style={{
-                display: 'block',
+                display: stacked ? 'inline' : 'block',
                 fontFamily: FONTS.mono,
                 fontSize: TYPE_SCALE.ui.xs.size,
                 fontWeight: 600,
@@ -216,7 +226,7 @@ const ProjectCard = ({ project, index, inView, layout }) => {
                 fontWeight: 600,
                 lineHeight: 1.25,
                 color: COLORS.ink[800],
-                margin: `${SPACE[1]} 0 0`,
+                margin: 0,
               }}
             >
               {project.title}
@@ -242,6 +252,7 @@ const ProjectCard = ({ project, index, inView, layout }) => {
             {project.title}
           </h3>
         )}
+        {project.summary ? (
         <p
           style={{
             fontFamily: FONTS.body,
@@ -253,6 +264,7 @@ const ProjectCard = ({ project, index, inView, layout }) => {
         >
           <RichText>{project.summary}</RichText>
         </p>
+        ) : null}
       </div>
 
       {/* Meta + link cue */}

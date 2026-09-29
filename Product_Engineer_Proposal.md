@@ -122,6 +122,11 @@ This early exposure to the multi-stage product development cycle taught me funda
 
 I studied architecture to explore my curiosity around design thinking, material, and scale. A series of internships led me towards engineering where I developed a deep understanding of systems-thinking and governance.
 
+<!-- @marks -->
+<!-- @mark src="assets/brand/cal-poly-seal.png" alt="California Polytechnic State University" -->
+<!-- @mark src="assets/brand/northwestern-seal.png" alt="Northwestern University" -->
+<!-- /@marks -->
+
 
 ---
 

@@ -294,6 +294,22 @@ function extractImages(content) {
   return images;
 }
 
+function extractMarkRows(content) {
+  const rows = [];
+  const rowRegex = /<!-- @marks -->([\s\S]*?)<!-- \/@marks -->/g;
+  let match;
+  while ((match = rowRegex.exec(content)) !== null) {
+    const marks = [];
+    const markRegex = /<!-- @mark ([^>]*?) -->/g;
+    let m;
+    while ((m = markRegex.exec(match[1])) !== null) {
+      marks.push({ src: extractAttr(m[1], 'src') || '', alt: extractAttr(m[1], 'alt') || '' });
+    }
+    rows.push(marks);
+  }
+  return rows;
+}
+
 function extractPage(content) {
   const match = content.match(/<!-- @page ([^>]*?) -->\s*([\s\S]*?)<!-- \/@page -->/);
   if (!match) return null;
@@ -493,6 +509,7 @@ function parseContentBlocks(text) {
       return `<!--COMPONENT:worklist:${sectionMatch ? sectionMatch[1] : ''}-->`;
     })
     .replace(/<!-- @image[^>]*-->/g, '<!--COMPONENT:image-->')
+    .replace(/<!-- @marks -->[\s\S]*?<!-- \/@marks -->/g, '<!--COMPONENT:marks-->')
     .replace(/<!-- @table[^>]*-->/g, '');
 
   // Split into paragraphs/elements
@@ -636,6 +653,7 @@ function extractContent(markdown) {
     page: extractPage(markdown),
     projects: extractProjects(markdown),
     images: extractImages(markdown),
+    markRows: extractMarkRows(markdown),
     stats: extractStats(markdown),
     charts: extractCharts(markdown),
     convergence: extractConvergence(markdown),

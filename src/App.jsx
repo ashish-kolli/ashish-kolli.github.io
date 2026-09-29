@@ -51,6 +51,7 @@ import {
   ProjectCards,
   ProjectHeader,
   Figure,
+  MarkRow,
 } from './components';
 
 
@@ -91,7 +92,7 @@ const BlockRenderer = ({ block, context }) => {
  * Render component markers (stats, charts, quotes, cards, etc.)
  */
 const renderComponent = (block, context) => {
-  const { chartsByType, getCardsBySection, getProjectsBySection, getQuotesBySection, terminalIndex, imageIndex } = context;
+  const { chartsByType, getCardsBySection, getProjectsBySection, getQuotesBySection, terminalIndex, imageIndex, markRowIndex } = context;
 
   switch (block.component) {
     case 'stats': {
@@ -164,6 +165,12 @@ const renderComponent = (block, context) => {
           columns={projectRow.columns}
         />
       ) : null;
+    }
+
+    case 'marks': {
+      const marks = CONTENT.markRows?.[markRowIndex.current];
+      markRowIndex.current++;
+      return marks && marks.length ? <MarkRow marks={marks} /> : null;
     }
 
     case 'image': {
@@ -290,6 +297,7 @@ const App = () => {
   const tableIndex = { current: 0 };
   const terminalIndex = { current: 0 };
   const imageIndex = { current: 0 };
+  const markRowIndex = { current: 0 };
   const pullquoteIndex = { current: 0 };
 
   // Component lookup by type
@@ -320,6 +328,7 @@ const App = () => {
     getCardsBySection,
     getProjectsBySection,
     getQuotesBySection,
+    markRowIndex,
     pullquoteIndex,
     tableIndex,
     terminalIndex,

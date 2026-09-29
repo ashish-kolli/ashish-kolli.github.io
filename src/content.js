@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-26T15:47:34.909Z
+// Generated: 2026-09-29T03:45:23.581Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -315,6 +315,18 @@ const CONTENT = {
       "ratio": "16 / 10"
     }
   ],
+  "markRows": [
+    [
+      {
+        "src": "assets/brand/cal-poly-seal.png",
+        "alt": "California Polytechnic State University"
+      },
+      {
+        "src": "assets/brand/northwestern-seal.png",
+        "alt": "Northwestern University"
+      }
+    ]
+  ],
   "stats": [],
   "charts": [],
   "convergence": {
@@ -403,6 +415,11 @@ const CONTENT = {
         {
           "type": "paragraph",
           "text": "I studied architecture to explore my curiosity around design thinking, material, and scale. A series of internships led me towards engineering where I developed a deep understanding of systems-thinking and governance."
+        },
+        {
+          "type": "component",
+          "component": "marks",
+          "param": ""
         }
       ]
     },

@@ -338,6 +338,18 @@ const CONTENT = {
       "ratio": "16 / 10"
     }
   ],
+  "markRows": [
+    [
+      {
+        "src": "assets/brand/cal-poly-seal.png",
+        "alt": "California Polytechnic State University"
+      },
+      {
+        "src": "assets/brand/northwestern-seal.png",
+        "alt": "Northwestern University"
+      }
+    ]
+  ],
   "stats": [],
   "charts": [],
   "convergence": {
@@ -426,6 +438,11 @@ const CONTENT = {
         {
           "type": "paragraph",
           "text": "I studied architecture to explore my curiosity around design thinking, material, and scale. A series of internships led me towards engineering where I developed a deep understanding of systems-thinking and governance."
+        },
+        {
+          "type": "component",
+          "component": "marks",
+          "param": ""
         }
       ]
     },
@@ -1341,7 +1358,11 @@ const injectFilmStyles = /* @__PURE__ */ (() => {
         to   { background-position-x: calc(100% - ${LEADER_OVERLAP}px - var(--film-travel, 44px)); }
       }
       .film-leader-run { animation: filmLeaderRun ${FILM_ADVANCE_MS}ms cubic-bezier(0.22, 0.61, 0.36, 1); }
+      /* The tap hint is only true where there is no pointer to hover with. It stays in
+         the layout so space-between still pins the << to the right. */
+      .film-tap { visibility: hidden; }
       @media (max-width: 768px) {
+        .film-tap { visibility: visible; }
         .film-leader { display: none; }
         /* No strip continuing to the left on phones, so the left corners round too */
         .film-frame { border-radius: ${EFFECTS.radius.lg} !important; }
@@ -1507,8 +1528,8 @@ const FilmScreen = ({ images = [], keepOuts = [] }) => {
           opacity: 0.85
         }
       },
-      /* @__PURE__ */ React.createElement("span", null),
-      /* @__PURE__ */ React.createElement("span", null, "<<")
+      /* @__PURE__ */ React.createElement("span", { className: "film-tap", style: { color: COLORS.ink[900] } }, "TAP"),
+      /* @__PURE__ */ React.createElement("span", { style: { color: COLORS.ink[900] } }, "<<")
     ),
     /* @__PURE__ */ React.createElement(
       "div",
@@ -7139,16 +7160,26 @@ const injectProjectCardStyles = /* @__PURE__ */ (() => {
         .project-grid { grid-template-columns: minmax(0, 1fr); }
       }
       .project-stack { display: grid; gap: ${PROJECT_ROW_GAP}px; }
-      /* Full-width card: title block, summary, meta */
+      /* One line: mark, role, company, then dates pushed right. Nothing wraps. */
       .project-stack-card {
-        display: grid;
-        grid-template-columns: minmax(180px, 24%) 1fr auto;
+        display: flex;
         align-items: center;
-        gap: ${SPACE[6]};
-        padding: ${SPACE[5]} ${SPACE[6]};
+        gap: ${SPACE[4]};
+        /* Even inset all round, so the space above the mark matches the space left of it */
+        padding: ${SPACE[5]};
       }
+      .project-stack-head {
+        display: flex;
+        align-items: baseline;
+        gap: ${SPACE[3]};
+        min-width: 0;
+        white-space: nowrap;
+      }
+      .project-stack-card .project-stack-meta { white-space: nowrap; }
+      /* Narrow screens have no room for one line, so the row becomes a block again */
       @media (max-width: 860px) {
-        .project-stack-card { grid-template-columns: 1fr; gap: ${SPACE[4]}; align-items: start; }
+        .project-stack-card { flex-direction: column; align-items: flex-start; gap: ${SPACE[3]}; padding: ${SPACE[5]}; }
+        .project-stack-head { flex-direction: column; align-items: flex-start; gap: ${SPACE[1]}; white-space: normal; }
         .project-stack-card .project-stack-meta { justify-content: flex-start; }
       }
 
@@ -7275,11 +7306,11 @@ const ProjectCard = ({ project, index, inView, layout }) => {
         }
       },
       getIcon(project.icon, isHovered ? "#FFFFFF" : COLORS.ink[500])
-    )), /* @__PURE__ */ React.createElement("div", { style: { minWidth: 0 } }, project.eyebrow && /* @__PURE__ */ React.createElement(
+    )), /* @__PURE__ */ React.createElement("div", { className: stacked ? "project-stack-head" : void 0, style: { minWidth: 0 } }, project.eyebrow && /* @__PURE__ */ React.createElement(
       "span",
       {
         style: {
-          display: "block",
+          display: stacked ? "inline" : "block",
           fontFamily: FONTS.mono,
           fontSize: TYPE_SCALE.ui.xs.size,
           fontWeight: 600,
@@ -7298,7 +7329,7 @@ const ProjectCard = ({ project, index, inView, layout }) => {
           fontWeight: 600,
           lineHeight: 1.25,
           color: COLORS.ink[800],
-          margin: `${SPACE[1]} 0 0`
+          margin: 0
         }
       },
       project.title
@@ -7317,7 +7348,7 @@ const ProjectCard = ({ project, index, inView, layout }) => {
         }
       },
       project.title
-    ), /* @__PURE__ */ React.createElement(
+    ), project.summary ? /* @__PURE__ */ React.createElement(
       "p",
       {
         style: {
@@ -7329,7 +7360,7 @@ const ProjectCard = ({ project, index, inView, layout }) => {
         }
       },
       /* @__PURE__ */ React.createElement(RichText, null, project.summary)
-    )),
+    ) : null),
     /* @__PURE__ */ React.createElement(
       "div",
       {
@@ -7933,6 +7964,43 @@ const Figure = ({ src, alt, caption, width = "wide", ratio = "16 / 10", align = 
     )
   );
 };
+const MARK_ROW_HEIGHT = 200;
+const injectMarkRowStyles = /* @__PURE__ */ (() => {
+  let injected = false;
+  return () => {
+    if (injected || typeof document === "undefined") return;
+    const style = document.createElement("style");
+    style.textContent = `
+      .mark-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: ${SPACE[6]};
+        max-width: 832px; /* matches the paragraph max-width above */
+        margin: ${SPACE[8]} 0 ${SPACE[4]};
+      }
+      .mark-row img {
+        height: ${MARK_ROW_HEIGHT}px;
+        width: auto;
+        max-width: 42%;
+        object-fit: contain;
+      }
+      @media (max-width: 640px) {
+        .mark-row { gap: ${SPACE[5]}; }
+        .mark-row img { height: 140px; }
+      }
+    `;
+    document.head.appendChild(style);
+    injected = true;
+  };
+})();
+const MarkRow = ({ marks = [] }) => {
+  React.useEffect(() => {
+    injectMarkRowStyles();
+  }, []);
+  if (!marks.length) return null;
+  return /* @__PURE__ */ React.createElement("div", { className: "mark-row" }, marks.map((mark, i) => /* @__PURE__ */ React.createElement("img", { key: mark.src || i, src: mark.src, alt: mark.alt || "", loading: "lazy" })));
+};
 const injectGlobalStyles = /* @__PURE__ */ (() => {
   let injected = false;
   return () => {
@@ -7971,8 +8039,8 @@ const BlockRenderer = ({ block, context }) => {
   }
 };
 const renderComponent = (block, context) => {
-  var _a, _b, _c, _d, _e, _f, _g;
-  const { chartsByType, getCardsBySection, getProjectsBySection, getQuotesBySection, terminalIndex, imageIndex } = context;
+  var _a, _b, _c, _d, _e, _f, _g, _h;
+  const { chartsByType, getCardsBySection, getProjectsBySection, getQuotesBySection, terminalIndex, imageIndex, markRowIndex } = context;
   switch (block.component) {
     case "stats": {
       const statsGroup = CONTENT.stats.find(
@@ -8039,8 +8107,13 @@ const renderComponent = (block, context) => {
         }
       ) : null;
     }
+    case "marks": {
+      const marks = (_e = CONTENT.markRows) == null ? void 0 : _e[markRowIndex.current];
+      markRowIndex.current++;
+      return marks && marks.length ? /* @__PURE__ */ React.createElement(MarkRow, { marks }) : null;
+    }
     case "image": {
-      const image = (_e = CONTENT.images) == null ? void 0 : _e[imageIndex.current];
+      const image = (_f = CONTENT.images) == null ? void 0 : _f[imageIndex.current];
       if (image) {
         imageIndex.current++;
         return /* @__PURE__ */ React.createElement(Figure, { ...image });
@@ -8052,7 +8125,7 @@ const renderComponent = (block, context) => {
     case "timeline":
       return CONTENT.timeline.length > 0 ? /* @__PURE__ */ React.createElement(Timeline, { entries: CONTENT.timeline }) : null;
     case "terminal":
-      const terminal = (_f = CONTENT.terminals) == null ? void 0 : _f[terminalIndex.current];
+      const terminal = (_g = CONTENT.terminals) == null ? void 0 : _g[terminalIndex.current];
       if (terminal) {
         terminalIndex.current++;
         return /* @__PURE__ */ React.createElement(
@@ -8081,7 +8154,7 @@ const renderComponent = (block, context) => {
       }
       return null;
     case "worklist":
-      const workList = (_g = CONTENT.workLists) == null ? void 0 : _g.find((w) => w.section === block.param);
+      const workList = (_h = CONTENT.workLists) == null ? void 0 : _h.find((w) => w.section === block.param);
       if (workList && workList.items.length > 0) {
         return /* @__PURE__ */ React.createElement(WorkList, { items: workList.items });
       }
@@ -8121,6 +8194,7 @@ const App = () => {
   const tableIndex = { current: 0 };
   const terminalIndex = { current: 0 };
   const imageIndex = { current: 0 };
+  const markRowIndex = { current: 0 };
   const pullquoteIndex = { current: 0 };
   const chartsByType = {};
   CONTENT.charts.forEach((chart) => {
@@ -8142,6 +8216,7 @@ const App = () => {
     getCardsBySection,
     getProjectsBySection,
     getQuotesBySection,
+    markRowIndex,
     pullquoteIndex,
     tableIndex,
     terminalIndex,
