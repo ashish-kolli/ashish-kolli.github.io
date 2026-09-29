@@ -30,8 +30,21 @@ const injectFigureStyles = (() => {
     style.textContent = `
       .figure-float-right { float: right; width: 34%; max-width: 300px; margin: 0.35rem 0 ${SPACE[5]} ${SPACE[7]} !important; }
       .figure-float-left { float: left; width: 34%; max-width: 300px; margin: 0.35rem ${SPACE[7]} ${SPACE[5]} 0 !important; }
+      /* Text keeps its own column instead of running back under the picture once the
+         float ends. The figure takes 34% plus its margin, so the copy stops short of it.
+         !important because the prose max-width is set inline. */
+      .figure-float-right ~ p,
+      .figure-float-right ~ ul,
+      .figure-float-right ~ ol { max-width: 60% !important; }
+      .figure-float-left ~ p,
+      .figure-float-left ~ ul,
+      .figure-float-left ~ ol { max-width: 60% !important; margin-left: auto !important; }
       @media (max-width: 640px) {
         .figure-float-right, .figure-float-left { float: none; width: 100%; max-width: 360px; margin: 0 auto ${SPACE[6]} !important; }
+        .figure-float-right ~ p, .figure-float-right ~ ul, .figure-float-right ~ ol,
+        .figure-float-left ~ p, .figure-float-left ~ ul, .figure-float-left ~ ol {
+          max-width: 100% !important; margin-left: 0 !important;
+        }
       }
     `;
     document.head.appendChild(style);
