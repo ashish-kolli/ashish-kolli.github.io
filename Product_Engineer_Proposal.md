@@ -54,11 +54,11 @@ CRM platform for scaling mom-and-pop shops from flagship to franchise.
 
 <!-- /@project -->
 
-<!-- @project logo="assets/brand/bawarchi-biryanis.png" logoScale="1.5" icon="chart" eyebrow="Product Consultant - Change Management" title="Bawarchi Biryanis" meta="" -->
+<!-- @project logo="assets/brand/bawarchi-biryanis.png" logoScale="1.5" icon="chart" eyebrow="Product Consultant" title="Bawarchi Biryanis" meta="June 2026 – Present" -->
 
 <!-- /@project -->
 
-<!-- @project logo="assets/brand/rubbermaid.png" icon="graduation" eyebrow="Product Lead" title="Graduate Capstone" meta="Northwestern · Rubbermaid · Sept 2025 – June 2026" -->
+<!-- @project logo="assets/brand/rubbermaid.png" icon="graduation" eyebrow="Product Lead" title="Rubbermaid + Northwestern Partnership" meta="Sept 2025 – June 2026" -->
 
 <!-- /@project -->
 
@@ -74,11 +74,11 @@ CRM platform for scaling mom-and-pop shops from flagship to franchise.
 
 <!-- /@project -->
 
-<!-- @project logo="assets/brand/morphosis.png" icon="layers" eyebrow="Intern Architect" title="Morphosis Architects" meta="2022–23" -->
+<!-- @project logo="assets/brand/morphosis.png" icon="layers" eyebrow="Intern Architect" title="Morphosis Architects" meta="June 2022 – September 2022" -->
 
 <!-- /@project -->
 
-<!-- @project logo="assets/brand/payette.png" icon="compass" eyebrow="Industrial Design Intern" title="Payette Associates" meta="" -->
+<!-- @project logo="assets/brand/payette.png" icon="compass" eyebrow="Industrial Design Intern" title="Payette Associates" meta="January 2023 – May 2023" -->
 
 <!-- /@project -->
 
@@ -86,7 +86,7 @@ CRM platform for scaling mom-and-pop shops from flagship to franchise.
 
 <!-- /@project -->
 
-<!-- @project icon="users" eyebrow="Prep Kitchen Lead" title="Hotel Saravanaa Bhavan" meta="" -->
+<!-- @project logo="assets/brand/saravanaa-bhavan.png" logoScale="1.4" icon="users" eyebrow="Prep Kitchen Lead" title="Hotel Saravanaa Bhavan" meta="October 2020 – September 2022" -->
 
 <!-- /@project -->
 
@@ -134,19 +134,19 @@ I studied architecture to explore my curiosity around design thinking, material,
 
 <!-- @projects section="maker" layout="flip" columns="3" -->
 
-<!-- @project href="assets/decks/architecture-portfolio.pdf" cta="View portfolio" icon="layers" eyebrow="Category" title="Architecture" meta="Cal Poly · Morphosis / Payette" -->
+<!-- @project href="assets/decks/architecture-portfolio.pdf" cta="View portfolio" icon="layers" title="Architecture" meta="Cal Poly · Morphosis / Payette" -->
 <!-- /@project -->
 
-<!-- @project href="assets/decks/extracurricular-portfolio.pdf" cta="View portfolio" icon="blocks" eyebrow="Category" title="LEGO" meta="[Scale · focus]" -->
+<!-- @project href="assets/decks/extracurricular-portfolio.pdf" cta="View portfolio" icon="blocks" title="LEGO" meta="[Scale · focus]" -->
 <!-- /@project -->
 
-<!-- @project href="https://instagram.com/ashperical" cta="View on Instagram" icon="camera" eyebrow="Category" title="Photography" meta="[Subjects · gear]" -->
+<!-- @project href="https://instagram.com/ashperical" cta="View on Instagram" icon="camera" title="Photography" meta="[Subjects · gear]" -->
 <!-- /@project -->
 
-<!-- @project href="projects/illustration/" icon="palette" eyebrow="Category" title="Illustration" meta="[Medium · subjects]" -->
+<!-- @project href="projects/illustration/" icon="palette" title="Illustration" meta="[Medium · subjects]" -->
 <!-- /@project -->
 
-<!-- @project href="https://substack.com/@ashperical/posts" cta="Read on Substack" icon="lightbulb" eyebrow="Category" title="Writing" meta="[Subjects · cadence]" -->
+<!-- @project href="https://substack.com/@ashperical/posts" cta="Read on Substack" icon="lightbulb" title="Writing" meta="[Subjects · cadence]" -->
 <!-- /@project -->
 
 <!-- /@projects -->

@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-09-29T18:23:06.517Z
+// Generated: 2026-10-03T14:41:00.508Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -89,8 +89,8 @@ const CONTENT = {
         {
           "href": "",
           "title": "Bawarchi Biryanis",
-          "eyebrow": "Product Consultant - Change Management",
-          "meta": "",
+          "eyebrow": "Product Consultant",
+          "meta": "June 2026 – Present",
           "icon": "chart",
           "logo": "assets/brand/bawarchi-biryanis.png",
           "logoScale": 1.5,
@@ -101,9 +101,9 @@ const CONTENT = {
         },
         {
           "href": "",
-          "title": "Graduate Capstone",
+          "title": "Rubbermaid + Northwestern Partnership",
           "eyebrow": "Product Lead",
-          "meta": "Northwestern · Rubbermaid · Sept 2025 – June 2026",
+          "meta": "Sept 2025 – June 2026",
           "icon": "graduation",
           "logo": "assets/brand/rubbermaid.png",
           "logoScale": 1,
@@ -155,7 +155,7 @@ const CONTENT = {
           "href": "",
           "title": "Morphosis Architects",
           "eyebrow": "Intern Architect",
-          "meta": "2022–23",
+          "meta": "June 2022 – September 2022",
           "icon": "layers",
           "logo": "assets/brand/morphosis.png",
           "logoScale": 1,
@@ -168,7 +168,7 @@ const CONTENT = {
           "href": "",
           "title": "Payette Associates",
           "eyebrow": "Industrial Design Intern",
-          "meta": "",
+          "meta": "January 2023 – May 2023",
           "icon": "compass",
           "logo": "assets/brand/payette.png",
           "logoScale": 1,
@@ -194,10 +194,10 @@ const CONTENT = {
           "href": "",
           "title": "Hotel Saravanaa Bhavan",
           "eyebrow": "Prep Kitchen Lead",
-          "meta": "",
+          "meta": "October 2020 – September 2022",
           "icon": "users",
-          "logo": "",
-          "logoScale": 1,
+          "logo": "assets/brand/saravanaa-bhavan.png",
+          "logoScale": 1.4,
           "cta": "",
           "image": "",
           "fade": 0.25,
@@ -240,7 +240,7 @@ const CONTENT = {
         {
           "href": "assets/decks/architecture-portfolio.pdf",
           "title": "Architecture",
-          "eyebrow": "Category",
+          "eyebrow": "",
           "meta": "Cal Poly · Morphosis / Payette",
           "icon": "layers",
           "logo": "",
@@ -253,7 +253,7 @@ const CONTENT = {
         {
           "href": "assets/decks/extracurricular-portfolio.pdf",
           "title": "LEGO",
-          "eyebrow": "Category",
+          "eyebrow": "",
           "meta": "[Scale · focus]",
           "icon": "blocks",
           "logo": "",
@@ -266,7 +266,7 @@ const CONTENT = {
         {
           "href": "https://instagram.com/ashperical",
           "title": "Photography",
-          "eyebrow": "Category",
+          "eyebrow": "",
           "meta": "[Subjects · gear]",
           "icon": "camera",
           "logo": "",
@@ -279,7 +279,7 @@ const CONTENT = {
         {
           "href": "projects/illustration/",
           "title": "Illustration",
-          "eyebrow": "Category",
+          "eyebrow": "",
           "meta": "[Medium · subjects]",
           "icon": "palette",
           "logo": "",
@@ -292,7 +292,7 @@ const CONTENT = {
         {
           "href": "https://substack.com/@ashperical/posts",
           "title": "Writing",
-          "eyebrow": "Category",
+          "eyebrow": "",
           "meta": "[Subjects · cadence]",
           "icon": "lightbulb",
           "logo": "",
