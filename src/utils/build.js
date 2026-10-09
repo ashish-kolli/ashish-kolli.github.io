@@ -106,6 +106,7 @@ function build() {
     'Section',      // Must be first - defines useInView hook used by other components
     'RichText',
     'FilmScreen',
+    'ScrollPulse',
     'Header',
     'CardGrid',
     'StatsGrid',

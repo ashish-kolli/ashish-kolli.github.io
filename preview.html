@@ -1599,6 +1599,131 @@ const FilmScreen = ({ images = [], keepOuts = [] }) => {
     /* @__PURE__ */ React.createElement(Sprockets, { running: advances > 0, key: `bottom-${advances}` })
   );
 };
+const CYCLE_MS = 2e3;
+const PULSE_RIPPLE_MS = 2400;
+const RING_START = 6;
+const RING_END = 86;
+const RING_BAND = 14;
+const RING_DECAY = 2.2;
+const PULSE_DOT_SPACING = 24;
+const PULSE_DOT_RADIUS = 0.7;
+const PULSE_DOT_RADIUS_BRIGHT = 1.15;
+const PULSE_LEVELS = [
+  { spacing: PULSE_DOT_SPACING / 2, reach: 46, scale: 0.72 },
+  { spacing: PULSE_DOT_SPACING / 4, reach: 26, scale: 0.52 },
+  { spacing: PULSE_DOT_SPACING / 8, reach: 13, scale: 0.38 }
+];
+const PULSE_FADE_IN_MS = 12;
+const PULSE_FADE_OUT_MS = 180;
+const FIELD = (RING_END + RING_BAND) * 2;
+const ScrollPulse = ({ color = "124, 58, 237" }) => {
+  const canvasRef = useRef(null);
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return void 0;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return void 0;
+    const ctx = canvas.getContext("2d");
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.round(FIELD * dpr);
+    canvas.height = Math.round(FIELD * dpr);
+    ctx.scale(dpr, dpr);
+    const centre = FIELD / 2;
+    const coords = [];
+    for (let x = centre % PULSE_DOT_SPACING; x <= FIELD; x += PULSE_DOT_SPACING) {
+      for (let y = centre % PULSE_DOT_SPACING; y <= FIELD; y += PULSE_DOT_SPACING) {
+        coords.push({ x, y, d: Math.hypot(x - centre, y - centre), scale: 1, alpha: 0 });
+      }
+    }
+    PULSE_LEVELS.forEach(({ spacing, reach, scale }) => {
+      const steps = Math.ceil(reach / spacing);
+      for (let i = -steps; i <= steps; i++) {
+        for (let j = -steps; j <= steps; j++) {
+          if (i % 2 === 0 && j % 2 === 0) continue;
+          const d = Math.hypot(i * spacing, j * spacing);
+          if (d > reach) continue;
+          coords.push({ x: centre + i * spacing, y: centre + j * spacing, d, scale, alpha: 0 });
+        }
+      }
+    });
+    let start = null;
+    let last = null;
+    let frame = null;
+    let running = true;
+    const draw = (time) => {
+      if (start === null) start = time;
+      const dt = last === null ? 16.7 : Math.min(time - last, 100);
+      last = time;
+      const elapsed = time - start;
+      const phases = [elapsed % CYCLE_MS, elapsed % CYCLE_MS + CYCLE_MS];
+      coords.forEach((dot) => {
+        dot.target = 0;
+      });
+      phases.forEach((age) => {
+        const progress = age / PULSE_RIPPLE_MS;
+        if (progress >= 1) return;
+        const eased = 1 - (1 - progress) * (1 - progress);
+        const radius = RING_START + (RING_END - RING_START) * eased;
+        const strength = (1 - progress) ** RING_DECAY;
+        coords.forEach((dot) => {
+          const offRing = Math.abs(dot.d - radius);
+          if (offRing >= RING_BAND) return;
+          const lit = strength * Math.cos(offRing / RING_BAND * (Math.PI / 2));
+          if (lit > dot.target) dot.target = lit;
+        });
+      });
+      ctx.clearRect(0, 0, FIELD, FIELD);
+      ctx.fillStyle = `rgb(${color})`;
+      coords.forEach((dot) => {
+        const duration = dot.target > dot.alpha ? PULSE_FADE_IN_MS : PULSE_FADE_OUT_MS;
+        dot.alpha += (dot.target - dot.alpha) * (1 - Math.exp(-dt / duration));
+        if (dot.alpha < 4e-3) {
+          dot.alpha = 0;
+          return;
+        }
+        ctx.globalAlpha = dot.alpha;
+        ctx.beginPath();
+        const radius = (PULSE_DOT_RADIUS + (PULSE_DOT_RADIUS_BRIGHT - PULSE_DOT_RADIUS) * dot.alpha) * dot.scale;
+        ctx.arc(dot.x, dot.y, radius, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      ctx.globalAlpha = 1;
+      if (running) frame = requestAnimationFrame(draw);
+    };
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && frame === null) {
+        running = true;
+        last = null;
+        frame = requestAnimationFrame(draw);
+      } else if (!entry.isIntersecting && frame !== null) {
+        running = false;
+        cancelAnimationFrame(frame);
+        frame = null;
+      }
+    });
+    observer.observe(canvas);
+    return () => {
+      running = false;
+      observer.disconnect();
+      if (frame !== null) cancelAnimationFrame(frame);
+    };
+  }, [color]);
+  return /* @__PURE__ */ React.createElement(
+    "canvas",
+    {
+      ref: canvasRef,
+      "aria-hidden": "true",
+      style: {
+        position: "absolute",
+        left: "50%",
+        top: "50%",
+        width: `${FIELD}px`,
+        height: `${FIELD}px`,
+        transform: "translate(-50%, -50%)",
+        pointerEvents: "none"
+      }
+    }
+  );
+};
 const RESUME_GRADIENT = "linear-gradient(115deg, rgba(109, 40, 217, 0.22) 0%, rgba(167, 139, 250, 0.14) 100%)";
 const RESUME_GRADIENT_HOVER = "linear-gradient(115deg, rgba(109, 40, 217, 0.34) 0%, rgba(167, 139, 250, 0.24) 100%)";
 const RESUME_TEXT_GRADIENT = "linear-gradient(90deg, #EA580C 0%, #7C3AED 100%)";
@@ -2176,10 +2301,11 @@ const Header = ({ data }) => {
             }
           }
         ),
-        /* @__PURE__ */ React.createElement(
+        /* @__PURE__ */ React.createElement("div", { style: { position: "relative", display: "flex", alignItems: "center", justifyContent: "center" } }, /* @__PURE__ */ React.createElement(ScrollPulse, null), /* @__PURE__ */ React.createElement(
           "div",
           {
             style: {
+              position: "relative",
               width: "8px",
               height: "8px",
               borderRadius: EFFECTS.radius.full,
@@ -2187,7 +2313,7 @@ const Header = ({ data }) => {
               animation: "pulse 2s ease-in-out infinite"
             }
           }
-        ),
+        )),
         /* @__PURE__ */ React.createElement(
           "span",
           {

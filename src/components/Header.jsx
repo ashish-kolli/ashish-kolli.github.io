@@ -7,6 +7,7 @@
  * - Geometric accent elements
  * - Magazine cover composition
  */
+import ScrollPulse from './ScrollPulse';
 import React, { useState, useEffect, useRef } from 'react';
 import FilmScreen from './FilmScreen';
 import { COLORS, FONTS, TYPE_SCALE, EFFECTS, LAYOUT, SPACE } from '../design-tokens';
@@ -621,15 +622,19 @@ const Header = ({ data }) => {
               background: `linear-gradient(to bottom, ${COLORS.accent.primary}, transparent)`,
             }}
           />
-          <div
-            style={{
-              width: '8px',
-              height: '8px',
-              borderRadius: EFFECTS.radius.full,
-              background: COLORS.accent.primary,
-              animation: 'pulse 2s ease-in-out infinite',
-            }}
-          />
+          <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <ScrollPulse />
+            <div
+              style={{
+                position: 'relative',
+                width: '8px',
+                height: '8px',
+                borderRadius: EFFECTS.radius.full,
+                background: COLORS.accent.primary,
+                animation: 'pulse 2s ease-in-out infinite',
+              }}
+            />
+          </div>
           <span
             style={{
               fontFamily: FONTS.mono,
