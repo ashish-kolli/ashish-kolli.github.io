@@ -132,7 +132,7 @@ I studied architecture to explore my curiosity around design thinking, material,
 
 ## 5. Making
 
-<!-- @projects section="maker" layout="flip" columns="3" -->
+<!-- @projects section="maker" layout="cover" columns="3" -->
 
 <!-- @project href="assets/decks/architecture-portfolio.pdf" cta="View portfolio" icon="layers" title="Architecture" meta="Cal Poly · Morphosis / Payette" -->
 <!-- /@project -->
@@ -143,7 +143,7 @@ I studied architecture to explore my curiosity around design thinking, material,
 <!-- @project href="https://instagram.com/ashperical" cta="View on Instagram" icon="camera" title="Photography" meta="[Subjects · gear]" -->
 <!-- /@project -->
 
-<!-- @project href="projects/illustration/" icon="palette" title="Illustration" meta="[Medium · subjects]" -->
+<!-- @project href="https://www.instagram.com/ashtroboomin/" cta="View on Instagram" icon="palette" title="Illustration" meta="[Medium · subjects]" -->
 <!-- /@project -->
 
 <!-- @project href="https://substack.com/@ashperical/posts" cta="Read on Substack" icon="lightbulb" title="Writing" meta="[Subjects · cadence]" -->

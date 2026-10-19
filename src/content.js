@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-10-07T02:36:44.592Z
+// Generated: 2026-10-19T06:20:08.697Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -233,7 +233,7 @@ const CONTENT = {
     },
     {
       "section": "maker",
-      "layout": "flip",
+      "layout": "cover",
       "columns": 3,
       "rows": 2,
       "projects": [
@@ -277,14 +277,14 @@ const CONTENT = {
           "summary": ""
         },
         {
-          "href": "projects/illustration/",
+          "href": "https://www.instagram.com/ashtroboomin/",
           "title": "Illustration",
           "eyebrow": "",
           "meta": "[Medium · subjects]",
           "icon": "palette",
           "logo": "",
           "logoScale": 1,
-          "cta": "",
+          "cta": "View on Instagram",
           "image": "",
           "fade": 0.25,
           "summary": ""

@@ -318,6 +318,84 @@ const ProjectCard = ({ project, index, inView, layout }) => {
 
 // A card that turns over: cover art and title on the front, the summary and
 // its link on the back. Turns on hover or focus, and on tap where there is no hover.
+// The same cover as a flip card's front, but the whole card is a link: one click
+// goes straight to the destination instead of turning the card over.
+const CoverProjectCard = ({ project, inView }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const external = /^https?:\/\//.test(project.href) || /\.pdf$/i.test(project.href);
+  const scrim = project.image
+    ? `linear-gradient(180deg, rgba(10,10,11,${0.15 + project.fade * 0.5}) 0%, rgba(10,10,11,${0.45 + project.fade * 0.45}) 100%)`
+    : `linear-gradient(140deg, ${COLORS.ink[800]} 0%, ${COLORS.accent.primary} 100%)`;
+
+  return (
+    <a
+      className="project-flip"
+      href={project.href || undefined}
+      target={external ? '_blank' : undefined}
+      rel={external ? 'noopener noreferrer' : undefined}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={{
+        textDecoration: 'none',
+        color: 'inherit',
+        transform: `translateY(${isHovered ? -4 : 0}px)`,
+        transition: `transform ${EFFECTS.transition.base}`,
+      }}
+    >
+      <div className="project-flip-inner" style={{ transform: 'none' }}>
+        <div
+          className="project-flip-face"
+          style={{
+            display: 'flex',
+            alignItems: 'flex-end',
+            padding: SPACE[6],
+            backgroundColor: COLORS.ink[800],
+            backgroundImage: project.image ? `url(${project.image})` : undefined,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            border: `1px solid ${isHovered ? COLORS.accent.primary : COLORS.ink[200]}`,
+            boxShadow: isHovered ? EFFECTS.shadow.lg : EFFECTS.shadow.sm,
+            transition: `border-color ${EFFECTS.transition.base}, box-shadow ${EFFECTS.transition.base}`,
+          }}
+        >
+          <div style={{ position: 'absolute', inset: 0, background: scrim }} />
+          <div style={{ position: 'relative' }}>
+            {project.eyebrow && (
+              <span
+                style={{
+                  display: 'block',
+                  fontFamily: FONTS.mono,
+                  fontSize: TYPE_SCALE.ui.xs.size,
+                  fontWeight: 600,
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  color: 'rgba(255, 255, 255, 0.75)',
+                  marginBottom: SPACE[2],
+                }}
+              >
+                {project.eyebrow}
+              </span>
+            )}
+            <h3
+              style={{
+                fontFamily: FONTS.ui,
+                fontSize: TYPE_SCALE.headline.lg.size,
+                fontWeight: 700,
+                lineHeight: 1.1,
+                color: '#FFFFFF',
+                margin: 0,
+                textShadow: '0 1px 24px rgba(10, 10, 11, 0.45)',
+              }}
+            >
+              {project.title}
+            </h3>
+          </div>
+        </div>
+      </div>
+    </a>
+  );
+};
+
 const FlipProjectCard = ({ project, index, inView }) => {
   const [flipped, setFlipped] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -526,11 +604,13 @@ const ProjectCards = ({ projects, layout = 'row', rows = 2, columns: flipColumns
   const isGrid = layout === 'grid';
   const isStack = layout === 'stack';
   const isFlip = layout === 'flip';
+  const isCover = layout === 'cover';
+  const usesFlipGrid = isFlip || isCover;
 
   useEffect(() => {
     injectProjectCardStyles();
     const row = rowRef.current;
-    if (!row || isGrid || isStack || isFlip) return undefined;
+    if (!row || isGrid || isStack || usesFlipGrid) return undefined;
 
     const update = () => {
       const maxScroll = row.scrollWidth - row.clientWidth;
@@ -543,7 +623,7 @@ const ProjectCards = ({ projects, layout = 'row', rows = 2, columns: flipColumns
       row.removeEventListener('scroll', update);
       window.removeEventListener('resize', update);
     };
-  }, [projects.length, isGrid, isStack, isFlip]);
+  }, [projects.length, isGrid, isStack, usesFlipGrid]);
 
   const scrollByCards = (direction) => {
     const row = rowRef.current;
@@ -553,7 +633,7 @@ const ProjectCards = ({ projects, layout = 'row', rows = 2, columns: flipColumns
 
   const fade = (side) => (edges[side] ? 'transparent' : 'black');
   const mask = `linear-gradient(to right, ${fade('left')} 0, black ${SPACE[8]}, black calc(100% - ${SPACE[8]}), ${fade('right')} 100%)`;
-  const scrollable = !isGrid && !isStack && !isFlip && (edges.left || edges.right);
+  const scrollable = !isGrid && !isStack && !usesFlipGrid && (edges.left || edges.right);
 
   // Enough columns to fit every card in `rows` rows, e.g. 7 cards in 2 rows → 4 + 3
   const columns = Math.max(1, Math.ceil(projects.length / Math.max(rows, 1)));
@@ -562,8 +642,8 @@ const ProjectCards = ({ projects, layout = 'row', rows = 2, columns: flipColumns
     <div ref={wrapRef} style={{ margin: `${SPACE[6]} 0 ${SPACE[8]}` }}>
       <div
         ref={rowRef}
-        className={isFlip ? 'project-flips' : isGrid ? 'project-grid' : (isStack ? 'project-stack' : 'project-row')}
-        style={isFlip ? { '--flip-columns': flipColumns } : isStack ? {} : isGrid ? {
+        className={usesFlipGrid ? 'project-flips' : isGrid ? 'project-grid' : (isStack ? 'project-stack' : 'project-row')}
+        style={usesFlipGrid ? { '--flip-columns': flipColumns } : isStack ? {} : isGrid ? {
           '--project-columns': columns,
           // Extend toward the right edge so four columns still read comfortably. Only to the
           // right: the left stays aligned with the text, clear of the fixed SectionNav.
@@ -581,7 +661,9 @@ const ProjectCards = ({ projects, layout = 'row', rows = 2, columns: flipColumns
         }}
       >
         {projects.map((project, i) => (
-          isFlip
+          isCover
+            ? <CoverProjectCard key={project.href || project.title} project={project} inView={inView} />
+            : isFlip
             ? <FlipProjectCard key={project.href || project.title} project={project} index={i} inView={inView} />
             : <ProjectCard key={project.href || project.title} project={project} index={i} inView={inView} layout={layout} />
         ))}
