@@ -62,7 +62,7 @@ CRM platform for scaling mom-and-pop shops from flagship to franchise.
 
 <!-- /@project -->
 
-<!-- @project logo="assets/brand/segal-northwestern.png" icon="graduation" eyebrow="Teaching Assistant" title="Segal Design Institute" meta="" -->
+<!-- @project logo="assets/brand/segal-northwestern.png" icon="graduation" eyebrow="Teaching Assistant" title="Segal Design Institute" meta="January 2026 – June 2026" -->
 
 <!-- /@project -->
 
@@ -74,19 +74,11 @@ CRM platform for scaling mom-and-pop shops from flagship to franchise.
 
 <!-- /@project -->
 
-<!-- @project logo="assets/brand/morphosis.png" icon="layers" eyebrow="Intern Architect" title="Morphosis Architects" meta="June 2022 – September 2022" -->
-
-<!-- /@project -->
-
 <!-- @project logo="assets/brand/payette.png" icon="compass" eyebrow="Industrial Design Intern" title="Payette Associates" meta="January 2023 – May 2023" -->
 
 <!-- /@project -->
 
-<!-- @project logo="assets/brand/cal-poly.png" logoScale="1.4" icon="cpu" eyebrow="Student Technician" title="Cal Poly Machine Shop" meta="" -->
-
-<!-- /@project -->
-
-<!-- @project logo="assets/brand/saravanaa-bhavan.png" logoScale="1.4" icon="users" eyebrow="Prep Kitchen Lead" title="Hotel Saravanaa Bhavan" meta="October 2020 – September 2022" -->
+<!-- @project logo="assets/brand/morphosis.png" icon="layers" eyebrow="Intern Architect" title="Morphosis Architects" meta="June 2022 – September 2022" -->
 
 <!-- /@project -->
 
@@ -94,7 +86,15 @@ CRM platform for scaling mom-and-pop shops from flagship to franchise.
 
 <!-- /@project -->
 
+<!-- @project logo="assets/brand/saravanaa-bhavan.png" logoScale="1.4" icon="users" eyebrow="Prep Kitchen Lead" title="Hotel Saravanaa Bhavan" meta="October 2020 – September 2022" -->
+
+<!-- /@project -->
+
 <!-- @project logo="assets/brand/d1-architect.png" icon="compass" eyebrow="Design Intern" title="D1 Architects and Associates" meta="June 2020 – September 2020" -->
+
+<!-- /@project -->
+
+<!-- @project logo="assets/brand/cal-poly.png" logoScale="1.4" icon="cpu" eyebrow="Student Technician" title="Cal Poly Machine Shop" meta="January 2020 – June 2024" -->
 
 <!-- /@project -->
 

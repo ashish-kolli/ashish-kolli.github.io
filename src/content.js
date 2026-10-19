@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-10-19T06:20:08.697Z
+// Generated: 2026-10-19T06:28:50.386Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -116,7 +116,7 @@ const CONTENT = {
           "href": "",
           "title": "Segal Design Institute",
           "eyebrow": "Teaching Assistant",
-          "meta": "",
+          "meta": "January 2026 – June 2026",
           "icon": "graduation",
           "logo": "assets/brand/segal-northwestern.png",
           "logoScale": 1,
@@ -153,19 +153,6 @@ const CONTENT = {
         },
         {
           "href": "",
-          "title": "Morphosis Architects",
-          "eyebrow": "Intern Architect",
-          "meta": "June 2022 – September 2022",
-          "icon": "layers",
-          "logo": "assets/brand/morphosis.png",
-          "logoScale": 1,
-          "cta": "",
-          "image": "",
-          "fade": 0.25,
-          "summary": ""
-        },
-        {
-          "href": "",
           "title": "Payette Associates",
           "eyebrow": "Industrial Design Intern",
           "meta": "January 2023 – May 2023",
@@ -179,25 +166,12 @@ const CONTENT = {
         },
         {
           "href": "",
-          "title": "Cal Poly Machine Shop",
-          "eyebrow": "Student Technician",
-          "meta": "",
-          "icon": "cpu",
-          "logo": "assets/brand/cal-poly.png",
-          "logoScale": 1.4,
-          "cta": "",
-          "image": "",
-          "fade": 0.25,
-          "summary": ""
-        },
-        {
-          "href": "",
-          "title": "Hotel Saravanaa Bhavan",
-          "eyebrow": "Prep Kitchen Lead",
-          "meta": "October 2020 – September 2022",
-          "icon": "users",
-          "logo": "assets/brand/saravanaa-bhavan.png",
-          "logoScale": 1.4,
+          "title": "Morphosis Architects",
+          "eyebrow": "Intern Architect",
+          "meta": "June 2022 – September 2022",
+          "icon": "layers",
+          "logo": "assets/brand/morphosis.png",
+          "logoScale": 1,
           "cta": "",
           "image": "",
           "fade": 0.25,
@@ -218,12 +192,38 @@ const CONTENT = {
         },
         {
           "href": "",
+          "title": "Hotel Saravanaa Bhavan",
+          "eyebrow": "Prep Kitchen Lead",
+          "meta": "October 2020 – September 2022",
+          "icon": "users",
+          "logo": "assets/brand/saravanaa-bhavan.png",
+          "logoScale": 1.4,
+          "cta": "",
+          "image": "",
+          "fade": 0.25,
+          "summary": ""
+        },
+        {
+          "href": "",
           "title": "D1 Architects and Associates",
           "eyebrow": "Design Intern",
           "meta": "June 2020 – September 2020",
           "icon": "compass",
           "logo": "assets/brand/d1-architect.png",
           "logoScale": 1,
+          "cta": "",
+          "image": "",
+          "fade": 0.25,
+          "summary": ""
+        },
+        {
+          "href": "",
+          "title": "Cal Poly Machine Shop",
+          "eyebrow": "Student Technician",
+          "meta": "January 2020 – June 2024",
+          "icon": "cpu",
+          "logo": "assets/brand/cal-poly.png",
+          "logoScale": 1.4,
           "cta": "",
           "image": "",
           "fade": 0.25,
