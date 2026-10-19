@@ -134,19 +134,19 @@ I studied architecture to explore my curiosity around design thinking, material,
 
 <!-- @projects section="maker" layout="cover" columns="3" -->
 
-<!-- @project href="assets/decks/architecture-portfolio.pdf" cta="View portfolio" icon="layers" title="Architecture" meta="Cal Poly · Morphosis / Payette" -->
+<!-- @project href="assets/decks/architecture-portfolio.pdf" cta="View portfolio" icon="layers" image="assets/photos/making/architecture.jpg" fade="0.3" title="Architecture" meta="Cal Poly · Morphosis / Payette" -->
 <!-- /@project -->
 
-<!-- @project href="assets/decks/extracurricular-portfolio.pdf" cta="View portfolio" icon="blocks" title="LEGO" meta="[Scale · focus]" -->
+<!-- @project href="assets/decks/extracurricular-portfolio.pdf" cta="View portfolio" icon="blocks" image="assets/photos/making/lego.jpg" fade="0.5" title="LEGO" meta="[Scale · focus]" -->
 <!-- /@project -->
 
-<!-- @project href="https://instagram.com/ashperical" cta="View on Instagram" icon="camera" title="Photography" meta="[Subjects · gear]" -->
+<!-- @project href="https://instagram.com/ashperical" cta="View on Instagram" icon="camera" image="assets/photos/making/photography.jpg" fade="0.5" title="Photography" meta="[Subjects · gear]" -->
 <!-- /@project -->
 
-<!-- @project href="https://www.instagram.com/ashtroboomin/" cta="View on Instagram" icon="palette" title="Illustration" meta="[Medium · subjects]" -->
+<!-- @project href="https://www.instagram.com/ashtroboomin/" cta="View on Instagram" icon="palette" image="assets/photos/making/illustration.jpg" fade="0.45" title="Illustration" meta="[Medium · subjects]" -->
 <!-- /@project -->
 
-<!-- @project href="https://substack.com/@ashperical/posts" cta="Read on Substack" icon="lightbulb" title="Writing" meta="[Subjects · cadence]" -->
+<!-- @project href="https://substack.com/@ashperical/posts" cta="Read on Substack" icon="lightbulb" image="assets/photos/making/writing.jpg" fade="0.6" title="Writing" meta="[Subjects · cadence]" -->
 <!-- /@project -->
 
 <!-- /@projects -->

@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-10-19T06:28:50.386Z
+// Generated: 2026-10-19T21:24:02.232Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -246,8 +246,8 @@ const CONTENT = {
           "logo": "",
           "logoScale": 1,
           "cta": "View portfolio",
-          "image": "",
-          "fade": 0.25,
+          "image": "assets/photos/making/architecture.jpg",
+          "fade": 0.3,
           "summary": ""
         },
         {
@@ -259,8 +259,8 @@ const CONTENT = {
           "logo": "",
           "logoScale": 1,
           "cta": "View portfolio",
-          "image": "",
-          "fade": 0.25,
+          "image": "assets/photos/making/lego.jpg",
+          "fade": 0.5,
           "summary": ""
         },
         {
@@ -272,8 +272,8 @@ const CONTENT = {
           "logo": "",
           "logoScale": 1,
           "cta": "View on Instagram",
-          "image": "",
-          "fade": 0.25,
+          "image": "assets/photos/making/photography.jpg",
+          "fade": 0.5,
           "summary": ""
         },
         {
@@ -285,8 +285,8 @@ const CONTENT = {
           "logo": "",
           "logoScale": 1,
           "cta": "View on Instagram",
-          "image": "",
-          "fade": 0.25,
+          "image": "assets/photos/making/illustration.jpg",
+          "fade": 0.45,
           "summary": ""
         },
         {
@@ -298,8 +298,8 @@ const CONTENT = {
           "logo": "",
           "logoScale": 1,
           "cta": "Read on Substack",
-          "image": "",
-          "fade": 0.25,
+          "image": "assets/photos/making/writing.jpg",
+          "fade": 0.6,
           "summary": ""
         }
       ]
