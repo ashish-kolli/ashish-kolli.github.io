@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-10-19T21:24:02.232Z
+// Generated: 2026-10-21T23:54:59.062Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -87,7 +87,7 @@ const CONTENT = {
           "summary": ""
         },
         {
-          "href": "",
+          "href": "https://www.bawarchibiryanis.com/aboutus",
           "title": "Bawarchi Biryanis",
           "eyebrow": "Product Consultant",
           "meta": "June 2026 – Present",
@@ -100,7 +100,7 @@ const CONTENT = {
           "summary": ""
         },
         {
-          "href": "",
+          "href": "https://www.rubbermaid.com",
           "title": "Rubbermaid + Northwestern Partnership",
           "eyebrow": "Product Lead",
           "meta": "Sept 2025 – June 2026",
@@ -113,7 +113,7 @@ const CONTENT = {
           "summary": ""
         },
         {
-          "href": "",
+          "href": "https://design.northwestern.edu",
           "title": "Segal Design Institute",
           "eyebrow": "Teaching Assistant",
           "meta": "January 2026 – June 2026",
@@ -126,7 +126,7 @@ const CONTENT = {
           "summary": ""
         },
         {
-          "href": "",
+          "href": "https://www.jensenhughes.com/about",
           "title": "Jensen Hughes",
           "eyebrow": "Associate Fire Protection Engineer",
           "meta": "August 2024 – August 2025",
@@ -139,7 +139,7 @@ const CONTENT = {
           "summary": ""
         },
         {
-          "href": "",
+          "href": "https://www.tesla.com",
           "title": "Tesla",
           "eyebrow": "Retail Development Intern",
           "meta": "June 2023 – September 2023",
@@ -152,7 +152,7 @@ const CONTENT = {
           "summary": ""
         },
         {
-          "href": "",
+          "href": "https://www.payette.com/studio/people/",
           "title": "Payette Associates",
           "eyebrow": "Industrial Design Intern",
           "meta": "January 2023 – May 2023",
@@ -165,7 +165,7 @@ const CONTENT = {
           "summary": ""
         },
         {
-          "href": "",
+          "href": "https://www.morphosis.com/about",
           "title": "Morphosis Architects",
           "eyebrow": "Intern Architect",
           "meta": "June 2022 – September 2022",
@@ -178,7 +178,7 @@ const CONTENT = {
           "summary": ""
         },
         {
-          "href": "",
+          "href": "https://www.houzz.com/professionals/design-build-firms/millennial-design-build-pfvwus-pf~884592089",
           "title": "Millennial Design & Build",
           "eyebrow": "Project Management Intern",
           "meta": "June 2021 – September 2021",
@@ -191,7 +191,7 @@ const CONTENT = {
           "summary": ""
         },
         {
-          "href": "",
+          "href": "https://saravanabhavan.com",
           "title": "Hotel Saravanaa Bhavan",
           "eyebrow": "Prep Kitchen Lead",
           "meta": "October 2020 – September 2022",
@@ -204,7 +204,7 @@ const CONTENT = {
           "summary": ""
         },
         {
-          "href": "",
+          "href": "https://www.d1architect.com",
           "title": "D1 Architects and Associates",
           "eyebrow": "Design Intern",
           "meta": "June 2020 – September 2020",
@@ -217,7 +217,7 @@ const CONTENT = {
           "summary": ""
         },
         {
-          "href": "",
+          "href": "https://caed.calpoly.edu/content/facilities/shop",
           "title": "Cal Poly Machine Shop",
           "eyebrow": "Student Technician",
           "meta": "January 2020 – June 2024",

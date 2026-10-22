@@ -299,7 +299,8 @@ const ProjectCard = ({ project, index, inView, layout }) => {
               transition: `color ${EFFECTS.transition.fast}`,
             }}
           >
-            {project.cta || 'View project'}{' '}
+            {/* A one-line row has no space for a label: the arrow alone carries it */}
+            {stacked ? null : <>{project.cta || 'View project'}{' '}</>}
             <span
               style={{
                 display: 'inline-block',

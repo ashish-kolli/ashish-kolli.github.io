@@ -54,47 +54,47 @@ CRM platform for scaling mom-and-pop shops from flagship to franchise.
 
 <!-- /@project -->
 
-<!-- @project logo="assets/brand/bawarchi-biryanis.png" logoScale="1.5" icon="chart" eyebrow="Product Consultant" title="Bawarchi Biryanis" meta="June 2026 – Present" -->
+<!-- @project href="https://www.bawarchibiryanis.com/aboutus" logo="assets/brand/bawarchi-biryanis.png" logoScale="1.5" icon="chart" eyebrow="Product Consultant" title="Bawarchi Biryanis" meta="June 2026 – Present" -->
 
 <!-- /@project -->
 
-<!-- @project logo="assets/brand/rubbermaid.png" icon="graduation" eyebrow="Product Lead" title="Rubbermaid + Northwestern Partnership" meta="Sept 2025 – June 2026" -->
+<!-- @project href="https://www.rubbermaid.com" logo="assets/brand/rubbermaid.png" icon="graduation" eyebrow="Product Lead" title="Rubbermaid + Northwestern Partnership" meta="Sept 2025 – June 2026" -->
 
 <!-- /@project -->
 
-<!-- @project logo="assets/brand/segal-northwestern.png" icon="graduation" eyebrow="Teaching Assistant" title="Segal Design Institute" meta="January 2026 – June 2026" -->
+<!-- @project href="https://design.northwestern.edu" logo="assets/brand/segal-northwestern.png" icon="graduation" eyebrow="Teaching Assistant" title="Segal Design Institute" meta="January 2026 – June 2026" -->
 
 <!-- /@project -->
 
-<!-- @project logo="assets/brand/jensen-hughes.png" icon="shield" eyebrow="Associate Fire Protection Engineer" title="Jensen Hughes" meta="August 2024 – August 2025" -->
+<!-- @project href="https://www.jensenhughes.com/about" logo="assets/brand/jensen-hughes.png" icon="shield" eyebrow="Associate Fire Protection Engineer" title="Jensen Hughes" meta="August 2024 – August 2025" -->
 
 <!-- /@project -->
 
-<!-- @project logo="assets/brand/tesla.png" icon="zap" eyebrow="Retail Development Intern" title="Tesla" meta="June 2023 – September 2023" -->
+<!-- @project href="https://www.tesla.com" logo="assets/brand/tesla.png" icon="zap" eyebrow="Retail Development Intern" title="Tesla" meta="June 2023 – September 2023" -->
 
 <!-- /@project -->
 
-<!-- @project logo="assets/brand/payette.png" icon="compass" eyebrow="Industrial Design Intern" title="Payette Associates" meta="January 2023 – May 2023" -->
+<!-- @project href="https://www.payette.com/studio/people/" logo="assets/brand/payette.png" icon="compass" eyebrow="Industrial Design Intern" title="Payette Associates" meta="January 2023 – May 2023" -->
 
 <!-- /@project -->
 
-<!-- @project logo="assets/brand/morphosis.png" icon="layers" eyebrow="Intern Architect" title="Morphosis Architects" meta="June 2022 – September 2022" -->
+<!-- @project href="https://www.morphosis.com/about" logo="assets/brand/morphosis.png" icon="layers" eyebrow="Intern Architect" title="Morphosis Architects" meta="June 2022 – September 2022" -->
 
 <!-- /@project -->
 
-<!-- @project logo="assets/brand/millennial-design-build.png" icon="layers" eyebrow="Project Management Intern" title="Millennial Design & Build" meta="June 2021 – September 2021" -->
+<!-- @project href="https://www.houzz.com/professionals/design-build-firms/millennial-design-build-pfvwus-pf~884592089" logo="assets/brand/millennial-design-build.png" icon="layers" eyebrow="Project Management Intern" title="Millennial Design & Build" meta="June 2021 – September 2021" -->
 
 <!-- /@project -->
 
-<!-- @project logo="assets/brand/saravanaa-bhavan.png" logoScale="1.4" icon="users" eyebrow="Prep Kitchen Lead" title="Hotel Saravanaa Bhavan" meta="October 2020 – September 2022" -->
+<!-- @project href="https://saravanabhavan.com" logo="assets/brand/saravanaa-bhavan.png" logoScale="1.4" icon="users" eyebrow="Prep Kitchen Lead" title="Hotel Saravanaa Bhavan" meta="October 2020 – September 2022" -->
 
 <!-- /@project -->
 
-<!-- @project logo="assets/brand/d1-architect.png" icon="compass" eyebrow="Design Intern" title="D1 Architects and Associates" meta="June 2020 – September 2020" -->
+<!-- @project href="https://www.d1architect.com" logo="assets/brand/d1-architect.png" icon="compass" eyebrow="Design Intern" title="D1 Architects and Associates" meta="June 2020 – September 2020" -->
 
 <!-- /@project -->
 
-<!-- @project logo="assets/brand/cal-poly.png" logoScale="1.4" icon="cpu" eyebrow="Student Technician" title="Cal Poly Machine Shop" meta="January 2020 – June 2024" -->
+<!-- @project href="https://caed.calpoly.edu/content/facilities/shop" logo="assets/brand/cal-poly.png" logoScale="1.4" icon="cpu" eyebrow="Student Technician" title="Cal Poly Machine Shop" meta="January 2020 – June 2024" -->
 
 <!-- /@project -->
 
