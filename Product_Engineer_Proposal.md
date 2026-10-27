@@ -20,9 +20,15 @@ Component marker reference: see CLAUDE.md
 <!-- @title value="Ashish Kolli" -->
 <!-- @subtitle value="Accelerating and scaling product with agents." -->
 <!-- The subtitle types itself out, backspaces, and cycles through these, then starts over -->
-<!-- @phrase value="tweaking Teriyaki Sauce recipe." -->
-<!-- @phrase value="reading memoirs and crying." -->
-<!-- @phrase value="flying FPV drones." -->
+<!-- @phrase value="tweaking Teriyaki glaze recipe." -->
+<!-- @phrase value="reading memoirs and sweating through my eyes." -->
+<!-- @phrase value="writing letters with wax seals and twine." -->
+<!-- @phrase value="sculpting new LEGO elements." -->
+<!-- @phrase value="fermenting dosa batter." -->
+<!-- @phrase value="freaking out about human extinction." -->
+<!-- @phrase value="shredding MTB trails." -->
+<!-- @phrase value="snapping photos at precisely all the wrong times." -->
+<!-- @phrase value="shivering from cold showers." -->
 <!-- /@header -->
 
 

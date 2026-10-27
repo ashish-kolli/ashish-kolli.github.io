@@ -110,19 +110,31 @@ const Header = ({ data }) => {
     const HOLD_PHRASE_MS = 1900;
     const GAP_MS = 380;       // empty prompt before the next line starts
 
+    // The tagline always leads; the phrases after it are shuffled, and reshuffled on
+    // each pass, so a visitor doesn't always meet the same two or three.
+    const shuffle = () => {
+      const rest = lines.slice(1);
+      for (let i = rest.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [rest[i], rest[j]] = [rest[j], rest[i]];
+      }
+      return [lines[0], ...rest];
+    };
+
+    let order = shuffle();
     let line = 0;
     let length = 0;
     let deleting = false;
     let timer;
     const tick = () => {
-      const text = lines[line];
+      const text = order[line];
       if (!deleting) {
         length += 1;
         setTypedText(text.slice(0, length));
         setIsTyping(true);
         if (length >= text.length) {
           setIsTyping(false);
-          if (lines.length < 2) return; // nothing to cycle to
+          if (order.length < 2) return; // nothing to cycle to
           deleting = true;
           timer = setTimeout(tick, line === 0 ? HOLD_TAGLINE_MS : HOLD_PHRASE_MS);
           return;
@@ -134,7 +146,8 @@ const Header = ({ data }) => {
         setIsTyping(true);
         if (length <= 0) {
           deleting = false;
-          line = (line + 1) % lines.length;
+          line = (line + 1) % order.length;
+          if (line === 0) order = shuffle(); // new order each time round
           timer = setTimeout(tick, GAP_MS);
           return;
         }

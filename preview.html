@@ -49,9 +49,15 @@ const CONTENT = {
     "title": "Ashish Kolli",
     "subtitle": "Accelerating and scaling product with agents.",
     "phrases": [
-      "tweaking Teriyaki Sauce recipe.",
-      "reading memoirs and crying.",
-      "flying FPV drones."
+      "tweaking Teriyaki glaze recipe.",
+      "reading memoirs and sweating through my eyes.",
+      "writing letters with wax seals and twine.",
+      "sculpting new LEGO elements.",
+      "fermenting dosa batter.",
+      "freaking out about human extinction.",
+      "shredding MTB trails.",
+      "snapping photos at precisely all the wrong times.",
+      "shivering from cold showers."
     ]
   },
   "page": null,
@@ -1798,19 +1804,28 @@ const Header = ({ data }) => {
     const HOLD_TAGLINE_MS = 3200;
     const HOLD_PHRASE_MS = 1900;
     const GAP_MS = 380;
+    const shuffle = () => {
+      const rest = lines.slice(1);
+      for (let i = rest.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [rest[i], rest[j]] = [rest[j], rest[i]];
+      }
+      return [lines[0], ...rest];
+    };
+    let order = shuffle();
     let line = 0;
     let length = 0;
     let deleting = false;
     let timer;
     const tick = () => {
-      const text = lines[line];
+      const text = order[line];
       if (!deleting) {
         length += 1;
         setTypedText(text.slice(0, length));
         setIsTyping(true);
         if (length >= text.length) {
           setIsTyping(false);
-          if (lines.length < 2) return;
+          if (order.length < 2) return;
           deleting = true;
           timer = setTimeout(tick, line === 0 ? HOLD_TAGLINE_MS : HOLD_PHRASE_MS);
           return;
@@ -1822,7 +1837,8 @@ const Header = ({ data }) => {
         setIsTyping(true);
         if (length <= 0) {
           deleting = false;
-          line = (line + 1) % lines.length;
+          line = (line + 1) % order.length;
+          if (line === 0) order = shuffle();
           timer = setTimeout(tick, GAP_MS);
           return;
         }

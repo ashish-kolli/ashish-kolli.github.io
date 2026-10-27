@@ -1,5 +1,5 @@
 // Auto-generated from Product_Engineer_Proposal.md
-// Generated: 2026-10-21T23:54:59.062Z
+// Generated: 2026-10-27T04:54:27.673Z
 // Run: node src/utils/parser.js
 
 const CONTENT = {
@@ -26,9 +26,15 @@ const CONTENT = {
     "title": "Ashish Kolli",
     "subtitle": "Accelerating and scaling product with agents.",
     "phrases": [
-      "tweaking Teriyaki Sauce recipe.",
-      "reading memoirs and crying.",
-      "flying FPV drones."
+      "tweaking Teriyaki glaze recipe.",
+      "reading memoirs and sweating through my eyes.",
+      "writing letters with wax seals and twine.",
+      "sculpting new LEGO elements.",
+      "fermenting dosa batter.",
+      "freaking out about human extinction.",
+      "shredding MTB trails.",
+      "snapping photos at precisely all the wrong times.",
+      "shivering from cold showers."
     ]
   },
   "page": null,
